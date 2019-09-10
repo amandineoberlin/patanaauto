@@ -1,0 +1,52 @@
+@import "../app.component.scss";
+
+#mainNav {
+  background-color: $gray-900;
+  background-color: transparent;
+
+  .navbar-toggler {
+    font-size: 12px;
+    right: 0;
+    padding: 13px;
+    text-transform: uppercase;
+    color: white;
+    border: 0;
+    background-color: $primary;
+  }
+
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        padding: 1.1em 1em !important;
+        font-size: 90%;
+        font-weight: 400;
+        padding: 0.75em 0;
+        letter-spacing: 1px;
+        color: white;
+        &.active,
+        &:hover {
+          color: $primary;
+        }
+      }
+
+      .dropdown-menu {
+        background-color: black;
+        border-left: solid 1px $primary;
+
+        li a {
+          font-size: 70%;
+          color: white;
+          padding-left: 15px;
+
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    .dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+  }
+}
