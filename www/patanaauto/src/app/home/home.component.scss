@@ -1,0 +1,70 @@
+@import "../app.component.scss";
+
+.home-container {
+  color: white;
+  margin-top: 40px;
+
+  .adds-container {
+    overflow: hidden;
+    height: calc(100vh - 146px); /* default */
+    height: -o-calc(100vh - 146px); /* opera */
+    height: -webkit-calc(100vh - 146px); /* google, safari */
+    height: -moz-calc(100vh - 146px); /* firefox */
+    position: relative;
+    width: 100%;
+    background-color: rgba(239, 240, 241, .1);
+    border-radius: 10px;
+    padding-left: 50px;
+    padding-top: 50px;
+
+    .form-inline {
+      padding-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+
+      i {
+        padding-right: 5px;
+      }
+
+      .form-control {
+        border-radius: 0;
+        border: solid 1px white;
+        background-clip: unset;
+        height: 100%;
+      }
+
+      .marque, .modele {
+        border-right: 1px solid $gray-400;
+        width: 25%;
+      }
+
+      .prix {
+        width: 20%;
+      }
+    }
+  }
+
+  .carousel {
+    position: absolute;
+    padding-top: 100px;
+    width: 80%;
+    height: 100%;
+    object-fit: cover; 
+    color: black;
+    margin-right: -50px;
+
+    .carousel-item {
+      display: inline-flex;
+      width: 100%;
+
+      .card {
+        @include box-shadow-light;
+        border: 0;
+        display: flex;
+        flex-direction: column;
+        word-wrap: break-word;
+      }
+    }
+  }
+}
