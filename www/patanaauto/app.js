@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const schedule = require('node-schedule');
 
-const rule = new schedule.RecurrenceRule();
 const limit = '10mb';
 const port = 5001;
 const static_folder = path.join(__dirname, 'dist/patanaauto');
