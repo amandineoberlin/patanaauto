@@ -4,6 +4,7 @@ const http = require('http');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const schedule = require('node-schedule');
 
 const limit = '10mb';
 const port = 5001;
@@ -20,6 +21,10 @@ app.use('/', express.static(static_folder));
 
 require('./routes/annonces')(app);
  
+schedule.scheduleJob({ start: Date.now(), rule: '*/7' }, () => {
+  console.log('The answer to life, the universe, and everything!');
+});
+
 server.listen(port, function () {
     console.log('Node Express server for ' + app.name + ' listening on http://localhost:' + port);
 });
