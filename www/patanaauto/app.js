@@ -23,10 +23,10 @@ app.use('/', express.static(static_folder));
 
 require('./routes/annonces')(app);
 
-schedule.scheduleJob({ hour: 00, minute: 00, dayOfWeek: 0, start: Date.now() }, () =>
+schedule.scheduleJob({ hour: 1, minute: 1, dayOfWeek: 0, start: Date.now() }, () =>
   require('./modules/schedule-job').retrieveData());
 
-schedule.scheduleJob({ hour: 00, minute: 00, date: 1, start: Date.now() }, () =>
+schedule.scheduleJob({ hour: 1, minute: 1, date: 1, start: Date.now() }, () =>
   require('./modules/schedule-job').cleanData());
 
 server.listen(port, () => 
