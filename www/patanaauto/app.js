@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const schedule = require('node-schedule');
 const logger = require('./modules/logger');
-const Promise = require('bluebird');
-const rp = require('request-promise');
 
 const limit = '10mb';
 const port = 5001;
