@@ -4,8 +4,8 @@
   color: white;
   margin-top: 40px;
 
-  .adds-container {
-    overflow: hidden;
+  .content-container {
+    overflow: auto;
     height: calc(100vh - 146px); /* default */
     height: -o-calc(100vh - 146px); /* opera */
     height: -webkit-calc(100vh - 146px); /* google, safari */
@@ -13,58 +13,93 @@
     position: relative;
     width: 100%;
     background-color: rgba(239, 240, 241, .1);
-    border-radius: 10px;
-    padding-left: 50px;
-    padding-top: 50px;
 
-    .form-inline {
-      padding-top: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      position: absolute;
+    .adds-lookup {
+      padding: 30px 0 0 35px;
 
-      i {
-        padding-right: 5px;
-      }
+      .form-inline {
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 34px;
+        width: 100%;
 
-      .form-control {
-        border-radius: 0;
-        border: solid 1px white;
-        background-clip: unset;
-        height: 100%;
-      }
+        i {
+          padding-right: 5px;
+        }
 
-      .marque, .modele {
-        border-right: 1px solid $gray-400;
-        width: 25%;
-      }
+        .form-control {
+          border-radius: 0;
+          border: solid 1px white;
+          background-clip: unset;
+          height: 100%;
+        }
 
-      .prix {
-        width: 20%;
+        .marque, .modele {
+          border-right: 1px solid $gray-400;
+          width: 34%;
+        }
+
+        .prix {
+          width: 18%;
+        }
+
+        button {
+          width: 14%;
+        }
       }
     }
-  }
 
-  .carousel {
-    position: absolute;
-    padding-top: 100px;
-    width: 80%;
-    height: 100%;
-    object-fit: cover; 
-    color: black;
-    margin-right: -50px;
+    .presentation {
+      padding: 35px 50px 23px 35px;
+    }
 
-    .carousel-item {
-      display: inline-flex;
-      width: 100%;
+    hr {
+      border-color: $primary;
+      border-width: .25rem;
+      width: 30%;
+      margin-top: 20px;
+    }
 
-      .card {
-        @include box-shadow-light;
-        border: 0;
-        display: flex;
-        flex-direction: column;
-        word-wrap: break-word;
+    .parc {
+      height: 100%;
+      padding-right: 0;
+
+      img {
+        height: 22rem;
+        width: 100%;
       }
+    }
+
+    .description {
+      background-color: $black;
+      text-align: left;
+
+      h4 {
+        background-color: white;
+        color: $primary;
+        padding: 10px 0 10px 0;
+        width: 100%;
+      }
+
+      .bullets {
+        margin: 45px 0 0 20px;
+
+        h6 {
+          i {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+
+    .intro-text {
+      margin-top: 40px;
+      text-align: justify;
+      color: white;
+    }
+
+    .fa-circle {
+      color: $primary;
     }
   }
 }
