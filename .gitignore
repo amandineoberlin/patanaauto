@@ -6,7 +6,7 @@
 **/.DS_Store
 *.log
 .vscode
-**/dist
+www/patanaauto/dist/
 
 # User-specific files
 *.suo
