@@ -6,7 +6,13 @@
         <div class="adds-lookup">
           <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>
           <div class="input-group md-12">
-            <input type="text" class="form-control marque" placeholder="Marque">
+            <ui-select ng-model="ctrl.marques.selected" theme="select2" class="form-control" title="Marque">
+              <ui-select-match placeholder="Sélectionnez une marque...">{{$select.selected}}</ui-select-match>
+              <ui-select-choices repeat="item in ctrl.marques | filter: $select.search">
+                <div ng-bind-html="item | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+
             <input type="text" class="form-control modele" placeholder="Modèle">
             <input type="text" class="form-control prix" placeholder="Prix max">
             <div class="input-group-append">

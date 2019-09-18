@@ -6,6 +6,8 @@ import { environment } from './environments/environment';
 
 import './jquery';
 import 'bootstrap';
+import 'angular-sanitize'
+import 'ui-select';
 
 if (environment.production) {
   enableProdMode();
