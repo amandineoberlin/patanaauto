@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Patana Auto';
+
+  ngOnInit() {
+    document.createElement('ui-select');
+    document.createElement('ui-select-match');
+    document.createElement('ui-select-choices');
+  }
 }

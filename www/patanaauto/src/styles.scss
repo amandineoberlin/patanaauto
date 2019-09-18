@@ -18,6 +18,26 @@ body {
     text-decoration: none!important;
   }
 
+  textarea:hover,
+  input:hover,
+  select:hover,
+  textarea:active,
+  input:active,
+  select:active,
+  textarea:focus,
+  input:focus,
+  select:focus,
+  button:focus,
+  button:active,
+  button:hover,
+  label:focus,
+  .btn:active,
+  .btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+  }
+
   p {
     font-size: 14px;
     font-weight: 100;

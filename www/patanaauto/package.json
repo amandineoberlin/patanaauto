@@ -24,6 +24,7 @@
     "@angular/router": "~8.2.4",
     "@fortawesome/fontawesome-free": "^5.10.2",
     "@types/jquery": "^3.3.31",
+    "angular-sanitize": "^1.7.8",
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
@@ -44,6 +45,7 @@
     "rxjs": "~6.4.0",
     "save": "^2.4.0",
     "tslib": "^1.10.0",
+    "ui-select": "^0.19.8",
     "unzipper": "^0.10.5",
     "xml2js": "^0.4.22",
     "zone.js": "~0.9.1"

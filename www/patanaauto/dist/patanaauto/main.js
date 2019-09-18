@@ -110,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container home-container\">\n  <div class=\"content-container\">\n\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"adds-lookup\">\n          <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>\n          <div class=\"input-group md-12\">\n            <input type=\"text\" class=\"form-control marque\" placeholder=\"Marque\">\n            <input type=\"text\" class=\"form-control modele\" placeholder=\"Modèle\">\n            <input type=\"text\" class=\"form-control prix\" placeholder=\"Prix max\">\n            <div class=\"input-group-append\">\n              <button type=\"submit\" class=\"btn btn-primary\" type=\"button\">\n                <i class=\"fas fa-search\"></i> Rechercher\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row presentation center-block\">\n      <div class=\"col-md-6 parc\">\n        <img class=\"img-fluid\" src=\"../../assets/images/rubriques/parc.JPG\" alt=\"\">\n      </div>\n      <div class=\"col-md-6 description\">\n        <h4 class=\"text-center\">PATANA AUTO à Pamfou en SEINE ET MARNE</h4>\n        <div class=\"bullets\">\n          <h6><i class=\"fas fa-circle fa-xs\"></i> VÉHICULES D'OCCASION TOUTE MARQUE</h6>\n          <h6><i class=\"fas fa-circle fa-xs\"></i> ACHAT - VENTE - REPRISE</h6>\n          <h6><i class=\"fas fa-circle fa-xs\"></i> FINANCEMENT ET GARANTIE</h6>\n        </div>\n        <p class=\"intro-text text-white-50\">\n          Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site\n          internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez ainsi\n          votre prochaine visite dans nos locaux...</p>\n\n        <hr class=\"d-none d-lg-block mb-0 ml-0\">\n      </div>\n    </div>\n\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container home-container\">\n  <div class=\"content-container\">\n\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"adds-lookup\">\n          <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>\n          <div class=\"input-group md-12\">\n            <ui-select ng-model=\"ctrl.marques.selected\" theme=\"select2\" class=\"form-control\" title=\"Marque\">\n              <ui-select-match placeholder=\"Sélectionnez une marque...\">{{$select.selected}}</ui-select-match>\n              <ui-select-choices repeat=\"item in ctrl.marques | filter: $select.search\">\n                <div ng-bind-html=\"item | highlight: $select.search\"></div>\n              </ui-select-choices>\n            </ui-select>\n\n            <input type=\"text\" class=\"form-control modele\" placeholder=\"Modèle\">\n            <input type=\"text\" class=\"form-control prix\" placeholder=\"Prix max\">\n            <div class=\"input-group-append\">\n              <button type=\"submit\" class=\"btn btn-primary\" type=\"button\">\n                <i class=\"fas fa-search\"></i> Rechercher\n              </button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row presentation center-block\">\n      <div class=\"col-md-6 parc\">\n        <img class=\"img-fluid\" src=\"../../assets/images/rubriques/parc.JPG\" alt=\"\">\n      </div>\n      <div class=\"col-md-6 description\">\n        <h4 class=\"text-center\">PATANA AUTO à Pamfou en SEINE ET MARNE</h4>\n        <div class=\"bullets\">\n          <h6><i class=\"fas fa-circle fa-xs\"></i> VÉHICULES D'OCCASION TOUTE MARQUE</h6>\n          <h6><i class=\"fas fa-circle fa-xs\"></i> ACHAT - VENTE - REPRISE</h6>\n          <h6><i class=\"fas fa-circle fa-xs\"></i> FINANCEMENT ET GARANTIE</h6>\n        </div>\n        <p class=\"intro-text text-white-50\">\n          Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site\n          internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez ainsi\n          votre prochaine visite dans nos locaux...</p>\n\n        <hr class=\"d-none d-lg-block mb-0 ml-0\">\n      </div>\n    </div>\n\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -557,6 +557,11 @@ let AppComponent = class AppComponent {
     constructor() {
         this.title = 'Patana Auto';
     }
+    ngOnInit() {
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+    }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -812,11 +817,19 @@ let HomeComponent = class HomeComponent {
         this.http = http;
     }
     getAnnonces() {
+        const marques = [];
+        const modeles = [];
         return this.http.get('get-annonces')
             .toPromise()
             .then((annonces) => {
             this.annonces = annonces;
             this.annoncesSize = lodash__WEBPACK_IMPORTED_MODULE_2___default.a.size(annonces);
+            lodash__WEBPACK_IMPORTED_MODULE_2___default.a.forEach(annonces, (vehicule) => {
+                marques.push(vehicule.VehiculeModele.join());
+                modeles.push(vehicule.VehiculeMarque.join());
+            });
+            this.marques = marques;
+            this.modeles = modeles;
         });
     }
     ngOnInit() {
@@ -1038,6 +1051,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./jquery */ "./src/jquery.ts");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var angular_sanitize__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-sanitize */ "./node_modules/angular-sanitize/index.js");
+/* harmony import */ var angular_sanitize__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(angular_sanitize__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var ui_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ui-select */ "./node_modules/ui-select/index.js");
+/* harmony import */ var ui_select__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(ui_select__WEBPACK_IMPORTED_MODULE_8__);
+
+
 
 
 
