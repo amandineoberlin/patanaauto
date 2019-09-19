@@ -12,13 +12,19 @@
             <ng-select class="modele" [items]="modeles" placeholder="modèle..." [(ngModel)]="selectedModele"
               (change)="updateMarques()" >
             </ng-select>
-            <input type="number" class="prix" placeholder="Prix max...">
+            <input type="number" class="prix" placeholder="Prix max..."
+              (focus)="togglePriceView()" (blur)="togglePriceView()" >
             <div class="input-group-append">
               <button type="submit" class="btn btn-primary" type="button">
                 <i class="fas fa-search"></i> Rechercher
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="col-md-3 offset-md-8">
+        <div ng-if="showPriceRange" class="price-range">
+          <input type="text" class="js-range-slider" name="my_range" value="" />
         </div>
       </div>
     </div>
