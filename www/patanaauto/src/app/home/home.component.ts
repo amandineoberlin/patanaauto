@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
   modeles: Array<string>;
   selectedModele: String;
   selectedMarque: String;
-  showPriceRange: Boolean;
-  value: number = 100;
+  showPriceRange: Boolean = false;
+  inputPrice: String;
 
   constructor(private dataService: DataLoaderService) {}
 
@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showPriceRange = false;
     this.dataService.getAnnonces().then(dataObj => {
       this.data = dataObj;
       this.annonces = dataObj.annonces;
@@ -71,7 +70,12 @@ export class HomeComponent implements OnInit {
           to: 5000,
           grid: true,
           prefix: '€',
-          step: 50
+          step: 50,
+          onChange: (data) => {
+            const from = data.from;
+            const to = data.to;
+            this.inputPrice = `${from} - ${to}`;
+          }
       });
     });
   }
