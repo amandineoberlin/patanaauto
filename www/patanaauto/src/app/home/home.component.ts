@@ -11,6 +11,7 @@ import { DataLoaderService } from '../data-loader.service';
 
 export class HomeComponent implements OnInit {
 
+  data: { [name: string]: Object };
   annonces: Object;
   annoncesSize: Number;
   marques: Array<string>;
@@ -26,18 +27,25 @@ export class HomeComponent implements OnInit {
     }))));
   }
 
-  getMarques() {
-    if (!this.selectedModele) return this.marques;
-    return this.findCorrespondances(this.selectedModele, 'VehiculeModele', 'VehiculeMarque');
+  clearMarques() {
+    this.modeles = _.orderBy(this.data.modeles);
+    this.marques = _.orderBy(this.data.marques);
+    this.selectedModele = null;
   }
 
-  getModeles() {
+  updateMarques() {
+    if (!this.selectedModele) return this.marques;
+    this.marques = this.findCorrespondances(this.selectedModele, 'VehiculeModele', 'VehiculeMarque');
+  }
+
+  updateModeles() {
     if (!this.selectedMarque) return this.modeles;
-    return this.findCorrespondances(this.selectedMarque, 'VehiculeMarque', 'VehiculeModele');
+    this.modeles = this.findCorrespondances(this.selectedMarque, 'VehiculeMarque', 'VehiculeModele');
   }
 
   ngOnInit() {
     this.dataService.getAnnonces().then(dataObj => {
+      this.data = dataObj;
       this.annonces = dataObj.annonces;
       this.annoncesSize = dataObj.annoncesSize;
       this.marques = _.orderBy(dataObj.marques);
