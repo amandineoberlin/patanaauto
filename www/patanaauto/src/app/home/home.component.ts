@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import _ from 'lodash';
-import * as $ from 'jquery';
 
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
+import { DataLoaderService } from '../data-loader.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html'
 })
 
 export class HomeComponent implements OnInit {
@@ -16,32 +15,34 @@ export class HomeComponent implements OnInit {
   annoncesSize: Number;
   marques: Array<string>;
   modeles: Array<string>;
+  selectedModele: String;
+  selectedMarque: String;
 
-  constructor(private http: HttpClient) { }
+  constructor(private dataService: DataLoaderService) {}
 
-  public getAnnonces() {
-    const marques = [];
-    const modeles = [];
+  findCorrespondances(selected, prop, value) {
+    return _.orderBy(_.compact(_.uniq(_.map(this.annonces, (annonce) => {
+      if (annonce[prop][0] === selected) return annonce[value][0];
+    }))));
+  }
 
-    return this.http.get('get-annonces')
-      .toPromise()
-      .then((annonces) => {
-        this.annonces = annonces;
-        this.annoncesSize = _.size(annonces);
+  getMarques() {
+    if (!this.selectedModele) return this.marques;
+    return this.findCorrespondances(this.selectedModele, 'VehiculeModele', 'VehiculeMarque');
+  }
 
-        _.forEach(annonces, (vehicule) => {
-          marques.push(vehicule.VehiculeModele.join());
-          modeles.push(vehicule.VehiculeMarque.join());
-        });
-
-        this.marques = marques;
-        this.modeles = modeles;
-      })
+  getModeles() {
+    if (!this.selectedMarque) return this.modeles;
+    return this.findCorrespondances(this.selectedMarque, 'VehiculeMarque', 'VehiculeModele');
   }
 
   ngOnInit() {
-    (<any>$('.carousel')).carousel();
-    this.getAnnonces();
+    this.dataService.getAnnonces().then(dataObj => {
+      this.annonces = dataObj.annonces;
+      this.annoncesSize = dataObj.annoncesSize;
+      this.marques = _.orderBy(dataObj.marques);
+      this.modeles = _.orderBy(dataObj.modeles);
+    });
   }
 
 }

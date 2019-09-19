@@ -32,12 +32,14 @@
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/brands.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/solid.min.css",
-              "node_modules/ui-select/dist/select.min.css",
-              "src/styles.scss"
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
+              "src/styles.scss",
+              "src/app/home/home.component.scss"
             ],
             "scripts": [
-              "node_modules/angular-sanitize/angular-sanitize.js",
-              "node_modules/ui-select/dist/select.min.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/angular/angular.js",
+              "node_modules/angular-sanitize/angular-sanitize.js"
             ]
           },
           "configurations": {
