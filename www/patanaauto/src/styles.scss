@@ -51,13 +51,23 @@ body {
     font-size: 16px;
   }
 
+  @include color-inputs;
+
+  .ng-select .ng-select-container, input {
+    border-radius: unset;
+    border: none;
+    font-size: smaller;
+    font-style: italic;
+    text-transform: lowercase;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
   .btn-primary {
     background-color: $primary;
-    border-color: $primary;
+    border: none;
 
     &:hover {
       background-color: $light-red;
-      border-color: $light-red;
     }
 
     &.btn-rounded {
