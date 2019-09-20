@@ -80,6 +80,13 @@
           padding-left: 10px;
           width: 14%;
           border: unset;
+
+          &.disabled {
+            color: $gray-600;
+            font-style: italic;
+            outline: none;
+            @include disable-highlight;
+          }
         }
 
         .prix-group {
