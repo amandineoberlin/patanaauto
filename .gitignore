@@ -4,6 +4,9 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 **/.DS_Store
+*.log
+.vscode
+www/patanaauto/dist/
 
 # User-specific files
 *.suo
