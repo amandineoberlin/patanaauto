@@ -53,13 +53,17 @@ body {
 
   @include color-inputs;
 
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-family: 'Karla', sans-serif;
+    font-size: small;
+  }
+
   .ng-select .ng-select-container, input {
     border-radius: unset;
     border: none;
     font-size: smaller;
-    font-style: italic;
     text-transform: lowercase;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Karla', sans-serif;
   }
 
   .btn-primary {
