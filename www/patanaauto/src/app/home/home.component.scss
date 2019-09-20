@@ -76,9 +76,19 @@
         }
 
         .prix {
+          height: 36px;
           padding-left: 10px;
-          width: 18%;
+          width: 14%;
           border: unset;
+        }
+
+        .prix-group {
+          height: 36px;
+          background-color: white;
+
+          i {
+            color: $gray-text;
+          }
         }
 
         button {

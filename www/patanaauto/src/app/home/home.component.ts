@@ -23,6 +23,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private dataService: DataLoaderService) {}
 
+  inputPriceValue() {
+    const input = $('.js-range-slider');
+    return input.data();
+  }
+
   findCorrespondances(selected, prop, value) {
     return _.orderBy(_.compact(_.uniq(_.map(this.annonces, (annonce) => {
       if (annonce[prop][0] === selected) return annonce[value][0];
@@ -31,9 +36,16 @@ export class HomeComponent implements OnInit {
 
   togglePriceView() {
     this.showPriceRange = !this.showPriceRange;
+    const price = this.inputPriceValue();
+    if (_.isEmpty(price)) return;
+
     const input = $('.js-range-slider');
-    if (_.isEmpty(input.data())) return;
     this.inputPrice = `${input.data('from')} - ${input.data('to')} €`;
+  }
+
+  clearPrice() {
+    const price = this.inputPriceValue();
+    if (price) this.inputPrice = null;
   }
 
   clearMarques() {
