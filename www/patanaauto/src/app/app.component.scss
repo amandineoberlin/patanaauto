@@ -26,18 +26,18 @@ $primary: #A9040A !default;
 @mixin color-inputs {
   ::-webkit-input-placeholder {
       color: $gray-600;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Karla', sans-serif;
   }
   ::-moz-placeholder {
       color: $gray-600;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Karla', sans-serif;
   }
   ::-ms-placeholder {
       color: $gray-600;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Karla', sans-serif;
   }
   ::placeholder {
       color: $gray-600;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Karla', sans-serif;
   }
 }

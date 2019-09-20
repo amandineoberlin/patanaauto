@@ -31,6 +31,9 @@ export class HomeComponent implements OnInit {
 
   togglePriceView() {
     this.showPriceRange = !this.showPriceRange;
+    const input = $('.js-range-slider');
+    if (_.isEmpty(input.data())) return;
+    this.inputPrice = `${input.data('from')} - ${input.data('to')} €`;
   }
 
   clearMarques() {
@@ -61,6 +64,7 @@ export class HomeComponent implements OnInit {
       this.marques = _.orderBy(dataObj.marques);
       this.modeles = _.orderBy(dataObj.modeles);
 
+      // init price range slider
       //@ts-ignore
       $('.js-range-slider').ionRangeSlider({
           type: 'double',
@@ -74,9 +78,22 @@ export class HomeComponent implements OnInit {
           onChange: (data) => {
             const from = data.from;
             const to = data.to;
-            this.inputPrice = `${from} - ${to}`;
+            this.inputPrice = `${from} - ${to} €`;
           }
       });
+
+      // hide price range slider when user clicks anywhere else than the input itself
+      $('html').click((e) => {
+        const isInsideSlider = e.target.className.indexOf('irs') > -1;
+        const isInsideInput = e.target.className.indexOf('prix') > -1;
+        const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
+
+        if (this.showPriceRange) {
+          if (!isInsideInput && !isInsideSlider && !hasSliderParent) {
+            this.showPriceRange = false;
+          }
+        } 
+      })
     });
   }
 

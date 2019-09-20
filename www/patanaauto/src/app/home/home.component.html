@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="adds-lookup">
-          <h6>Recherchez parmi nos {{annoncesSize}} véhicules {{inputPrice}}s</h6>
+          <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>
           <div class="input-group md-12">
             <ng-select class="marque" [items]="marques" placeholder="marque..." [(ngModel)]="selectedMarque"
               (change)="updateModeles()" (clear)="clearMarques()" >
@@ -13,7 +13,7 @@
               (change)="updateMarques()" >
             </ng-select>
             <input type="text" class="prix" placeholder="Prix max..."
-              (focus)="togglePriceView()" value="{{inputPrice}}" >
+              value="{{inputPrice}}" (click)="togglePriceView()" >
             <div class="input-group-append">
               <button type="submit" class="btn btn-primary" type="button">
                 <i class="fas fa-search"></i> Rechercher
@@ -22,9 +22,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 offset-md-8">
-        <div [ngClass]="[showPriceRange ? 'show' : 'hide']" class="price-range">
-          <input type="text" class="js-range-slider" name="my_range" (blur)="togglePriceView()" />
+      <div class="col-md-3 offset-md-8" >
+        <div [ngClass]="[showPriceRange ? 'show' : 'hide']" class="price-range prix">
+          <input type="text" class="js-range-slider" />
         </div>
       </div>
     </div>
