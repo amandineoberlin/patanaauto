@@ -3,32 +3,32 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="adds-lookup">
+        <form [formGroup]="quickSearch" class="adds-lookup">
           <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>
           <div class="input-group md-12">
-            <ng-select class="marque" [items]="marques" placeholder="marque..." [(ngModel)]="selectedMarque"
-              (change)="updateModeles()" (clear)="clearMarques()" >
+            <ng-select class="marque" [items]="marques" placeholder="marque..." formControlName="marque"
+              (change)="updateModeles()" (clear)="clearMarque()" >
             </ng-select>
-            <ng-select class="modele" [items]="modeles" placeholder="modèle..." [(ngModel)]="selectedModele"
-              (change)="updateMarques()" >
+            <ng-select class="modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
+              (change)="updateMarques()" (clear)="clearModele()" >
             </ng-select>
-            <input type="text" class="prix" placeholder="Prix max..."
-              value="{{inputPrice}}" (click)="togglePriceView()" >
+            <input type="text" class="prix" placeholder="Prix max..." ngDisabled="blockSlider"
+              [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()" >
               <div class="input-group-btn prix-group">
                 <button class="btn btn-default" type="submit" (click)="clearPrice()">
-                  <i [ngClass]="[inputPrice ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
+                  <i [ngClass]="[quickSearch.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
                 </button>
               </div>
             <div class="input-group-append">
-              <button type="submit" class="btn btn-primary" type="button">
+              <button type="submit" class="btn btn-primary" type="button" >
                 <i class="fas fa-search"></i> Rechercher
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="col-md-3 offset-md-8" >
-        <div [ngClass]="[showPriceRange ? 'show' : 'hide']" class="price-range prix">
+        <div [ngClass]="choosePriceClass()" class="price-range prix">
           <input type="text" class="js-range-slider" />
         </div>
       </div>
