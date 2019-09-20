@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import _ from 'lodash';
 
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   showPriceRange: Boolean = false;
   blockSlider: Boolean = false;
 
-  constructor(private dataService: DataLoaderService, private fb: FormBuilder) {}
+  constructor(private dataService: DataLoaderService, private fb: FormBuilder, private router: Router) {}
 
   inputPriceValue() {
     const input = $('.js-range-slider');
@@ -70,6 +71,7 @@ export class HomeComponent implements OnInit {
     const selectedModele = this.quickSearch.controls['modele'].value;
     if (!selectedModele) return this.marques;
     this.marques = this.findCorrespondances(selectedModele, 'VehiculeModele', 'VehiculeMarque');
+    this.quickSearch.controls['marque'].setValue(this.marques[0]);
     this.updatePriceRange();
   }
 
@@ -129,6 +131,15 @@ export class HomeComponent implements OnInit {
 
   calculateMaxPrice(annonces) {
     return _.max(_.map(annonces, annonce => parseInt(annonce['VehiculePrixVenteTTC'][0])));
+  }
+
+  submit() {
+    const form = this.quickSearch.controls;
+    const marque = form['marque'].value;
+    const modele = form['modele'].value;
+    const price = form['price'].value;
+
+    this.router.navigate(['/annonces'], { queryParams: { marque, modele, price } });
   }
 
   ngOnInit() {
