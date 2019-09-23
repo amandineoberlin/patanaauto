@@ -26,19 +26,19 @@ $primary: #A9040A !default;
 
 @mixin color-inputs {
   ::-webkit-input-placeholder {
-      color: $gray-600;
+      color: $gray-icon;
       font-family: 'Karla', sans-serif;
   }
   ::-moz-placeholder {
-      color: $gray-600;
+      color: $gray-icon;
       font-family: 'Karla', sans-serif;
   }
   ::-ms-placeholder {
-      color: $gray-600;
+      color: $gray-icon;
       font-family: 'Karla', sans-serif;
   }
   ::placeholder {
-      color: $gray-600;
+      color: $gray-icon;
       font-family: 'Karla', sans-serif;
   }
 }
@@ -49,4 +49,10 @@ $primary: #A9040A !default;
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+@mixin box-shadow {
+  -webkit-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
+  -moz-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
+  box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
 }

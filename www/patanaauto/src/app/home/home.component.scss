@@ -2,40 +2,10 @@
 
 .home-container {
   color: white;
-  margin-top: 40px;
 
-  .price-range {
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    background-color: white;
+  .slide-range {
     padding: 15px;
     margin-top: 5px;
-    float: right;
-    transition: all .3s ease-in-out;
-    transform-origin: left top;
-    transform: scaleY(0);
-
-
-    .irs--flat
-    .irs-bar,
-    .irs-shadow,
-    .irs-single,
-    .irs-from,
-    .irs-to {
-      background-color: $primary;
-    }
-    .irs-from:before, .irs-to:before, .irs-single:before {
-      border-top-color: $primary;
-    }
-
-    &.show {
-      transform: scaleY(1);
-    }
-
-    &.hide {
-      transform: scaleY(0);
-    }
   }
 
   .adds-lookup {
@@ -83,8 +53,12 @@
         height: 36px;
         background-color: white;
 
-        i {
-          color: $gray-text;
+        button {
+          cursor: initial;
+
+          i {
+            color: $gray-text;
+          }
         }
       }
 
