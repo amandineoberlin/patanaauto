@@ -39,6 +39,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
               "node_modules/angular/angular.js",
               "node_modules/angular-sanitize/angular-sanitize.js"

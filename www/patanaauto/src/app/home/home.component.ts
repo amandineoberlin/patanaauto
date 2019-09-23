@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 
 import _ from 'lodash';
 
-import { DataLoaderService } from '../data-loader.service';
+import { FormDataService } from '../services/form-data.service';
+import { Constants } from '../constants';
 
 @Component({
   selector: 'app-home',
@@ -20,22 +21,21 @@ export class HomeComponent implements OnInit {
   maxAvailablePrice: number;
   marques: Array<string>;
   modeles: Array<string>;
-  initFromPrice: Number = 1000;
-  initToPrice: Number = 5000;
+  initFromPrice: Number;
+  initToPrice: Number;
   showPriceRange: Boolean = false;
   blockSlider: Boolean = false;
+  notFoundText: String = Constants.NOT_FOUND_MESSAGE;
 
-  constructor(private dataService: DataLoaderService, private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private formDataService: FormDataService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   inputPriceValue() {
     const input = $('.js-range-slider');
     return input.data();
-  }
-
-  findCorrespondances(selected, prop, value) {
-    return _.orderBy(_.compact(_.uniq(_.map(this.annonces, (annonce) => {
-      if (annonce[prop][0] === selected) return annonce[value][0];
-    }))));
   }
 
   togglePriceView() {
@@ -67,18 +67,17 @@ export class HomeComponent implements OnInit {
     this.updatePriceRange();
   }
 
-  updateMarques() {
-    const selectedModele = this.quickSearch.controls['modele'].value;
-    if (!selectedModele) return this.marques;
-    this.marques = this.findCorrespondances(selectedModele, 'VehiculeModele', 'VehiculeMarque');
-    this.quickSearch.controls['marque'].setValue(this.marques[0]);
-    this.updatePriceRange();
-  }
-
-  updateModeles() {
-    const selectedMarque = this.quickSearch.controls['marque'].value;
-    if (!selectedMarque) return this.modeles;
-    this.modeles = this.findCorrespondances(selectedMarque, 'VehiculeMarque', 'VehiculeModele');
+  update() {
+    this.marques = [];
+    this.modeles = [];
+    const form = this.quickSearch.controls;
+    const { modeles, marques } = this.formDataService
+      .matchTagValues(this.annonces, [
+        { marques: form['marque'].value },
+        { modeles: form['modele'].value }
+      ]);
+    this.marques = marques;
+    this.modeles = modeles;
     this.updatePriceRange();
   }
 
@@ -129,10 +128,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  calculateMaxPrice(annonces) {
-    return _.max(_.map(annonces, annonce => parseInt(annonce['VehiculePrixVenteTTC'][0])));
-  }
-
   submit() {
     const form = this.quickSearch.controls;
     const marque = form['marque'].value;
@@ -149,31 +144,26 @@ export class HomeComponent implements OnInit {
         price: [null]
     });
 
-    this.dataService.getAnnonces().then(dataObj => {
-      this.data = dataObj;
-      this.annonces = dataObj.annonces;
-      this.annoncesSize = dataObj.annoncesSize;
-      this.marques = _.orderBy(dataObj.marques);
-      this.modeles = _.orderBy(dataObj.modeles);
-      this.maxAvailablePrice = this.calculateMaxPrice(dataObj.annonces);
+    this.formDataService.loadAnnonces({ quickSearch: true })
+      .then(dataObj => {
+        _.assign(this, dataObj);
 
-      // init price range slider
-      //@ts-ignore
-      $('.js-range-slider').ionRangeSlider({
-          type: 'double',
-          min: 0,
-          max: this.maxAvailablePrice,
-          from: 1000,
-          to: 5000,
-          grid: true,
-          prefix: '€',
-          step: 50,
-          onChange: (data) => {
-            const from = data.from;
-            const to = data.to;
-            this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
-          }
-      });
+        //@ts-ignore
+        $('.js-range-slider').ionRangeSlider({
+            type: 'double',
+            min: 0,
+            max: this.maxAvailablePrice,
+            from: 1000,
+            to: 5000,
+            grid: true,
+            prefix: '€',
+            step: 50,
+            onChange: (data) => {
+              const from = data.from;
+              const to = data.to;
+              this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
+            }
+        });
     });
 
     // hide price range slider when user clicks anywhere else than the input itself

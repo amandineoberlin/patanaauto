@@ -14,6 +14,8 @@ export class DataLoaderService {
   getAnnonces() {
     const marques = [];
     const modeles = [];
+    const selleries = [];
+    const versions = [];
 
     return this.http.get<any[]>('get-annonces')
       .toPromise()
@@ -23,12 +25,16 @@ export class DataLoaderService {
         _.forEach(annonces, (vehicule) => {
           modeles.push(vehicule.VehiculeModele.join());
           marques.push(vehicule.VehiculeMarque.join());
+          selleries.push(vehicule.VehiculeSellerie.join());
+          versions.push(vehicule.VehiculeVersion.join());
         });
 
         return {
           annonces,
           modeles: _.uniq(modeles),
           marques: _.uniq(marques),
+          selleries: _.uniq(selleries),
+          versions: _.uniq(versions),
           annoncesSize
         }
       })

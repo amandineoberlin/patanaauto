@@ -23,6 +23,7 @@ body {
     position: relative;
     width: 100%;
     background-color: rgba(239, 240, 241, .1);
+    margin-top: 40px;
   }
 
   a {
@@ -79,6 +80,39 @@ body {
 
   .ng-select .ng-clear-wrapper {
     font-weight: 900;
+  }
+
+  //slider
+  .slide-range {
+    @include box-shadow;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: white;
+    transition: all .3s ease-in-out;
+    transform-origin: left top;
+    transform: scaleY(0);
+
+
+    .irs--flat
+    .irs-bar,
+    .irs-shadow,
+    .irs-single,
+    .irs-from,
+    .irs-to {
+      background-color: $primary;
+    }
+    .irs-from:before, .irs-to:before, .irs-single:before {
+      border-top-color: $primary;
+    }
+
+    &.show {
+      transform: scaleY(1);
+    }
+
+    &.hide {
+      transform: scaleY(0);
+    }
   }
 
   .btn-primary {
