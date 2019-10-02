@@ -1,0 +1,145 @@
+@import "app/app.component.scss";
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: $gray-900;
+  background-image: url('assets/images/f.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Karla', sans-serif;
+  text-transform: uppercase;
+
+  .content {
+    padding-top: 70px;
+  }
+
+  .content-container {
+    overflow: auto;
+    height: calc(100vh - 146px); /* default */
+    height: -o-calc(100vh - 146px); /* opera */
+    height: -webkit-calc(100vh - 146px); /* google, safari */
+    height: -moz-calc(100vh - 146px); /* firefox */
+    position: relative;
+    width: 100%;
+    background-color: rgba(239, 240, 241, .1);
+    margin-top: 40px;
+  }
+
+  a {
+    text-decoration: none!important;
+  }
+
+  textarea:hover,
+  input:hover,
+  select:hover,
+  textarea:active,
+  input:active,
+  select:active,
+  textarea:focus,
+  input:focus,
+  select:focus,
+  button:focus,
+  button:active,
+  button:hover,
+  label:focus,
+  .btn:active,
+  .btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 100;
+  }
+
+  h4 {
+    font-weight: 800;
+  }
+
+  h6 {
+    font-size: 16px;
+  }
+
+  @include color-inputs;
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    font-family: 'Karla', sans-serif;
+    font-size: small;
+  }
+
+  .ng-select .ng-select-container, input {
+    border-radius: unset;
+    border: none;
+    font-size: smaller;
+    text-transform: lowercase;
+    font-family: 'Karla', sans-serif;
+  }
+
+  .ng-select .ng-clear-wrapper {
+    font-weight: 900;
+  }
+
+  //slider
+  .slide-range {
+    @include box-shadow;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: white;
+    transition: all .3s ease-in-out;
+    transform-origin: left top;
+    transform: scaleY(0);
+
+
+    .irs--flat
+    .irs-bar,
+    .irs-shadow,
+    .irs-single,
+    .irs-from,
+    .irs-to {
+      background-color: $primary;
+    }
+    .irs-from:before, .irs-to:before, .irs-single:before {
+      border-top-color: $primary;
+    }
+
+    &.show {
+      transform: scaleY(1);
+    }
+
+    &.hide {
+      transform: scaleY(0);
+    }
+  }
+
+  .alert-primary {
+    background-color: rgba(25, 27, 31, 0.6);
+    color: white;
+    border-color: $gray-900;
+  }
+
+  .btn-primary {
+    background-color: $primary;
+    border: none;
+
+    &:hover {
+      background-color: $light-red;
+    }
+
+    &.btn-rounded {
+      @include box-shadow-dark;
+      background-color: $primary;
+      color: white;
+      border: 0;
+      border-radius: 0;
+      height: 100%;
+
+      &:hover {
+        background-color: $light-red;
+      }
+    }
+  }
+}
