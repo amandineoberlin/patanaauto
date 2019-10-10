@@ -71,27 +71,65 @@
     </form>
 
     <div class="container">
-      <div class="row">
-        <table class="table">
-          <tbody>
-            <tr *ngFor="let annonce of annonces">
-              <td>
-                <div class="col-md-4">
-                  <div class="card mb-2">
-                    <img class="card-img-top" src="../../assets/selsia-photos/14247004_02_hd.jpg">
-                    <div class="card-body">
-                      <h4 class="card-title">Card {{annonce.VehiculeMarque}} </h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the
-                        card's content.</p>
-                    </div>
-                  </div>
-                </div>
-              </td>
+      <div class="row justify-content-end">
+        <div class="btn-group display">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            afficher {{limit}} résultats
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="limit = 10">1O</a>
+            <a class="dropdown-item" (click)="limit = 50">50</a>
+            <a class="dropdown-item" (click)="limit = annoncesSize">tout</a>
+          </div>
+        </div>
+        <div class="btn-group order">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Trier par: {{tri}}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="filterAnnonces('prix')">Prix croissant</a>
+            <a class="dropdown-item" href="#">Prix décroissant</a>
+            <a class="dropdown-item" href="#">Marque</a>
+            <a class="dropdown-item" href="#">Modèle</a>
+            <a class="dropdown-item" href="#">Année</a>
+            <a class="dropdown-item" href="#">Km</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            </tr>
-          </tbody>
-        </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 card-row" *ngFor="let annonce of filteredAnnonces; let i=index">
+          <ng-container *ngIf="limit === 100 || i < limit">
+            <div class="card mb-2">
+              <div class="image">
+                <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
+                <img class="img-responsive card-img-top" [src]="mainImage(annonce)">
+              </div>
+              <div class="card-body">
+                <div class="material-card">
+                  <h5 class="card-title">{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}} </h5>
+                  <small>{{annonce.VehiculeVersion}}</small>
+                </div>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+                <div class="badges">
+                  <span class="badge badge-light">
+                    <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
+                  </span>
+                  <span class="badge badge-light">
+                    <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
+                  </span>
+                  <span class="badge badge-light">
+                    <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
 

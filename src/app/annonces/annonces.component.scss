@@ -7,12 +7,23 @@
 
     h6 {
       color: white;
-      padding-bottom: 10px;
+      padding: 0 0 10px 15px;
+    }
+
+    .btn-group {
+      padding: 0 15px 20px 0;
+
+      &.display {
+        padding-right: 4px;
+      }
+
+      button {
+        background-color: white;
+      }
     }
 
     form {
-      padding: 50px 20px 20px 20px;
-      background-color: rgba(169, 4, 10, 0.5);
+      padding: 50px 0 20px 0;
 
       .slide-range {
         padding: 15px;
@@ -70,6 +81,135 @@
             i {
               color: $gray-text;
             }
+          }
+        }
+      }
+    }
+
+    .card-row {
+      padding-bottom: 50px;
+
+      .card {
+        min-height: 385px;
+        max-height: 385px;
+        border-radius: unset;
+        background: unset;
+        background-color: rgba(72, 69, 69, 0.9);
+        
+        &:hover {
+          box-shadow: 0 10px 20px 10px rgba(black, 0.2);
+        }
+
+        .image {
+          overflow: hidden;
+
+          .card-img-top {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 16px;
+          }
+
+          .fa-camera {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 60px;
+            box-shadow: 0px 0px 2px #888;
+            padding: 0.5em 0.6em;
+            color: white;
+            background-color: $primary;
+            z-index: 210;
+            
+            span {
+              padding-left: 3px;
+              font-family: 'Karla', sans-serif;
+            }
+          }
+        }
+
+        .card-title {
+          margin: 0;
+          padding: 0;
+        }
+
+        .card-body {
+          color: white;
+          padding: 0;
+
+          .material-card {
+            position: absolute;
+            top: calc(100% - 134px);
+            width: 105%;
+
+            small {
+              color: $gray-text;
+              position: absolute;
+              top: 43px;
+              left: 10px;
+              z-index: 200;
+            }
+
+            h5 {
+              position: absolute;
+              left: -16px;
+              line-height: 2.4em;
+              background-color: $primary;
+              padding: 10px 16px;
+              width: 100%;
+              margin: 0;
+              z-index: 100;
+
+              &:before, &:after {
+                content: ' ';
+                position: absolute;
+                left: 0;
+                top: -16px;
+                border: 8px solid $primary;
+                width: 0;
+                box-sizing: border-box;
+              }
+
+              &:before {
+                border-top-color: transparent;
+                border-right-color: $primary;
+                border-bottom-color: $primary;
+                border-left-color: transparent;
+              }
+
+              &:after {
+                border-top-color: $primary;
+                border-right-color: $primary;
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+                top: auto;
+                bottom: 0;
+              }
+            }
+          }
+
+          .badges {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+
+            .badge {
+              border-radius: unset;
+              margin-right: 1px;
+              padding: 5px;
+
+              i {
+                padding-right: 3px;
+              }
+            }
+          }
+
+          hr {
+            border-color: black;
+            border-width: .25rem;
+            width: 30%;
+            margin-top: 5px;
+            padding-bottom: 8px;
           }
         }
       }

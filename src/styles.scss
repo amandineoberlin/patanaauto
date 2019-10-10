@@ -121,6 +121,12 @@ body {
     border-color: $gray-900;
   }
 
+  .btn-default {
+    color: black;
+    border: unset;
+    border-radius: unset;
+  }
+
   .btn-primary {
     background-color: $primary;
     border: none;
