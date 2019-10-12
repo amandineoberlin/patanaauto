@@ -3,7 +3,7 @@
     <form [formGroup]="searchForm">
       <div class="container">
         <div class="row">
-          <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+          <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
           <div class="col-md-12">
             <div class="input-group">
               <ng-select class="marque" [items]="marques" placeholder="marque..." formControlName="marque"
@@ -111,19 +111,21 @@
               </div>
               <div class="card-body">
                 <div class="material-card">
-                  <h5 class="card-title">{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}} </h5>
+                  <h6>{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}} </h6>
                   <small>{{annonce.VehiculeVersion}}</small>
                 </div>
                 <div class="badges d-flex justify-content-center">
-                  <span class="badge badge-light">
-                    <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
-                  </span>
-                  <span class="badge badge-light">
-                    <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
-                  </span>
-                  <span class="badge badge-light">
-                    <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
-                  </span>
+                  <div class="center-badges">
+                    <span class="badge badge-light">
+                      <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
+                    </span>
+                    <span class="badge badge-light">
+                      <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
+                    </span>
+                    <span class="badge badge-light">
+                      <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
