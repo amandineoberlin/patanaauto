@@ -15,6 +15,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PlanComponent } from './plan/plan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AboutComponent,
     ContactComponent,
     PlanComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,

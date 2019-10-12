@@ -38,6 +38,16 @@ export class AnnoncesComponent implements OnInit {
   initFromPrice: Number;
   initToPrice: Number;
   notFoundText: String = Constants.NOT_FOUND_MESSAGE;
+  limit: Number = 10;
+  filteredAnnonces: Object = [];
+
+  mainImage(annonce) {
+    return `../../assets/selsia-photos/${annonce.images[0]}`;
+  }
+
+  filterAnnonces(filter) {
+    if (!filter) this.filteredAnnonces = _.slice(this.annonces, 0, this.limit);
+  }
 
   inputValue(el) {
     return el.data();
@@ -203,6 +213,9 @@ export class AnnoncesComponent implements OnInit {
     // hide price range slider when user clicks anywhere else than the input itself
     this.hideSlidersOnClick();
 
+    //@ts-ignore
+    $('.dropdown-toggle').dropdown()
+
     this.activatedRoute.queryParams.subscribe(params => {
       let marque = params['marque'];
       let modele = params['modele'];
@@ -210,7 +223,8 @@ export class AnnoncesComponent implements OnInit {
     });
 
     this.formDataService.loadAnnonces({ fullSearch: true })
-      .then(dataObj => _.assign(this, dataObj));
+      .then(dataObj => _.assign(this, dataObj))
+      .then(() => this.filterAnnonces(null));
   }
 
 }
