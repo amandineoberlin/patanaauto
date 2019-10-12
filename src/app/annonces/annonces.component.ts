@@ -39,17 +39,14 @@ export class AnnoncesComponent implements OnInit {
   initToPrice: Number;
   notFoundText: String = Constants.NOT_FOUND_MESSAGE;
   limit: Number = 10;
-  filteredAnnonces: Object;
+  filteredAnnonces: Object = [];
 
   mainImage(annonce) {
     return `../../assets/selsia-photos/${annonce.images[0]}`;
   }
 
   filterAnnonces(filter) {
-    if (!filter) {
-      this.filteredAnnonces = this.annonces;
-      return this.annonces;
-    };
+    if (!filter) this.filteredAnnonces = _.slice(this.annonces, 0, this.limit);
   }
 
   inputValue(el) {
