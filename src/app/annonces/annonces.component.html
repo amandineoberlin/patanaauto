@@ -1,8 +1,8 @@
-<div class="container annonces-container">
+<div class="container-fluid annonces-container">
   <div class="content-container">
     <form [formGroup]="searchForm">
-      <div class="container">
-        <div class="row">
+      <div class="container-fluid">
+        <div class="row filters">
           <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
           <div class="col-md-12">
             <div class="input-group">
@@ -18,7 +18,8 @@
                 [ngClass]="[blockPriceSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
               <div class="input-group-btn group">
                 <button class="btn btn-default" type="submit" (click)="clearPrice()">
-                  <i [ngClass]="[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
+                  <i
+                    [ngClass]="[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
                 </button>
               </div>
               <div class="col-md-3 offset-md-8">
@@ -28,9 +29,9 @@
               </div>
             </div>
             <div class="input-group">
-              <ng-select class="version" [items]="versions" placeholder="version/finition..." formControlName="version"
-                (change)="update('version')" (clear)="clear('version')" notFoundText="{{notFoundText}}"
-                dropdownPosition="bottom">
+              <ng-select class="version" [items]="versions" placeholder="version/finition..."
+                formControlName="version" (change)="update('version')" (clear)="clear('version')"
+                notFoundText="{{notFoundText}}" dropdownPosition="bottom">
               </ng-select>
               <ng-select class="sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie"
                 (change)="update('sellerie')" (clear)="clear('sellerie')" dropdownPosition="bottom"
@@ -52,25 +53,23 @@
             </div>
 
             <!-- <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                Check me out
-              </label>
-            </div>
-          </div> -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div> -->
           </div>
 
           <div class="col-md-12">
-            <div class="alert alert-primary" role="alert">
-              16 Véhicules correspondants
-            </div>
+            <h6 class="result-vehicules">{{filteredAnnonces.length}} Véhicules correspondants</h6>
           </div>
         </div>
       </div>
     </form>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row justify-content-end">
         <div class="btn-group display">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -100,7 +99,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-4 card-row" *ngFor="let annonce of filteredAnnonces; let i=index">
           <ng-container *ngIf="limit === 100 || i < limit">
@@ -114,8 +113,8 @@
                   <h6>{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}} </h6>
                   <small>{{annonce.VehiculeVersion}}</small>
                 </div>
-                <div class="badges d-flex justify-content-center">
-                  <div class="center-badges">
+                <div class="d-flex justify-content-center center-badges">
+                  <div class="badges">
                     <span class="badge badge-light">
                       <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
                     </span>
