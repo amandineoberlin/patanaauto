@@ -55,6 +55,10 @@ export class FormDataService {
     };
   }
 
+  loadImages(annonces) {
+    return this.dataService.getAnnoncesPhotos(annonces);
+  }
+
   loadAnnonces(options) {
     return this.dataService.getAnnonces()
       .then((dataObj) => {
@@ -84,7 +88,13 @@ export class FormDataService {
 
         const maxAvailableKm = this.calculateMax('VehiculeKilometrage');
 
-        if (options.fullSearch) return _.assign(minimiumData, { maxAvailableKm });
+        if (options.fullSearch) {
+          return this.loadImages(dataObj.annonces)
+            .then((annonces) => {
+              minimiumData.annonces = annonces;
+              return _.assign(minimiumData, { maxAvailableKm })
+            });
+        };
       });
   }
 }

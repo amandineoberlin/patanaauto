@@ -64,6 +64,7 @@
 
       button {
         border-radius: unset;
+        border: unset;
       }
     }
   }
@@ -84,8 +85,7 @@
     padding-right: 0;
 
     img {
-      height: 22rem;
-      width: 100%;
+      object-fit: cover;
     }
   }
 
