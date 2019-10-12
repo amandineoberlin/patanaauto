@@ -56,3 +56,10 @@ $primary: #A9040A !default;
   -moz-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
   box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
 }
+
+@mixin custom-scrollbar {
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}

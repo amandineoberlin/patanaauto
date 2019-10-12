@@ -1,10 +1,15 @@
 @import "app/app.component.scss";
 
-body {
-  height: 100%;
+html, body {
+  @include custom-scrollbar;
+
   width: 100%;
-  background-color: $gray-900;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color:black;
   background-image: url('assets/images/f.jpg');
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Karla', sans-serif;
@@ -12,6 +17,10 @@ body {
 
   .content {
     padding-top: 70px;
+  }
+
+  .container-fluid {
+    padding: 0 100px 0 100px;
   }
 
   .content-container {
@@ -22,7 +31,6 @@ body {
     height: -moz-calc(100vh - 146px); /* firefox */
     position: relative;
     width: 100%;
-    background-color: rgba(239, 240, 241, .1);
     margin-top: 40px;
   }
 
@@ -115,10 +123,9 @@ body {
     }
   }
 
-  .alert-primary {
-    background-color: rgba(25, 27, 31, 0.6);
+  .alert-default {
+    background-color: transparent;
     color: white;
-    border-color: $gray-900;
   }
 
   .btn-default {
