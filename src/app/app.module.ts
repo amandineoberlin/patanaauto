@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PlanComponent } from './plan/plan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { AnnonceComponent } from './annonce/annonce.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     ContactComponent,
     PlanComponent,
     PageNotFoundComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    AnnonceComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
+import { AnnonceComponent } from './annonce/annonce.component';
 import { CartegriseComponent } from './cartegrise/cartegrise.component';
 import { FinancementComponent } from './financement/financement.component';
 import { AboutComponent } from './about/about.component';
@@ -13,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'annonces', component: AnnoncesComponent },
+  { path: 'annonce/:id', component: AnnonceComponent },
   { path: 'carte-grise', component: CartegriseComponent },
   { path: 'financement', component: FinancementComponent },
   { path: 'about', component: AboutComponent },

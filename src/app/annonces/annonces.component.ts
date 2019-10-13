@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import _ from 'lodash';
@@ -17,7 +17,8 @@ export class AnnoncesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private formDataService: FormDataService
+    private formDataService: FormDataService,
+    private router: Router
   ) { }
 
   searchForm: FormGroup;
@@ -172,6 +173,10 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
+  navigateToAnnonce(id, state) {
+    this.router.navigateByUrl(`annonce/${id}`, { state });
+  }
+
   initSliders() {
     //@ts-ignore
     $('.js-price-slider').ionRangeSlider({
@@ -198,7 +203,7 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.searchForm = this.fb.group({
       marque: [null],
       modele: [null],
@@ -216,11 +221,12 @@ export class AnnoncesComponent implements OnInit {
     //@ts-ignore
     $('.dropdown-toggle').dropdown()
 
-    this.activatedRoute.queryParams.subscribe(params => {
-      let marque = params['marque'];
-      let modele = params['modele'];
-      let price = params['price'];
-    });
+    this.activatedRoute.queryParams
+      .subscribe((params: any) => {
+        let marque = params['marque'];
+        let modele = params['modele'];
+        let price = params['price'];
+      });
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))

@@ -93,14 +93,40 @@ const loadFtpData = Promise.coroutine(function* () {
   }
 });
 
+const createAnnoncesIds = (annonces) => {
+  return _.map(annonces, annonce => {
+    const id = `${annonce.VehiculeNumeroSerie}_${Math.random().toString(35).substr(2, 9)}`;
+    annonce._id = id;
+    return annonce;
+  })
+};
+
+const matchImagesWithAnnonces = (annonces, images) => {
+  const match = _.reduce(images, (acc, k) => {
+    const vehiculeEntity = _.get(k, '_id').split('_')[0];
+    const name = _.get(k, 'name');
+    acc[vehiculeEntity] ? acc[vehiculeEntity].push(name) : acc[vehiculeEntity] = [name];
+    return acc;
+  }, {});
+
+  _.forEach(_.values(match), (key, index) => {
+    annonces[index].images = key;
+  }, []);
+  
+  return annonces;
+}
+
 const getAnnonces = Promise.coroutine(function* () {
   const data = yield fs.readFileAsync(localDataPath, 'utf-8');
   const json = data ? yield xmlParser.parseStringAsync(data) : null;
   const annonces = _.get(json, 'Stock.Vehicule');
+  const images = yield getPhotosFromFile();
+  const annoncesWithId = createAnnoncesIds(annonces);
+  const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
-  logger.info(`retrieved ${_.size(annonces)} annonces`);
+  logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
 
-  return annonces;
+  return annoncesWithImages;
 });
 
 const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
