@@ -28,8 +28,9 @@ export class AnnonceComponent implements OnInit {
         this.annonceId = _.get(params, 'id');
       });
 
-    this.dataLoaderService.getSingleAnnonce(this.annonceId)
-      .then(annonce => (this.annonce = annonce))
+    // this.dataLoaderService.getSingleAnnonce(this.annonceId)
+    //   .then(annonce => (this.annonce = annonce))
+    this.annonce = this.activatedRoute.snapshot.data['annonce'];
   }
 
 }

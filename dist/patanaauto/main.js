@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>annonce works!</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>annonce works! {{annonce.VehiculeMarque}}</p>\n");
 
 /***/ }),
 
@@ -439,6 +439,45 @@ AboutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/annonce/annonce-resolver.ts":
+/*!*********************************************!*\
+  !*** ./src/app/annonce/annonce-resolver.ts ***!
+  \*********************************************/
+/*! exports provided: AnnonceResolve */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnonceResolve", function() { return AnnonceResolve; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_data_loader_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/data-loader.service */ "./src/app/services/data-loader.service.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+let AnnonceResolve = class AnnonceResolve {
+    constructor(dataLoaderService) {
+        this.dataLoaderService = dataLoaderService;
+    }
+    // resolves single annonce data and allow route loading only when data is loaded.
+    resolve(route) {
+        return this.dataLoaderService.getSingleAnnonce(lodash__WEBPACK_IMPORTED_MODULE_3___default.a.get(route, 'queryParams.id'));
+    }
+};
+AnnonceResolve.ctorParameters = () => [
+    { type: _services_data_loader_service__WEBPACK_IMPORTED_MODULE_2__["DataLoaderService"] }
+];
+AnnonceResolve = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], AnnonceResolve);
+
+
+
+/***/ }),
+
 /***/ "./src/app/annonce/annonce.component.scss":
 /*!************************************************!*\
   !*** ./src/app/annonce/annonce.component.scss ***!
@@ -448,7 +487,7 @@ AboutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("p {\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9hbWFuZGluZS9Qcm9qZWN0cy9QYXRhbmFBdXRvL3d3dy9zcmMvYXBwL2Fubm9uY2UvYW5ub25jZS5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYW5ub25jZS9hbm5vbmNlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvYW5ub25jZS9hbm5vbmNlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsicCB7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cbiIsInAge1xuICBjb2xvcjogd2hpdGU7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2UvYW5ub25jZS5jb21wb25lbnQuc2NzcyJ9 */");
 
 /***/ }),
 
@@ -485,8 +524,9 @@ let AnnonceComponent = class AnnonceComponent {
             .subscribe((params) => {
             this.annonceId = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.get(params, 'id');
         });
-        this.dataLoaderService.getSingleAnnonce(this.annonceId)
-            .then(annonce => (this.annonce = annonce));
+        // this.dataLoaderService.getSingleAnnonce(this.annonceId)
+        //   .then(annonce => (this.annonce = annonce))
+        this.annonce = this.activatedRoute.snapshot.data['annonce'];
     }
 };
 AnnonceComponent.ctorParameters = () => [
@@ -758,15 +798,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./annonces/annonces.component */ "./src/app/annonces/annonces.component.ts");
-/* harmony import */ var _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./annonce/annonce.component */ "./src/app/annonce/annonce.component.ts");
-/* harmony import */ var _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cartegrise/cartegrise.component */ "./src/app/cartegrise/cartegrise.component.ts");
-/* harmony import */ var _financement_financement_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./financement/financement.component */ "./src/app/financement/financement.component.ts");
-/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
-/* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
-/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var _annonce_annonce_resolver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annonce/annonce-resolver */ "./src/app/annonce/annonce-resolver.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./annonces/annonces.component */ "./src/app/annonces/annonces.component.ts");
+/* harmony import */ var _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./annonce/annonce.component */ "./src/app/annonce/annonce.component.ts");
+/* harmony import */ var _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cartegrise/cartegrise.component */ "./src/app/cartegrise/cartegrise.component.ts");
+/* harmony import */ var _financement_financement_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./financement/financement.component */ "./src/app/financement/financement.component.ts");
+/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
+/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+
 
 
 
@@ -780,16 +822,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
-    { path: 'annonces', component: _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_4__["AnnoncesComponent"] },
-    { path: 'annonce', component: _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_5__["AnnonceComponent"] },
-    { path: 'carte-grise', component: _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_6__["CartegriseComponent"] },
-    { path: 'financement', component: _financement_financement_component__WEBPACK_IMPORTED_MODULE_7__["FinancementComponent"] },
-    { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_8__["AboutComponent"] },
-    { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_9__["ContactComponent"] },
-    { path: 'plan', component: _plan_plan_component__WEBPACK_IMPORTED_MODULE_10__["PlanComponent"] },
+    { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"] },
+    { path: 'annonces', component: _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_5__["AnnoncesComponent"] },
+    { path: 'annonce', component: _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_6__["AnnonceComponent"], resolve: { annonce: _annonce_annonce_resolver__WEBPACK_IMPORTED_MODULE_3__["AnnonceResolve"] } },
+    { path: 'carte-grise', component: _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_7__["CartegriseComponent"] },
+    { path: 'financement', component: _financement_financement_component__WEBPACK_IMPORTED_MODULE_8__["FinancementComponent"] },
+    { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_9__["AboutComponent"] },
+    { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_10__["ContactComponent"] },
+    { path: 'plan', component: _plan_plan_component__WEBPACK_IMPORTED_MODULE_11__["PlanComponent"] },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_11__["PageNotFoundComponent"] }
+    { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_12__["PageNotFoundComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -862,21 +904,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-select/ng-select */ "./node_modules/@ng-select/ng-select/fesm2015/ng-select-ng-select.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-select/ng-select */ "./node_modules/@ng-select/ng-select/fesm2015/ng-select-ng-select.js");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./annonces/annonces.component */ "./src/app/annonces/annonces.component.ts");
-/* harmony import */ var _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cartegrise/cartegrise.component */ "./src/app/cartegrise/cartegrise.component.ts");
-/* harmony import */ var _financement_financement_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./financement/financement.component */ "./src/app/financement/financement.component.ts");
-/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
-/* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
-/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pipes/date-ago.pipe */ "./src/app/pipes/date-ago.pipe.ts");
-/* harmony import */ var _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./annonce/annonce.component */ "./src/app/annonce/annonce.component.ts");
+/* harmony import */ var _services_data_loader_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/data-loader.service */ "./src/app/services/data-loader.service.ts");
+/* harmony import */ var _annonce_annonce_resolver__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./annonce/annonce-resolver */ "./src/app/annonce/annonce-resolver.ts");
+/* harmony import */ var _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pipes/date-ago.pipe */ "./src/app/pipes/date-ago.pipe.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./annonces/annonces.component */ "./src/app/annonces/annonces.component.ts");
+/* harmony import */ var _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./annonce/annonce.component */ "./src/app/annonce/annonce.component.ts");
+/* harmony import */ var _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./cartegrise/cartegrise.component */ "./src/app/cartegrise/cartegrise.component.ts");
+/* harmony import */ var _financement_financement_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./financement/financement.component */ "./src/app/financement/financement.component.ts");
+/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
+/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+
+
 
 
 
@@ -901,29 +947,32 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
-            _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
-            _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__["NavbarComponent"],
-            _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_10__["AnnoncesComponent"],
-            _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_11__["CartegriseComponent"],
-            _financement_financement_component__WEBPACK_IMPORTED_MODULE_12__["FinancementComponent"],
-            _about_about_component__WEBPACK_IMPORTED_MODULE_13__["AboutComponent"],
-            _contact_contact_component__WEBPACK_IMPORTED_MODULE_14__["ContactComponent"],
-            _plan_plan_component__WEBPACK_IMPORTED_MODULE_15__["PlanComponent"],
-            _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_16__["PageNotFoundComponent"],
-            _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_17__["DateAgoPipe"],
-            _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_18__["AnnonceComponent"]
+            _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
+            _home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
+            _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_12__["NavbarComponent"],
+            _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_13__["AnnoncesComponent"],
+            _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_15__["CartegriseComponent"],
+            _financement_financement_component__WEBPACK_IMPORTED_MODULE_16__["FinancementComponent"],
+            _about_about_component__WEBPACK_IMPORTED_MODULE_17__["AboutComponent"],
+            _contact_contact_component__WEBPACK_IMPORTED_MODULE_18__["ContactComponent"],
+            _plan_plan_component__WEBPACK_IMPORTED_MODULE_19__["PlanComponent"],
+            _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_20__["PageNotFoundComponent"],
+            _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_9__["DateAgoPipe"],
+            _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_14__["AnnonceComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-            _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_4__["NgSelectModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"]
+            _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_5__["NgSelectModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"]
         ],
-        providers: [],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+        providers: [
+            _services_data_loader_service__WEBPACK_IMPORTED_MODULE_7__["DataLoaderService"],
+            _annonce_annonce_resolver__WEBPACK_IMPORTED_MODULE_8__["AnnonceResolve"]
+        ],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
     })
 ], AppModule);
 

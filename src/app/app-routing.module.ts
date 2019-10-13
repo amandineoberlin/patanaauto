@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AnnonceResolve } from './annonce/annonce-resolver';
+
 import { HomeComponent } from './home/home.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
 import { AnnonceComponent } from './annonce/annonce.component';
@@ -14,7 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'annonces', component: AnnoncesComponent },
-  { path: 'annonce', component: AnnonceComponent },
+  { path: 'annonce', component: AnnonceComponent, resolve: { annonce: AnnonceResolve } },
   { path: 'carte-grise', component: CartegriseComponent },
   { path: 'financement', component: FinancementComponent },
   { path: 'about', component: AboutComponent },
