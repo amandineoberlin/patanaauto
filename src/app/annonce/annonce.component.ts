@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+//import { Observable } from 'rxjs';
 
 import _ from 'lodash';
+
+import { DataLoaderService } from '../services/data-loader.service';
 
 @Component({
   selector: 'app-annonce',
@@ -13,18 +14,22 @@ import _ from 'lodash';
 export class AnnonceComponent implements OnInit {
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dataLoaderService: DataLoaderService,
   ) { }
 
   annonceId: Number;
-  state: Observable<object>;
+  annonce: Object;
+  //state: Observable<object>;
 
-  ngOnInit() {
-    this.state = this.activatedRoute.paramMap.pipe(
-      map(() => window.history.state)
-    );
+  ngOnInit(): void {
+    this.activatedRoute.queryParams
+      .subscribe((params) => {
+        this.annonceId = _.get(params, 'id');
+      });
 
-    console.log(this.state);
+    this.dataLoaderService.getSingleAnnonce(this.annonceId)
+      .then(annonce => (this.annonce = annonce))
   }
 
 }
