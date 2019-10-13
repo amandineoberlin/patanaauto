@@ -1,22 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
+import { DataLoaderService } from './services/data-loader.service';
+import { AnnonceResolve } from './annonce/annonce-resolver';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
+import { AnnonceComponent } from './annonce/annonce.component';
 import { CartegriseComponent } from './cartegrise/cartegrise.component';
 import { FinancementComponent } from './financement/financement.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { PlanComponent } from './plan/plan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { DateAgoPipe } from './pipes/date-ago.pipe';
-import { AnnonceComponent } from './annonce/annonce.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,10 @@ import { AnnonceComponent } from './annonce/annonce.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    DataLoaderService,
+    AnnonceResolve
+  ],
   bootstrap: [AppComponent]
 })
 
