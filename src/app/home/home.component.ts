@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/annonces'], { queryParams: { marque, modele, price } });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.quickSearch = this.fb.group({
         marque: [null],
         modele: [null],

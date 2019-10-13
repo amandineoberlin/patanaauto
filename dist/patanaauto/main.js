@@ -36,6 +36,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/annonce/annonce.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/annonce/annonce.component.html ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<p>annonce works! {{state | async | json}}</p>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/annonces/annonces.component.html":
 /*!****************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/annonces/annonces.component.html ***!
@@ -45,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid annonces-container\">\n  <div class=\"content-container\">\n    <form [formGroup]=\"searchForm\">\n      <div class=\"container-fluid\">\n        <div class=\"row filters\">\n          <h6 class=\"search-title\">Recherchez parmi nos {{annoncesSize}} véhicules</h6>\n          <div class=\"col-md-12\">\n            <div class=\"input-group\">\n              <ng-select class=\"marque\" [items]=\"marques\" placeholder=\"marque...\" formControlName=\"marque\"\n                (change)=\"update('marque')\" (clear)=\"clear('marque')\" dropdownPosition=\"bottom\"\n                notFoundText=\"{{notFoundText}}\">\n              </ng-select>\n              <ng-select class=\"modele\" [items]=\"modeles\" placeholder=\"modèle...\" formControlName=\"modele\"\n                (change)=\"update('modele')\" (clear)=\"clear('modele')\" dropdownPosition=\"bottom\"\n                notFoundText=\"{{notFoundText}}\">\n              </ng-select>\n              <input type=\"text\" class=\"customInput prix\" placeholder=\"Prix max...\" ngDisabled=\"blockPriceSlider\"\n                [ngClass]=\"[blockPriceSlider ? 'disabled' : '']\" formControlName=\"price\" (click)=\"togglePriceView()\">\n              <div class=\"input-group-btn group\">\n                <button class=\"btn btn-default\" type=\"submit\" (click)=\"clearPrice()\">\n                  <i\n                    [ngClass]=\"[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']\"></i>\n                </button>\n              </div>\n              <div class=\"col-md-3 offset-md-8\">\n                <div [ngClass]=\"choosePriceClass()\" class=\"slide-range slide-prix\">\n                  <input type=\"text\" class=\"js-price-slider\" />\n                </div>\n              </div>\n            </div>\n            <div class=\"input-group\">\n              <ng-select class=\"version\" [items]=\"versions\" placeholder=\"version/finition...\"\n                formControlName=\"version\" (change)=\"update('version')\" (clear)=\"clear('version')\"\n                notFoundText=\"{{notFoundText}}\" dropdownPosition=\"bottom\">\n              </ng-select>\n              <ng-select class=\"sellerie\" [items]=\"selleries\" placeholder=\"sellerie...\" formControlName=\"sellerie\"\n                (change)=\"update('sellerie')\" (clear)=\"clear('sellerie')\" dropdownPosition=\"bottom\"\n                notFoundText=\"{{notFoundText}}\">\n              </ng-select>\n              <input type=\"text\" class=\"customInput km\" placeholder=\"km max...\" ngDisabled=\"blockKmSlider\"\n                [ngClass]=\"[blockKmSlider ? 'disabled' : '']\" formControlName=\"km\" (click)=\"toggleKmView()\">\n              <div class=\"input-group-btn group\">\n                <button class=\"btn btn-default\" type=\"submit\" (click)=\"clearKm()\">\n                  <i [ngClass]=\"[searchForm.get('km').value ? 'fas fa-times fa-sm' : 'fas fa-tachometer-alt fa-sm']\">\n                  </i>\n                </button>\n              </div>\n              <div class=\"col-md-3 offset-md-8\">\n                <div [ngClass]=\"chooseKmClass()\" class=\"slide-range slide-km\">\n                  <input type=\"text\" class=\"js-km-slider\" />\n                </div>\n              </div>\n            </div>\n\n            <!-- <div class=\"form-group\">\n          <div class=\"form-check\">\n            <input class=\"form-check-input\" type=\"checkbox\" id=\"gridCheck\">\n            <label class=\"form-check-label\" for=\"gridCheck\">\n              Check me out\n            </label>\n          </div>\n        </div> -->\n          </div>\n\n          <div class=\"col-md-12\">\n            <h6 class=\"result-vehicules\">{{filteredAnnonces.length}} Véhicules correspondants</h6>\n          </div>\n        </div>\n      </div>\n    </form>\n\n    <div class=\"container-fluid\">\n      <div class=\"row justify-content-end\">\n        <div class=\"btn-group display\">\n          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            afficher {{limit}} résultats\n          </button>\n          <div class=\"dropdown-menu\">\n            <a class=\"dropdown-item\" (click)=\"limit = 10; filterAnnonces()\">1O</a>\n            <a class=\"dropdown-item\" (click)=\"limit = 50; filterAnnonces()\">50</a>\n            <a class=\"dropdown-item\" (click)=\"limit = annoncesSize; filterAnnonces()\">tout</a>\n          </div>\n        </div>\n        <div class=\"btn-group order\">\n          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            Trier par: {{tri}}\n          </button>\n          <div class=\"dropdown-menu\">\n            <a class=\"dropdown-item\" (click)=\"filterAnnonces('prix')\">Prix croissant</a>\n            <a class=\"dropdown-item\" href=\"#\">Prix décroissant</a>\n            <a class=\"dropdown-item\" href=\"#\">Marque</a>\n            <a class=\"dropdown-item\" href=\"#\">Modèle</a>\n            <a class=\"dropdown-item\" href=\"#\">Année</a>\n            <a class=\"dropdown-item\" href=\"#\">Km</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"container-fluid\">\n      <div class=\"row\">\n        <div class=\"col-md-4 card-row\" *ngFor=\"let annonce of filteredAnnonces; let i=index\">\n          <div class=\"card mb-2\">\n            <div class=\"image\">\n              <i class=\"fas fa-camera\"><span>{{annonce.images.length}}</span></i>\n              <img class=\"img-responsive card-img-top\" [src]=\"mainImage(annonce)\">\n            </div>\n            <div class=\"card-body\">\n              <div class=\"material-card\">\n                <h6>{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}} </h6>\n                <small>{{annonce.VehiculeVersion}}</small>\n              </div>\n              <div class=\"d-flex justify-content-center center-badges\">\n                <div class=\"badges\">\n                  <span class=\"badge badge-light\">\n                    <i class=\"fas fa-euro-sign\"></i>{{annonce.VehiculePrixVenteTTC[0]}}\n                  </span>\n                  <span class=\"badge badge-light\">\n                    <i class=\"fas fa-birthday-cake\"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}\n                  </span>\n                  <span class=\"badge badge-light\">\n                    <i class=\"fas fa-tachometer-alt\"></i>{{annonce.VehiculeKilometrage[0]}} km\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid annonces-container\">\n  <div class=\"content-container\">\n    <form [formGroup]=\"searchForm\">\n      <div class=\"container-fluid\">\n        <div class=\"row filters\">\n          <h6 class=\"search-title\">Recherchez parmi nos {{annoncesSize}} véhicules</h6>\n          <div class=\"col-md-12\">\n            <div class=\"input-group\">\n              <ng-select class=\"marque\" [items]=\"marques\" placeholder=\"marque...\" formControlName=\"marque\"\n                (change)=\"update('marque')\" (clear)=\"clear('marque')\" dropdownPosition=\"bottom\"\n                notFoundText=\"{{notFoundText}}\">\n              </ng-select>\n              <ng-select class=\"modele\" [items]=\"modeles\" placeholder=\"modèle...\" formControlName=\"modele\"\n                (change)=\"update('modele')\" (clear)=\"clear('modele')\" dropdownPosition=\"bottom\"\n                notFoundText=\"{{notFoundText}}\">\n              </ng-select>\n              <input type=\"text\" class=\"customInput prix\" placeholder=\"Prix max...\" ngDisabled=\"blockPriceSlider\"\n                [ngClass]=\"[blockPriceSlider ? 'disabled' : '']\" formControlName=\"price\" (click)=\"togglePriceView()\">\n              <div class=\"input-group-btn group\">\n                <button class=\"btn btn-default\" type=\"submit\" (click)=\"clearPrice()\">\n                  <i\n                    [ngClass]=\"[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']\"></i>\n                </button>\n              </div>\n              <div class=\"col-md-3 offset-md-8\">\n                <div [ngClass]=\"choosePriceClass()\" class=\"slide-range slide-prix\">\n                  <input type=\"text\" class=\"js-price-slider\" />\n                </div>\n              </div>\n            </div>\n            <div class=\"input-group\">\n              <ng-select class=\"version\" [items]=\"versions\" placeholder=\"version/finition...\"\n                formControlName=\"version\" (change)=\"update('version')\" (clear)=\"clear('version')\"\n                notFoundText=\"{{notFoundText}}\" dropdownPosition=\"bottom\">\n              </ng-select>\n              <ng-select class=\"sellerie\" [items]=\"selleries\" placeholder=\"sellerie...\" formControlName=\"sellerie\"\n                (change)=\"update('sellerie')\" (clear)=\"clear('sellerie')\" dropdownPosition=\"bottom\"\n                notFoundText=\"{{notFoundText}}\">\n              </ng-select>\n              <input type=\"text\" class=\"customInput km\" placeholder=\"km max...\" ngDisabled=\"blockKmSlider\"\n                [ngClass]=\"[blockKmSlider ? 'disabled' : '']\" formControlName=\"km\" (click)=\"toggleKmView()\">\n              <div class=\"input-group-btn group\">\n                <button class=\"btn btn-default\" type=\"submit\" (click)=\"clearKm()\">\n                  <i [ngClass]=\"[searchForm.get('km').value ? 'fas fa-times fa-sm' : 'fas fa-tachometer-alt fa-sm']\">\n                  </i>\n                </button>\n              </div>\n              <div class=\"col-md-3 offset-md-8\">\n                <div [ngClass]=\"chooseKmClass()\" class=\"slide-range slide-km\">\n                  <input type=\"text\" class=\"js-km-slider\" />\n                </div>\n              </div>\n            </div>\n\n            <!-- <div class=\"form-group\">\n          <div class=\"form-check\">\n            <input class=\"form-check-input\" type=\"checkbox\" id=\"gridCheck\">\n            <label class=\"form-check-label\" for=\"gridCheck\">\n              Check me out\n            </label>\n          </div>\n        </div> -->\n          </div>\n\n          <div class=\"col-md-12\">\n            <h6 class=\"result-vehicules\">{{filteredAnnonces.length}} Véhicules correspondants</h6>\n          </div>\n        </div>\n      </div>\n    </form>\n\n    <div class=\"container-fluid\">\n      <div class=\"row justify-content-end\">\n        <div class=\"btn-group display\">\n          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            afficher {{limit}} résultats\n          </button>\n          <div class=\"dropdown-menu\">\n            <a class=\"dropdown-item\" (click)=\"limit = 10; filterAnnonces()\">1O</a>\n            <a class=\"dropdown-item\" (click)=\"limit = 50; filterAnnonces()\">50</a>\n            <a class=\"dropdown-item\" (click)=\"limit = annoncesSize; filterAnnonces()\">tout</a>\n          </div>\n        </div>\n        <div class=\"btn-group order\">\n          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\n            aria-expanded=\"false\">\n            Trier par: {{tri}}\n          </button>\n          <div class=\"dropdown-menu\">\n            <a class=\"dropdown-item\" (click)=\"filterAnnonces('prix')\">Prix croissant</a>\n            <a class=\"dropdown-item\" href=\"#\">Prix décroissant</a>\n            <a class=\"dropdown-item\" href=\"#\">Marque</a>\n            <a class=\"dropdown-item\" href=\"#\">Modèle</a>\n            <a class=\"dropdown-item\" href=\"#\">Année</a>\n            <a class=\"dropdown-item\" href=\"#\">Km</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"container-fluid\">\n      <div class=\"row\">\n        <div class=\"col-md-4 card-row\" *ngFor=\"let annonce of filteredAnnonces; let i=index\">\n          <div class=\"card mb-2\" (click)=\"navigateToAnnonce(i, annonce)\">\n            <div class=\"image\">\n              <i class=\"fas fa-camera\"><span>{{annonce.images.length}}</span></i>\n              <img class=\"img-responsive card-img-top\" [src]=\"mainImage(annonce)\">\n            </div>\n            <div class=\"card-body\">\n              <div class=\"material-card\">\n                <h6>{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}} </h6>\n                <small>{{annonce.VehiculeVersion}}</small>\n              </div>\n              <div class=\"d-flex justify-content-center center-badges\">\n                <div class=\"badges\">\n                  <span class=\"badge badge-light\">\n                    <i class=\"fas fa-euro-sign\"></i>{{annonce.VehiculePrixVenteTTC[0]}}\n                  </span>\n                  <span class=\"badge badge-light\">\n                    <i class=\"fas fa-birthday-cake\"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}\n                  </span>\n                  <span class=\"badge badge-light\">\n                    <i class=\"fas fa-tachometer-alt\"></i>{{annonce.VehiculeKilometrage[0]}} km\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -426,6 +439,61 @@ AboutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/annonce/annonce.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/annonce/annonce.component.scss ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Fubm9uY2UvYW5ub25jZS5jb21wb25lbnQuc2NzcyJ9 */");
+
+/***/ }),
+
+/***/ "./src/app/annonce/annonce.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/annonce/annonce.component.ts ***!
+  \**********************************************/
+/*! exports provided: AnnonceComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnonceComponent", function() { return AnnonceComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
+
+
+
+let AnnonceComponent = class AnnonceComponent {
+    constructor(activatedRoute) {
+        this.activatedRoute = activatedRoute;
+    }
+    ngOnInit() {
+        this.state = this.activatedRoute.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(() => window.history.state));
+        console.log(this.state);
+    }
+};
+AnnonceComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+];
+AnnonceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-annonce',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./annonce.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/annonce/annonce.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./annonce.component.scss */ "./src/app/annonce/annonce.component.scss")).default]
+    })
+], AnnonceComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/annonces/annonces.component.scss":
 /*!**************************************************!*\
   !*** ./src/app/annonces/annonces.component.scss ***!
@@ -465,10 +533,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AnnoncesComponent = class AnnoncesComponent {
-    constructor(activatedRoute, fb, formDataService) {
+    constructor(activatedRoute, fb, formDataService, router) {
         this.activatedRoute = activatedRoute;
         this.fb = fb;
         this.formDataService = formDataService;
+        this.router = router;
         this.blockPriceSlider = true;
         this.blockKmSlider = true;
         this.blockVersions = true;
@@ -591,6 +660,9 @@ let AnnoncesComponent = class AnnoncesComponent {
             }
         });
     }
+    navigateToAnnonce(id, state) {
+        this.router.navigateByUrl(`annonce/${id}`, { state });
+    }
     initSliders() {
         //@ts-ignore
         $('.js-price-slider').ionRangeSlider({
@@ -629,7 +701,8 @@ let AnnoncesComponent = class AnnoncesComponent {
         this.hideSlidersOnClick();
         //@ts-ignore
         $('.dropdown-toggle').dropdown();
-        this.activatedRoute.queryParams.subscribe(params => {
+        this.activatedRoute.queryParams
+            .subscribe((params) => {
             let marque = params['marque'];
             let modele = params['modele'];
             let price = params['price'];
@@ -642,7 +715,8 @@ let AnnoncesComponent = class AnnoncesComponent {
 AnnoncesComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
-    { type: _services_form_data_service__WEBPACK_IMPORTED_MODULE_5__["FormDataService"] }
+    { type: _services_form_data_service__WEBPACK_IMPORTED_MODULE_5__["FormDataService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
 ];
 AnnoncesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -671,12 +745,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./annonces/annonces.component */ "./src/app/annonces/annonces.component.ts");
-/* harmony import */ var _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cartegrise/cartegrise.component */ "./src/app/cartegrise/cartegrise.component.ts");
-/* harmony import */ var _financement_financement_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./financement/financement.component */ "./src/app/financement/financement.component.ts");
-/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
-/* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
-/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./annonce/annonce.component */ "./src/app/annonce/annonce.component.ts");
+/* harmony import */ var _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cartegrise/cartegrise.component */ "./src/app/cartegrise/cartegrise.component.ts");
+/* harmony import */ var _financement_financement_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./financement/financement.component */ "./src/app/financement/financement.component.ts");
+/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
+/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+
 
 
 
@@ -691,13 +767,14 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'annonces', component: _annonces_annonces_component__WEBPACK_IMPORTED_MODULE_4__["AnnoncesComponent"] },
-    { path: 'carte-grise', component: _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_5__["CartegriseComponent"] },
-    { path: 'financement', component: _financement_financement_component__WEBPACK_IMPORTED_MODULE_6__["FinancementComponent"] },
-    { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_7__["AboutComponent"] },
-    { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__["ContactComponent"] },
-    { path: 'plan', component: _plan_plan_component__WEBPACK_IMPORTED_MODULE_9__["PlanComponent"] },
+    { path: 'annonce/:id', component: _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_5__["AnnonceComponent"] },
+    { path: 'carte-grise', component: _cartegrise_cartegrise_component__WEBPACK_IMPORTED_MODULE_6__["CartegriseComponent"] },
+    { path: 'financement', component: _financement_financement_component__WEBPACK_IMPORTED_MODULE_7__["FinancementComponent"] },
+    { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_8__["AboutComponent"] },
+    { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_9__["ContactComponent"] },
+    { path: 'plan', component: _plan_plan_component__WEBPACK_IMPORTED_MODULE_10__["PlanComponent"] },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_10__["PageNotFoundComponent"] }
+    { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_11__["PageNotFoundComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -784,6 +861,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plan_plan_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./plan/plan.component */ "./src/app/plan/plan.component.ts");
 /* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pipes/date-ago.pipe */ "./src/app/pipes/date-ago.pipe.ts");
+/* harmony import */ var _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./annonce/annonce.component */ "./src/app/annonce/annonce.component.ts");
+
 
 
 
@@ -817,7 +896,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _contact_contact_component__WEBPACK_IMPORTED_MODULE_14__["ContactComponent"],
             _plan_plan_component__WEBPACK_IMPORTED_MODULE_15__["PlanComponent"],
             _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_16__["PageNotFoundComponent"],
-            _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_17__["DateAgoPipe"]
+            _pipes_date_ago_pipe__WEBPACK_IMPORTED_MODULE_17__["DateAgoPipe"],
+            _annonce_annonce_component__WEBPACK_IMPORTED_MODULE_18__["AnnonceComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1395,22 +1475,6 @@ let DataLoaderService = class DataLoaderService {
     constructor(http) {
         this.http = http;
     }
-    getAnnoncesPhotos(annonces) {
-        return this.http.get('get-photos')
-            .toPromise()
-            .then((photos) => {
-            const match = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.reduce(photos, (acc, k) => {
-                const vehiculeEntity = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.get(k, '_id').split('_')[0];
-                const name = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.get(k, 'name');
-                acc[vehiculeEntity] ? acc[vehiculeEntity].push(name) : acc[vehiculeEntity] = [name];
-                return acc;
-            }, {});
-            lodash__WEBPACK_IMPORTED_MODULE_3___default.a.forEach(lodash__WEBPACK_IMPORTED_MODULE_3___default.a.values(match), (key, index) => {
-                annonces[index].images = key;
-            }, []);
-            return annonces;
-        });
-    }
     getAnnonces() {
         const marques = [];
         const modeles = [];
@@ -1512,9 +1576,6 @@ let FormDataService = class FormDataService {
             versions: lodash__WEBPACK_IMPORTED_MODULE_2___default.a.uniq(versions)
         };
     }
-    loadImages(annonces) {
-        return this.dataService.getAnnoncesPhotos(annonces);
-    }
     loadAnnonces(options) {
         return this.dataService.getAnnonces()
             .then((dataObj) => {
@@ -1542,14 +1603,8 @@ let FormDataService = class FormDataService {
             if (options.quickSearch)
                 return minimiumData;
             const maxAvailableKm = this.calculateMax('VehiculeKilometrage');
-            if (options.fullSearch) {
-                return this.loadImages(dataObj.annonces)
-                    .then((annonces) => {
-                    minimiumData.annonces = annonces;
-                    return lodash__WEBPACK_IMPORTED_MODULE_2___default.a.assign(minimiumData, { maxAvailableKm });
-                });
-            }
-            ;
+            if (options.fullSearch)
+                return lodash__WEBPACK_IMPORTED_MODULE_2___default.a.assign(minimiumData, { maxAvailableKm });
         });
     }
 };
