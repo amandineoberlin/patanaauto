@@ -23,6 +23,9 @@ export class AnnoncesComponent implements OnInit {
 
   searchForm: FormGroup;
   data: { [name: string]: Object };
+  marqueParam: String;
+  modeleParam: String;
+  priceParam: String;
   annonces: Object;
   annoncesSize: Number;
   maxAvailablePrice: number;
@@ -203,6 +206,10 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
+  redirectToAnnonce(id) {
+    return this.router.navigate(['/annonce'], { queryParams: { id } });
+  };
+
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       marque: [null],
@@ -223,9 +230,9 @@ export class AnnoncesComponent implements OnInit {
 
     this.activatedRoute.queryParams
       .subscribe((params: any) => {
-        let marque = params['marque'];
-        let modele = params['modele'];
-        let price = params['price'];
+        this.marqueParam = params['marque'];
+        this.modeleParam = params['modele'];
+        this.priceParam = params['price'];
       });
 
     this.formDataService.loadAnnonces({ fullSearch: true })

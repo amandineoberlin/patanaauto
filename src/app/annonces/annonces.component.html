@@ -102,7 +102,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4 card-row" *ngFor="let annonce of filteredAnnonces; let i=index">
-          <div class="card mb-2" (click)="navigateToAnnonce(i, annonce)">
+          <div class="card mb-2" (click)="redirectToAnnonce(annonce._id)">
             <div class="image">
               <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
               <img class="img-responsive card-img-top" [src]="mainImage(annonce)">

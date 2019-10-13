@@ -95,8 +95,7 @@ const loadFtpData = Promise.coroutine(function* () {
 
 const createAnnoncesIds = (annonces) => {
   return _.map(annonces, annonce => {
-    const id = `${annonce.VehiculeNumeroSerie}_${Math.random().toString(35).substr(2, 9)}`;
-    annonce._id = id;
+    annonce._id = `aaqv${annonce.VehiculeNumeroSerie}02ypu`;
     return annonce;
   })
 };
@@ -127,6 +126,17 @@ const getAnnonces = Promise.coroutine(function* () {
   logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
 
   return annoncesWithImages;
+});
+
+const getSingleAnnonce = Promise.coroutine(function* (req) {
+  const id = _.get(req, 'params.id');
+  const annonces = yield getAnnonces();
+  const singleAnnonce = _.find(annonces, { _id: id });
+  
+  if (!singleAnnonce) return logger.error(`cannot retrieve single annonce with id ${id}`);
+  logger.info(`retrieved single annonce with id ${id}`);
+
+  return singleAnnonce;
 });
 
 const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
@@ -197,5 +207,6 @@ module.exports = {
   loadFtpData,
   getAnnonces,
   loadImages,
-  getPhotos
+  getPhotos,
+  getSingleAnnonce
 };

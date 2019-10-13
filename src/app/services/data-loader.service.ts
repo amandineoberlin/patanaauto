@@ -39,4 +39,9 @@ export class DataLoaderService {
         }
       })
   }
+
+  getSingleAnnonce(id) {
+    return this.http.get<any[]>(`get-annonce/${id}`)
+      .toPromise();
+  }
 }

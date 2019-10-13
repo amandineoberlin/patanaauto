@@ -14,7 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'annonces', component: AnnoncesComponent },
-  { path: 'annonce/:id', component: AnnonceComponent },
+  { path: 'annonce', component: AnnonceComponent },
   { path: 'carte-grise', component: CartegriseComponent },
   { path: 'financement', component: FinancementComponent },
   { path: 'about', component: AboutComponent },
