@@ -1,5 +1,6 @@
 @import "app/app.component.scss";
 
+html { overflow:auto; }
 html, body {
   @include custom-scrollbar;
 
@@ -24,7 +25,6 @@ html, body {
   }
 
   .content-container {
-    overflow: auto;
     height: calc(100vh - 146px); /* default */
     height: -o-calc(100vh - 146px); /* opera */
     height: -webkit-calc(100vh - 146px); /* google, safari */

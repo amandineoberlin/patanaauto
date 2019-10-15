@@ -11,6 +11,10 @@ export class DataLoaderService {
 
   constructor(private http: HttpClient) {}
 
+  mainImage(annonce) {
+    return `../../assets/selsia-photos/${annonce.images[0]}`;
+  }
+
   getAnnonces() {
     const marques = [];
     const modeles = [];

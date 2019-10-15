@@ -22,6 +22,10 @@ export class AnnonceComponent implements OnInit {
   annonce: Object;
   //state: Observable<object>;
 
+  mainImage(annonce) {
+    return this.dataLoaderService.mainImage(annonce);
+  }
+
   ngOnInit(): void {
     this.activatedRoute.queryParams
       .subscribe((params) => {
