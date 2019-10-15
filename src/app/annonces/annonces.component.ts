@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import _ from 'lodash';
 
 import { FormDataService } from '../services/form-data.service';
+import { DataLoaderService } from '../services/data-loader.service';
 import { Constants } from '../constants';
 
 @Component({
@@ -18,6 +19,7 @@ export class AnnoncesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private formDataService: FormDataService,
+    private dataLoaderService: DataLoaderService,
     private router: Router
   ) { }
 
@@ -46,7 +48,7 @@ export class AnnoncesComponent implements OnInit {
   filteredAnnonces: Object = [];
 
   mainImage(annonce) {
-    return `../../assets/selsia-photos/${annonce.images[0]}`;
+    return this.dataLoaderService.mainImage(annonce);
   }
 
   filterAnnonces(filter) {

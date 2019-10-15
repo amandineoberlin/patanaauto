@@ -83,7 +83,7 @@
     }
 
     .btn-group {
-      padding: 0 15px 25px 0;
+      padding-bottom: 25px;
 
       &.display {
         padding-right: 4px;
@@ -91,6 +91,7 @@
 
       button {
         background-color: white;
+        font-size: smaller;
       }
     }
 
@@ -118,8 +119,6 @@
         }
 
         .image {
-          overflow: hidden;
-
           .card-img-top {
             display: block;
             width: 100%;
