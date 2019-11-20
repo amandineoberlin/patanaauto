@@ -3,39 +3,74 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <div class="card card-cascade wider reverse">
-            <div class="view view-cascade overlay">
-              <img class="card-img-top" [src]="mainImage(annonce)"
-                alt="Card image cap">
-              <a href="#!">
-                <div class="mask rgba-white-slight"></div>
-              </a>
+
+          <div class="card text-center">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#images-link">Images</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#description-link">Description</a>
+                </li>
+              </ul>
             </div>
+            <div class="card-body">
+              <h5 class="card-title">{{annonce.VehiculeMarque}} {{annonce.VehiculeModele}}</h5>
+              <p class="card-text">{{annonce.VehiculeVersion}}</p>
 
-            <!-- Card content -->
-            <div class="card-body card-body-cascade text-center">
+              <div class="tab-content">
+                <div class="tab-pane container active" id="images-link">
+                  <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+                    <span *ngFor="let image of annonce.images; let i=index">
+                      <mdb-carousel-item>
+                        <div class="view">
+                          <img src="../../assets/selsia-photos/{{image}}" alt="First slide">
+                          <div mdbWavesEffect></div>
+                        </div>
+                        <div class="carousel-caption">
+                        </div>
+                      </mdb-carousel-item>
+                    </span>
+                  </mdb-carousel>
+                </div>
 
-              <!-- Title -->
-              <h4 class="card-title"><strong>My adventure</strong></h4>
-              <!-- Subtitle -->
-              <h6 class="font-weight-bold indigo-text py-2">Photography</h6>
-              <!-- Text -->
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem perspiciatis
-                voluptatum a, quo nobis, non commodi quia repellendus sequi nulla voluptatem dicta reprehenderit,
-                placeat laborum ut beatae ullam suscipit veniam.
-              </p>
-
-              <!-- Linkedin -->
-              <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
-              <!-- Twitter -->
-              <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
-              <!-- Dribbble -->
-              <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
-
+                <div class="tab-pane container fade" id="description-link">
+                  <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-
           </div>
-          <!-- Card -->
+
         </div>
       </div>
     </div>

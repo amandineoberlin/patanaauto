@@ -113,7 +113,7 @@ const matchImagesWithAnnonces = (annonces, images) => {
   }, []);
   
   return annonces;
-}
+};
 
 const getAnnonces = Promise.coroutine(function* () {
   const data = yield fs.readFileAsync(localDataPath, 'utf-8');

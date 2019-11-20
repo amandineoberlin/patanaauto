@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 //import { Observable } from 'rxjs';
 
@@ -32,9 +32,9 @@ export class AnnonceComponent implements OnInit {
         this.annonceId = _.get(params, 'id');
       });
 
-    // this.dataLoaderService.getSingleAnnonce(this.annonceId)
-    //   .then(annonce => (this.annonce = annonce))
     this.annonce = this.activatedRoute.snapshot.data['annonce'];
+
+    //@ts-ignore
   }
 
 }

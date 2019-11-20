@@ -1,29 +1,71 @@
-// annonce-container {
-//   overflow: scroll;
-// }
+@import "../app.component.scss";
 
-// .view .mask {
-//   overflow: hidden;
-// }
-// .view {
-//   overflow: hidden;
-// }
-.card.card-cascade.wider .view.view-cascade {
-  z-index: 2;
-}
+.annonce-container {
+  .card {
+    border: unset;
+    border-radius: unset;
+    background-color: unset;
 
-.card.card-cascade .view.view-cascade {
-  border-radius: .25rem;
-  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-}
+    .card-header{
+      background-color: $primary;
+      border-radius: unset;
+      border-bottom: 2px solid $active-red;
 
-.card.card-cascade.wider.reverse .card-body.card-body-cascade {
-  z-index: 3;
-  margin-top: -1rem;
-  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-}
+      .card-header-tabs {
+        margin-left: -1.23rem;
+        margin-top: -0.75rem;
+      }
 
-.card.card-cascade.wider .card-body.card-body-cascade {
-  margin-right: 4%;
-  margin-left: 4%;
+      .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+        background-color: $active-red;
+        border: unset;
+        border-bottom: 1px solid $active-red;
+        color: $white;
+
+        &:hover {
+          background-color: $active;
+          border-color: $active;
+        }
+      }
+
+      .nav-link:active ~ li, ~ a {
+        border: unset;
+        outline: unset;
+      }
+
+      .nav-tabs .nav-link {
+        border-top-left-radius: unset;
+        border-top-right-radius: unset;
+
+        &:hover {
+          border-color: $hovered-red;
+          background-color: $hovered-red;
+        }
+      }
+
+      li {
+        a {
+          color: $black;
+        }
+      }
+    }
+
+    .card-body {
+      background-color: rgb(82, 82, 82);
+    }
+
+    h5, p {
+      color: $white;
+    }
+
+    .view {
+      height: calc(100vh - 320px);
+
+      img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
 }
