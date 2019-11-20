@@ -8,7 +8,7 @@ html, body {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background-color:black;
+  background-color:$black;
   background-image: url('assets/images/f.jpg');
   background-position: center;
   background-repeat: no-repeat;
@@ -96,7 +96,7 @@ html, body {
     position: absolute;
     z-index: 10;
     width: 100%;
-    background-color: white;
+    background-color: $white;
     transition: all .3s ease-in-out;
     transform-origin: left top;
     transform: scaleY(0);
@@ -123,13 +123,17 @@ html, body {
     }
   }
 
+  .badge-light {
+    background-color: $white;
+  }
+
   .alert-default {
     background-color: transparent;
-    color: white;
+    color: $white;
   }
 
   .btn-default {
-    color: black;
+    color: $black;
     border: unset;
     border-radius: unset;
   }
@@ -145,7 +149,7 @@ html, body {
     &.btn-rounded {
       @include box-shadow-dark;
       background-color: $primary;
-      color: white;
+      color: $white;
       border: 0;
       border-radius: 0;
       height: 100%;

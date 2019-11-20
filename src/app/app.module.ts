@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -43,8 +43,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     NgSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MDBBootstrapModule
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     DataLoaderService,
     AnnonceResolve
