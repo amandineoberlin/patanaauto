@@ -20,10 +20,16 @@ export class AnnonceComponent implements OnInit {
 
   annonceId: Number;
   annonce: Object;
+  equipement: Array<string>;
   //state: Observable<object>;
 
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
+  }
+
+  getEquipements() {
+    console.log(this.annonce['VehiculeEquipementsOptionArgus'][0].split('|'));
+    return this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
   }
 
   ngOnInit(): void {
@@ -33,6 +39,7 @@ export class AnnonceComponent implements OnInit {
       });
 
     this.annonce = this.activatedRoute.snapshot.data['annonce'];
+    this.equipement = this.getEquipements();
 
     //@ts-ignore
   }
