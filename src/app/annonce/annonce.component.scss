@@ -10,48 +10,35 @@
       background-color: $primary;
       border-radius: unset;
       border-bottom: 2px solid $active-red;
+      text-align: center;
 
-      .card-header-tabs {
-        margin-left: -1.23rem;
-        margin-top: -0.75rem;
-      }
+      .model {
+        display: inline-block;
+        text-align: left;
 
-      .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-        background-color: $active-red;
-        border: unset;
-        border-bottom: 1px solid $active-red;
-        color: $white;
-
-        &:hover {
-          background-color: $active;
-          border-color: $active;
+        h4 {
+          color: $white;
         }
-      }
 
-      .nav-link:active ~ li, ~ a {
-        border: unset;
-        outline: unset;
-      }
-
-      .nav-tabs .nav-link {
-        border-top-left-radius: unset;
-        border-top-right-radius: unset;
-
-        &:hover {
-          border-color: $hovered-red;
-          background-color: $hovered-red;
-        }
-      }
-
-      li {
-        a {
-          color: $black;
+        .version {
+          margin-top: -10px;
         }
       }
     }
 
     .card-body {
-      background-color: rgb(82, 82, 82);
+      background-color: rgb(82, 82, 82, 0.7);
+
+      .carousel {
+        .carousel-indicators {
+          li {
+            width: .625rem;
+            height: .625rem;
+            cursor: pointer;
+            border-radius: 50%;
+          }
+        }
+      }
     }
 
     h5, p {
