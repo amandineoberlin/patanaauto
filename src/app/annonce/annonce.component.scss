@@ -6,11 +6,12 @@
     border-radius: unset;
     background-color: unset;
 
-    .card-header{
+    .card-header {
       background-color: $primary;
       border-radius: unset;
       border-bottom: 2px solid $active-red;
       text-align: center;
+      position: relative;
 
       .model {
         display: inline-block;
@@ -23,6 +24,80 @@
         .version {
           margin-top: -10px;
         }
+      }
+
+      #ribbon-container {
+        font-family: 'Knewave', 'Karla', cursive;
+        position: absolute;
+        top: 7.5px;
+        right: -15px;
+        overflow: visible;
+        font-size: 21px;
+        line-height: 18px;
+      }
+
+      #ribbon-container:before {
+        content: "";
+        height: 0;
+        width: 0;
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: 0;
+        border-top: 29px solid rgba(0, 0, 0, .3);
+        border-bottom: 29px solid rgba(0, 0, 0, .3);
+        border-right: 29px solid rgba(0, 0, 0, .3);
+        border-left: 29px solid transparent;
+      }
+
+      #ribbon-container:after {
+        content: "";
+        height: 3px;
+        background: rgba(0, 0, 0, .3);
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 58px;
+        right: 3px;
+      }
+
+      #ribbon-container a {
+        cursor: default;
+        display: block;
+        padding: 20px;
+        position: relative;
+        background: $white;
+        overflow: visible;
+        height: 58px;
+        margin-left: 29px;
+        color: $hovered-red;
+        text-decoration: none;
+      }
+
+      #ribbon-container a:after {
+        content: "";
+        height: 0;
+        width: 0;
+        display: block;
+        position: absolute;
+        bottom: -15px;
+        right: 0;
+        border-top: 15px solid $white;
+        border-right: 15px solid transparent;
+      }
+
+      #ribbon-container a:before {
+        content: "";
+        height: 0;
+        width: 0;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -29px;
+        border-top: 29px solid $white;
+        border-bottom: 29px solid $white;
+        border-right: 29px solid transparent;
+        border-left: 29px solid transparent;
       }
     }
 
