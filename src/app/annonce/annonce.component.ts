@@ -28,7 +28,6 @@ export class AnnonceComponent implements OnInit {
   }
 
   getEquipements() {
-    console.log(this.annonce['VehiculeEquipementsOptionArgus'][0].split('|'));
     return this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
   }
 
