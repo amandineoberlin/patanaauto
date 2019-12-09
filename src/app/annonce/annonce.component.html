@@ -40,10 +40,12 @@
                   </div>
                 </div>
 
-                <div class="col-md-5">
-                  <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let o of equipement">{{o}}</li>
-                  </ul>
+                <div class="col-md-5 description">
+                  <h5 class="title"><i class="fas fa-info-circle"></i> Informations générales</h5>
+                  <div class="desc-content">
+                    <span class="left">Version: </span>
+                    <span class="right">{{annonce.VehiculeVersion}}</span>
+                  </div>
                 </div>
               </div>
 
