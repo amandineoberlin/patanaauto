@@ -115,25 +115,99 @@
         }
       }
 
-      .description {
-        color: white;
-        width: 100%;
+      .infos {
 
-        .title {
-          margin-bottom: 20px;
-        }
-
-        .desc-content {
-          font-size: 15px;
-
-          .left {
-            float: left;
-            width: 50%;
+        .table {
+          padding-top: 20px;
+          border-left: 2px solid $primary;
+          
+          th {
             text-align: left;
           }
-          .right {
-            float: right;
-            width: 50%;
+        }
+      }
+
+      .infos, .options, .table, .autre, .mesure {
+        font-family: 'Arima Madurai';
+        color: white;
+        font-size: 12px;
+        font-weight: 100;
+
+        .title {
+          font-family: 'Exo';
+          font-size: 16px;
+          margin-bottom: 20px;
+          font-weight: 900;
+          color: $white;
+          background-color: $gray-900;
+          padding: 20px 0;
+
+          span {
+            -webkit-text-fill-color: $white;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: $black;
+          }
+
+          i {
+            border: 1px solid $black;
+            border-radius: 7px;
+          }
+        }
+      }
+
+      .options {
+        margin-top: 25px;
+        padding-bottom: 20px;
+
+        hr {
+          background-color: $gray-800;
+        }
+
+        ul {
+          -moz-column-count: 3;
+          -moz-column-gap: 20px;
+          -webkit-column-count: 3;
+          -webkit-column-gap: 20px;
+          column-count: 3;
+          column-gap: 20px;
+          list-style: none;
+          text-align: left;
+
+          li {
+            margin-bottom: 8px;
+          }
+        }
+      }
+
+      .autre {
+        .table {
+          border-left: 2px solid $primary;
+
+          tr {
+            text-align: left;
+          }
+        }
+      }
+
+      .list-infos {
+        border-left: 2px solid $primary;
+
+        ul {
+          -moz-column-count: 2;
+          -moz-column-gap: 20px;
+          -webkit-column-count: 2;
+          -webkit-column-gap: 20px;
+          column-count: 2;
+          column-gap: 20px;
+          list-style: none;
+          text-align: left;
+
+          li {
+            margin-bottom: 8px;
+
+            i {
+              padding-right: 5px;
+            }
           }
         }
       }
@@ -141,16 +215,6 @@
 
     h5, p {
       color: $white;
-    }
-
-    .view {
-      height: calc(100vh - 320px);
-
-      img {
-        object-fit: contain;
-        height: 100%;
-        width: 100%;
-      }
     }
   }
 }
