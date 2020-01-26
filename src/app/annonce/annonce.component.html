@@ -40,18 +40,114 @@
                   </div>
                 </div>
 
-                <div class="col-md-5 description">
-                  <h5 class="title"><i class="fas fa-info-circle"></i> Informations générales</h5>
-                  <div class="desc-content">
-                    <span class="left">Version: </span>
-                    <span class="right">{{annonce.VehiculeVersion}}</span>
+                <div class="col-md-5 infos">
+                  <div class="title">
+                    <i class="fas fa-info-circle"></i>
+                    <span> Informations générales</span>
+                  </div>
+                  <div class="table-responsive table-borderless">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <th class="row-1">Version:</th>
+                          <th class="row-2">{{annonce.VehiculeVersion}}</th>
+                        </tr>
+                        <tr>
+                          <th class="row-1">Mise en circulation:</th>
+                          <th class="row-2">{{annonce.VehiculeCarteGriseDate}}</th>
+                        </tr>
+                        <tr>
+                          <th class="row-1">Kilométrage:</th>
+                          <th class="row-2">{{annonce.VehiculeKilometrage}}</th>
+                        </tr>
+                        <tr>
+                          <th class="row-1">N° de places:</th>
+                          <th class="row-2">{{annonce.VehiculeNbPlaces}}</th>
+                        </tr>
+                        <tr>
+                          <th class="row-1">N° de portes:</th>
+                          <th class="row-2">{{annonce.VehiculeNbPortes}}</th>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
 
+              <!--[if lt IE 10]>
+              <style>
+              .options li {
+                  width: 25%;
+                  float: left
+              }
+              </style>
+              <![endif]-->
+
+              <div class="row">
+                <div class="col-md-12 options">
+                  <div class="title">
+                    <i class="fas fa-info-circle"></i>
+                    <span> Options & Equipements</span>
+                  </div>
+                  <div class="col-md-8 offset-md-2 list-infos">
+                    <ul>
+                      <li *ngFor="let o of options; let i=index">
+                        <i class="fas fa-check-circle"></i> {{o}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 autre">
+                  <div class="title">
+                    <i class="fas fa-info-circle"></i>
+                    <span> Autres informations</span>
+                  </div>
+                  <div class="col-md-8 offset-md-2 list-infos">
+                    <ul>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Sellerie:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Peinture métallisée:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Véhicule de première main:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Prix du véhicule neuf:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Couple moteur:
+                      </li>
+
+                      <li>{{annonce.VehiculeSellerie}}</li>
+                      <li>{{annonce.VehiculePeintureMetallisee}}</li>
+                      <li>{{annonce.VehiculePremiereMain}}</li>
+                      <li>{{annonce.VehiculePrixNeuf}}€</li>
+                      <li>{{annonce.VehiculeMoteurCouple}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 mesure">
+                  <div class="title">
+                    <i class="fas fa-info-circle"></i>
+                    <span> Puissance & Consommation</span>
+                  </div>
+                  <div class="col-md-12">
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

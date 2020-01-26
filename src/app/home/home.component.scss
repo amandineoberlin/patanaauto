@@ -93,6 +93,15 @@
     background-color: rgba(0, 0, 0, 0.5);
     text-align: left;
 
+    .text-center {
+      font-family: 'Exo';
+      font-size: 20px;
+      background-color: $gray-900;
+      -webkit-text-fill-color: $white;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: $black;
+    }
+
     h4 {
       color: $primary;
       padding: 15px 0 10px 0;
@@ -115,7 +124,7 @@
     text-align: justify;
   }
 
-  .fa-circle {
+  .fa-check-circle {
     color: $primary;
   }
 }
