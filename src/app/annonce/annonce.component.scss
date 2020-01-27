@@ -117,6 +117,10 @@
 
       .infos {
 
+        .table-striped tbody tr:nth-of-type(odd) {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+
         .table {
           padding-top: 20px;
           border-left: 2px solid $primary;
