@@ -102,18 +102,8 @@
     }
 
     .card-body {
+      @include carouseler;
       background-color: rgb(82, 82, 82, 0.7);
-
-      .carousel {
-        .carousel-indicators {
-          li {
-            width: .625rem;
-            height: .625rem;
-            cursor: pointer;
-            border-radius: 50%;
-          }
-        }
-      }
 
       .infos {
 

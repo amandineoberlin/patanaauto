@@ -1,0 +1,5 @@
+@import "../app.component.scss";
+
+.about-container {
+  @include carouseler;
+}

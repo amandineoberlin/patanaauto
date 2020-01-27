@@ -66,3 +66,16 @@ $primary: #A9040A !default;
     background: transparent;
   }
 }
+
+@mixin carouseler {
+  .carousel {
+    .carousel-indicators {
+      li {
+        width: .625rem;
+        height: .625rem;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+    }
+  }
+}
