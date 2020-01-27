@@ -9,7 +9,8 @@ import { Constants } from '../constants';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
@@ -137,7 +138,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/annonces'], { queryParams: { marque, modele, price } });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.quickSearch = this.fb.group({
         marque: [null],
         modele: [null],

@@ -34,15 +34,21 @@
               "node_modules/@fortawesome/fontawesome-free/css/solid.min.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/ion-rangeslider/css/ion.rangeSlider.min.css",
-              "src/styles.scss",
-              "src/app/home/home.component.scss"
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "node_modules/chart.js/dist/Chart.min.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-mousewheel/jquery.mousewheel.js",
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
               "node_modules/angular/angular.js",
-              "node_modules/angular-sanitize/angular-sanitize.js"
+              "node_modules/angular-sanitize/angular-sanitize.js",
+              "node_modules/moment/moment.js",
+              "node_modules/chart.js/dist/Chart.min.js"
             ]
           },
           "configurations": {

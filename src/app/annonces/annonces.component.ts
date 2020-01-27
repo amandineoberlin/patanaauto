@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import _ from 'lodash';
 
 import { FormDataService } from '../services/form-data.service';
+import { DataLoaderService } from '../services/data-loader.service';
 import { Constants } from '../constants';
 
 @Component({
@@ -17,11 +18,16 @@ export class AnnoncesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private formDataService: FormDataService
+    private formDataService: FormDataService,
+    private dataLoaderService: DataLoaderService,
+    private router: Router
   ) { }
 
   searchForm: FormGroup;
   data: { [name: string]: Object };
+  marqueParam: String;
+  modeleParam: String;
+  priceParam: String;
   annonces: Object;
   annoncesSize: Number;
   maxAvailablePrice: number;
@@ -42,7 +48,7 @@ export class AnnoncesComponent implements OnInit {
   filteredAnnonces: Object = [];
 
   mainImage(annonce) {
-    return `../../assets/selsia-photos/${annonce.images[0]}`;
+    return this.dataLoaderService.mainImage(annonce);
   }
 
   filterAnnonces(filter) {
@@ -172,6 +178,10 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
+  navigateToAnnonce(id, state) {
+    this.router.navigateByUrl(`annonce/${id}`, { state });
+  }
+
   initSliders() {
     //@ts-ignore
     $('.js-price-slider').ionRangeSlider({
@@ -198,7 +208,11 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  redirectToAnnonce(id) {
+    return this.router.navigate(['/annonce'], { queryParams: { id } });
+  };
+
+  ngOnInit(): void {
     this.searchForm = this.fb.group({
       marque: [null],
       modele: [null],
@@ -216,11 +230,12 @@ export class AnnoncesComponent implements OnInit {
     //@ts-ignore
     $('.dropdown-toggle').dropdown()
 
-    this.activatedRoute.queryParams.subscribe(params => {
-      let marque = params['marque'];
-      let modele = params['modele'];
-      let price = params['price'];
-    });
+    this.activatedRoute.queryParams
+      .subscribe((params: any) => {
+        this.marqueParam = params['marque'];
+        this.modeleParam = params['modele'];
+        this.priceParam = params['price'];
+      });
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))

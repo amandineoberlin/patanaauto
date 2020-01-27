@@ -1,4 +1,4 @@
-export class Annonce {
+export interface Annonce {
   VehiculeConformeReferentielArgus: Array<String>;
   VehiculeConformeReferentielArgusNiveau: Array<String>;
   VehiculeEquipementsOptionArgus: Array<String>;
