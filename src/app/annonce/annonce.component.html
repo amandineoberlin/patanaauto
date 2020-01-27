@@ -26,7 +26,8 @@
                     <div class="carousel-inner" role="listbox">
                       <div class="carousel-item" [ngClass]="[i==0 ? 'active' : '']"
                         *ngFor="let image of annonce.images; let i=index">
-                        <img class="d-block w-100" src="../../assets/selsia-photos/{{image}}" alt="First slide">
+                        <img class="d-block w-100 rounded"
+                          src="../../assets/selsia-photos/{{image}}" alt="First slide">
                       </div>
                     </div>
                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -135,12 +136,38 @@
 
               <div class="row">
                 <div class="col-md-12 mesure">
-                  <div class="title">
+                  <div class="col-md-12 title">
                     <i class="fas fa-info-circle"></i>
                     <span> Puissance & Consommation</span>
                   </div>
-                  <div class="col-md-12">
+
+                  <div class="row conso">
+                    <div class="col-md-12">
+                      <h6>Consommation</h6>
+                    </div>
+                    <div class="col-md-6 offset-md-2">
+                      <div class="chart-container">
+                        <canvas id="consoChart"></canvas>
+                      </div>
+                    </div>
                   </div>
+
+                  <div class="row power">
+                    <div class="col-md-12">
+                      <h6>Puissance</h6>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="chart-container">
+                        <canvas id="fiscaleChart"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="chart-container">
+                        <canvas id="reelleChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
