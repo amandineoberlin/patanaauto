@@ -9,7 +9,18 @@ export class AboutComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  images: Array<string>;
+
+  ngOnInit(): void {
+    this.images = [
+      'office1.JPG',
+      'office2.JPG',
+      'office3.JPG',
+      'parc1.JPG',
+      'parc2.JPG',
+      'parc3.JPG',
+      'parc4.JPG'
+    ];
   }
 
 }

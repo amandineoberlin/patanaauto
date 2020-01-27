@@ -93,14 +93,50 @@ const loadFtpData = Promise.coroutine(function* () {
   }
 });
 
+const createAnnoncesIds = (annonces) => {
+  return _.map(annonces, annonce => {
+    annonce._id = `aaqv${annonce.VehiculeNumeroSerie}02ypu`;
+    return annonce;
+  })
+};
+
+const matchImagesWithAnnonces = (annonces, images) => {
+  const match = _.reduce(images, (acc, k) => {
+    const vehiculeEntity = _.get(k, '_id').split('_')[0];
+    const name = _.get(k, 'name');
+    acc[vehiculeEntity] ? acc[vehiculeEntity].push(name) : acc[vehiculeEntity] = [name];
+    return acc;
+  }, {});
+
+  _.forEach(_.values(match), (key, index) => {
+    annonces[index].images = key;
+  }, []);
+  
+  return annonces;
+};
+
 const getAnnonces = Promise.coroutine(function* () {
   const data = yield fs.readFileAsync(localDataPath, 'utf-8');
   const json = data ? yield xmlParser.parseStringAsync(data) : null;
   const annonces = _.get(json, 'Stock.Vehicule');
+  const images = yield getPhotosFromFile();
+  const annoncesWithId = createAnnoncesIds(annonces);
+  const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
-  logger.info(`retrieved ${_.size(annonces)} annonces`);
+  logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
 
-  return annonces;
+  return annoncesWithImages;
+});
+
+const getSingleAnnonce = Promise.coroutine(function* (req) {
+  const id = _.get(req, 'params.id');
+  const annonces = yield getAnnonces();
+  const singleAnnonce = _.find(annonces, { _id: id });
+  
+  if (!singleAnnonce) return logger.error(`cannot retrieve single annonce with id ${id}`);
+  logger.info(`retrieved single annonce with id ${id}`);
+
+  return singleAnnonce;
 });
 
 const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
@@ -171,5 +207,6 @@ module.exports = {
   loadFtpData,
   getAnnonces,
   loadImages,
-  getPhotos
+  getPhotos,
+  getSingleAnnonce
 };

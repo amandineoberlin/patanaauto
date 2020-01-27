@@ -11,23 +11,8 @@ export class DataLoaderService {
 
   constructor(private http: HttpClient) {}
 
-  getAnnoncesPhotos(annonces) {
-    return this.http.get<any[]>('get-photos')
-      .toPromise()
-      .then((photos) => {
-        const match = _.reduce(photos, (acc, k) => {
-          const vehiculeEntity = _.get(k, '_id').split('_')[0];
-          const name = _.get(k, 'name');
-          acc[vehiculeEntity] ? acc[vehiculeEntity].push(name) : acc[vehiculeEntity] = [name];
-          return acc;
-        }, {});
-
-        _.forEach(_.values(match), (key, index) => {
-          annonces[index].images = key;
-        }, []);
-        
-        return annonces;
-      })
+  mainImage(annonce) {
+    return `../../assets/selsia-photos/${annonce.images[0]}`;
   }
 
   getAnnonces() {
@@ -57,5 +42,10 @@ export class DataLoaderService {
           annoncesSize
         }
       })
+  }
+
+  getSingleAnnonce(id) {
+    return this.http.get<any[]>(`get-annonce/${id}`)
+      .toPromise();
   }
 }

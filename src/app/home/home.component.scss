@@ -1,7 +1,7 @@
 @import "../app.component.scss";
 
 .home-container {
-  color: white;
+  color: $white;
 
   .slide-range {
     padding: 15px;
@@ -51,7 +51,7 @@
 
       .prix-group {
         height: 36px;
-        background-color: white;
+        background-color: $white;
 
         button {
           cursor: initial;
@@ -90,8 +90,17 @@
   }
 
   .description {
-    background-color: $black;
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: left;
+
+    .text-center {
+      font-family: 'Exo';
+      font-size: 20px;
+      background-color: $gray-900;
+      -webkit-text-fill-color: $white;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: $black;
+    }
 
     h4 {
       color: $primary;
@@ -115,7 +124,7 @@
     text-align: justify;
   }
 
-  .fa-circle {
+  .fa-check-circle {
     color: $primary;
   }
 }
