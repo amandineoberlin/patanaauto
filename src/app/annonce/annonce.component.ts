@@ -166,6 +166,9 @@ export class AnnonceComponent implements OnInit {
     this.createConsoChart();
     this.createFiscaleChart();
     this.createReelleChart();
+
+    //@ts-ignore
+    $('#myCarousel').carousel();
   }
 
 }
