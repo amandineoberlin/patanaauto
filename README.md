@@ -2,6 +2,14 @@
 
 website for Patana Auto enterprise
 
+## Starting the app
+
+**BackEnd**
+node app in root app
+
+**FrontEnd**
+- locally: `ng build --watch`
+
 ## how are the annonces updated
 
 There is a scheduler package that runs inside app.js. When the app is running:
