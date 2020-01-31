@@ -1,17 +1,8 @@
 @import "../app.component.scss";
 
 .about-container {
+  @include carouseler;
   font-family: 'Arima Madurai';
-
-  .carousel-thumbnails .carousel-indicators img {
-      width: 50px;
-      overflow: hidden;
-      display: block;
-  }
-
-  .carousel-indicators li {
-    width: auto;
-  }
 
   .speech {
     .horaires {

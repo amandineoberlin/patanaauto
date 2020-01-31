@@ -102,8 +102,21 @@
     }
 
     .card-body {
-      @include carouseler;
       background-color: rgb(82, 82, 82, 0.7);
+
+      .carousel-indicators {
+        position: relative;
+        margin: 0 0 20px 0;
+        padding: 0;
+
+        li {
+          width: 100%;
+        }
+      }
+
+      .carousel-inner {
+        border-bottom: 2px solid $primary;
+      }
 
       .infos {
 
