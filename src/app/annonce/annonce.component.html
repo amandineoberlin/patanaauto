@@ -19,8 +19,8 @@
                 <div class="col-md-7">
                   <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                      <div class="carousel-item" [ngClass]="[i==0 ? 'active' : '']"
-                        *ngFor="let image of annonce.images; let i=index">
+                      <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
+                        [ngClass]="[i==0 ? 'active' : '']">
                         <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}" alt="First slide">
                       </div>
                     </div>
@@ -68,14 +68,20 @@
                   </div>
                 </div>
 
-              <div class="col-md-7">
-                <ol class="carousel-indicators">
-                  <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
-                    attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']">
-                    <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}" alt="First slide">
-                  </li>
-                </ol>
-              </div>
+                <div class="col-md-7">
+                  <div class="dock-container">
+                    <div class="dock">
+                      <ol class="carousel-indicators">
+                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
+                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']"
+                          (click)="changeActiveItem(i)">
+                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                            alt="First slide">
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!--[if lt IE 10]>
