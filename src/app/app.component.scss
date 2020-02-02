@@ -60,6 +60,30 @@ $primary: #A9040A !default;
   box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
 }
 
+@mixin transition($val) {
+  -webkit-transition: $val;
+  -moz-transition: $val;
+  -ms-transition: $val;
+  -o-transition: $val;
+  transition: $val;
+}
+
+@mixin transformOrigin($val) {
+  -webkit-transform-origin: $val;
+  -moz-transform-origin: $val;
+  -ms-transform-origin: $val;
+  -o-transform-origin: $val;
+  transform-origin: $val;
+}
+
+@mixin transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  -o-transform: $val;
+  transform: $val;
+}
+
 @mixin custom-scrollbar {
   ::-webkit-scrollbar {
     width: 0px;
@@ -77,5 +101,26 @@ $primary: #A9040A !default;
         border-radius: 50%;
       }
     }
+  }
+}
+
+@mixin magnifier {
+  .dock-container li img {
+    @include transition(all 0.3s);
+    @include transformOrigin(100% 100%);
+  }
+
+  .dock-container li:hover {
+    opacity: 1;
+  }
+
+  .dock-container li:hover img { 
+    @include transform(scale(2));
+    margin: 0 2em;
+  }
+
+  .dock-container li:hover + li img,
+  .dock-container li.prev img {
+    margin: 0 1.5em;
   }
 }
