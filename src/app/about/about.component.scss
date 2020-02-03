@@ -89,7 +89,7 @@
         font-family: 'Karla';
         font-size: 14px;
 
-        .l1 {
+        .l1, .l3 {
           font-weight: 700;
         }
 
@@ -98,10 +98,6 @@
           margin-bottom: -8px;
           margin-left: 14px;
           color: $gray-700;
-        }
-
-        .l3 {
-          font-weight: 700;
         }
 
         .l4 {
