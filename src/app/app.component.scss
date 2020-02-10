@@ -1,6 +1,7 @@
 // Variables
 
 $white: #E3E2DE !default;
+$plain-white: #ffffff;
 $hovered-red: #a53d3f !default;
 $active-red: #7f0002 !default;
 $gray-100: #f8f9fa !default;
@@ -9,6 +10,7 @@ $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
 $gray-600: #868e96 !default;
+$gray-650: #525252 !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
@@ -19,12 +21,119 @@ $black: #0B0C0F !default;
 $light-red: #ef4b4b;
 $primary: #A9040A !default;
 
+@mixin opacity($color, $opacity) {
+  background-color: rgba($color, $opacity);
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: url('/assets/fonts/Karla-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Karla-Regular.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: url('/assets/fonts/Karla-Bold.woff2') format('woff2'),
+       url('/assets/fonts/Karla-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/assets/fonts/Raleway-Black.woff2') format('woff2'),
+       url('/assets/fonts/Raleway-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/assets/fonts/Raleway-ExtraLight.woff2') format('woff2'),
+       url('/assets/fonts/Raleway-ExtraLight.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/assets/fonts/Raleway-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Raleway-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arima Madurai';
+  src: url('/assets/fonts/ArimaMadurai-Black.woff2') format('woff2'),
+       url('/assets/fonts/ArimaMadurai-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arima Madurai';
+  src: url('/assets/fonts/ArimaMadurai-Regular.woff2') format('woff2'),
+       url('/assets/fonts/ArimaMadurai-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arima Madurai';
+  src: url('/assets/fonts/ArimaMadurai-ExtraLight.woff2') format('woff2'),
+       url('/assets/fonts/ArimaMadurai-ExtraLight.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Knewave';
+  src: url('/assets/fonts/Knewave-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Knewave-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Knewave';
+  src: url('/assets/Knewave-Black.woff2') format('woff2'),
+       url('/assets/Knewave-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Exo';
+  src: url('/assets/fonts/Exo-Black.woff2') format('woff2'),
+       url('/assets/fonts/Exo-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Exo';
+  src: url('/assets/fonts/Exo-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Exo-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Exo';
+  src: url('/assets/fonts/Exo-ExtraLight.woff2') format('woff2'),
+       url('/assets/fonts/Exo-ExtraLight.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
 @mixin box-shadow-light {
-  box-shadow: 0 2px 2px 0 rgba(255, 255, 255, 0.50), 0 2px 10px 0 rgba(255, 255, 255, 0.52);
+  box-shadow: 0 2px 2px 0 rgba($plain-white, 0.50), 0 2px 10px 0 rgba($plain-white, 0.52);
 }
 
 @mixin box-shadow-dark {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 5px 0 rgba($black, .16), 0 2px 10px 0 rgba($black, .12);
 }
 
 @mixin color-inputs {
@@ -60,6 +169,30 @@ $primary: #A9040A !default;
   box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
 }
 
+@mixin transition($val) {
+  -webkit-transition: $val;
+  -moz-transition: $val;
+  -ms-transition: $val;
+  -o-transition: $val;
+  transition: $val;
+}
+
+@mixin transformOrigin($val) {
+  -webkit-transform-origin: $val;
+  -moz-transform-origin: $val;
+  -ms-transform-origin: $val;
+  -o-transform-origin: $val;
+  transform-origin: $val;
+}
+
+@mixin transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  -o-transform: $val;
+  transform: $val;
+}
+
 @mixin custom-scrollbar {
   ::-webkit-scrollbar {
     width: 0px;
@@ -77,5 +210,26 @@ $primary: #A9040A !default;
         border-radius: 50%;
       }
     }
+  }
+}
+
+@mixin magnifier {
+  .dock-container li img {
+    @include transition(all 0.3s);
+    @include transformOrigin(100% 100%);
+  }
+
+  .dock-container li:hover {
+    opacity: 1;
+  }
+
+  .dock-container li:hover img { 
+    @include transform(scale(2));
+    margin: 0 2em;
+  }
+
+  .dock-container li:hover + li img,
+  .dock-container li.prev img {
+    margin: 0 1.5em;
   }
 }

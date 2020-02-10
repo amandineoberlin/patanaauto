@@ -31,7 +31,6 @@
       .nav-link {
         padding: 1.1em 1em !important;
         font-size: 90%;
-        font-weight: 400;
         padding: 0.75em 0;
         letter-spacing: 1px;
         color: $white;
@@ -41,38 +40,41 @@
         }
       }
 
-.dropdown-menu {
-  border-radius: unset;
-  min-width: 200px;
-  padding: 5px 0;
-  margin: -1px;
-  background-color: #000;
-  border: 1px solid rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 0, 0, .15);
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-.dropdown-menu .divider {
-  border: 1px solid rgba(0, 0, 0, 0.8);
-}
-.dropdown-menu > li > a {
-  padding: 6px 20px;
-  color: rgba(255,255,255,0.80);
-}
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  color: rgba(255,255,255,0.70);
-  text-decoration: none;
-  background-color: transparent;
-}
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus {
-  color: rgba(255,255,255,0.70);
-  text-decoration: none;
-  background-color: transparent;
-  outline: 0;
-}
+      .dropdown-menu {
+        border-radius: unset;
+        min-width: 200px;
+        padding: 5px 0;
+        margin: -1px;
+        background-color: $black;
+        border: 1px solid rgba($black, 0.7);
+        border: 1px solid rgba($black, .15);
+        -webkit-box-shadow: 0 6px 12px rgba($black, .175);
+                box-shadow: 0 6px 12px rgba($black, .175);
+
+        .divider {
+          border: 1px solid rgba($black, 0.8);
+        }
+      }
+
+      .dropdown-menu > li > a {
+        padding: 6px 20px;
+        color: rgba($plain-white, 0.80);
+
+        &:hover, &:focus {
+          color: rgba($plain-white, 0.70);
+          text-decoration: none;
+          background-color: transparent;
+        }
+      }
+
+      .dropdown-menu > .active > a,
+      .dropdown-menu > .active > a:hover,
+      .dropdown-menu > .active > a:focus {
+        color: rgba($plain-white, 0.70);
+        text-decoration: none;
+        background-color: transparent;
+        outline: 0;
+      }
     }
   }
 }

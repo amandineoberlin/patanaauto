@@ -25,6 +25,13 @@ export class AnnonceComponent implements OnInit {
   options: Array<string>;
   //state: Observable<object>;
 
+  changeActiveItem(i) {
+    $('.carousel-indicators').children().each(function(index) {
+      if ($(this).hasClass('active')) $(this).removeClass('active');
+      if (index === i) $(this).addClass('active');
+    });
+  }
+
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
   }
@@ -166,6 +173,9 @@ export class AnnonceComponent implements OnInit {
     this.createConsoChart();
     this.createFiscaleChart();
     this.createReelleChart();
+
+    //@ts-ignore
+    $('#myCarousel').carousel();
   }
 
 }

@@ -2,4 +2,111 @@
 
 .about-container {
   @include carouseler;
+  font-family: 'Arima Madurai';
+
+  .speech {
+    .horaires {
+      color: $primary;
+    }
+
+    .bg-faded {
+      @include opacity($plain-white, 0.8);
+
+      .title {
+        font-family: 'Raleway';
+        font-size: 15px;
+        font-weight: 900;
+        border-bottom: 1px solid $gray-900;
+        padding-bottom: 5px;
+        color: $gray-700;
+      }
+
+      .patana-title {
+        font-family: 'Raleway';
+        color: $primary;
+        font-weight: 100;
+        font-size: 21px;
+      }
+
+      .text {
+        text-align: justify;
+        word-break: break-word;
+
+        &.second, &.third {
+          color: $gray-700;
+        }
+      }
+    }
+
+    .p-5 {
+      padding: 20px;
+    }
+
+    .partLeft, .partRight {
+      width: 25%;
+      position: absolute;
+      top: 30px;
+      font-family: 'Karla';
+      z-index: 10;
+
+      .vl {
+        border-left: 3px solid $primary;
+        z-index: 100;
+        position: absolute;
+      }
+    }
+
+    .partLeft {
+      left: 0;
+
+      .vl {
+        top: 40px;
+        left: 32px;
+        height: 47%;
+      }
+    }
+
+    .partRight {
+      right: 0;
+
+      .intro {
+        font-family: 'Raleway';
+        font-weight: 100;
+        font-size: 18px;
+        color: $black;
+      }
+
+      .suite {
+        font-family: 'Raleway';
+        font-weight: 900;
+        color: $gray-700;
+        font-size: 13px;
+      }
+
+      .horaires {
+        border-right: 2px solid $gray-500;
+        border-bottom: 2px solid $gray-500;
+        padding: 0 17px 5px 0;
+        font-family: 'Karla';
+        font-size: 14px;
+
+        .l1, .l3 {
+          font-weight: 700;
+        }
+
+        .l2 {
+          margin-top: -35px;
+          margin-bottom: -8px;
+          margin-left: 14px;
+          color: $gray-700;
+        }
+
+        .l4 {
+          margin-top: -35px;
+          margin-left: 14px;
+          color: $gray-700;
+        }
+      }
+    }
+  }
 }

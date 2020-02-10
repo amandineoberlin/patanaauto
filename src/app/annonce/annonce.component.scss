@@ -102,13 +102,28 @@
     }
 
     .card-body {
-      @include carouseler;
-      background-color: rgb(82, 82, 82, 0.7);
+      @include magnifier;
+      @include opacity($gray-650, 0.7);
+
+      .carousel-indicators {
+        position: relative;
+        margin: 0 0 20px 0;
+        padding: 0;
+
+        li {
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+
+      .carousel-inner {
+        border-bottom: 2px solid $primary;
+      }
 
       .infos {
 
         .table-striped tbody tr:nth-of-type(odd) {
-          background-color: rgba(0, 0, 0, 0.1);
+          @include opacity($black, 0.1);
         }
 
         .table {
@@ -117,6 +132,10 @@
           
           th {
             text-align: left;
+          }
+
+          .row-2 {
+            font-weight: normal;
           }
         }
       }
@@ -140,11 +159,6 @@
             -webkit-text-fill-color: $white;
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: $black;
-          }
-
-          i {
-            border: 1px solid $black;
-            border-radius: 7px;
           }
         }
       }

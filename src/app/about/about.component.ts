@@ -21,6 +21,9 @@ export class AboutComponent implements OnInit {
       'parc3.JPG',
       'parc4.JPG'
     ];
+
+    //@ts-ignore
+    $('#myCarousel2').carousel();
   }
 
 }
