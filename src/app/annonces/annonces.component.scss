@@ -17,7 +17,7 @@
       padding: 20px 0 20px 0;
 
       .filters {
-        background-color: rgba(82, 82, 82, 0.6);
+        @include opacity($gray-650, 0.6);
         padding: 30px 50px 30px 50px;
 
         .slide-range {

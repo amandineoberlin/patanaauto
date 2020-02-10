@@ -18,16 +18,10 @@
               <div class="row">
                 <div class="col-md-7">
                   <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                      <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
-                        attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']">
-                      </li>
-                    </ol>
                     <div class="carousel-inner" role="listbox">
-                      <div class="carousel-item" [ngClass]="[i==0 ? 'active' : '']"
-                        *ngFor="let image of annonce.images; let i=index">
-                        <img class="d-block w-100 rounded"
-                          src="../../assets/selsia-photos/{{image}}" alt="First slide">
+                      <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
+                        [ngClass]="[i==0 ? 'active' : '']">
+                        <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}" alt="First slide">
                       </div>
                     </div>
                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -73,6 +67,21 @@
                     </table>
                   </div>
                 </div>
+
+                <div class="col-md-7">
+                  <div class="dock-container">
+                    <div class="dock">
+                      <ol class="carousel-indicators">
+                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
+                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']"
+                          (click)="changeActiveItem(i)">
+                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                            alt="First slide">
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!--[if lt IE 10]>
@@ -87,7 +96,7 @@
               <div class="row">
                 <div class="col-md-12 options">
                   <div class="title">
-                    <i class="fas fa-info-circle"></i>
+                    <i class="fas fa-tools"></i>
                     <span> Options & Equipements</span>
                   </div>
                   <div class="col-md-8 offset-md-2 list-infos">
@@ -137,7 +146,7 @@
               <div class="row">
                 <div class="col-md-12 mesure">
                   <div class="col-md-12 title">
-                    <i class="fas fa-info-circle"></i>
+                    <i class="fas fa-battery-three-quarters"></i>
                     <span> Puissance & Consommation</span>
                   </div>
 
@@ -167,11 +176,9 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
