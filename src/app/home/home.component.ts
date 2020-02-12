@@ -34,6 +34,24 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {}
 
+  bootstrapClearButton() {
+    const getPrice = () => this.quickSearch.controls.price.value;
+
+    $('.price :input')
+      .on('keydown focus', _.debounce(() => {
+        if (!getPrice()) return;
+        $('.price :input').nextAll('.form-clear').removeClass('d-none');
+      }, 150))
+      .on('keydown keyup blur', () => {
+        if (getPrice()) return;
+        $('.price :input').nextAll('.form-clear').addClass('d-none');
+      });
+
+    $('.form-clear').on('click', () => {
+      $('.form-clear').addClass('d-none').prevAll(':input').val('');
+    });
+  }
+
   inputPriceValue() {
     const input = $('.js-range-slider');
     return input.data();
@@ -140,10 +158,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.quickSearch = this.fb.group({
-        marque: [null],
-        modele: [null],
-        price: [null]
+      marque: [null],
+      modele: [null],
+      price: [null]
     });
+
+    this.bootstrapClearButton();
 
     this.formDataService.loadAnnonces({ quickSearch: true })
       .then(dataObj => {
@@ -151,19 +171,19 @@ export class HomeComponent implements OnInit {
 
         //@ts-ignore
         $('.js-range-slider').ionRangeSlider({
-            type: 'double',
-            min: 0,
-            max: this.maxAvailablePrice,
-            from: 1000,
-            to: 5000,
-            grid: true,
-            prefix: '€',
-            step: 50,
-            onChange: (data) => {
-              const from = data.from;
-              const to = data.to;
-              this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
-            }
+          type: 'double',
+          min: 0,
+          max: this.maxAvailablePrice,
+          from: 1000,
+          to: 5000,
+          grid: true,
+          prefix: '€',
+          step: 50,
+          onChange: (data) => {
+            const from = data.from;
+            const to = data.to;
+            this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
+          }
         });
     });
 
