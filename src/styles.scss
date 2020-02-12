@@ -92,10 +92,10 @@ html, body {
   //slider
   .slide-range {
     @include box-shadow;
+    @include opacity($gray-800, 0.8);
     position: absolute;
     z-index: 10;
     width: 100%;
-    background-color: $white;
     transition: all .3s ease-in-out;
     transform-origin: left top;
     transform: scaleY(0);
@@ -106,11 +106,15 @@ html, body {
     .irs-shadow,
     .irs-single,
     .irs-from,
-    .irs-to {
+    .irs-to, .irs-max {
       background-color: $primary;
+      color: $plain-white;
     }
     .irs-from:before, .irs-to:before, .irs-single:before {
       border-top-color: $primary;
+    }
+    .irs-grid-text {
+      color: $plain-white;
     }
 
     &.show {
@@ -135,6 +139,17 @@ html, body {
     color: $black;
     border: unset;
     border-radius: unset;
+  }
+
+  .btn-default {
+    color: $white;
+    background-color: $gray-800;
+    border: none;
+
+    &:hover {
+      background-color: $gray-700;
+      color: $plain-white;
+    }
   }
 
   .btn-primary {

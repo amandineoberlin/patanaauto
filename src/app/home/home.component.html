@@ -3,56 +3,64 @@
 
     <div class="row">
       <div class="col-md-12">
-        <form [formGroup]="quickSearch" class="adds-lookup">
+
+        <form class="inline" [formGroup]="quickSearch" class="adds-lookup">
           <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>
-          <div class="input-group md-12">
-            <ng-select class="marque" [items]="marques" placeholder="marque..." formControlName="marque"
-              (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}" >
-            </ng-select>
-            <ng-select class="modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
-              (change)="update()" (clear)="clearModele()" notFoundText="{{notFoundText}}" >
-            </ng-select>
-            <input type="text" class="prix" placeholder="Prix max..." ngDisabled="blockSlider"
-              [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()" >
-              <div class="input-group-btn prix-group">
-                <button class="btn btn-default" type="submit" (click)="clearPrice()">
-                  <i [ngClass]="[quickSearch.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
-                </button>
+          <div class="row">
+            <div class="col">
+              <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
+                (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
+              </ng-select>
+            </div>
+            <div class="col">
+              <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
+                (change)="update()" (clear)="clearModele()" notFoundText="{{notFoundText}}">
+              </ng-select>
+            </div>
+            <div class="col-3">
+              <div class="form-group price">
+                <input type="text" class="form-control prix" placeholder="Prix max..." ngDisabled="blockSlider"
+                  [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
+                <span class="form-clear d-none"><i class="fas fa-times fa-sm"></i></span>
+
+                <div [ngClass]="choosePriceClass()" class="slide-range prix">
+                  <input type="text" class="js-range-slider" />
+                </div>
               </div>
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary" type="button" (click)="submit()" >
-                <i class="fas fa-search"></i> Rechercher
-              </button>
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary" (click)="clearPrice()">Rechercher</button>
             </div>
           </div>
         </form>
       </div>
-      <div class="col-md-3 offset-md-8" >
-        <div [ngClass]="choosePriceClass()" class="slide-range prix">
-          <input type="text" class="js-range-slider" />
-        </div>
-      </div>
     </div>
 
     <div class="row presentation center-block">
-      <div class="col-md-6 parc">
-        <img class="img-fluid" src="../../assets/images/rubriques/parc.JPG" alt="">
-      </div>
-      <div class="col-md-6 description">
-        <h4 class="text-center">PATANA AUTO à Pamfou en SEINE ET MARNE</h4>
-        <div class="bullets">
-          <h6><i class="fas fa-check-circle fa-xs"></i> VÉHICULES D'OCCASION TOUTE MARQUE</h6>
-          <h6><i class="fas fa-check-circle fa-xs"></i> ACHAT - VENTE - REPRISE</h6>
-          <h6><i class="fas fa-check-circle fa-xs"></i> FINANCEMENT ET GARANTIE</h6>
+      <div class="intro">
+        <div class="intro-img img-fluid mb-3 mb-lg-0 rounded">
+          <img class="img-fluid" src="../../assets/images/rubriques/parc.JPG" alt="">
         </div>
-        <p class="intro-text text-white-50">
-          Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
-          internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez ainsi
-          votre prochaine visite dans nos locaux...</p>
-
-        <hr class="d-none d-lg-block mb-0 ml-0">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <div class="section heading-upper">patana Auto</div>
+          <div class="section heading-lower">à pamfou en seine et marne</div>
+          <hr class="d-none d-lg-block mb-0 ml-0">
+          <div class="bullets">
+            <h6><i class="fas fa-check-circle fa-xs"></i> véhicules d'occasion toute marque</h6>
+            <h6><i class="fas fa-check-circle fa-xs"></i> achat - vente - reprise</h6>
+            <h6><i class="fas fa-check-circle fa-xs"></i> financement et garantie</h6>
+          </div>
+          <div class="subsection">
+            <p class="mb-3">
+              Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
+              internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez ainsi
+              votre prochaine visite dans nos locaux...</p>
+          </div>
+          <div class="intro-button mx-auto">
+            <button class="btn btn-default btn-xl">Venez nous rendre visite!</button>
+          </div>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
