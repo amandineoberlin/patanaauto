@@ -133,14 +133,17 @@ html, body {
 
     &:-webkit-input-placeholder { /* Edge */
       color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
     }
 
     &:-ms-input-placeholder { /* Internet Explorer 10-11 */
       color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
     }
 
     &::placeholder {
       color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
     }
 
     &:hover {
@@ -175,7 +178,7 @@ html, body {
   }
 
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-    @include opacity($primary, 0.55);
+    @include opacity($primary, 0.75);
     color: $plain-white;
   }
 

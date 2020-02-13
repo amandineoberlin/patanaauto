@@ -3,7 +3,7 @@
 
     <form [formGroup]="searchForm">
       <div class="row filters">
-        <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+        <h6 class="search-title box">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
         <div class="col-md-12">
           <div class="input-group">
             <ng-select class="marque" [items]="marques" placeholder="marque..." formControlName="marque"
@@ -14,13 +14,11 @@
               (change)="update('modele')" (clear)="clear('modele')" dropdownPosition="bottom"
               notFoundText="{{notFoundText}}">
             </ng-select>
-            <input type="text" class="customInput prix" placeholder="Prix max..." ngDisabled="blockPriceSlider"
+            <input type="text" class="custom-input prix" placeholder="Prix max..." ngDisabled="blockPriceSlider"
               [ngClass]="[blockPriceSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
-            <div class="input-group-btn group">
-              <button class="btn btn-default" type="submit" (click)="clearPrice()">
+              <div class="icon">
                 <i [ngClass]="[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
-              </button>
-            </div>
+              </div>
             <div class="col-md-3 offset-md-8">
               <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
                 <input type="text" class="js-price-slider" />
@@ -36,33 +34,22 @@
               (change)="update('sellerie')" (clear)="clear('sellerie')" dropdownPosition="bottom"
               notFoundText="{{notFoundText}}">
             </ng-select>
-            <input type="text" class="customInput km" placeholder="km max..." ngDisabled="blockKmSlider"
+            <input type="text" class="custom-input km" placeholder="km max..." ngDisabled="blockKmSlider"
               [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km" (click)="toggleKmView()">
-            <div class="input-group-btn group">
-              <button class="btn btn-default" type="submit" (click)="clearKm()">
-                <i [ngClass]="[searchForm.get('km').value ? 'fas fa-times fa-sm' : 'fas fa-tachometer-alt fa-sm']">
+              <div class="icon">
+                <i [ngClass]=
+                  "[searchForm.get('km').value ? 'fas fa-times fa-sm' : 'fas fa-tachometer-alt fa-sm']">
                 </i>
-              </button>
-            </div>
+              </div>
             <div class="col-md-3 offset-md-8">
               <div [ngClass]="chooseKmClass()" class="slide-range slide-km">
                 <input type="text" class="js-km-slider" />
               </div>
             </div>
           </div>
-
-          <!-- <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div> -->
         </div>
-
-        <div class="col-md-12">
-          <h6 class="result-vehicules">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+        <div class="col-md-12 length">
+          <h6 class="result-vehicules box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
         </div>
       </div>
     </form>
