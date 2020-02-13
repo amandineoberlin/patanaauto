@@ -124,8 +124,8 @@ html, body {
     background-color: transparent;
     border-radius: 0;
     display: block  ;
-    color: rgba(255, 255, 255, .6);
-    border: solid rgba(255, 255, 255, .6);
+    color: rgba($white, .6);
+    border: solid rgba($white, .6);
     line-height: 1.5;
     border-width: 0 0 1px;
     padding: .375rem 0 calc(.375rem - 1px);
