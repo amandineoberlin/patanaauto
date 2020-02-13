@@ -22,7 +22,7 @@
                 <input type="text"
                   class="form-control prix custom-input" placeholder="Prix max..." ngDisabled="blockSlider"
                   [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
-                <span class="form-clear d-none"><i class="fas fa-times fa-sm"></i></span>
+                <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
 
                 <div [ngClass]="choosePriceClass()" class="slide-range prix">
                   <input type="text" class="js-range-slider" />
