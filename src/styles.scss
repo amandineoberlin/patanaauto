@@ -40,12 +40,15 @@ html, body {
   textarea:hover,
   input:hover,
   select:hover,
+  .form-control:hover,
   textarea:active,
   input:active,
   select:active,
+  .form-control:active,
   textarea:focus,
   input:focus,
   select:focus,
+  .form-control:focus,
   button:focus,
   button:active,
   button:hover,
@@ -72,34 +75,121 @@ html, body {
 
   @include color-inputs;
 
+  /* forms and inputs */
+
+  .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: $white;
+    box-shadow: none;
+  }
+
+  .form-control {
+    height: calc(1.5em + 0.90rem + 2px);
+  }
+
+  .form-control:focus {
+    background-color: transparent;
+    border-color: $plain-white;
+    color: $white;
+  }
+
+  .form-clear {
+    align-items: center;
+    bottom: 1.35rem;
+    color: $gray-600;
+    cursor: pointer;
+    display: flex;
+    height: 23px;
+    justify-content: center;
+    position: absolute;
+    right: 22px;
+    width: 24px;
+    z-index: 10;
+  }
+
+  .ng-select .ng-clear-wrapper {
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 2rem;
+    bottom: 0.5rem;
+    color: $gray-600;
+  }
+
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
     font-family: 'Karla', sans-serif;
     font-size: small;
   }
 
-  .ng-select .ng-select-container, input {
-    border-radius: unset;
-    border: none;
-    font-size: smaller;
-    text-transform: lowercase;
-    font-family: 'Karla', sans-serif;
+  .ng-select .ng-select-container, .custom-input {
+    background-clip: padding-box;
+    background-color: transparent;
+    border-radius: 0;
+    display: block  ;
+    color: rgba(255, 255, 255, .6);
+    border: solid rgba(255, 255, 255, .6);
+    line-height: 1.5;
+    border-width: 0 0 1px;
+    padding: .375rem 0 calc(.375rem - 1px);
+    font-size: small;
+
+    &:-webkit-input-placeholder { /* Edge */
+      color: rgba(255, 255, 255, .6);
+    }
+
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: rgba(255, 255, 255, .6);
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    &:hover {
+      border-color: $plain-white;
+      opacity: 0.6;
+      border-width: 0 0 1.5px;
+    }
+  }
+
+  .ng-select .ng-arrow-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0.5rem;
   }
 
   .ng-select .ng-clear-wrapper {
     font-weight: 900;
   }
 
+  .ng-select.ng-select-opened.ng-select-bottom>.ng-select-container {
+    background-color: transparent;
+  }
+
+  .ng-dropdown-panel {
+    background-color: transparent;
+    border: none;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    @include opacity($gray-800, 0.85);
+    color: $white;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    @include opacity($primary, 0.55);
+    color: $plain-white;
+  }
+
+
   //slider
   .slide-range {
     @include box-shadow;
-    @include opacity($gray-800, 0.8);
+    @include opacity($gray-800, 0.7);
     position: absolute;
     z-index: 10;
     width: 100%;
     transition: all .3s ease-in-out;
     transform-origin: left top;
     transform: scaleY(0);
-
 
     .irs--flat
     .irs-bar,
@@ -138,10 +228,6 @@ html, body {
   .btn-default {
     color: $black;
     border: unset;
-    border-radius: unset;
-  }
-
-  .btn-default {
     color: $white;
     background-color: $gray-800;
     border: none;

@@ -19,7 +19,8 @@
             </div>
             <div class="col-3">
               <div class="form-group price">
-                <input type="text" class="form-control prix" placeholder="Prix max..." ngDisabled="blockSlider"
+                <input type="text"
+                  class="form-control prix custom-input" placeholder="Prix max..." ngDisabled="blockSlider"
                   [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
                 <span class="form-clear d-none"><i class="fas fa-times fa-sm"></i></span>
 
