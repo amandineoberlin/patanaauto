@@ -12,29 +12,6 @@
     @include opacity($gray-650, 0.6);
     padding: 30px;
 
-    .form-clear {
-      align-items: center;
-      background: #cecece;
-      border-radius: 50%;
-      bottom: 22px;
-      color: rgba(0, 0, 0, .54);
-      cursor: pointer;
-      display: flex;
-      height: 23px;
-      justify-content: center;
-      position: absolute;
-      right: 22px;
-      width: 24px;
-      z-index: 10;
-    }
-
-    .form-control {
-      border-radius: unset;
-      border: unset;
-      font-size: small;
-      height: calc(1.5em + 0.9rem + 2px);
-    }
-
     .adds-lookup {
       padding-top: 30px;
       
