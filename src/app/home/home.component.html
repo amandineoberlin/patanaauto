@@ -3,34 +3,35 @@
 
     <div class="row">
       <div class="col-md-12">
+        <form class="inline" [formGroup]="quickSearch">
+          <div class="row filters">
+            <h6 class="search-title box">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+            <div class="row input-group">
+              <div class="col">
+                <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
+                  (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
+                </ng-select>
+              </div>
+              <div class="col">
+                <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
+                  (change)="update()" (clear)="clearModele()" notFoundText="{{notFoundText}}">
+                </ng-select>
+              </div>
+              <div class="col-3">
+                <div class="form-group price">
+                  <input type="text" class="form-control prix custom-input" placeholder="Prix max..."
+                    ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
+                    (click)="togglePriceView()">
+                  <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
 
-        <form class="inline" [formGroup]="quickSearch" class="adds-lookup">
-          <h6>Recherchez parmi nos {{annoncesSize}} véhicules</h6>
-          <div class="row">
-            <div class="col">
-              <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
-                (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
-              </ng-select>
-            </div>
-            <div class="col">
-              <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
-                (change)="update()" (clear)="clearModele()" notFoundText="{{notFoundText}}">
-              </ng-select>
-            </div>
-            <div class="col-3">
-              <div class="form-group price">
-                <input type="text"
-                  class="form-control prix custom-input" placeholder="Prix max..." ngDisabled="blockSlider"
-                  [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
-                <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
-
-                <div [ngClass]="choosePriceClass()" class="slide-range prix">
-                  <input type="text" class="js-range-slider" />
+                  <div [ngClass]="choosePriceClass()" class="slide-range prix">
+                    <input type="text" class="js-range-slider" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary" (click)="clearPrice()">Rechercher</button>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-default btn-rounded" (click)="clearPrice()">Rechercher</button>
+              </div>
             </div>
           </div>
         </form>
@@ -54,7 +55,8 @@
           <div class="subsection">
             <p class="mb-3">
               Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
-              internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez ainsi
+              internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
+              ainsi
               votre prochaine visite dans nos locaux...</p>
           </div>
           <div class="intro-button mx-auto">
