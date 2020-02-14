@@ -29,10 +29,8 @@
                     <i
                       [ngClass]="[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
                   </div>
-                  <div class="col-md-3 offset-md-8">
-                    <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
-                      <input type="text" class="js-price-slider" />
-                    </div>
+                  <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
+                    <input type="text" class="js-price-slider" />
                   </div>
                 </div>
               </div>

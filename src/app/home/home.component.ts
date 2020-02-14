@@ -189,15 +189,13 @@ export class HomeComponent implements OnInit {
 
     // hide price range slider when user clicks anywhere else than the input itself
     $('html').click((e) => {
+      if (!this.showPriceRange) return;
+
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
       const isInsideInput = e.target.className.indexOf('prix') > -1;
       const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
 
-      if (this.showPriceRange) {
-        if (!isInsideInput && !isInsideSlider && !hasSliderParent) {
-          this.showPriceRange = false;
-        }
-      } 
+      if (!isInsideInput && !isInsideSlider && !hasSliderParent) return this.showPriceRange = false;
     });
   }
 

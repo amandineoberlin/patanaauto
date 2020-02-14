@@ -36,9 +36,9 @@ export class AnnoncesComponent implements OnInit {
   modeles: Array<string>;
   versions: Array<string>;
   selleries: Array<string>;
-  blockPriceSlider: Boolean = true;
-  blockKmSlider: Boolean = true;
-  blockVersions: Boolean = true;
+  blockPriceSlider: Boolean = false;
+  blockKmSlider: Boolean = false;
+  blockVersions: Boolean = false;
   showPriceRange: Boolean = false;
   showKmRange: Boolean = false;
   initFromPrice: Number;
@@ -165,15 +165,16 @@ export class AnnoncesComponent implements OnInit {
 
   hideSlidersOnClick() {
     $('html').click((e) => {
+      //@ts-ignore
       if (!this.showPriceRange && !this.showKmRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
-      const isInsideInput = e.target.className.indexOf('customInput') > -1;
+      const isInsideInput = e.target.className.indexOf('custom-input') > -1;
       const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
 
       if (!isInsideInput && !isInsideSlider && !hasSliderParent) {
-        if (this.showPriceRange) this.showPriceRange = false;
-        if (this.showKmRange) this.showKmRange = false;
+        this.showPriceRange = false;
+        this.showKmRange = false;
       }
     });
   }
