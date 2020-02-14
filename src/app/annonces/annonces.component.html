@@ -1,58 +1,80 @@
 <div class="container-fluid annonces-container">
   <div class="content-container">
 
-    <form [formGroup]="searchForm">
-      <div class="row filters">
-        <h6 class="search-title box">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
-        <div class="col-md-12">
-          <div class="input-group">
-            <ng-select class="marque" [items]="marques" placeholder="marque..." formControlName="marque"
-              (change)="update('marque')" (clear)="clear('marque')" dropdownPosition="bottom"
-              notFoundText="{{notFoundText}}">
-            </ng-select>
-            <ng-select class="modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
-              (change)="update('modele')" (clear)="clear('modele')" dropdownPosition="bottom"
-              notFoundText="{{notFoundText}}">
-            </ng-select>
-            <input type="text" class="custom-input prix" placeholder="Prix max..." ngDisabled="blockPriceSlider"
-              [ngClass]="[blockPriceSlider ? 'disabled' : '']" formControlName="price" (click)="togglePriceView()">
-              <div class="icon">
-                <i [ngClass]="[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
+    <div class="row">
+      <div class="col-md-12">
+        <form [formGroup]="searchForm" class="inline">
+          <div class="row filters">
+            <h6 class="search-title box">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+
+            <div class="row input-group">
+              <div class="col">
+                <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
+                  (change)="update('marque')" (clear)="clear('marque')" dropdownPosition="bottom"
+                  notFoundText="{{notFoundText}}">
+                </ng-select>
               </div>
-            <div class="col-md-3 offset-md-8">
-              <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
-                <input type="text" class="js-price-slider" />
+              <div class="col">
+                <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
+                  (change)="update('modele')" (clear)="clear('modele')" dropdownPosition="bottom"
+                  notFoundText="{{notFoundText}}">
+                </ng-select>
               </div>
-            </div>
-          </div>
-          <div class="input-group">
-            <ng-select class="version" [items]="versions" placeholder="version/finition..." formControlName="version"
-              (change)="update('version')" (clear)="clear('version')" notFoundText="{{notFoundText}}"
-              dropdownPosition="bottom">
-            </ng-select>
-            <ng-select class="sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie"
-              (change)="update('sellerie')" (clear)="clear('sellerie')" dropdownPosition="bottom"
-              notFoundText="{{notFoundText}}">
-            </ng-select>
-            <input type="text" class="custom-input km" placeholder="km max..." ngDisabled="blockKmSlider"
-              [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km" (click)="toggleKmView()">
-              <div class="icon">
-                <i [ngClass]=
-                  "[searchForm.get('km').value ? 'fas fa-times fa-sm' : 'fas fa-tachometer-alt fa-sm']">
-                </i>
-              </div>
-            <div class="col-md-3 offset-md-8">
-              <div [ngClass]="chooseKmClass()" class="slide-range slide-km">
-                <input type="text" class="js-km-slider" />
+              <div class="col">
+                <div class="form-group">
+                  <input type="text" class="form-control custom-input prix" placeholder="Prix max..."
+                    ngDisabled="blockPriceSlider" [ngClass]="[blockPriceSlider ? 'disabled' : '']"
+                    formControlName="price" (click)="togglePriceView()">
+                  <div class="icon">
+                    <i
+                      [ngClass]="[searchForm.get('price').value ? 'fas fa-times fa-sm' : 'fas fa-euro-sign fa-sm']"></i>
+                  </div>
+                  <div class="col-md-3 offset-md-8">
+                    <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
+                      <input type="text" class="js-price-slider" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div class="row input-group">
+              <div class="col">
+                <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
+                  formControlName="version" (change)="update('version')" (clear)="clear('version')"
+                  notFoundText="{{notFoundText}}" dropdownPosition="bottom">
+                </ng-select>
+              </div>
+              <div class="col">
+                <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie"
+                  (change)="update('sellerie')" (clear)="clear('sellerie')" dropdownPosition="bottom"
+                  notFoundText="{{notFoundText}}">
+                </ng-select>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <input type="text" class="form-control custom-input km" placeholder="km max..." ngDisabled="blockKmSlider"
+                    [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km" (click)="toggleKmView()">
+                  <div class="icon">
+                    <i [ngClass]="[searchForm.get('km').value ? 'fas fa-times fa-sm' : 'fas fa-tachometer-alt fa-sm']">
+                    </i>
+                  </div>
+                  <div class="col-md-3 offset-md-8">
+                    <div [ngClass]="chooseKmClass()" class="slide-range slide-km">
+                      <input type="text" class="js-km-slider" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 length">
+              <h6 class="result-vehicules box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+            </div>
           </div>
-        </div>
-        <div class="col-md-12 length">
-          <h6 class="result-vehicules box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
 
     <div class="row justify-content-end">
       <div class="btn-group display">
