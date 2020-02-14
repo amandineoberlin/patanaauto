@@ -83,7 +83,7 @@ html, body {
   }
 
   .form-control {
-    height: calc(1.5em + 0.90rem + 2px);
+    height: calc(1.5em + 0.94rem + 2px);
   }
 
   .form-control:focus {
@@ -182,17 +182,25 @@ html, body {
     color: $plain-white;
   }
 
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    @include opacity($primary, 0.75);
+    color: $plain-white;
+  }
+
 
   //slider
   .slide-range {
     @include box-shadow;
-    @include opacity($gray-800, 0.7);
+    @include opacity($gray-800, 0.95);
+    border-radius: 15px;
     position: absolute;
-    z-index: 10;
+    z-index: 1000;
     width: 100%;
     transition: all .3s ease-in-out;
     transform-origin: left top;
     transform: scaleY(0);
+    padding: 15px;
+    margin-top: 0.2rem;
 
     .irs--flat
     .irs-bar,
@@ -219,6 +227,22 @@ html, body {
     }
   }
 
+  .search-title {
+    color: $white;
+    margin-bottom: 20px;
+  }
+
+  .filters {
+    @include opacity($gray-900, 0.8);
+    padding: 30px 50px 30px 50px;
+  }
+
+  .box {
+    @include opacity($primary, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
   .badge-light {
     background-color: $white;
   }
@@ -230,10 +254,10 @@ html, body {
 
   .btn-default {
     color: $black;
-    border: unset;
+    border-color: $gray-800;
     color: $white;
     background-color: $gray-800;
-    border: none;
+    border-color: $gray-800;
 
     &:hover {
       background-color: $gray-700;
@@ -243,23 +267,14 @@ html, body {
 
   .btn-primary {
     background-color: $primary;
-    border: none;
+    border-color: $primary;
 
     &:hover {
       background-color: $light-red;
     }
+  }
 
-    &.btn-rounded {
-      @include box-shadow-dark;
-      background-color: $primary;
-      color: $white;
-      border: 0;
-      border-radius: 0;
-      height: 100%;
-
-      &:hover {
-        background-color: $light-red;
-      }
-    }
+  &.btn-rounded {
+    border-radius: 5px;
   }
 }

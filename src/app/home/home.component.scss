@@ -3,52 +3,33 @@
 .home-container {
   color: $white;
 
-  .slide-range {
-    padding: 15px;
-    margin-top: 0.2rem;
+  .ng-placeholder {
+    color: $gray-600;
   }
 
-  .adds-lookup {
-    @include opacity($gray-900, 0.8);
-    padding: 30px;
+  .input-group {
+    i {
+      padding-right: 5px;
+    }
 
-    .adds-lookup {
-      padding-top: 30px;
-      
-      .ng-placeholder {
+    .price {
+      &.disabled {
         color: $gray-600;
+        font-style: italic;
+        outline: none;
+        @include disable-highlight;
       }
+    }
 
-      .input-group {
+    .prix-group {
+      height: 36px;
+      background-color: $white;
+
+      button {
+        cursor: initial;
+
         i {
-          padding-right: 5px;
-        }
-
-        .price {
-          &.disabled {
-            color: $gray-600;
-            font-style: italic;
-            outline: none;
-            @include disable-highlight;
-          }
-        }
-
-        .prix-group {
-          height: 36px;
-          background-color: $white;
-
-          button {
-            cursor: initial;
-
-            i {
-              color: $gray-text;
-            }
-          }
-        }
-
-        button {
-          border-radius: unset;
-          border: unset;
+          color: $gray-text;
         }
       }
     }

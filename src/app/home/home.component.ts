@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import _ from 'lodash';
 
 import { FormDataService } from '../services/form-data.service';
+import { UtilsService } from '../services/utils.service';
 import { Constants } from '../constants';
 
 @Component({
@@ -30,27 +31,10 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private formDataService: FormDataService,
+    private utilsService: UtilsService,
     private fb: FormBuilder,
     private router: Router
   ) {}
-
-  bootstrapClearButton() {
-    const getPrice = () => this.quickSearch.controls.price.value;
-
-    $('.price :input')
-      .on('keydown focus', _.debounce(() => {
-        if (!getPrice()) return;
-        $('.price :input').nextAll('.form-clear').removeClass('d-none');
-      }, 150))
-      .on('keydown keyup blur', () => {
-        if (getPrice()) return;
-        $('.price :input').nextAll('.form-clear').addClass('d-none');
-      });
-
-    $('.form-clear').on('click', () => {
-      $('.form-clear').addClass('d-none').prevAll(':input').val('');
-    });
-  }
 
   inputPriceValue() {
     const input = $('.js-range-slider');
@@ -156,37 +140,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/annonces'], { queryParams: { marque, modele, price } });
   }
 
-  ngOnInit(): void {
-    this.quickSearch = this.fb.group({
-      marque: [null],
-      modele: [null],
-      price: [null]
-    });
-
-    this.bootstrapClearButton();
-
-    this.formDataService.loadAnnonces({ quickSearch: true })
-      .then(dataObj => {
-        _.assign(this, dataObj);
-
-        //@ts-ignore
-        $('.js-range-slider').ionRangeSlider({
-          type: 'double',
-          min: 0,
-          max: this.maxAvailablePrice,
-          from: 1000,
-          to: 5000,
-          grid: true,
-          prefix: '€',
-          step: 50,
-          onChange: (data) => {
-            const from = data.from;
-            const to = data.to;
-            this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
-          }
-        });
-    });
-
+  hideSliderOnClick() {
     // hide price range slider when user clicks anywhere else than the input itself
     $('html').click((e) => {
       if (!this.showPriceRange) return;
@@ -196,6 +150,41 @@ export class HomeComponent implements OnInit {
       const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
 
       if (!isInsideInput && !isInsideSlider && !hasSliderParent) return this.showPriceRange = false;
+    });
+  }
+
+  initSlider() {
+    //@ts-ignore
+    $('.js-range-slider').ionRangeSlider({
+      type: 'double',
+      min: 0,
+      max: _.ceil(this.maxAvailablePrice),
+      from: 1000,
+      to: 5000,
+      grid: true,
+      prefix: '€',
+      step: 50,
+      onChange: (data) => {
+        const from = data.from;
+        const to = data.to;
+        this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.quickSearch = this.fb.group({
+      marque: [null],
+      modele: [null],
+      price: [null]
+    });
+
+    this.formDataService.loadAnnonces({ quickSearch: true })
+      .then(dataObj => {
+        _.assign(this, dataObj);
+        this.initSlider();
+        this.utilsService.bootstrapClearButton(this.quickSearch.controls);
+        this.hideSliderOnClick();
     });
   }
 
