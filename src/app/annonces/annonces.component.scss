@@ -6,7 +6,7 @@
 
     .search-title {
       color: $white;
-      margin: 15px;
+      margin-bottom: 20px;
     }
 
     .box {
@@ -39,20 +39,10 @@
         .input-group {
           padding-bottom: 5px;
 
-          .marque, .modele, .version, .sellerie {
-            width: 40%;
-            padding-right: 20px;
-          }
-
           .prix, .km {
-            width: 15%;
-            padding-left: 10px;
-
             &.disabled {
               font-size: small;
               color: $gray-400;
-              text-transform: lowercase;
-              font-style: italic;
               outline: none;
               @include disable-highlight;
             }
@@ -83,11 +73,11 @@
       }
 
       .length {
-        margin-top: 2rem;
-        color: $white;
+        margin-top: 20px;
 
         .result-vehicules {
           float: right;
+          color: $white;
         }
       }
     }
