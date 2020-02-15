@@ -40,12 +40,15 @@ html, body {
   textarea:hover,
   input:hover,
   select:hover,
+  .form-control:hover,
   textarea:active,
   input:active,
   select:active,
+  .form-control:active,
   textarea:focus,
   input:focus,
   select:focus,
+  .form-control:focus,
   button:focus,
   button:active,
   button:hover,
@@ -72,45 +75,147 @@ html, body {
 
   @include color-inputs;
 
+  /* forms and inputs */
+
+  .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: $white;
+    box-shadow: none;
+  }
+
+  .form-control {
+    height: calc(1.5em + 0.94rem + 2px);
+  }
+
+  .form-control:focus {
+    background-color: transparent;
+    border-color: $plain-white;
+    color: $white;
+  }
+
+  .form-clear {
+    align-items: center;
+    bottom: 1.35rem;
+    color: $gray-600;
+    cursor: pointer;
+    display: flex;
+    height: 23px;
+    justify-content: center;
+    position: absolute;
+    right: 22px;
+    width: 24px;
+    z-index: 10;
+  }
+
+  .ng-select .ng-clear-wrapper {
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 2rem;
+    bottom: 0.5rem;
+    color: $gray-600;
+  }
+
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
     font-family: 'Karla', sans-serif;
     font-size: small;
   }
 
-  .ng-select .ng-select-container, input {
-    border-radius: unset;
-    border: none;
-    font-size: smaller;
-    text-transform: lowercase;
-    font-family: 'Karla', sans-serif;
+  .ng-select .ng-select-container, .custom-input {
+    background-clip: padding-box;
+    background-color: transparent;
+    border-radius: 0;
+    display: block  ;
+    color: rgba($white, .6);
+    border: solid rgba($white, .6);
+    line-height: 1.5;
+    border-width: 0 0 1px;
+    padding: .375rem 0 calc(.375rem - 1px);
+    font-size: small;
+
+    &:-webkit-input-placeholder { /* Edge */
+      color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
+    }
+
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, .6);
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      border-color: $plain-white;
+      opacity: 0.6;
+      border-width: 0 0 1.5px;
+    }
+  }
+
+  .ng-select .ng-arrow-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0.5rem;
   }
 
   .ng-select .ng-clear-wrapper {
     font-weight: 900;
   }
 
+  .ng-select.ng-select-opened.ng-select-bottom>.ng-select-container {
+    background-color: transparent;
+  }
+
+  .ng-dropdown-panel {
+    background-color: transparent;
+    border: none;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    @include opacity($gray-800, 0.85);
+    color: $white;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    @include opacity($primary, 0.75);
+    color: $plain-white;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    @include opacity($primary, 0.75);
+    color: $plain-white;
+  }
+
+
   //slider
   .slide-range {
     @include box-shadow;
+    @include opacity($gray-800, 0.95);
+    border-radius: 15px;
     position: absolute;
-    z-index: 10;
+    z-index: 1000;
     width: 100%;
-    background-color: $white;
     transition: all .3s ease-in-out;
     transform-origin: left top;
     transform: scaleY(0);
-
+    padding: 15px;
+    margin-top: 0.2rem;
 
     .irs--flat
     .irs-bar,
     .irs-shadow,
     .irs-single,
     .irs-from,
-    .irs-to {
+    .irs-to, .irs-max {
       background-color: $primary;
+      color: $plain-white;
     }
     .irs-from:before, .irs-to:before, .irs-single:before {
       border-top-color: $primary;
+    }
+    .irs-grid-text {
+      color: $plain-white;
     }
 
     &.show {
@@ -120,6 +225,22 @@ html, body {
     &.hide {
       transform: scaleY(0);
     }
+  }
+
+  .search-title {
+    color: $white;
+    margin-bottom: 20px;
+  }
+
+  .filters {
+    @include opacity($gray-900, 0.8);
+    padding: 30px 50px 30px 50px;
+  }
+
+  .box {
+    @include opacity($primary, 0.7);
+    border-radius: 10px;
+    padding: 10px;
   }
 
   .badge-light {
@@ -133,29 +254,27 @@ html, body {
 
   .btn-default {
     color: $black;
-    border: unset;
-    border-radius: unset;
+    border-color: $gray-800;
+    color: $white;
+    background-color: $gray-800;
+    border-color: $gray-800;
+
+    &:hover {
+      background-color: $gray-700;
+      color: $plain-white;
+    }
   }
 
   .btn-primary {
     background-color: $primary;
-    border: none;
+    border-color: $primary;
 
     &:hover {
       background-color: $light-red;
     }
+  }
 
-    &.btn-rounded {
-      @include box-shadow-dark;
-      background-color: $primary;
-      color: $white;
-      border: 0;
-      border-radius: 0;
-      height: 100%;
-
-      &:hover {
-        background-color: $light-red;
-      }
-    }
+  &.btn-rounded {
+    border-radius: 5px;
   }
 }

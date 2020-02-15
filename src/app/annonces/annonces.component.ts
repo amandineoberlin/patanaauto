@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import { FormDataService } from '../services/form-data.service';
 import { DataLoaderService } from '../services/data-loader.service';
+import { UtilsService } from '../services/utils.service';
 import { Constants } from '../constants';
 
 @Component({
@@ -20,6 +21,7 @@ export class AnnoncesComponent implements OnInit {
     private fb: FormBuilder,
     private formDataService: FormDataService,
     private dataLoaderService: DataLoaderService,
+    private utilsService: UtilsService,
     private router: Router
   ) { }
 
@@ -36,9 +38,9 @@ export class AnnoncesComponent implements OnInit {
   modeles: Array<string>;
   versions: Array<string>;
   selleries: Array<string>;
-  blockPriceSlider: Boolean = true;
-  blockKmSlider: Boolean = true;
-  blockVersions: Boolean = true;
+  blockPriceSlider: Boolean = false;
+  blockKmSlider: Boolean = false;
+  blockVersions: Boolean = false;
   showPriceRange: Boolean = false;
   showKmRange: Boolean = false;
   initFromPrice: Number;
@@ -165,15 +167,16 @@ export class AnnoncesComponent implements OnInit {
 
   hideSlidersOnClick() {
     $('html').click((e) => {
+      //@ts-ignore
       if (!this.showPriceRange && !this.showKmRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
-      const isInsideInput = e.target.className.indexOf('customInput') > -1;
+      const isInsideInput = e.target.className.indexOf('custom-input') > -1;
       const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
 
       if (!isInsideInput && !isInsideSlider && !hasSliderParent) {
-        if (this.showPriceRange) this.showPriceRange = false;
-        if (this.showKmRange) this.showKmRange = false;
+        this.showPriceRange = false;
+        this.showKmRange = false;
       }
     });
   }
@@ -183,28 +186,40 @@ export class AnnoncesComponent implements OnInit {
   }
 
   initSliders() {
+    const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
     //@ts-ignore
     $('.js-price-slider').ionRangeSlider({
         type: 'double',
         min: 0,
-        max: this.maxAvailablePrice,
+        max: roundMaxPrice,
         from: 1000,
         to: 5000,
         grid: true,
-        prefix: '€',
-        step: 50
+        prefix: '€ ',
+        step: 50,
+        onChange: (data) => {
+          const from = data.from;
+          const to = data.to;
+          this.searchForm.controls['price'].setValue(`${from} - ${to} €`);
+        }
     });
 
+    const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
     //@ts-ignore
     $('.js-km-slider').ionRangeSlider({
         type: 'double',
         min: 0,
-        max: this.maxAvailableKm,
-        from: 10000,
+        max: roundMaxKm,
+        from: 0,
         to: 80000,
         grid: true,
-        prefix: 'km',
-        step: 50
+        prefix: 'km: ',
+        step: 50,
+        onChange: (data) => {
+          const from = data.from;
+          const to = data.to;
+          this.searchForm.controls['km'].setValue(`${from} - ${to} km`);
+        }
     });
   }
 
@@ -222,11 +237,6 @@ export class AnnoncesComponent implements OnInit {
       km: [null]
     });
 
-    this.initSliders();
-
-    // hide price range slider when user clicks anywhere else than the input itself
-    this.hideSlidersOnClick();
-
     //@ts-ignore
     $('.dropdown-toggle').dropdown()
 
@@ -239,7 +249,13 @@ export class AnnoncesComponent implements OnInit {
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
-      .then(() => this.filterAnnonces(null));
+      .then(() => this.filterAnnonces(null))
+      .then(() => {
+        this.initSliders();
+        this.utilsService.bootstrapClearButton(this.searchForm.controls);
+        // hide price range slider when user clicks anywhere else than the input itself
+        this.hideSlidersOnClick();
+      });
   }
 
 }
