@@ -2,82 +2,52 @@
 
 .annonces-container {
   .content-container {
-    padding: 10px;
-
-    .search-title {
-      color: $white;
-      padding: 0 0 10px 15px;
-    }
-
-    .result-vehicules {
-      color: $white;
-    }
-
     form {
-      padding: 20px 0 20px 0;
+      padding: 0 0 20px 0;
 
       .filters {
-        @include opacity($gray-650, 0.6);
-        padding: 30px 50px 30px 50px;
-
-        .slide-range {
-          padding: 15px;
-        }
-
-        .slide-prix {
-          margin-top: 1px;
-          left: 40px;
-        }
-
-        .slide-km {
-          margin-top: 1px;
-          left: 40px;
-        }
-
         .input-group {
           padding-bottom: 5px;
 
-          .marque, .modele, .version, .sellerie {
-            width: 40%;
-            padding-right: 5px;
-          }
-
           .prix, .km {
-            width: 15%;
-            padding-left: 10px;
-            border: unset;
-
             &.disabled {
-              color: $gray-600;
-              font-style: italic;
+              font-size: small;
+              color: $gray-400;
               outline: none;
               @include disable-highlight;
             }
           }
 
-          .group {
+          .custom-input {
             height: 36px;
-            width: 5%;
-            display: inline-block;
+            padding-left: 10px;
+          }
 
-            .customInput {
-              height: 36px;
-              padding-left: 10px;
-            }
+          .icon {
+            align-items: center;
+            bottom: 1.35rem;
+            color: $gray-600;
+            display: flex;
+            height: 23px;
+            justify-content: center;
+            position: absolute;
+            right: 22px;
+            width: 24px;
+            z-index: 10;
 
-            button {
-              height: 36px;
-              background-color: $white;
-              border-radius: unset;
-              border: unset;
-              cursor: initial;
-              width: 50px;
-
-              i {
-                color: $gray-text;
-              }
+            i {
+              color: $white;
             }
           }
+        }
+      }
+
+      .length {
+        margin-top: 20px;
+
+        .result-vehicules {
+          float: right;
+          color: $white;
         }
       }
     }
@@ -90,8 +60,38 @@
       }
 
       button {
-        background-color: $white;
+        background-color: transparent;
+        color: rgba($white, .6);
+        border: solid rgba($white, .6);
+        border-width: 0 0 1px;
+        border-radius: unset;
         font-size: smaller;
+      }
+
+      .itemNumber {
+        margin-right: 10px;
+      }
+
+      .dropdown-menu {
+        @include opacity($gray-800, 0.85);
+        color: $white;
+        text-transform: lowercase;
+        font-size: small;
+      }
+
+      .dropdown-item:hover {
+        @include opacity($primary, 0.55);
+        color: $plain-white;
+      }
+
+      .dropdown-item {
+        color: $white;
+      }
+
+      a:not([href]):not([tabindex]),
+      a:not([href]):not([tabindex]):focus,
+      a:not([href]):not([tabindex]):hover {
+        color: $plain-white;
       }
     }
 
