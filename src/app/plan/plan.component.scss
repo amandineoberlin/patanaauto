@@ -1,0 +1,21 @@
+  @import "../app.component.scss";
+
+  .map-content {
+    @include opacity($gray-800, 0.8);
+    color: $gray-700;
+    text-align: center;
+    border-radius: 7px;
+    padding: 20px;
+
+    .route {
+      @include opacity($plain-white, .8);
+      padding: 20px;
+      width: 80%;
+      display: inline-block;
+
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    }
+  }
