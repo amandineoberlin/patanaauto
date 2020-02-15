@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Patanaauto</title>
@@ -9,8 +10,36 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+  <link rel="icon" type="image/x-icon" href="favicon.ico"
+    content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
 <body>
   <app></app>
+
+  <!-- Google Maps API to display location map in about component -->
+  <script>
+    function initMap() {
+      const mapDoc = document.getElementById('map');
+      if (!mapDoc) return;
+      const position = { lat: 48.4603297, lng: 2.8740947 };
+      const map = new google.maps.Map(mapDoc, {
+        center: position,
+        zoom: 12
+      });
+      const marker = new google.maps.Marker({
+        position,
+        map: map,
+        title: 'Patana Auto'
+      });
+    }
+    // wait for DOM to be loaded
+    const r = (f) => /in/.test(document.readyState)?setTimeout('r('+f+')',9):f();
+    r(() => initMap());
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxGYW4oxT6RxhYsbJNkS7vEIED8DzOnQE&callback=initMap"
+  async defer></script>
+
 </body>
+
 </html>

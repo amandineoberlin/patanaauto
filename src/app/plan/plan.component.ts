@@ -10,6 +10,8 @@ export class PlanComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //@ts-ignore
+    initMap();
   }
 
 }
