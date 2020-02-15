@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import _ from 'lodash';
 
 import { FormDataService } from '../services/form-data.service';
+import { UtilsService } from '../services/utils.service';
 import { Constants } from '../constants';
 
 @Component({
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private formDataService: FormDataService,
+    private utilsService: UtilsService,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -138,46 +140,51 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/annonces'], { queryParams: { marque, modele, price } });
   }
 
+  hideSliderOnClick() {
+    // hide price range slider when user clicks anywhere else than the input itself
+    $('html').click((e) => {
+      if (!this.showPriceRange) return;
+
+      const isInsideSlider = e.target.className.indexOf('irs') > -1;
+      const isInsideInput = e.target.className.indexOf('prix') > -1;
+      const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
+
+      if (!isInsideInput && !isInsideSlider && !hasSliderParent) return this.showPriceRange = false;
+    });
+  }
+
+  initSlider() {
+    //@ts-ignore
+    $('.js-range-slider').ionRangeSlider({
+      type: 'double',
+      min: 0,
+      max: _.ceil(this.maxAvailablePrice),
+      from: 1000,
+      to: 5000,
+      grid: true,
+      prefix: '€',
+      step: 50,
+      onChange: (data) => {
+        const from = data.from;
+        const to = data.to;
+        this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.quickSearch = this.fb.group({
-        marque: [null],
-        modele: [null],
-        price: [null]
+      marque: [null],
+      modele: [null],
+      price: [null]
     });
 
     this.formDataService.loadAnnonces({ quickSearch: true })
       .then(dataObj => {
         _.assign(this, dataObj);
-
-        //@ts-ignore
-        $('.js-range-slider').ionRangeSlider({
-            type: 'double',
-            min: 0,
-            max: this.maxAvailablePrice,
-            from: 1000,
-            to: 5000,
-            grid: true,
-            prefix: '€',
-            step: 50,
-            onChange: (data) => {
-              const from = data.from;
-              const to = data.to;
-              this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
-            }
-        });
-    });
-
-    // hide price range slider when user clicks anywhere else than the input itself
-    $('html').click((e) => {
-      const isInsideSlider = e.target.className.indexOf('irs') > -1;
-      const isInsideInput = e.target.className.indexOf('prix') > -1;
-      const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
-
-      if (this.showPriceRange) {
-        if (!isInsideInput && !isInsideSlider && !hasSliderParent) {
-          this.showPriceRange = false;
-        }
-      } 
+        this.initSlider();
+        this.utilsService.bootstrapClearButton(this.quickSearch.controls);
+        this.hideSliderOnClick();
     });
   }
 

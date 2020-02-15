@@ -3,128 +3,120 @@
 .home-container {
   color: $white;
 
-  .slide-range {
-    padding: 15px;
-    margin-top: 5px;
+  .ng-placeholder {
+    color: $gray-600;
   }
 
-  .adds-lookup {
-    padding: 30px 0 0 35px;
-    
-    .ng-placeholder {
-      color: $gray-600;
+  .input-group {
+    i {
+      padding-right: 5px;
     }
 
-    .input-group {
-      margin-left: auto;
-      margin-right: auto;
-      padding-right: 34px;
-      width: 100%;
-
-      i {
-        padding-right: 5px;
+    .price {
+      &.disabled {
+        color: $gray-600;
+        font-style: italic;
+        outline: none;
+        @include disable-highlight;
       }
+    }
 
-      .marque {
-        width: 34%;
-        border-right: solid 1px $gray-500;
-      }
-
-      .modele {
-        width: 34%;
-        border-right: solid 1px $gray-500;
-      }
-
-      .prix {
-        height: 36px;
-        padding-left: 10px;
-        width: 14%;
-        border: unset;
-
-        &.disabled {
-          color: $gray-600;
-          font-style: italic;
-          outline: none;
-          @include disable-highlight;
-        }
-      }
-
-      .prix-group {
-        height: 36px;
-        background-color: $white;
-
-        button {
-          cursor: initial;
-
-          i {
-            color: $gray-text;
-          }
-        }
-      }
+    .prix-group {
+      height: 36px;
+      background-color: $white;
 
       button {
-        border-radius: unset;
-        border: unset;
+        cursor: initial;
+
+        i {
+          color: $gray-text;
+        }
       }
     }
   }
 
   .presentation {
-    padding: 35px 50px 23px 35px;
-  }
-
-  hr {
-    border-color: $primary;
-    border-width: .25rem;
-    width: 30%;
     margin-top: 20px;
-  }
+    padding: 0 15px;
 
-  .parc {
-    height: 100%;
-    padding-right: 0;
+    .intro {
+      .intro-img {
+        width: 75%;
+        float: right;
+        
+        img {
+          border-radius: 0.25rem;
+        }
+      }
 
-    img {
-      object-fit: cover;
-    }
-  }
+      .intro-text {
+        color: $black;
+        width: 45%;
+        margin-top: 3rem;
+        position: absolute;
 
-  .description {
-    @include opacity($white, 0.8);
-    text-align: left;
+        .section {
+          font-family: 'Raleway';
+          text-transform: uppercase;
 
-    .text-center {
-      font-family: 'Exo';
-      font-size: 20px;
-      background-color: $gray-900;
-      -webkit-text-fill-color: $white;
-      -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: $black;
-    }
+          &.heading-upper {
+            font-weight: 100;
+            font-size: 2rem;
+            color: $primary;
+          }
 
-    h4 {
-      color: $primary;
-      padding: 15px 0 10px 0;
-      width: 100%;
-    }
+          &.heading-lower {
+            font-weight: 800;
+            font-size: 1rem;
+          }
+        }
 
-    .bullets {
-      margin: 40px 0 0 20px;
+        .bullets {
+          margin-top: 30px;
+          padding-left: 20px;
+          border-left: 3px solid $primary;
+          text-align: left;
 
-      h6 {
-        i {
-          margin-right: 8px;
+          .fa-check-circle {
+            color: $primary;
+          }
+
+          h6 {
+            i {
+              margin-right: 8px;
+            }
+          }
+        }
+
+        .subsection {
+          margin-top: 30px;
+          text-align: justify;
+        }
+
+        hr {
+          background-color: $gray-800;
+        }
+
+        .intro-button button {
+          padding: 15px;
+        }
+      }
+
+      .bg-faded {
+        @include opacity($plain-white, 0.85);
+      }
+
+      .intro-button {
+        width: 100%;
+        left: 0;
+        position: absolute;
+        bottom: -2rem;
+
+        a {
+          padding: 10px;
         }
       }
     }
   }
 
-  .intro-text {
-    margin-top: 40px;
-    text-align: justify;
-  }
-
-  .fa-check-circle {
-    color: $primary;
-  }
 }
