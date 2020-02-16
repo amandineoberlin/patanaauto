@@ -1,21 +1,42 @@
   @import "../app.component.scss";
 
-  .map-content {
-    @include opacity($gray-800, 0.8);
-    color: $gray-700;
-    text-align: center;
-    border-radius: 7px;
-    padding: 20px;
+  .plan-container {
+    .content-container {
+      color: $gray-700;
+      text-align: center;
 
-    .route {
-      @include opacity($plain-white, .8);
-      padding: 20px;
-      width: 80%;
-      display: inline-block;
+      .map-descriptor {
+        @include opacity($white, .85);
+        z-index: 10;
+        padding: 20px;
+        position: relative;
+        width: 70%;
+        border-radius: 10px;
+        display: inline-block;
 
-      #map {
-        height: 400px;
-        width: 100%;
+        .title {
+          border-radius: 7px;
+          font-weight: 100;
+          font-size: 2rem;
+          font-family: 'Raleway';
+          color: $primary;
+        }
+
+        .text {
+          text-align: justify;
+          font-size: 1rem;
+          font-weight: bolder;
+          font-family: 'Arima Madurai';
+          color: $gray-800;
+        }
+      }
+
+      .map-content {
+        margin-top: -1.8rem;
+        #map {
+          height: 400px;
+          width: 100%;
+        }
       }
     }
   }
