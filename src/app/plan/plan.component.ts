@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { } from 'googlemaps';
+
 import { Constants } from '../constants';
 
 @Component({
@@ -13,6 +14,7 @@ export class PlanComponent implements OnInit, AfterViewInit {
   @ViewChild('map', { static: false }) mapElement: any;
   @ViewChild('cdZoomIn', { static: false }) zoomOutElement: any;
   @ViewChild('cdZoomOut', { static: false }) zoomInElement: any;
+
   map: google.maps.Map;
   markerUrl: string = '../../assets/images/marker.png'
   position: any = { lat: 48.4603297, lng: 2.8740947 };
