@@ -2,14 +2,34 @@
   <div class="content-container">
     <div class="map-descriptor">
       <p class="title">Pour venir sur notre parc :</p>
-      <p class="text">Situé à 15 mn de Melun - Soit Par la <span class="highlight">D 605</span> 
-        - Soit Par l’autoroute <span class="highlight">A5</span> 
+      <p class="text">Situé à 15 mn de Melun - Soit Par la <span class="highlight">D 605</span>
+        - Soit Par l’autoroute <span class="highlight">A5</span>
         (sortie Montereau Fault Yonne - direction Le Chatelet en Brie)
-        Accès transports en commun: <span class="highlight">RER D</span> station Melun 
+        Accès transports en commun: <span class="highlight">RER D</span> station Melun
         puis <span class="highlight">ligne 46</span> bus express « Seine et Marne » – arrêt Pamfou.</p>
     </div>
     <div class="map-content col-md-12">
-      <div id="map"></div>
+      <div #map style="width:80%; height:400px; display: inline-block;">
+        <div #cdZoomIn>
+          <div class="zooms plus">
+            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"
+              enable-background="new 0 0 32 32" xml:space="preserve">
+              <g>
+                <rect x="15" y="12" fill="#FFFFFF" width="2" height="8" />
+                <rect x="12" y="15" fill="#FFFFFF" width="8" height="2" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div #cdZoomOut>
+          <div class="zooms minus">
+            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"
+              enable-background="new 0 0 32 32" xml:space="preserve">
+              <rect x="12" y="15" fill="#FFFFFF" width="8" height="2" />
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
