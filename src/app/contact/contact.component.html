@@ -1,1 +1,17 @@
-<p>contact works!</p>
+<div class="contact-container">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <p class="title">Ecrivez-nous</p>
+
+    <input type="text" formControlName="nom" id="defaultContactFormName" class="form-control mb-4" placeholder="Nom">
+
+    <input type="email" formControlName="email" id="defaultContactFormEmail" class="form-control mb-4"
+      placeholder="Email">
+
+    <div class="form-group">
+      <textarea formControlName="message" class="form-control" id="formControlTextarea" rows="3"
+        placeholder="Message"></textarea>
+    </div>
+
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="disabledSubmitButton">Send</button>
+  </form>
+</div>
