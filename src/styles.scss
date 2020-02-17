@@ -53,6 +53,8 @@ html, body {
   button:active,
   button:hover,
   label:focus,
+  .btn:hover,
+  .btn:hover,
   .btn:active,
   .btn.active {
     outline: 0px !important;
@@ -266,6 +268,7 @@ html, body {
     &:hover {
       background-color: $gray-700;
       color: $plain-white;
+      border-color: $gray-700;
     }
   }
 
@@ -275,6 +278,7 @@ html, body {
 
     &:hover {
       background-color: $light-red;
+      border-color: $light-red;
     }
   }
 
