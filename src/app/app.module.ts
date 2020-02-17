@@ -20,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PlanComponent } from './plan/plan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ServiceComponent } from './service/service.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ServiceComponent } from './service/service.component';
     PageNotFoundComponent,
     DateAgoPipe,
     AnnonceComponent,
-    ServiceComponent
+    ServiceComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
