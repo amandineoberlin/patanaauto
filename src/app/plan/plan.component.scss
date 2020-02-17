@@ -31,30 +31,34 @@
         }
       }
 
-      .map-content, .form-content {
-        margin-top: -1.2rem;
-        z-index: 10;
-        position: relative;
-      }
+      .containers {
+        padding-bottom: 50px;
 
-      .map-content {
-        .zooms {
-          @include opacity($primary, .95);
-          margin: 10px 10px;
+        .map-content, .form-content {
+          margin-top: -1.2rem;
+          z-index: 10;
+          position: relative;
         }
 
-        .plus {
-          margin-bottom: 5px;
-        }
-      }
+        .map-content {
+          .zooms {
+            @include opacity($primary, .95);
+            margin: 10px 10px;
+          }
 
-      .form-content {
-        @include opacity($gray-900, 0.8);
-        position: relative;
-        z-index: 10;
-        height: 100%;
-        padding: 30px 20px;
-        border-radius: 10px;
+          .plus {
+            margin-bottom: 5px;
+          }
+        }
+
+        .form-content {
+          @include opacity($gray-900, 0.8);
+          position: relative;
+          z-index: 10;
+          height: 100%;
+          padding: 30px 20px;
+          border-radius: 10px;
+        }
       }
     }
   }
