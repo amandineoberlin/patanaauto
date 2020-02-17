@@ -77,8 +77,18 @@ html, body {
 
   @include color-inputs;
 
-  /* forms and inputs */
 
+  /* Map Styling */
+  .gmnoprint div, .gmnoprint a {
+    color: $gray-700!important;
+    background-color: $gray-800;
+  }
+  .gm-style-cc:last-child {
+    display: none !important;
+  }
+
+
+  /* forms and inputs */
   .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
     border-color: $white;
     box-shadow: none;
