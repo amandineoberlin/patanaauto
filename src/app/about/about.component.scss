@@ -5,8 +5,21 @@
   font-family: 'Arima Madurai';
 
   .speech {
-    .horaires {
-      color: $primary;
+    .material-card {
+      @include materialCard(rgba(168, 4, 10, .6));
+      color: $white;
+      bottom: 0;
+      padding: 20px;
+      height: auto;
+      bottom: 15px;
+      font-family: 'Arima Madurai';
+      font-weight: 500;
+      font-size: .8rem;
+      text-align: center;
+    }
+
+    .bg-right {
+      padding: 50px 50px 90px 50px;
     }
 
     .bg-faded {
@@ -84,9 +97,7 @@
       }
 
       .horaires {
-        border-right: 2px solid $gray-500;
-        border-bottom: 2px solid $gray-500;
-        padding: 0 17px 5px 0;
+        color: $primary;
         font-family: 'Karla';
         font-size: 14px;
 
