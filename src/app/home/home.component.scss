@@ -7,7 +7,18 @@
     color: $gray-600;
   }
 
+  .searcher {
+    text-align: center;
+    font-family: 'Raleway';
+    color: $primary;
+    font-family: 2.5rem;
+    font-weight: 100;
+    font-size: 1.4rem;
+  }
+
   .input-group {
+    padding-top: 20px;
+
     i {
       padding-right: 5px;
     }
@@ -21,17 +32,14 @@
       }
     }
 
+    .filter-button {
+      cursor: initial;
+      margin-top: 2px;
+    }
+
     .prix-group {
       height: 36px;
       background-color: $white;
-
-      button {
-        cursor: initial;
-
-        i {
-          color: $gray-text;
-        }
-      }
     }
   }
 
@@ -66,6 +74,7 @@
           }
 
           &.heading-lower {
+            color: $gray-800;
             font-weight: 800;
             font-size: 1rem;
           }
@@ -74,10 +83,10 @@
         .bullets {
           margin-top: 30px;
           padding-left: 20px;
-          border-left: 3px solid $primary;
+          border-left: 2px solid $primary;
           text-align: left;
 
-          .fa-check-circle {
+          .fas {
             color: $primary;
           }
 
@@ -91,26 +100,25 @@
         .subsection {
           margin-top: 30px;
           text-align: justify;
+
+          .button-container {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+
+            button {
+              display: inline-block;
+            }
+          }
         }
 
         hr {
-          background-color: $gray-800;
+          @include opacity($gray-700, .5);
         }
       }
 
       .bg-faded {
         @include opacity($plain-white, 0.85);
-      }
-
-      .intro-button {
-        width: 100%;
-        left: 0;
-        position: absolute;
-        bottom: -2rem;
-
-        a {
-          padding: 10px;
-        }
       }
     }
   }

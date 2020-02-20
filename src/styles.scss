@@ -263,40 +263,39 @@ html, body {
     color: $white;
   }
 
-  .material-default {
+  .custom-default {
     font-family: 'Karla';
+    font-size: .8rem;
     text-transform: uppercase;
-    padding: 6px 15px 6px 15px;
-    color: $black;
-    border-color: $gray-800;
-    color: $white;
-    background-color: $gray-800;
-    border-color: $gray-800;
+    padding: 5px 20px 5px 20px;
+    color: $gray-800;
+    background-color: transparent;
+    border: solid 2px $gray-800;
+    border-radius: 20px;
 
     &:hover {
-      @include opacity($gray-700, .8);
+      transition: background-color 0.20s linear;
+      background-color: $gray-800;
       color: $plain-white;
-      border-color: rgba(73, 80, 87, .8);
+      border-color: $gray-800;
     }
   }
 
-  .material-primary {
+  .custom-primary {
     font-family: 'Karla';
+    font-size: .8rem;
     text-transform: uppercase;
-    background-color: $primary;
-    border-color: $primary;
+    padding: 5px 20px 5px 20px;
+    color: $white;
+    background-color: transparent;
+    border: solid 2px $primary;
+    border-radius: 20px;
 
     &:hover {
-      background-color: $light-red;
-      border-color: $light-red;
+      transition: background-color 0.20s linear;
+      background-color: $primary;
+      color: $plain-white;
+      border-color: $primary;
     }
-  }
-
-  .btn-xl {
-    padding: 15px;
-  }
-
-  &.material-rounded {
-    border-radius: 5px;
   }
 }
