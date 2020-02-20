@@ -8,7 +8,7 @@
             <div class="col-md-12">
               <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
             </div>
-            <div class="row input-group">
+            <div class="row input-group filter-box">
               <div class="col">
                 <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
                   (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
