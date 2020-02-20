@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit }));
 app.use('/', express.static(static_folder));
 
 require('./routes/annonces')(app);
+require('./routes/emailer')(app);
 
 schedule.scheduleJob({ hour: 1, minute: 1, dayOfWeek: 0, start: Date.now() }, () =>
   require('./modules/schedule-job').retrieveData());

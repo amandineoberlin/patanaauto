@@ -6,7 +6,7 @@
 
   .speech {
     .material-card {
-      @include materialCard(rgba(168, 4, 10, .6));
+      @include materialCard(rgba(168, 4, 10, .8));
       color: $white;
       bottom: 0;
       padding: 20px;
