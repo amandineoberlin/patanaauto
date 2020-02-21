@@ -5,6 +5,10 @@
     form {
       padding: 0 0 20px 0;
 
+      .form-control {
+        background-image: none;
+      }
+
       .filters {
         .input-group {
           padding-bottom: 5px;
@@ -113,9 +117,11 @@
       .card {
         border-radius: unset;
         background: unset;
-        
+
         &:hover {
-          box-shadow: 0 10px 20px 10px rgba($black, 0.2);
+          top: 2px;
+          cursor: pointer;
+          opacity: .8;
         }
 
         .image {

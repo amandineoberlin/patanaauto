@@ -139,32 +139,25 @@ html, body {
     font-size: small;
   }
 
+  .ng-select .ng-select-container .ng-value-container {
+    padding: 0;
+  }
+
+  @include placeHolder(rgba($white, .6), .8rem, 'Arima Madurai', uppercase);
+
   .ng-select .ng-select-container, .custom-input {
     background-clip: padding-box;
     background-color: transparent;
     border-radius: 0;
     display: block  ;
-    color: rgba($white, .6);
     border: solid rgba($white, .6);
     line-height: 1.5;
     border-width: 0 0 1px;
-    padding: .375rem 0 calc(.375rem - 1px);
-    font-size: small;
-
-    &:-webkit-input-placeholder { /* Edge */
-      color: rgba(255, 255, 255, .6);
-      text-transform: uppercase;
-    }
-
-    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: rgba(255, 255, 255, .6);
-      text-transform: uppercase;
-    }
-
-    &::placeholder {
-      color: rgba(255, 255, 255, .6);
-      text-transform: uppercase;
-    }
+    color: rgba($white, .6);
+    font-size: .8rem;
+    font-family: 'Arima Madurai';
+    text-transform: uppercase;
+    padding: 10px 0 0 0;
 
     &:hover {
       border-color: $plain-white;
