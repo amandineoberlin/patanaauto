@@ -3,6 +3,10 @@
 .home-container {
   color: $white;
 
+  .form-control {
+    background-image: none;
+  }
+
   .ng-placeholder {
     color: $gray-600;
   }
