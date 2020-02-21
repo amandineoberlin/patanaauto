@@ -18,7 +18,6 @@ const sendForm = Promise.coroutine(function* (req, res) {
   const { name, email, message } = req.body;
   if (!name || !email || !message) return Promise.resolve({ accepted: null, rejected: null });
 
-  return setTimeout(() => res.send({ rejected: [true] }), 1000);
   return sendEmail(mailingOptions(req.body))
     .then(result => res.send(result));
 });
