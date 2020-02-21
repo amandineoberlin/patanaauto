@@ -63,6 +63,43 @@
           height: 30rem;
           padding: 30px 20px;
           border-radius: 10px;
+
+          .alert {
+            position: absolute;
+            left: 0;
+            width: 100%;
+          }
+
+          .contact-container {
+            text-align: left;
+            font-family: 'Arima Madurai';
+            text-transform: uppercase;
+
+            .loader {
+              position: absolute; 
+              left: 0; 
+              right: 0; 
+              margin-left: auto; 
+              margin-right: auto;
+              top: 50%;
+              transform: translateY(-50%); 
+            }
+
+            .title {
+              color: $primary;
+              font-weight: 500;
+              font-size: 1.3rem;
+            }
+
+            label {
+              color: rgba($white, .6);
+              font-size: .8rem;
+            }
+
+            button {
+              margin-top: 15px;
+            }
+          }
         }
       }
     }
