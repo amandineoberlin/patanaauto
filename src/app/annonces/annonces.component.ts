@@ -56,7 +56,7 @@ export class AnnoncesComponent implements OnInit {
     return this.dataLoaderService.mainImage(annonce);
   }
 
-  filterAnnonces(filter, order) {
+  filterAnnonces(filter = null, order = null) {
     if (!filter) {
       this.filteredAnnonces = this.annonces;
     }
@@ -269,7 +269,7 @@ export class AnnoncesComponent implements OnInit {
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
-      .then(() => this.filterAnnonces(null))
+      .then(() => this.filterAnnonces())
       .then(() => {
         this.initSliders();
         this.utilsService.bootstrapClearButton(this.searchForm.controls);
