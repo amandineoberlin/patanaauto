@@ -3,26 +3,24 @@
 .about-container {
   @include carouseler;
   font-family: 'Arima Madurai';
-
-  .map-content {
-    @include opacity($gray-800, 0.8);
-    margin-top: 20px;
-    color: $gray-700;
-    text-align: center;
-    border-radius: 7px;
-    padding: 20px;
-
-    .route {
-      @include opacity($plain-white, .8);
-      padding: 20px;
-      width: 80%;
-      display: inline-block;
-    }
-  }
+  text-transform: uppercase;
 
   .speech {
-    .horaires {
-      color: $primary;
+    .material-card {
+      @include materialCard(rgba(168, 4, 10, .8));
+      color: $white;
+      bottom: 0;
+      padding: 20px;
+      height: auto;
+      bottom: 15px;
+      font-family: 'Arima Madurai';
+      font-weight: 100;
+      font-size: .8rem;
+      text-align: center;
+    }
+
+    .bg-right {
+      padding: 50px 50px 90px 50px;
     }
 
     .bg-faded {
@@ -41,7 +39,7 @@
         font-family: 'Raleway';
         color: $primary;
         font-weight: 100;
-        font-size: 21px;
+        font-size: 1.6rem;
       }
 
       .text {
@@ -100,9 +98,7 @@
       }
 
       .horaires {
-        border-right: 2px solid $gray-500;
-        border-bottom: 2px solid $gray-500;
-        padding: 0 17px 5px 0;
+        color: $primary;
         font-family: 'Karla';
         font-size: 14px;
 
