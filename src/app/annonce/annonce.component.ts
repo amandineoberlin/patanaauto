@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js';
 
@@ -47,6 +47,14 @@ export class AnnonceComponent implements OnInit {
     const consoMixte = this.annonce['VehiculeConsommationMixte'][0];
     const consoUrbaine = this.annonce['VehiculeConsommationMixte'][0];
     const consoExtraUrbaine = this.annonce['VehiculeConsommationMixte'][0];
+    const mixte = parseInt(consoMixte);
+    const urbaine = parseInt(consoUrbaine);
+    const extra = parseInt(consoExtraUrbaine);
+    const labels = [
+      `mixte: ${mixte}L/100 km`,
+      `urbaine: ${urbaine}L/100 km`,
+      `extra-urbaine: ${extra}L/100 km`
+    ];
 
     const ctx = document.getElementById('consoChart');
     new Chart(ctx, {
@@ -55,7 +63,7 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          display: false,
+          display: false
         },
         scales: {
           xAxes: [{
@@ -68,11 +76,11 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
-        labels: ['Mixte', 'Urbaine', 'Extra-urbaine'],
+        labels,
         barPercentage: 3,
         datasets: [{
           barThickness: 30,
-          data: [parseInt(consoMixte), parseInt(consoUrbaine), parseInt(consoExtraUrbaine)],
+          data: [mixte, urbaine, extra],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -112,7 +120,7 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
-        labels: ['Fiscale'],
+        labels: [`fiscale: ${powerFisc}cv`],
         barPercentage: 1,
         datasets: [{
           barThickness: 30,
@@ -148,7 +156,7 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
-        labels: ['Réelle'],
+        labels: [`réelle: ${powerReal}ch`],
         barPercentage: 1,
         datasets: [{
           barThickness: 30,

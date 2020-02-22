@@ -13,7 +13,6 @@ html, body {
   background-position: center;
   background-size: cover;
   font-family: 'Karla', sans-serif;
-  text-transform: uppercase;
 
   .content {
     padding-top: 70px;
@@ -31,6 +30,19 @@ html, body {
     position: relative;
     width: 100%;
     margin-top: 40px;
+  }
+
+  .searcher {
+    text-align: center;
+    font-family: 'Raleway';
+    color: $primary;
+    font-family: 2.5rem;
+    font-weight: 100;
+    font-size: 1.4rem;
+  }
+
+  .filter-box {
+    padding-top: 20px;
   }
 
   a {
@@ -53,6 +65,8 @@ html, body {
   button:active,
   button:hover,
   label:focus,
+  .btn:hover,
+  .btn:hover,
   .btn:active,
   .btn.active {
     outline: 0px !important;
@@ -75,15 +89,21 @@ html, body {
 
   @include color-inputs;
 
-  /* forms and inputs */
 
+  /* Map Styling */
+  .gmnoprint div, .gmnoprint a {
+    color: $gray-700!important;
+    background-color: $gray-800;
+  }
+  .gm-style-cc:last-child {
+    display: none !important;
+  }
+
+
+  /* forms and inputs */
   .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
     border-color: $white;
     box-shadow: none;
-  }
-
-  .form-control {
-    height: calc(1.5em + 0.94rem + 2px);
   }
 
   .form-control:focus {
@@ -119,32 +139,30 @@ html, body {
     font-size: small;
   }
 
+  .ng-select .ng-select-container .ng-value-container {
+    padding: 0;
+  }
+
+  @include placeHolder(rgba($white, .6), .8rem, 'Arima Madurai', uppercase);
+
+  .form-control:disabled {
+    background-color: transparent;
+    background-image: none;
+  }
+
   .ng-select .ng-select-container, .custom-input {
     background-clip: padding-box;
     background-color: transparent;
     border-radius: 0;
     display: block  ;
-    color: rgba($white, .6);
     border: solid rgba($white, .6);
     line-height: 1.5;
     border-width: 0 0 1px;
-    padding: .375rem 0 calc(.375rem - 1px);
-    font-size: small;
-
-    &:-webkit-input-placeholder { /* Edge */
-      color: rgba(255, 255, 255, .6);
-      text-transform: uppercase;
-    }
-
-    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: rgba(255, 255, 255, .6);
-      text-transform: uppercase;
-    }
-
-    &::placeholder {
-      color: rgba(255, 255, 255, .6);
-      text-transform: uppercase;
-    }
+    color: rgba($white, .6);
+    font-size: .8rem;
+    font-family: 'Arima Madurai';
+    text-transform: uppercase;
+    padding: 10px 0 0 0;
 
     &:hover {
       border-color: $plain-white;
@@ -243,6 +261,10 @@ html, body {
     padding: 10px;
   }
 
+  .highlight {
+    color: $primary;
+  }
+
   .badge-light {
     background-color: $white;
   }
@@ -252,29 +274,44 @@ html, body {
     color: $white;
   }
 
-  .btn-default {
-    color: $black;
-    border-color: $gray-800;
-    color: $white;
-    background-color: $gray-800;
-    border-color: $gray-800;
+  .custom-default {
+    font-family: 'Karla';
+    font-size: .8rem;
+    text-transform: uppercase;
+    padding: 5px 20px 5px 20px;
+    color: $gray-800;
+    background-color: transparent;
+    border: solid 2px $gray-800;
+    border-radius: 20px;
 
     &:hover {
-      background-color: $gray-700;
+      cursor: pointer;
+      background-color: $gray-800;
       color: $plain-white;
+      border-color: $gray-800;
     }
   }
 
-  .btn-primary {
-    background-color: $primary;
-    border-color: $primary;
+  .custom-primary {
+    font-family: 'Karla';
+    font-size: .8rem;
+    text-transform: uppercase;
+    padding: 5px 20px 5px 20px;
+    color: $white;
+    background-color: transparent;
+    border: solid 2px $primary;
+    border-radius: 20px;
 
     &:hover {
-      background-color: $light-red;
+      cursor: pointer;
+      background-color: $primary;
+      color: $plain-white;
+      border-color: $primary;
     }
-  }
 
-  &.btn-rounded {
-    border-radius: 5px;
+    &:disabled {
+      color: $gray-700;
+      border-color: rgba($primary, .4);
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import _ from 'lodash';
 
@@ -11,9 +12,17 @@ import { Constants } from '../constants';
 
 export class FormDataService {
 
-  constructor(private dataService: DataLoaderService) { }
+  constructor(
+    private dataService: DataLoaderService,
+    private http: HttpClient
+  ) { }
 
   annonces: Object;
+
+  contactForm(data): Promise<any> {
+    return this.http.post<any[]>('send-contact-form', data)
+      .toPromise();
+  }
 
   calculateMax(prop) {
     return _.max(_.map(this.annonces, annonce => parseInt(annonce[prop][0])));

@@ -5,8 +5,10 @@
       <div class="col-md-12">
         <form class="inline" [formGroup]="quickSearch">
           <div class="row filters">
-            <h6 class="search-title box">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
-            <div class="row input-group">
+            <div class="col-md-12">
+              <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+            </div>
+            <div class="row input-group filter-box">
               <div class="col">
                 <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
                   (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
@@ -29,8 +31,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-default btn-rounded" (click)="clearPrice()">Rechercher</button>
+              <div class="col-auto filter-button">
+                <button type="submit" class="custom-primary" routerLink="/annonces" routerLinkActive="active">
+                  <i class="fas fa-search"></i> Rechercher
+                </button>
               </div>
             </div>
           </div>
@@ -48,9 +52,9 @@
           <div class="section heading-lower">à pamfou en seine et marne</div>
           <hr class="d-none d-lg-block mb-0 ml-0">
           <div class="bullets">
-            <h6><i class="fas fa-check-circle fa-xs"></i> véhicules d'occasion toute marque</h6>
-            <h6><i class="fas fa-check-circle fa-xs"></i> achat - vente - reprise</h6>
-            <h6><i class="fas fa-check-circle fa-xs"></i> financement et garantie</h6>
+            <h6><i class="fas fa-angle-right"></i> véhicules d'occasion toute marque</h6>
+            <h6><i class="fas fa-angle-right"></i> achat - vente - reprise</h6>
+            <h6><i class="fas fa-angle-right"></i> financement et garantie</h6>
           </div>
           <div class="subsection">
             <p class="mb-3">
@@ -58,9 +62,11 @@
               internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
               ainsi
               votre prochaine visite dans nos locaux...</p>
-          </div>
-          <div class="intro-button mx-auto">
-            <button class="btn btn-default btn-xl">Venez nous rendre visite!</button>
+            <div class="button-container">
+              <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
+                Venez nous rendre visite!
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/brands.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/solid.min.css",
@@ -36,6 +35,8 @@
               "node_modules/ion-rangeslider/css/ion.rangeSlider.min.css",
               "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
               "node_modules/chart.js/dist/Chart.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
               "src/styles.scss"
             ],
             "scripts": [
