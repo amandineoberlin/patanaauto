@@ -70,29 +70,16 @@
     </div>
 
     <div class="row justify-content-end">
-      <div class="btn-group display">
-        <button type="button" class="btn dropdown-toggle itemNumber" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          afficher {{limit}} résultats
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" (click)="limit = 10; filterAnnonces()">10</a>
-          <a class="dropdown-item" (click)="limit = 50; filterAnnonces()">50</a>
-          <a class="dropdown-item" (click)="limit = annoncesSize; filterAnnonces()">tout</a>
-        </div>
-      </div>
       <div class="btn-group order">
         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           Trier par: {{tri}}
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" (click)="filterAnnonces('prix')">Prix croissant</a>
-          <a class="dropdown-item" href="#">Prix décroissant</a>
-          <a class="dropdown-item" href="#">Marque</a>
-          <a class="dropdown-item" href="#">Modèle</a>
-          <a class="dropdown-item" href="#">Année</a>
-          <a class="dropdown-item" href="#">Km</a>
+          <a class="dropdown-item" (click)="filterAnnonces('prix', 'décroissant')">Prix croissant</a>
+          <a class="dropdown-item" (click)="filterAnnonces('prix', 'croissant')">Prix décroissant</a>
+          <a class="dropdown-item" (click)="filterAnnonces('année')">Année</a>
+          <a class="dropdown-item" (click)="filterAnnonces('km')">Km</a>
         </div>
       </div>
     </div>

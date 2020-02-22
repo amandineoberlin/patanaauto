@@ -48,13 +48,33 @@ export class AnnoncesComponent implements OnInit {
   notFoundText: String = Constants.NOT_FOUND_MESSAGE;
   limit: Number = 10;
   filteredAnnonces: Object = [];
+  tri: String;
+  filter: String;
+  order: String;
 
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
   }
 
-  filterAnnonces(filter) {
-    if (!filter) this.filteredAnnonces = _.slice(this.annonces, 0, this.limit);
+  filterAnnonces(filter, order) {
+    if (!filter) {
+      this.filteredAnnonces = this.annonces;
+    }
+
+    this.tri = order ? `${filter} ${order}` : filter;
+    this.filter = filter;
+    this.order = order;
+
+    if (filter === 'année') {
+      this.filteredAnnonces = _.orderBy(this.filteredAnnonces, 'VehiculeCarteGriseDate');
+    }
+    if (filter === 'km') {
+      this.filteredAnnonces = _.orderBy(this.annonces, 'VehiculeKilometrage');
+    }
+    if (filter === 'prix') {
+      const lodashOrderName = order === 'décroissant' ? 'desc' : 'asc';
+      this.filteredAnnonces = _.orderBy(this.annonces, 'VehiculeVenteTTC', lodashOrderName);
+    }
   }
 
   inputValue(el) {
