@@ -2,8 +2,12 @@
   "name": "patanaauto",
   "author": "Amandine Oberlin",
   "description": "Patana Auto enterprise website",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "node.js",
+  "engines": {
+    "node": "11.0.0",
+    "npm": "6.11.3"
+  },
   "scripts": {
     "ng": "ng",
     "start": "NODE_ENV=production node app.js",
