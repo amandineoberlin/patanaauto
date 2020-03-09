@@ -6,27 +6,27 @@ const prodLogger = bunyan.createLogger({
   streams: [
     {
       level: 'error',
-      path: 'logs/errors.log'
+      path: 'bunyan-logs/errors.log'
     },
     {
       level: 'fatal',
-      path: 'logs/errors.log'
+      path: 'bunyan-logs/errors.log'
     },
     {
       level: 'info',
-      path: 'logs/infos.log'
+      path: 'bunyan-logs/infos.log'
     },
     {
       level: 'warn',
-      path: 'logs/infos.log'
+      path: 'bunyan-logs/infos.log'
     },
     {
       level: 'debug',
-      path: 'logs/infos.log'
+      path: 'bunyan-logs/infos.log'
     },
     {
       level: 'trace',
-      path: 'logs/infos.log'
+      path: 'bunyan-logs/infos.log'
     },
   ]
 });
