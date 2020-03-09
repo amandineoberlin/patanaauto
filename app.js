@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('partOONE')
+
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -17,6 +19,7 @@ const server = http.createServer(app);
 app.use(cookieParser());
 app.use(bodyParser.json({ limit }));
 app.use(bodyParser.urlencoded({ extended: true, limit }));
+console.log('partTWWWOOOO')
 
 app.use('/', express.static(static_folder));
 
