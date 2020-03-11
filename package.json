@@ -11,9 +11,7 @@
   "scripts": {
     "ng": "ng",
     "start": "NODE_ENV=production node app.js",
-    "pretest": "eslint --ignore-path .gitignore .",
     "build": "ng build",
-    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

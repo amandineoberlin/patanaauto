@@ -720,7 +720,7 @@ let AboutComponent = class AboutComponent {
             'parc3.JPG',
             'parc4.JPG'
         ];
-        //@ts-ignore
+        // @ts-ignore
         $('#myCarousel2').carousel();
     }
 };
@@ -810,7 +810,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//import { Observable } from 'rxjs';
 
 
 let AnnonceComponent = class AnnonceComponent {
@@ -818,7 +817,6 @@ let AnnonceComponent = class AnnonceComponent {
         this.activatedRoute = activatedRoute;
         this.dataLoaderService = dataLoaderService;
     }
-    //state: Observable<object>;
     changeActiveItem(i) {
         $('.carousel-indicators').children().each(function (index) {
             if ($(this).hasClass('active'))
@@ -839,16 +837,16 @@ let AnnonceComponent = class AnnonceComponent {
         const consoMixte = this.annonce['VehiculeConsommationMixte'][0];
         const consoUrbaine = this.annonce['VehiculeConsommationMixte'][0];
         const consoExtraUrbaine = this.annonce['VehiculeConsommationMixte'][0];
-        const mixte = parseInt(consoMixte);
-        const urbaine = parseInt(consoUrbaine);
-        const extra = parseInt(consoExtraUrbaine);
+        const mixte = parseInt(consoMixte, 10);
+        const urbaine = parseInt(consoUrbaine, 10);
+        const extra = parseInt(consoExtraUrbaine, 10);
         const labels = [
             `mixte: ${mixte}L/100 km`,
             `urbaine: ${urbaine}L/100 km`,
             `extra-urbaine: ${extra}L/100 km`
         ];
         const ctx = document.getElementById('consoChart');
-        new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(ctx, {
+        return new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(ctx, {
             type: 'horizontalBar',
             options: {
                 maintainAspectRatio: true,
@@ -890,7 +888,7 @@ let AnnonceComponent = class AnnonceComponent {
     createFiscaleChart() {
         const powerFisc = this.annonce['VehiculePuissanceFiscale'][0];
         const ctx = document.getElementById('fiscaleChart');
-        new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(ctx, {
+        return new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(ctx, {
             type: 'horizontalBar',
             options: {
                 maintainAspectRatio: true,
@@ -913,7 +911,7 @@ let AnnonceComponent = class AnnonceComponent {
                 barPercentage: 1,
                 datasets: [{
                         barThickness: 30,
-                        data: [parseInt(powerFisc)],
+                        data: [parseInt(powerFisc, 10)],
                         backgroundColor: ['rgba(75, 192, 192, 0.2)'],
                         borderColor: ['rgba(75, 192, 192, 1)'],
                         borderWidth: 1
@@ -924,7 +922,7 @@ let AnnonceComponent = class AnnonceComponent {
     createReelleChart() {
         const powerReal = this.annonce['VehiculePuissanceReelle'][0];
         const ctx = document.getElementById('reelleChart');
-        new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(ctx, {
+        return new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(ctx, {
             type: 'horizontalBar',
             options: {
                 maintainAspectRatio: true,
@@ -947,7 +945,7 @@ let AnnonceComponent = class AnnonceComponent {
                 barPercentage: 1,
                 datasets: [{
                         barThickness: 30,
-                        data: [parseInt(powerReal)],
+                        data: [parseInt(powerReal, 10)],
                         backgroundColor: ['rgba(153, 102, 255, 0.2)'],
                         borderColor: ['rgba(153, 102, 255, 1)'],
                         borderWidth: 1
@@ -965,7 +963,7 @@ let AnnonceComponent = class AnnonceComponent {
         this.createConsoChart();
         this.createFiscaleChart();
         this.createReelleChart();
-        //@ts-ignore
+        // @ts-ignore
         $('#myCarousel').carousel();
     }
 };

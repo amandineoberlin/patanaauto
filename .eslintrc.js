@@ -21,5 +21,14 @@ module.exports = {
     "@typescript-eslint"
   ],
   "rules": {
+    "no-unused-vars": ["off"],
+    'quote-props': 0,
+    'brace-style': [
+      'error',
+      '1tbs',
+      {
+        allowSingleLine: true
+      }
+    ],
   }
 };
