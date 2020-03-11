@@ -10,7 +10,7 @@ const fs = Promise.promisifyAll(require('fs'));
 const xmlParser = Promise.promisifyAll(require('xml2js'));
 
 const access = require('../config/access').ftp;
-const logger = require('../modules/logger');
+const logger = require('./logger').createLogger();
 
 const { host, user, password } = access;
 
