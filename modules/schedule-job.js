@@ -2,7 +2,7 @@
 
 const Promise = require('bluebird');
 
-const logger = require('./logger').createLogger();
+const logger = require('./logger');
 
 const {
   cleanPhotos,
