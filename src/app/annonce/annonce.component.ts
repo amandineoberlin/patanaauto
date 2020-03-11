@@ -19,7 +19,7 @@ export class AnnonceComponent implements OnInit {
   ) { }
 
   annonceId: number;
-  annonce: object;
+  annonce: any;
   options: Array<string>;
 
   changeActiveItem(i) {
