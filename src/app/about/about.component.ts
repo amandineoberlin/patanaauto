@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit {
       'parc4.JPG'
     ];
 
-    //@ts-ignore
+    // @ts-ignore
     $('#myCarousel2').carousel();
   }
 
