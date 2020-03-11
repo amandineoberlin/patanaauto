@@ -75,6 +75,8 @@
     "@types/jquery-mousewheel": "^3.1.8",
     "@types/mcustomscrollbar": "^2.8.32",
     "@types/node": "~8.9.4",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "codelyzer": "^5.0.0",
     "eslint": "^6.8.0",
     "grunt": "^1.0.4",
