@@ -30,7 +30,7 @@ schedule.scheduleJob({ hour: 1, minute: 1, dayOfWeek: 0, start: Date.now() }, ()
 schedule.scheduleJob({ hour: 1, minute: 1, date: 1, start: Date.now() }, () =>
   require('./modules/schedule-job').cleanData());
 
-logger.ingo('PRocesssEnvironnemmeeent: ', process.env);
+logger.info('PRocesssEnvironnemmeeent: ', process.env);
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
 
