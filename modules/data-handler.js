@@ -15,7 +15,7 @@ const logger = require('./logger');
 const { host, user, password } = access;
 
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
-const splitData = data => data.toString().split('\n');
+const splitData = data => data.split('\n');
 
 const remoteDataPath = '/datas/acaa.xml';
 const remotePhotoPath = '/datas/photos.txt.zip';
