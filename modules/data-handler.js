@@ -84,10 +84,11 @@ const loadFtpData = Promise.coroutine(function* () {
     const photoStream = yield ftp.get(remotePhotoPath);
     yield createFileFromStream(photoStream, tempZip, true);
     yield differentiatePhotos();
-
     yield ftp.end();
 
-    return logger.info(`retrieved and saved ${localDataPath} and ${localPhotoZipPath}`);
+    logger.info(`retrieved and saved ${localDataPath} and ${localPhotoZipPath}`);
+
+    return { path: `${localDataPath} and ${localPhotoZipPath}`};
   } catch(err) {
     logger.error({ err });
   }
@@ -152,8 +153,8 @@ const loadFtpImages = photos => Promise.mapSeries(photos, photo => {
   return ftpget
     .getAsync({ url: buildImageFtpUrl(photo.directory), bufferType: 'buffer' })
     .then(buffer => fs.writeFileAsync(`${localPhotoDir}/${photo.name}`, buffer, 'binary'))
-    .then(() => logger.info(`loaded ${_.size(photos)} images from ftp`))
-})
+    .then(() => logger.info(`loaded ${_.size(photos)} images from ftp`));
+});
 
 const getPhotosFromFile = Promise.coroutine(function* () {
   const data = yield fs.readFileAsync(localPhotoPath, 'utf-8');
