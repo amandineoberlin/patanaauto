@@ -150,10 +150,11 @@ const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
 }, []);
 
 const loadFtpImages = photos => Promise.mapSeries(photos, photo => {
+  const url = buildImageFtpUrl(photo.directory);
   return ftpget
-    .getAsync({ url: buildImageFtpUrl(photo.directory), bufferType: 'buffer' })
+    .getAsync({ url, bufferType: 'buffer' })
     .then(buffer => fs.writeFileAsync(`${localPhotoDir}/${photo.name}`, buffer, 'binary'))
-    .then(() => logger.info(`loaded ${_.size(photos)} images from ftp`));
+    .then(() => logger.info(`loaded ${url} from ftp`));
 });
 
 const getPhotosFromFile = Promise.coroutine(function* () {
