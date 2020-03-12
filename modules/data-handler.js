@@ -15,14 +15,13 @@ const logger = require('./logger');
 const { host, user, password } = access;
 
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
-const splitData = data => data.split('\n');
+const splitData = data => data.toString().split('\n');
 
 const remoteDataPath = '/datas/acaa.xml';
 const remotePhotoPath = '/datas/photos.txt.zip';
 const localPath = 'selsia-data';
 const localPhotoDir = `src/assets/selsia-photos`;
 const localPhotoPath = `${localPath}/photos.txt`;
-const localPhotoZipPath = `${localPath}/photos.txt.zip`;
 const tempDir = `${localPath}/new`;
 const tempZip = `${localPath}/new/photos.txt.zip`;
 const tempPhoto = `${localPath}/new/photos.txt`;
@@ -83,12 +82,14 @@ const loadFtpData = Promise.coroutine(function* () {
     yield createFileFromStream(dataStream, localDataPath);
     const photoStream = yield ftp.get(remotePhotoPath);
     yield createFileFromStream(photoStream, tempZip, true);
-    yield differentiatePhotos();
+
+    if (yield fs.existsAsync(localPhotoPath)) yield differentiatePhotos();
+
     yield ftp.end();
 
-    logger.info(`retrieved and saved ${localDataPath} and ${localPhotoZipPath}`);
+    logger.info(`retrieved and saved ${localDataPath} and ${tempZip}`);
 
-    return { path: `${localDataPath} and ${localPhotoZipPath}`};
+    return 'ftp data saved';
   } catch(err) {
     logger.error({ err });
   }
