@@ -143,6 +143,49 @@ html, body {
     padding: 0;
   }
 
+  // carousel
+  .carousel {
+    .carousel-indicators {
+      li.active {
+        background-color: $primary;
+        border: solid 1px $primary;
+      }
+
+      li:not(active) {
+        border: solid 1px $hovered-red;
+        background-color: $light-red;
+      }
+
+      li {
+        width: .625rem;
+        height: .625rem;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+    }
+    .carousel-control-next, .carousel-control-prev {
+      opacity: .9;
+
+      &:hover {
+        .carousel-control-next-icon, .carousel-control-prev-icon {
+          opacity: .6;
+          transition: all 0.2s ease-in-out;
+        }
+      }
+    }
+    .carousel-control-next {
+      justify-content: flex-end;
+    }
+    .carousel-control-prev {
+      justify-content: flex-start;
+    }
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+      opacity: 1;
+      background-color: $primary;
+      padding: 20px 0 20px 0px;
+    }
+  }
+
   @include placeHolder(rgba($white, .6), .8rem, 'Arima Madurai', uppercase);
 
   .form-control:disabled {

@@ -99,9 +99,14 @@ const loadFtpData = Promise.coroutine(function* () {
   }
 });
 
-const createAnnoncesIds = (annonces) => {
+const createAnnoncesIdsAndTitle = (annonces) => {
   return _.map(annonces, annonce => {
+    const marque = annonce.VehiculeMarque[0];
+    const modele = annonce.VehiculeModele[0];
+
+    annonce.title = marque === modele ? marque : `${marque} ${modele}`;
     annonce._id = `aaqv${annonce.VehiculeNumeroSerie}02ypu`;
+
     return annonce;
   })
 };
@@ -126,7 +131,7 @@ const getAnnonces = Promise.coroutine(function* () {
   const json = data ? yield xmlParser.parseStringAsync(data) : null;
   const annonces = _.get(json, 'Stock.Vehicule');
   const images = yield getPhotosFromFile();
-  const annoncesWithId = createAnnoncesIds(annonces);
+  const annoncesWithId = createAnnoncesIdsAndTitle(annonces);
   const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
   logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
