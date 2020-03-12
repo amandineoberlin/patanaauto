@@ -83,11 +83,15 @@ const loadFtpData = Promise.coroutine(function* () {
     const photoStream = yield ftp.get(remotePhotoPath);
     yield createFileFromStream(photoStream, tempZip, true);
 
-    if (yield fs.existsAsync(localPhotoPath)) yield differentiatePhotos();
+    if (yield fs.existsAsync(localPhotoPath)) {
+      yield differentiatePhotos();
+    } else {
+      yield fs.copyFileAsync(tempPhoto, localPhotoPath);
+    }
 
     yield ftp.end();
 
-    logger.info(`retrieved and saved ${localDataPath} and ${tempZip}`);
+    logger.info(`retrieved and saved ${localDataPath} and ${localPhotoPath}`);
 
     return 'ftp data saved';
   } catch(err) {
