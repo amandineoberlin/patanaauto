@@ -209,19 +209,6 @@ $primary: #A9040A !default;
   }
 }
 
-@mixin carouseler {
-  .carousel {
-    .carousel-indicators {
-      li {
-        width: .625rem;
-        height: .625rem;
-        cursor: pointer;
-        border-radius: 50%;
-      }
-    }
-  }
-}
-
 @mixin magnifier {
   .dock-container li img {
     @include transition(all 0.3s);
