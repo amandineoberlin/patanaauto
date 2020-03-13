@@ -1,36 +1,15 @@
-const env = require('../environment');
-const bunyan = require('bunyan');
+'use strict';
 
-const prodLogger = bunyan.createLogger({
-  name: 'Patana Auto',
-  streams: [
-    {
-      level: 'error',
-      path: 'bunyan-logs/errors.log'
-    },
-    {
-      level: 'fatal',
-      path: 'bunyan-logs/errors.log'
-    },
-    {
-      level: 'info',
-      path: 'bunyan-logs/infos.log'
-    },
-    {
-      level: 'warn',
-      path: 'bunyan-logs/infos.log'
-    },
-    {
-      level: 'debug',
-      path: 'bunyan-logs/infos.log'
-    },
-    {
-      level: 'trace',
-      path: 'bunyan-logs/infos.log'
-    },
-  ]
-});
+const { createLogger, format, transports } = require('winston');
 
-const devLogger = bunyan.createLogger({ name: 'Patana Auto' });
+const logger = createLogger({
+  format: format.json(),
+  transports: [ new transports.Console() ]});
 
-module.exports = env === 'dev' ? devLogger : prodLogger;
+module.exports = {
+  error: (m) => logger.log('error', m),
+  warn: (m) => logger.log('warn', m),
+  info: (m) => logger.log('info', m),
+  verbose: (m) => logger.log('verbose', m),
+  debug: (m) => logger.log('debug', m)
+}

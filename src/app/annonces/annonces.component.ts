@@ -47,7 +47,7 @@ export class AnnoncesComponent implements OnInit {
   initToPrice: Number;
   notFoundText: String = Constants.NOT_FOUND_MESSAGE;
   limit: Number = 10;
-  filteredAnnonces: Object = [];
+  filteredAnnonces: Array<any> = [];
   tri: String;
   filter: String;
   order: String;
@@ -58,7 +58,7 @@ export class AnnoncesComponent implements OnInit {
 
   filterAnnonces(filter = null, order = null) {
     if (!filter) {
-      this.filteredAnnonces = this.annonces;
+      this.filteredAnnonces = _.clone(this.annonces);
     }
 
     this.tri = order ? `${filter} ${order}` : filter;
