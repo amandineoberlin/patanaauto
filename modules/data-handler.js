@@ -10,7 +10,7 @@ const fs = Promise.promisifyAll(require('fs'));
 const xmlParser = Promise.promisifyAll(require('xml2js'));
 
 const access = require('../config/access').ftp;
-const logger = require('../modules/logger');
+const logger = require('./logger');
 
 const { host, user, password } = access;
 
@@ -22,7 +22,6 @@ const remotePhotoPath = '/datas/photos.txt.zip';
 const localPath = 'selsia-data';
 const localPhotoDir = `src/assets/selsia-photos`;
 const localPhotoPath = `${localPath}/photos.txt`;
-const localPhotoZipPath = `${localPath}/photos.txt.zip`;
 const tempDir = `${localPath}/new`;
 const tempZip = `${localPath}/new/photos.txt.zip`;
 const tempPhoto = `${localPath}/new/photos.txt`;
@@ -83,34 +82,42 @@ const loadFtpData = Promise.coroutine(function* () {
     yield createFileFromStream(dataStream, localDataPath);
     const photoStream = yield ftp.get(remotePhotoPath);
     yield createFileFromStream(photoStream, tempZip, true);
-    yield differentiatePhotos();
+
+    if (yield fs.existsAsync(localPhotoPath)) {
+      yield differentiatePhotos();
+    } else {
+      yield fs.copyFileAsync(tempPhoto, localPhotoPath);
+    }
 
     yield ftp.end();
 
-    return logger.info(`retrieved and saved ${localDataPath} and ${localPhotoZipPath}`);
+    logger.info(`retrieved and saved ${localDataPath} and ${localPhotoPath}`);
+
+    return 'ftp data saved';
   } catch(err) {
     logger.error({ err });
   }
 });
 
-const createAnnoncesIds = (annonces) => {
+const createAnnoncesIdsAndTitle = (annonces) => {
   return _.map(annonces, annonce => {
+    const marque = annonce.VehiculeMarque[0];
+    const modele = annonce.VehiculeModele[0];
+
+    annonce.title = marque === modele ? marque : `${marque} ${modele}`;
     annonce._id = `aaqv${annonce.VehiculeNumeroSerie}02ypu`;
+
     return annonce;
   })
 };
 
 const matchImagesWithAnnonces = (annonces, images) => {
-  const match = _.reduce(images, (acc, k) => {
-    const vehiculeEntity = _.get(k, '_id').split('_')[0];
-    const name = _.get(k, 'name');
-    acc[vehiculeEntity] ? acc[vehiculeEntity].push(name) : acc[vehiculeEntity] = [name];
-    return acc;
-  }, {});
+  const imagesByBase = _.groupBy(images, 'base');
+  const basesArray = _.uniq(_.map(images, 'base'));
 
-  _.forEach(_.values(match), (key, index) => {
-    annonces[index].images = key;
-  }, []);
+  _.forEach(basesArray, (key, index) => {
+    if (annonces[index]) annonces[index].images = _.map(imagesByBase[key], 'name');
+  });
   
   return annonces;
 };
@@ -120,7 +127,7 @@ const getAnnonces = Promise.coroutine(function* () {
   const json = data ? yield xmlParser.parseStringAsync(data) : null;
   const annonces = _.get(json, 'Stock.Vehicule');
   const images = yield getPhotosFromFile();
-  const annoncesWithId = createAnnoncesIds(annonces);
+  const annoncesWithId = createAnnoncesIdsAndTitle(annonces);
   const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
   logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
@@ -143,17 +150,19 @@ const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
   if (!value) return acc;
 
   const [name, directory, hash] = _.split(_.trim(value), '\t');
-  const info = { _id: _.replace(name, '.jpg', ''), name, directory, hash };
+  const [base] = _.split(name, '_');
+  const info = { _id: _.replace(name, '.jpg', ''), name, base, directory, hash };
 
   return _.concat(acc, info);
 }, []);
 
 const loadFtpImages = photos => Promise.mapSeries(photos, photo => {
+  const url = buildImageFtpUrl(photo.directory);
   return ftpget
-    .getAsync({ url: buildImageFtpUrl(photo.directory), bufferType: 'buffer' })
+    .getAsync({ url, bufferType: 'buffer' })
     .then(buffer => fs.writeFileAsync(`${localPhotoDir}/${photo.name}`, buffer, 'binary'))
-    .then(() => logger.info(`loaded ${_.size(photos)} images from ftp`))
-})
+    .then(() => logger.info(`loaded ${url} from ftp`));
+});
 
 const getPhotosFromFile = Promise.coroutine(function* () {
   const data = yield fs.readFileAsync(localPhotoPath, 'utf-8');

@@ -6,6 +6,7 @@
 **/.DS_Store
 *.log
 .vscode
+dist/
 
 # User-specific files
 *.suo
