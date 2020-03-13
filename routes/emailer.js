@@ -18,9 +18,8 @@ const sendForm = Promise.coroutine(function* (req, res) {
   const { name, email, message } = req.body;
   if (!name || !email || !message) return Promise.resolve({ accepted: null, rejected: null });
 
-  const emailSentResult = yield sendEmail(mailingOptions(req.body));
-
-  return res.send(emailSentResult);
+  const sendtMailResult = yield sendEmail(mailingOptions(req.body));
+  return res.send(sendtMailResult);
 });
 
 module.exports = (app) => app.post('/send-contact-form', sendForm);
