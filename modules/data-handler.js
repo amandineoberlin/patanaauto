@@ -112,16 +112,12 @@ const createAnnoncesIdsAndTitle = (annonces) => {
 };
 
 const matchImagesWithAnnonces = (annonces, images) => {
-  const match = _.reduce(images, (acc, k) => {
-    const vehiculeEntity = _.get(k, '_id').split('_')[0];
-    const name = _.get(k, 'name');
-    acc[vehiculeEntity] ? acc[vehiculeEntity].push(name) : acc[vehiculeEntity] = [name];
-    return acc;
-  }, {});
+  const imagesByBase = _.groupBy(images, 'base');
+  const basesArray = _.uniq(_.map(images, 'base'));
 
-  _.forEach(_.values(match), (key, index) => {
-    annonces[index].images = key;
-  }, []);
+  _.forEach(basesArray, (key, index) => {
+    if (annonces[index]) annonces[index].images = _.map(imagesByBase[key], 'name');
+  });
   
   return annonces;
 };
@@ -154,7 +150,8 @@ const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
   if (!value) return acc;
 
   const [name, directory, hash] = _.split(_.trim(value), '\t');
-  const info = { _id: _.replace(name, '.jpg', ''), name, directory, hash };
+  const [base] = _.split(name, '_');
+  const info = { _id: _.replace(name, '.jpg', ''), name, base, directory, hash };
 
   return _.concat(acc, info);
 }, []);
