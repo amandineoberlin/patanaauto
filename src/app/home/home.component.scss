@@ -42,7 +42,8 @@
 
     .intro {
       .intro-img {
-        width: 75%;
+        width: 60%;
+        height: auto;
         float: right;
         
         img {
@@ -53,8 +54,10 @@
       .intro-text {
         color: $black;
         width: 45%;
-        margin-top: 3rem;
+        height: auto;
+        margin-top: 2.4rem;
         position: absolute;
+        padding: 35px;
 
         .section {
           font-family: 'Raleway';
@@ -101,7 +104,7 @@
 
           .button-container {
             width: 100%;
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: center;
 
             button {
