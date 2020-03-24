@@ -1,4 +1,4 @@
-// Variables
+// variables
 
 $white: #E3E2DE !default;
 $plain-white: #ffffff;
@@ -21,14 +21,7 @@ $black: #0B0C0F !default;
 $light-red: #ef4b4b;
 $primary: #A9040A !default;
 
-/* bootstrap material design customizer*/
-.custom-file-control, .form-control,
-.is-focused .custom-file-control,
-.is-focused .form-control {
-  background-image: linear-gradient(0deg, $primary 2px,rgba(0,150,136,0) 0),
-    linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
-}
-
+// mixins
 
 @mixin opacity($color, $opacity) {
   background-color: rgba($color, $opacity);
