@@ -1,6 +1,12 @@
 @import "../app.component.scss";
 
 .service-container {
+  background-image: url('../../assets/images/bg1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 40px;
+
   .timeline-container {
     padding: 0 50px 0 50px;
     color: $gray-900;
@@ -74,7 +80,7 @@
     }
     .how-it-works.row .col-2.full::after {
       height: 100%;
-      left: calc(50% - 2px);
+      left: calc(50% - 1px);
     }
     .how-it-works.row .col-2.top::after {
       height: 50%;

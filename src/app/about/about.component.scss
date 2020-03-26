@@ -3,6 +3,11 @@
 .about-container {
   font-family: 'Arima Madurai';
   text-transform: uppercase;
+  background-image: url('../../assets/images/bg1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 40px;
 
   .carousel {
     width: 740px;

@@ -1,6 +1,8 @@
 @import "../app.component.scss";
 
 .home-container {
+  background-color: $primary;
+  padding-top: 40px;
   color: $white;
 
   .form-control {
