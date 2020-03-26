@@ -1,7 +1,10 @@
 @import "../app.component.scss";
 
 .home-container {
-  background-color: $primary;
+  background-image: url('../../assets/images/bg1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 40px;
   color: $white;
 
