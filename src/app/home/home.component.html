@@ -1,74 +1,78 @@
-<div class="container-fluid home-container">
-  <div class="content-container">
-    <div class="row">
-      <div class="col-md-12">
-        <form class="inline" [formGroup]="quickSearch">
-          <div class="row filters">
-            <div class="col-md-12">
-              <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
-            </div>
-            <div class="row input-group filter-box">
-              <div class="col">
-                <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
-                  (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
-                </ng-select>
+<div class="bg home-container">
+  <div class="container-fluid">
+    <div class="content-container">
+      <div class="row">
+        <div class="col-md-12">
+          <form class="inline" [formGroup]="quickSearch">
+            <div class="row filters">
+              <div class="col-md-12">
+                <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
               </div>
-              <div class="col">
-                <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
-                  (change)="update()" (clear)="clearModele()" notFoundText="{{notFoundText}}">
-                </ng-select>
-              </div>
-              <div class="col-3">
-                <div class="form-group price">
-                  <input type="text" class="form-control prix custom-input" placeholder="Prix max..."
-                    ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
-                    (click)="togglePriceView()">
-                  <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
+              <div class="row input-group filter-box">
+                <div class="col">
+                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
+                    (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
+                  </ng-select>
+                </div>
+                <div class="col">
+                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
+                    (change)="update()" (clear)="clearModele()" notFoundText="{{notFoundText}}">
+                  </ng-select>
+                </div>
+                <div class="col-3">
+                  <div class="form-group price">
+                    <input type="text" class="form-control prix custom-input" placeholder="Prix max..."
+                      ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
+                      (click)="togglePriceView()">
+                    <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
 
-                  <div [ngClass]="choosePriceClass()" class="slide-range prix">
-                    <input type="text" class="js-range-slider" />
+                    <div [ngClass]="choosePriceClass()" class="slide-range prix">
+                      <input type="text" class="js-range-slider" />
+                    </div>
                   </div>
                 </div>
+                <div class="col-auto filter-button">
+                  <button type="submit" class="custom-primary" routerLink="/annonces" routerLinkActive="active">
+                    <i class="fas fa-search"></i> Rechercher
+                  </button>
+                </div>
               </div>
-              <div class="col-auto filter-button">
-                <button type="submit" class="custom-primary" routerLink="/annonces" routerLinkActive="active">
-                  <i class="fas fa-search"></i> Rechercher
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row presentation center-block">
+        <div class="intro">
+          <div class="intro-img img-fluid mb-3 mb-lg-0 rounded">
+            <img class="img-fluid" src="../../assets/images/rubriques/parc.JPG" alt="">
+          </div>
+          <div class="intro-text left-0 text-center bg-faded rounded">
+            <div class="section heading-upper">patana Auto</div>
+            <div class="section heading-lower">à pamfou en seine et marne</div>
+            <hr class="d-none d-lg-block mb-0 ml-0">
+            <div class="bullets">
+              <h6><i class="dot"></i> véhicules d'occasion toute marque</h6>
+              <h6><i class="dot"></i> achat - vente - reprise</h6>
+              <h6><i class="dot"></i> financement et garantie</h6>
+            </div>
+            <div class="subsection">
+              <p class="mb-3">
+                Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
+                internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
+                ainsi
+                votre prochaine visite dans nos locaux...</p>
+              <div class="button-container">
+                <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
+                  Venez nous rendre visite!
                 </button>
               </div>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="row presentation center-block">
-      <div class="intro">
-        <div class="intro-img img-fluid mb-3 mb-lg-0 rounded">
-          <img class="img-fluid" src="../../assets/images/rubriques/parc.JPG" alt="">
         </div>
-        <div class="intro-text left-0 text-center bg-faded rounded">
-          <div class="section heading-upper">patana Auto</div>
-          <div class="section heading-lower">à pamfou en seine et marne</div>
-          <hr class="d-none d-lg-block mb-0 ml-0">
-          <div class="bullets">
-            <h6><i class="dot"></i> véhicules d'occasion toute marque</h6>
-            <h6><i class="dot"></i> achat - vente - reprise</h6>
-            <h6><i class="dot"></i> financement et garantie</h6>
-          </div>
-          <div class="subsection">
-            <p class="mb-3">
-              Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
-              internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
-              ainsi
-              votre prochaine visite dans nos locaux...</p>
-            <div class="button-container">
-              <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
-                Venez nous rendre visite!
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
+      </div>
     </div>
   </div>
+</div>
+
