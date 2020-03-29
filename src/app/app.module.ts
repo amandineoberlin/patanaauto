@@ -16,7 +16,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AnnoncesComponent } from './annonces/annonces.component';
 import { AnnonceComponent } from './annonce/annonce.component';
 import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
 import { PlanComponent } from './plan/plan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ServiceComponent } from './service/service.component';
@@ -29,7 +28,6 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     AnnoncesComponent,
     AboutComponent,
-    ContactComponent,
     PlanComponent,
     PageNotFoundComponent,
     DateAgoPipe,
