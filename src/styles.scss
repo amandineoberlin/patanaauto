@@ -19,7 +19,7 @@ body {
   
   .content {
     margin-top: 76.5px;
-    height: 100%;
+    height: calc(100% + 40px);
     width: 100%;
     position: relative;
   }
