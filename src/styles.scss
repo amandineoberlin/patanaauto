@@ -39,15 +39,6 @@ body {
     padding: 0 100px 0 100px;
   }
 
-  .searcher {
-    text-align: center;
-    font-family: 'Raleway';
-    color: $primary;
-    font-family: 2.5rem;
-    font-weight: 100;
-    font-size: 1.4rem;
-  }
-
   .filter-box {
     padding-top: 20px;
   }
@@ -307,6 +298,15 @@ body {
   .search-title {
     color: $white;
     margin-bottom: 20px;
+  }
+
+  .searcher {
+    text-align: center;
+    font-family: 'Raleway';
+    color: $primary;
+    font-family: 2.5rem;
+    font-weight: 500;
+    font-size: 1.4rem;
   }
 
   .filters {
