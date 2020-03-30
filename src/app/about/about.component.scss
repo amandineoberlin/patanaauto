@@ -3,10 +3,6 @@
 .about-container {
   font-family: 'Arima Madurai';
   text-transform: uppercase;
-  background-image: url('../../assets/images/bg1.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   padding-top: 40px;
 
   .carousel {
@@ -33,7 +29,7 @@
     }
 
     .bg-faded {
-      @include opacity($plain-white, 0.8);
+      @include opacity($plain-white, 0.9);
 
       .title {
         font-family: 'Raleway';
@@ -80,7 +76,7 @@
     }
 
     .partLeft {
-      left: 60px;
+      left: 50px;
 
       .vl {
         top: 40px;
@@ -90,13 +86,17 @@
     }
 
     .partRight {
-      right: 60px;
+      right: 50px;
+
+      .dot {
+        padding-right: 5px;
+      }
 
       .intro {
         font-family: 'Raleway';
         font-weight: 100;
         font-size: 18px;
-        color: $black;
+        color: $primary;
       }
 
       .suite {
