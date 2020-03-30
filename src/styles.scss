@@ -17,7 +17,7 @@ body {
   
   .content {
     padding-top: 76.5px;
-    height: auto;
+    height: 100%;
     width: 100%;
     position: relative;
   }
@@ -26,19 +26,16 @@ body {
     width: 100%;
     height: auto;
     position: relative;
-    padding-bottom: 20px;
-
-    &.home-container, &.service-container, &.plan-container, &.about-container {
-      background-image: url('./assets/images/bg1.jpg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
+    padding-top: 40px;
+    background-image: url('./assets/images/bg-6.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .content-container {
     width: 100%;
-    height: auto;
+    height: 100%;
     padding: 0 100px 0 100px;
   }
 

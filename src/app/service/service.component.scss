@@ -1,8 +1,6 @@
 @import "../app.component.scss";
 
 .service-container {
-  padding-top: 40px;
-
   .timeline-container {
     padding: 0 50px 0 50px;
     color: $gray-900;
@@ -45,91 +43,31 @@
       height: 115px;
       border-radius: 50%;
       z-index: 10;
+      position: absolute;
     }
 
     .circle1 {
       background: url('../../assets/images/handshake.jpg');
       background-repeat: no-repeat;
       background-position: center;
+      top: -86px;
+      left: 30px;
     }
 
     .circle2 {
       background: url('../../assets/images/pigs.jpg');
       background-repeat: no-repeat;
       background-position: center;
+      top: -45px;
+      right: 30px;
     }
 
     .circle3 {
       background: url('../../assets/images/hands.jpg');
       background-repeat: no-repeat;
       background-position: center;
-    }
-
-    .how-it-works.row {
-      display: flex;
-    }
-    .how-it-works.row .col-2 {
-      display: inline-flex;
-      align-self: stretch;
-      align-items: center;
-      justify-content: center;
-    }
-    .how-it-works.row .col-2::after {
-      content: "";
-      position: absolute;
-      border-left: 2px solid $primary;
-      z-index: 1;
-    }
-    .how-it-works.row .col-2.bottom::after {
-      height: 50%;
-      left: 50%;
-      top: 50%;
-    }
-    .how-it-works.row .col-2.full::after {
-      height: 100%;
-      left: calc(50% - 1px);
-    }
-    .how-it-works.row .col-2.top::after {
-      height: 50%;
-      left: 50%;
-      top: 0;
-    }
-
-    .timeline div {
-      padding: 0;
-      height: 39px;
-    }
-    .timeline hr {
-      border-top: 2px solid $primary;
-      margin: 0;
-      top: 18px;
-      position: relative;
-    }
-    .timeline .col-2 {
-      display: flex;
-      overflow: hidden;
-    }
-    .timeline .corner {
-      border: 2px solid $primary;
-      width: 100%;
-      position: relative;
-      border-radius: 15px;
-    }
-    .timeline .top-right {
-      left: 50%;
-      top: -50%;
-    }
-    .timeline .left-bottom {
-      left: -50%;
-      top: calc(50% - 2px);
-    }
-    .timeline .top-left {
-      left: -50%;
-      top: -50%;
-    }
-    .timeline .right-bottom {
-      left: 50%;
-      top: calc(50% - 2px);
+      left: 30px;
+      top: -45px;
     }
   }
 }

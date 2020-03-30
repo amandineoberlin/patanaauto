@@ -3,7 +3,6 @@
   .plan-container {
     color: $gray-700;
     text-align: center;
-    padding-top: 40px;
 
     .map-descriptor {
       @include opacity($white, .85);
