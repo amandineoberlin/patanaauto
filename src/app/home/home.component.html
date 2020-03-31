@@ -20,11 +20,11 @@
                   </ng-select>
                 </div>
                 <div class="col-3">
-                  <div class="form-group price">
+                  <div class="form-group">
                     <input type="text" class="form-control prix custom-input" placeholder="Prix max..."
                       ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
                       (click)="togglePriceView()">
-                    <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
+                    <div class="form-clear"><i class="fas fa-times fa-sm"></i></div>
 
                     <div [ngClass]="choosePriceClass()" class="slide-range prix">
                       <input type="text" class="js-range-slider" />
@@ -44,7 +44,7 @@
 
       <div class="row presentation center-block">
         <div class="col-md-6">
-          <div class="intro-text left-0 text-center bg-faded rounded">
+          <div class="intro-text left-0 text-center bg-faded">
             <div class="section heading-upper">patana Auto</div>
             <div class="section heading-lower">à pamfou en seine et marne</div>
             <hr class="d-none d-lg-block mb-0 ml-0">

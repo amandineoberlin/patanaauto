@@ -24,7 +24,7 @@ body {
 
   .bg {
     width: 100%;
-    height: auto;
+    height: 100%;
     position: relative;
     padding-top: 40px;
     background-image: url('./assets/images/bg-6.png');
@@ -99,15 +99,46 @@ body {
 
 
   /* forms and inputs */
-  .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
-    border-color: $white;
-    box-shadow: none;
+  .filters {
+    @include opacity($plain-white, 0.85);
+    padding: 30px 50px 30px 50px;
+    border-radius: 10px;
+
+  .input-group {
+    padding-bottom: 5px;
+
+    .prix, .km {
+      &.disabled {
+        font-size: small;
+        color: $gray-400;
+        outline: none;
+        @include disable-highlight;
+      }
+    }
+  }
+
+    .icon {
+      align-items: center;
+      bottom: 1.35rem;
+      color: $gray-600;
+      display: flex;
+      height: 23px;
+      justify-content: center;
+      position: absolute;
+      right: 22px;
+      width: 24px;
+      z-index: 10;
+
+      i {
+        color: $white;
+      }
+    }
   }
 
   .form-control:focus {
     background-color: transparent;
-    border-color: $plain-white;
-    color: $white;
+    border-color: $gray-700;
+    color: $gray-700;
   }
 
   .form-clear {
@@ -124,12 +155,17 @@ body {
     z-index: 10;
   }
 
+  .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: $gray-900;
+    box-shadow: none;
+  }
+
   .ng-select .ng-clear-wrapper {
     font-family: "Font Awesome 5 Free";
     position: absolute;
     right: 2rem;
     bottom: 0.5rem;
-    color: $gray-600;
+    color: $gray-700;
   }
 
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
@@ -139,6 +175,77 @@ body {
 
   .ng-select .ng-select-container .ng-value-container {
     padding: 0;
+  }
+
+  @include placeHolder(rgba($gray-700, .9), .8rem, 'Arima Madurai', uppercase);
+
+  .form-control:disabled {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    color: rgba($gray-700, .9);
+  }
+
+  .ng-select .ng-select-container, .custom-input {
+    background-clip: padding-box;
+    background-color: transparent;
+    border-radius: 0;
+    display: block  ;
+    border: solid rgba($black, .6);
+    line-height: 1.5;
+    border-width: 0 0 1px;
+    color: $gray-700;
+    font-size: .8rem;
+    font-family: 'Arima Madurai';
+    text-transform: uppercase;
+    padding: 10px 0 0 0;
+    height: 36px;
+
+    &:hover {
+      border-color: $gray-700;
+      opacity: 0.6;
+      border-width: 0 0 1.5px;
+    }
+  }
+
+  .ng-select .ng-arrow-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0.5rem;
+
+    .ng-arrow {
+      border-color: rgba($gray-700, .9) transparent transparent;
+    }
+  }
+
+  .ng-select .ng-clear-wrapper {
+    font-weight: 900;
+  }
+
+  .ng-select.ng-select-opened.ng-select-bottom>.ng-select-container {
+    background-color: transparent;
+  }
+
+  .ng-dropdown-panel {
+    background-color: transparent;
+    border: none;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    @include opacity($gray-800, 0.8);
+    color: rgba($white, .7);
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    @include opacity($primary, 0.75);
+    color: $plain-white;
+  }
+
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    @include opacity($primary, 0.75);
+    color: $plain-white;
   }
 
   // carousel
@@ -182,68 +289,6 @@ body {
       background-color: $primary;
       padding: 20px 0 20px 0px;
     }
-  }
-
-  @include placeHolder(rgba($white, .6), .8rem, 'Arima Madurai', uppercase);
-
-  .form-control:disabled {
-    background-color: transparent;
-    background-image: none;
-  }
-
-  .ng-select .ng-select-container, .custom-input {
-    background-clip: padding-box;
-    background-color: transparent;
-    border-radius: 0;
-    display: block  ;
-    border: solid rgba($white, .6);
-    line-height: 1.5;
-    border-width: 0 0 1px;
-    color: rgba($white, .6);
-    font-size: .8rem;
-    font-family: 'Arima Madurai';
-    text-transform: uppercase;
-    padding: 10px 0 0 0;
-
-    &:hover {
-      border-color: $plain-white;
-      opacity: 0.6;
-      border-width: 0 0 1.5px;
-    }
-  }
-
-  .ng-select .ng-arrow-wrapper {
-    position: absolute;
-    right: 0;
-    bottom: 0.5rem;
-  }
-
-  .ng-select .ng-clear-wrapper {
-    font-weight: 900;
-  }
-
-  .ng-select.ng-select-opened.ng-select-bottom>.ng-select-container {
-    background-color: transparent;
-  }
-
-  .ng-dropdown-panel {
-    background-color: transparent;
-    border: none;
-  }
-
-  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-    @include opacity($gray-800, 0.85);
-    color: $white;
-  }
-
-  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-    @include opacity($primary, 0.75);
-    color: $plain-white;
-  }
-
-  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
-    @include opacity($primary, 0.75);
-    color: $plain-white;
   }
 
 
@@ -309,11 +354,6 @@ body {
     font-size: 1.4rem;
   }
 
-  .filters {
-    @include opacity($gray-900, 0.8);
-    padding: 30px 50px 30px 50px;
-  }
-
   .box {
     @include opacity($primary, 0.7);
     border-radius: 10px;
@@ -365,7 +405,7 @@ body {
     font-size: .8rem;
     text-transform: uppercase;
     padding: 5px 20px 5px 20px;
-    color: $white;
+    color: $primary;
     background-color: transparent;
     border: solid 2px $primary;
     border-radius: 20px;

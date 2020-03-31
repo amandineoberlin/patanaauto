@@ -9,43 +9,6 @@
         background-image: none;
       }
 
-      .filters {
-        .input-group {
-          padding-bottom: 5px;
-
-          .prix, .km {
-            &.disabled {
-              font-size: small;
-              color: $gray-400;
-              outline: none;
-              @include disable-highlight;
-            }
-          }
-
-          .custom-input {
-            height: 36px;
-            padding-left: 10px;
-          }
-
-          .icon {
-            align-items: center;
-            bottom: 1.35rem;
-            color: $gray-600;
-            display: flex;
-            height: 23px;
-            justify-content: center;
-            position: absolute;
-            right: 22px;
-            width: 24px;
-            z-index: 10;
-
-            i {
-              color: $white;
-            }
-          }
-        }
-      }
-
       .length {
         margin-top: 20px;
 
