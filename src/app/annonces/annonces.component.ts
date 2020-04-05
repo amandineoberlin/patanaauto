@@ -49,32 +49,18 @@ export class AnnoncesComponent implements OnInit {
   limit: Number = 10;
   filteredAnnonces: Array<any> = [];
   tri: String;
-  filter: String;
-  order: String;
+  filtersMapping: Object = {
+    km: 'VehiculeKilometrage',
+    price: 'VehiculePrixVenteTTC',
+    marque: 'VehiculeMarque',
+    modele: 'VehiculeModele',
+    version: 'VehiculeVersion',
+    sellerie: 'VehiculeSellerie',
+    date: 'VehiculeCarteGriseDate'
+  }
 
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
-  }
-
-  filterAnnonces(filter = null, order = null) {
-    if (!filter) {
-      this.filteredAnnonces = _.clone(this.annonces);
-    }
-
-    this.tri = order ? `${filter} ${order}` : filter;
-    this.filter = filter;
-    this.order = order;
-
-    if (filter === 'année') {
-      this.filteredAnnonces = _.orderBy(this.filteredAnnonces, 'VehiculeCarteGriseDate');
-    }
-    if (filter === 'km') {
-      this.filteredAnnonces = _.orderBy(this.annonces, 'VehiculeKilometrage');
-    }
-    if (filter === 'prix') {
-      const lodashOrderName = order === 'décroissant' ? 'desc' : 'asc';
-      this.filteredAnnonces = _.orderBy(this.annonces, 'VehiculeVenteTTC', lodashOrderName);
-    }
   }
 
   inputValue(el) {
@@ -119,70 +105,13 @@ export class AnnoncesComponent implements OnInit {
     this.searchForm.controls['km'].setValue(`${kMEl.data('from')} - ${kMEl.data('to')} km`);
   }
 
-  displayFormVal(formProps, data) {
+  displayFormValue(formProps, data) {
     if (_.isString(formProps)) this.searchForm.controls[formProps].setValue(data);
     if (_.isArray(formProps)) {
       _.forEach(formProps, prop => {
         if (_.size(data[prop]) === 1) this.searchForm.controls[prop].setValue(data[prop][0]);
       })
     }
-  }
-
-  clearData(data) {
-    this.formDataService.clearFormData(this.searchForm, data);
-  }
-
-  resetValues(values) {
-    _.forEach(values, v => this[v] === _.orderBy(this.data[v]));
-  }
-
-  clear(value) {
-    switch (value) {
-      case 'marque':
-        this.clearData(['modele', 'version', 'sellerie']);
-        this.resetValues(['marques', 'modeles', 'versions', 'selleries'])
-        break;
-      case 'modele':
-        this.clearData(['version', 'sellerie']);
-        this.resetValues(['modeles', 'versions', 'selleries'])
-        break;
-      case 'version':
-        this.clearData(['sellerie']);
-        this.resetValues(['versions', 'selleries'])
-        break;
-      case 'sellerie':
-        this.clearData(['version']);
-        this.resetValues(['selleries'])
-        break;
-    }
-  }
-
-  update(value) {
-    const form = this.searchForm.controls;
-    const formValues = _.compact(_.map(form, f => f.value));
-
-    if (_.isEmpty(formValues)) this.resetValues(['modeles', 'marques', 'versions', 'selleries']);
-    this.clear(value);
-
-    const {
-      marques,
-      modeles,
-      versions,
-      selleries
-    } = this.formDataService.matchTagValues(this.annonces, [
-      { marques: form['marque'].value },
-      { modeles: form['modele'].value },
-      { selleries: form['sellerie'].value },
-      { versions: form['version'].value }
-    ]);
-
-    this.marques = marques;
-    this.modeles = modeles;
-    this.versions = versions;
-    this.selleries = selleries;
-
-    this.displayFormVal(['marque', 'modele', 'version', 'sellerie'],
-      { marque: marques, modele: modeles, version: versions, sellerie: selleries });
   }
 
   hideSlidersOnClick() {
@@ -201,12 +130,25 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  navigateToAnnonce(id, state) {
-    this.router.navigateByUrl(`annonce/${id}`, { state });
-  }
-
   initSliders() {
     const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
+
+    const updatePrice = (data) => {
+      let value;
+      if (data.from === data.to) value = `${data.from} €`
+      else value = `${data.from} - ${data.to} €`;
+      this.searchForm.controls['price']
+        .setValue(value, { emitEvent:false })
+    }
+
+    const updateKm = (data) => {
+      let value;
+      if (data.from === data.to) value = `${data.from} km`
+      else value = `${data.from} - ${data.to} km`;
+      this.searchForm.controls['km']
+        .setValue(value, { emitEvent:false })
+    }
+
     //@ts-ignore
     $('.js-price-slider').ionRangeSlider({
         type: 'double',
@@ -217,11 +159,8 @@ export class AnnoncesComponent implements OnInit {
         grid: true,
         prefix: '€ ',
         step: 50,
-        onChange: (data) => {
-          const from = data.from;
-          const to = data.to;
-          this.searchForm.controls['price'].setValue(`${from} - ${to} €`);
-        }
+        onChange: updatePrice,
+        onUpdate: updatePrice
     });
 
     const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
@@ -235,17 +174,83 @@ export class AnnoncesComponent implements OnInit {
         grid: true,
         prefix: 'km: ',
         step: 50,
-        onChange: (data) => {
-          const from = data.from;
-          const to = data.to;
-          this.searchForm.controls['km'].setValue(`${from} - ${to} km`);
-        }
+        onChange: updateKm,
+        onUpdate: updateKm
     });
   }
 
   redirectToAnnonce(id) {
     return this.router.navigate(['/annonce'], { queryParams: { id } });
   };
+
+  onFormChanges() {
+    this.searchForm
+    .valueChanges
+    .subscribe((val) => {
+      const requestedFilters = _.reduce(val, (acc, v, k) => {
+        if (v) return acc.concat(k);
+        return acc;
+      }, []);
+
+      return this.filterAnnonces(requestedFilters, null, null);
+    });
+  }
+
+  updateDropdownValuesAfterFilter() {
+    return _.forIn(this.filtersMapping, (name, key) => {
+      if (_.includes(['price', 'km'], key)) {
+        const from = _.min(_.map(this.filteredAnnonces, a => parseInt(a[name][0])));
+        const to = _.max(_.map(this.filteredAnnonces, a => parseInt(a[name][0])));
+        $(`.js-${key}-slider`).data('ionRangeSlider').update({ from, to });
+      }
+
+      this[`${key}s`] = _.uniq(_.flatMap(this.filteredAnnonces, (annonce) => {
+        return annonce[name][0];
+      }));
+    });
+  }
+
+  filterAnnonces(filters = [], order = null, isTri) {
+    if (!filters || _.isEmpty(filters)) {
+      return this.filteredAnnonces = _.clone(this.annonces);
+    }
+
+    if (isTri) {
+      const singleFilter = filters[0];
+      if (_.size(this.filteredAnnonces) < 2) return;
+
+      const orderBy = _.map(this.filteredAnnonces, (a) => {
+        let item = a[this.filtersMapping[singleFilter]][0];
+        if (_.includes(['price', 'km'], singleFilter)) item = parseInt(item);
+        if (singleFilter === 'date') {
+          const date = item.split('-');
+          item = new Date(date[2], date[1], date[0]);
+        }
+        return { _id: a._id, item };
+      });
+
+      const orderedItems = _.orderBy(orderBy, ['item'], [order]);
+
+      this.filteredAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+
+      return this.tri = order ? `${singleFilter === 'price' ? 'prix' : singleFilter} ${order}` : singleFilter;
+    }
+
+    const filterValues = {};
+
+    _.forIn(this.filtersMapping, (v, k) => {
+      const filterValue = this.searchForm.controls[k] ? this.searchForm.controls[k].value : null;
+      if (!filterValue) return;
+      _.assignIn(filterValues, { [k]: filterValue });
+
+      this.filteredAnnonces = _.reduce(this.filteredAnnonces, (acc, annonce) => {
+        if (annonce[v][0] === filterValue) return acc.concat(annonce);
+        return acc;
+      }, []);
+    });
+
+    this.updateDropdownValuesAfterFilter();
+  }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
@@ -269,12 +274,13 @@ export class AnnoncesComponent implements OnInit {
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
-      .then(() => this.filterAnnonces())
+      .then(() => this.filterAnnonces([], null, null))
       .then(() => {
         this.initSliders();
         this.utilsService.bootstrapClearButton(this.searchForm.controls);
         // hide price range slider when user clicks anywhere else than the input itself
         this.hideSlidersOnClick();
+        this.onFormChanges();
       });
   }
 
