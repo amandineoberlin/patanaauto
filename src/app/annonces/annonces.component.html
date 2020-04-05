@@ -11,14 +11,12 @@
               </div>
               <div class="row input-group filter-box">
                 <div class="col">
-                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
-                    (change)="update('marque')" (clear)="clear('marque')" dropdownPosition="bottom"
+                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
                     notFoundText="{{notFoundText}}">
                   </ng-select>
                 </div>
                 <div class="col">
-                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
-                    (change)="update('modele')" (clear)="clear('modele')" dropdownPosition="bottom"
+                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
                     notFoundText="{{notFoundText}}">
                   </ng-select>
                 </div>
@@ -39,13 +37,11 @@
               <div class="row input-group">
                 <div class="col">
                   <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
-                    formControlName="version" (change)="update('version')" (clear)="clear('version')"
-                    notFoundText="{{notFoundText}}" dropdownPosition="bottom">
+                    formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}" dropdownPosition="bottom">
                   </ng-select>
                 </div>
                 <div class="col">
-                  <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie"
-                    (change)="update('sellerie')" (clear)="clear('sellerie')" dropdownPosition="bottom"
+                  <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
                     notFoundText="{{notFoundText}}">
                   </ng-select>
                 </div>
@@ -77,10 +73,10 @@
             Trier par: {{tri}}
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="filterAnnonces('prix', 'décroissant')">Prix croissant</a>
-            <a class="dropdown-item" (click)="filterAnnonces('prix', 'croissant')">Prix décroissant</a>
-            <a class="dropdown-item" (click)="filterAnnonces('année')">Année</a>
-            <a class="dropdown-item" (click)="filterAnnonces('km')">Km</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['price'], 'asc', true)">Prix croissant</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['price'], 'desc', true)">Prix décroissant</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['date'], null, true)">Année</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['km'], null, true)">Km</a>
           </div>
         </div>
       </div>
