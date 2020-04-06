@@ -217,11 +217,18 @@ export class AnnoncesComponent implements OnInit {
     return this.router.navigate(['/annonce'], { queryParams: { id } });
   };
 
+  toggleVehiculeNumberBox(filters) {
+    if (!_.isEmpty(filters) && $('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
+      $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
+    } else $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
+  }
+
   onFormChanges() {
     this.searchForm
       .valueChanges
       .subscribe((val) => {
         const requestedFilters = _.reduce(val, (acc, v, k) => (v ? acc.concat(k) : acc), []);
+        this.toggleVehiculeNumberBox(requestedFilters);
         return this.filterAnnonces(requestedFilters, null, null);
       });
   }

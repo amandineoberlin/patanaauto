@@ -63,19 +63,16 @@
                 </div>
               </div>
 
-              <div class="row">
-                <ul class="list-group list-group-horizontal">
-                  <li class="list-group-item">
-                    <button type="submit" class="custom-primary" (click)="resetFilters()">
-                      <i class="fas fa-search"></i> Réinitialiser les filtres
-                    </button>
-                  </li>
-                  <li class="list-group-item">
-                    <h6 class="box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
-                  </li>
-                </ul>
+              <div class="col-md-6">
+                <div class="vehiculeNumber vehiculeNumber-hidden">
+                  <h6 class="box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+                </div>
               </div>
-
+              <div class="col-md-6">
+                <button type="submit" class="custom-primary reinitButton" (click)="resetFilters()">
+                  <i class="fas fa-search"></i> Réinitialiser les filtres
+                </button>
+              </div>
             </div>
           </form>
         </div>
