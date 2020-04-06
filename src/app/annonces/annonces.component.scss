@@ -8,6 +8,22 @@
       .form-control {
         background-image: none;
       }
+
+      .vehiculeNumber {
+        float: left;
+        margin-left: -15px;
+        opacity: 1;
+        @include transition(all 0.3s);
+      }
+
+      .vehiculeNumber-hidden {
+        opacity: 0;
+      }
+
+      .reinitButton {
+        float: right;
+        margin-right: 15px;
+      }
     }
 
     .btn-group {

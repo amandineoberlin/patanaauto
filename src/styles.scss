@@ -130,7 +130,7 @@ body {
       z-index: 10;
 
       i {
-        color: $white;
+        color: $gray-700;
       }
     }
   }
@@ -356,7 +356,8 @@ body {
   }
 
   .box {
-    @include opacity($primary, 0.7);
+    @include opacity($primary, 1);
+    color: $white;
     border-radius: 10px;
     padding: 10px;
   }
