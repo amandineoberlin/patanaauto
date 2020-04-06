@@ -27,9 +27,6 @@ export class AnnoncesComponent implements OnInit {
 
   searchForm: FormGroup;
   data: { [name: string]: Object };
-  marqueParam: String;
-  modeleParam: String;
-  priceParam: String;
   annonces: Object;
   annoncesSize: Number;
   maxAvailablePrice: number;
@@ -133,20 +130,20 @@ export class AnnoncesComponent implements OnInit {
   initSliders() {
     const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
 
-    const updatePrice = (data) => {
+    const updatePrice = (data, emitEvent) => {
       let value;
-      if (data.from === data.to) value = `${data.from} €`
-      else value = `${data.from} - ${data.to} €`;
-      this.searchForm.controls['price']
-        .setValue(value, { emitEvent:false })
+      if (data.from === data.to) return data.to = data.from + 10;
+      value = `${data.from} - ${data.to} €`;
+      return this.searchForm.controls['price']
+        .setValue(value, { emitEvent });
     }
 
-    const updateKm = (data) => {
+    const updateKm = (data, emitEvent) => {
       let value;
-      if (data.from === data.to) value = `${data.from} km`
-      else value = `${data.from} - ${data.to} km`;
-      this.searchForm.controls['km']
-        .setValue(value, { emitEvent:false })
+      if (data.from === data.to) return data.to = data.from + 10;
+      value = `${data.from} - ${data.to} km`;
+      return this.searchForm.controls['km']
+        .setValue(value, { emitEvent })
     }
 
     //@ts-ignore
@@ -155,12 +152,12 @@ export class AnnoncesComponent implements OnInit {
         min: 0,
         max: roundMaxPrice,
         from: 1000,
-        to: 5000,
+        to: 10000,
         grid: true,
         prefix: '€ ',
         step: 50,
-        onChange: updatePrice,
-        onUpdate: updatePrice
+        onChange: (data) => updatePrice(data, true),
+        onUpdate: (data) => updatePrice(data, false)
     });
 
     const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
@@ -174,9 +171,36 @@ export class AnnoncesComponent implements OnInit {
         grid: true,
         prefix: 'km: ',
         step: 50,
-        onChange: updateKm,
-        onUpdate: updateKm
+        onChange: (data) => updateKm(data, true),
+        onUpdate: (data) => updateKm(data, false)
     });
+  }
+
+  resetFilters() {
+    const { modeles, marques, selleries, versions } = this;
+    this.modeles = modeles;
+    this.marques = marques;
+    this.selleries = selleries;
+    this.versions = versions;
+  }
+
+  isInRange(val, start, end) {
+    return val >= start && val <= end;
+  }
+
+  splitRange(value, key) {
+    const symbol = key === 'price' ? '€' : 'km';
+    const range = _.split(value, '-');
+    const firstRange = parseInt(range[0]);
+    const secondRange = parseInt(range[1].split(symbol));
+
+    return { firstRange, secondRange };
+  }
+
+  isSliderInRange(filterValue, v, k) {
+    const { firstRange, secondRange } = this.splitRange(v, k);
+    const isWithinRange = this.isInRange(parseInt(filterValue), firstRange, secondRange);
+    return isWithinRange;
   }
 
   redirectToAnnonce(id) {
@@ -187,26 +211,31 @@ export class AnnoncesComponent implements OnInit {
     this.searchForm
     .valueChanges
     .subscribe((val) => {
-      const requestedFilters = _.reduce(val, (acc, v, k) => {
-        if (v) return acc.concat(k);
-        return acc;
-      }, []);
-
+      const requestedFilters = _.reduce(val, (acc, v, k) => (v ? acc.concat(k) : acc), []);
       return this.filterAnnonces(requestedFilters, null, null);
     });
   }
 
   updateDropdownValuesAfterFilter() {
     return _.forIn(this.filtersMapping, (name, key) => {
-      if (_.includes(['price', 'km'], key)) {
-        const from = _.min(_.map(this.filteredAnnonces, a => parseInt(a[name][0])));
-        const to = _.max(_.map(this.filteredAnnonces, a => parseInt(a[name][0])));
-        $(`.js-${key}-slider`).data('ionRangeSlider').update({ from, to });
-      }
+      //$(`.js-${key}-slider`).data('ionRangeSlider').update({ from, to });
 
-      this[`${key}s`] = _.uniq(_.flatMap(this.filteredAnnonces, (annonce) => {
-        return annonce[name][0];
-      }));
+      if (_.includes(['price', 'km'], key)) return;
+
+      this[`${key}s`] = _.uniq(_.flatMap(this.filteredAnnonces, (annonce) => annonce[name][0]));
+    });
+  }
+
+  addFiltersUp(annonce) {
+    return _.map(this.filtersMapping, (v, k) => {
+      const filterValue = this.searchForm.controls[k] ? this.searchForm.controls[k].value : null;
+      if (!filterValue) return;
+
+      const annonceVal = annonce[v][0];
+
+      if (_.includes(['price', 'km'], k)) return this.isSliderInRange(annonceVal, filterValue, k);
+
+      return annonceVal === filterValue;
     });
   }
 
@@ -214,6 +243,8 @@ export class AnnoncesComponent implements OnInit {
     if (!filters || _.isEmpty(filters)) {
       return this.filteredAnnonces = _.clone(this.annonces);
     }
+
+    if (_.isEmpty(this.filteredAnnonces)) this.resetFilters();
 
     if (isTri) {
       const singleFilter = filters[0];
@@ -236,20 +267,23 @@ export class AnnoncesComponent implements OnInit {
       return this.tri = order ? `${singleFilter === 'price' ? 'prix' : singleFilter} ${order}` : singleFilter;
     }
 
-    const filterValues = {};
-
-    _.forIn(this.filtersMapping, (v, k) => {
-      const filterValue = this.searchForm.controls[k] ? this.searchForm.controls[k].value : null;
-      if (!filterValue) return;
-      _.assignIn(filterValues, { [k]: filterValue });
-
-      this.filteredAnnonces = _.reduce(this.filteredAnnonces, (acc, annonce) => {
-        if (annonce[v][0] === filterValue) return acc.concat(annonce);
-        return acc;
-      }, []);
-    });
+    this.filteredAnnonces = _.reduce(this.annonces, (acc, annonce) => {
+      const validAnnonceByFilters = _.compact(this.addFiltersUp(annonce));
+      return _.isEmpty(validAnnonceByFilters) ? acc : acc.concat(annonce);
+    }, []);
 
     this.updateDropdownValuesAfterFilter();
+  }
+
+  onRouteChange() {
+    this.activatedRoute.queryParams
+      .subscribe((params: any) => {
+        if (_.isEmpty(params)) return;
+        _.forIn(params, (v, k) => {
+          this.searchForm.controls[k].setValue(v);
+        });
+        this.filterAnnonces(_.keys(params), null, false)
+      });
   }
 
   ngOnInit(): void {
@@ -265,22 +299,15 @@ export class AnnoncesComponent implements OnInit {
     //@ts-ignore
     $('.dropdown-toggle').dropdown()
 
-    this.activatedRoute.queryParams
-      .subscribe((params: any) => {
-        this.marqueParam = params['marque'];
-        this.modeleParam = params['modele'];
-        this.priceParam = params['price'];
-      });
-
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
-      .then(() => this.filterAnnonces([], null, null))
+      .then(() => (this.filteredAnnonces = _.clone(this.annonces)))
       .then(() => {
         this.initSliders();
         this.utilsService.bootstrapClearButton(this.searchForm.controls);
-        // hide price range slider when user clicks anywhere else than the input itself
         this.hideSlidersOnClick();
         this.onFormChanges();
+        this.onRouteChange();
       });
   }
 
