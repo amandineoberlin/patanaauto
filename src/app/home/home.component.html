@@ -32,7 +32,7 @@
                   </div>
                 </div>
                 <div class="col-auto filter-button">
-                  <button type="submit" class="custom-primary" routerLink="/annonces" routerLinkActive="active">
+                  <button type="submit" class="custom-primary" (click)="redirectToFilteredAnnonces(filteredAnnonces)">
                     <i class="fas fa-search"></i> Rechercher
                   </button>
                 </div>

@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   showPriceRange: Boolean = false;
   blockSlider: Boolean = false;
   notFoundText: String = Constants.NOT_FOUND_MESSAGE;
+  filteredAnnonces: Array<any> = [];
 
   constructor(
     private formDataService: FormDataService,
@@ -35,6 +36,18 @@ export class HomeComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router
   ) {}
+
+  redirectToFilteredAnnonces() {
+    const { marque, modele, price } = this.quickSearch.controls;
+
+    const queryParams = {};
+    if (marque.value) queryParams['marque'] = marque.value;
+    if (modele.value) queryParams['modele'] = modele.value;
+    if (price.value) queryParams['price'] = price.value;
+
+    return this.router.navigate(['/annonces'],
+      { queryParams });
+  };
 
   inputPriceValue() {
     const input = $('.js-range-slider');
@@ -154,6 +167,14 @@ export class HomeComponent implements OnInit {
   }
 
   initSlider() {
+    const updatePrice = (data) => {
+      let value;
+      if (data.from === data.to) value = `${data.from} €`
+      else value = `${data.from} - ${data.to} €`;
+      this.quickSearch.controls['price']
+        .setValue(value, { emitEvent:false })
+    }
+
     //@ts-ignore
     $('.js-range-slider').ionRangeSlider({
       type: 'double',
@@ -164,11 +185,8 @@ export class HomeComponent implements OnInit {
       grid: true,
       prefix: '€',
       step: 50,
-      onChange: (data) => {
-        const from = data.from;
-        const to = data.to;
-        this.quickSearch.controls['price'].setValue(`${from} - ${to} €`);
-      }
+      onChange: updatePrice,
+      onUpdate: updatePrice
     });
   }
 
@@ -182,6 +200,7 @@ export class HomeComponent implements OnInit {
     this.formDataService.loadAnnonces({ quickSearch: true })
       .then(dataObj => {
         _.assign(this, dataObj);
+        this.filteredAnnonces = _.clone(this.annonces);
         this.initSlider();
         this.utilsService.bootstrapClearButton(this.quickSearch.controls);
         this.hideSliderOnClick();
