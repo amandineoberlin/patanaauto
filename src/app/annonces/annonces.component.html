@@ -11,13 +11,15 @@
               </div>
               <div class="row input-group filter-box">
                 <div class="col">
-                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}">
+                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..."
+                    formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
+                    notFoundText="{{notFoundText}}" (click)="resetFilters('marque')">
                   </ng-select>
                 </div>
                 <div class="col">
-                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}">
+                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..."
+                    formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
+                    notFoundText="{{notFoundText}}" (click)="resetFilters('modele')">
                   </ng-select>
                 </div>
                 <div class="col">
@@ -37,18 +39,21 @@
               <div class="row input-group">
                 <div class="col">
                   <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
-                    formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}" dropdownPosition="bottom">
+                    formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}"
+                    dropdownPosition="bottom" (click)="resetFilters('version')">
                   </ng-select>
                 </div>
                 <div class="col">
-                  <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}">
+                  <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..."
+                    formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
+                    notFoundText="{{notFoundText}}" (click)="resetFilters('sellerie')">
                   </ng-select>
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <input type="text" class="form-control custom-input km" placeholder="km max..." ngDisabled="blockKmSlider"
-                      [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km" (click)="toggleKmView()">
+                    <input type="text" class="form-control custom-input km" placeholder="km max..."
+                      ngDisabled="blockKmSlider" [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km"
+                      (click)="toggleKmView()">
                     <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
                     <div class="icon"><i class="fas fa-tachometer-alt fa-sm"></i></div>
                     <div [ngClass]="chooseKmClass()" class="slide-range slide-km">
@@ -58,9 +63,19 @@
                 </div>
               </div>
 
-              <div class="col-md-12 length">
-                <h6 class="result-vehicules box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+              <div class="row">
+                <ul class="list-group list-group-horizontal">
+                  <li class="list-group-item">
+                    <button type="submit" class="custom-primary" (click)="resetFilters()">
+                      <i class="fas fa-search"></i> Réinitialiser les filtres
+                    </button>
+                  </li>
+                  <li class="list-group-item">
+                    <h6 class="box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+                  </li>
+                </ul>
               </div>
+
             </div>
           </form>
         </div>

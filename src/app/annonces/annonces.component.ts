@@ -14,8 +14,8 @@ import { Constants } from '../constants';
   templateUrl: './annonces.component.html',
   styleUrls: ['./annonces.component.scss']
 })
-export class AnnoncesComponent implements OnInit {
 
+export class AnnoncesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
@@ -31,10 +31,10 @@ export class AnnoncesComponent implements OnInit {
   annoncesSize: Number;
   maxAvailablePrice: number;
   maxAvailableKm: number;
-  marques: Array<string>;
-  modeles: Array<string>;
-  versions: Array<string>;
-  selleries: Array<string>;
+  marques: Array<any>;
+  modeles: Array<any>;
+  versions: Array<any>;
+  selleries: Array<any>;
   blockPriceSlider: Boolean = false;
   blockKmSlider: Boolean = false;
   blockVersions: Boolean = false;
@@ -46,6 +46,11 @@ export class AnnoncesComponent implements OnInit {
   limit: Number = 10;
   filteredAnnonces: Array<any> = [];
   tri: String;
+  priceFrom: Number = 1000;
+  priceTo: Number = 25000;
+  kmFrom: Number = 0;
+  kmTo: Number = 230000;
+
   filtersMapping: Object = {
     km: 'VehiculeKilometrage',
     price: 'VehiculePrixVenteTTC',
@@ -151,8 +156,8 @@ export class AnnoncesComponent implements OnInit {
         type: 'double',
         min: 0,
         max: roundMaxPrice,
-        from: 1000,
-        to: 10000,
+        from: this.priceFrom,
+        to: this.priceTo,
         grid: true,
         prefix: '€ ',
         step: 50,
@@ -166,8 +171,8 @@ export class AnnoncesComponent implements OnInit {
         type: 'double',
         min: 0,
         max: roundMaxKm,
-        from: 0,
-        to: 80000,
+        from: this.kmFrom,
+        to: this.kmTo,
         grid: true,
         prefix: 'km: ',
         step: 50,
@@ -176,12 +181,17 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  resetFilters() {
-    const { modeles, marques, selleries, versions } = this;
-    this.modeles = modeles;
-    this.marques = marques;
-    this.selleries = selleries;
-    this.versions = versions;
+  resetFilters(filter) {
+    if (_.isEmpty(this.filteredAnnonces) || !filter) {
+      const { modeles, marques, selleries, versions } = this.data;
+
+      this.modeles = _.clone(modeles);
+      this.marques = _.clone(marques);
+      this.selleries = _.clone(selleries);
+      this.versions = _.clone(versions);
+
+      this.searchForm.reset();
+    }
   }
 
   isInRange(val, start, end) {
@@ -209,19 +219,16 @@ export class AnnoncesComponent implements OnInit {
 
   onFormChanges() {
     this.searchForm
-    .valueChanges
-    .subscribe((val) => {
-      const requestedFilters = _.reduce(val, (acc, v, k) => (v ? acc.concat(k) : acc), []);
-      return this.filterAnnonces(requestedFilters, null, null);
-    });
+      .valueChanges
+      .subscribe((val) => {
+        const requestedFilters = _.reduce(val, (acc, v, k) => (v ? acc.concat(k) : acc), []);
+        return this.filterAnnonces(requestedFilters, null, null);
+      });
   }
 
   updateDropdownValuesAfterFilter() {
     return _.forIn(this.filtersMapping, (name, key) => {
-      //$(`.js-${key}-slider`).data('ionRangeSlider').update({ from, to });
-
       if (_.includes(['price', 'km'], key)) return;
-
       this[`${key}s`] = _.uniq(_.flatMap(this.filteredAnnonces, (annonce) => annonce[name][0]));
     });
   }
@@ -233,9 +240,9 @@ export class AnnoncesComponent implements OnInit {
 
       const annonceVal = annonce[v][0];
 
-      if (_.includes(['price', 'km'], k)) return this.isSliderInRange(annonceVal, filterValue, k);
+      if (_.includes(['price', 'km'], k)) return !this.isSliderInRange(annonceVal, filterValue, k)
 
-      return annonceVal === filterValue;
+      return annonceVal !== filterValue;
     });
   }
 
@@ -243,8 +250,6 @@ export class AnnoncesComponent implements OnInit {
     if (!filters || _.isEmpty(filters)) {
       return this.filteredAnnonces = _.clone(this.annonces);
     }
-
-    if (_.isEmpty(this.filteredAnnonces)) this.resetFilters();
 
     if (isTri) {
       const singleFilter = filters[0];
@@ -268,8 +273,8 @@ export class AnnoncesComponent implements OnInit {
     }
 
     this.filteredAnnonces = _.reduce(this.annonces, (acc, annonce) => {
-      const validAnnonceByFilters = _.compact(this.addFiltersUp(annonce));
-      return _.isEmpty(validAnnonceByFilters) ? acc : acc.concat(annonce);
+      const areSomeInvalidAnnonces = _.compact(this.addFiltersUp(annonce));
+      return _.isEmpty(areSomeInvalidAnnonces) ? acc.concat(annonce) : acc;
     }, []);
 
     this.updateDropdownValuesAfterFilter();

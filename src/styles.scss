@@ -158,6 +158,7 @@ body {
   .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
     border-color: $gray-900;
     box-shadow: none;
+    color: $gray-900;
   }
 
   .ng-select .ng-clear-wrapper {
