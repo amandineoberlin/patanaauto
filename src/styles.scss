@@ -107,7 +107,7 @@ body {
   .input-group {
     padding-bottom: 5px;
 
-    .prix, .km {
+    .price, .km {
       &.disabled {
         font-size: small;
         color: $gray-400;
@@ -150,7 +150,7 @@ body {
     height: 23px;
     justify-content: center;
     position: absolute;
-    right: 22px;
+    right: 50px;
     width: 24px;
     z-index: 10;
   }

@@ -24,14 +24,14 @@
                 </div>
                 <div class="col">
                   <div class="form-group">
-                    <input type="text" class="form-control custom-input prix" placeholder="Prix max..."
+                    <input type="text" class="form-control custom-input price" placeholder="Prix max..."
                       ngDisabled="blockPriceSlider" [ngClass]="[blockPriceSlider ? 'disabled' : '']"
                       formControlName="price" (click)="togglePriceView()">
-                    <div class="form-clear d-none">
-                      <i class="fas fa-times fa-sm" (click)="clear('price')"></i>
+                    <div class="form-clear d-none" (click)="resetSlider('price')">
+                      <i class="fas fa-times fa-sm"></i>
                     </div>
                     <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
-                    <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
+                    <div [ngClass]="choosePriceClass()" class="slide-range slide-price">
                       <input type="text" class="js-price-slider" />
                     </div>
                   </div>
@@ -56,8 +56,8 @@
                     <input type="text" class="form-control custom-input km" placeholder="km max..."
                       ngDisabled="blockKmSlider" [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km"
                       (click)="toggleKmView()">
-                    <div class="form-clear d-none">
-                      <i class="fas fa-times fa-sm" (click)="clear('km')"></i>
+                    <div class="form-clear d-none" (click)="resetSlider('km')">
+                      <i class="fas fa-times fa-sm"></i>
                     </div>
                     <div class="icon"><i class="fas fa-tachometer-alt fa-sm"></i></div>
                     <div [ngClass]="chooseKmClass()" class="slide-range slide-km">

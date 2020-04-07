@@ -182,18 +182,21 @@ export class AnnoncesComponent implements OnInit {
   }
 
   resetSliders() {
-    _.forEach(['price', 'km'], (i) => {
-      if (this.searchForm.controls[i].value) return;
+    _.forEach(['price', 'km'], (i) => this.resetSlider(i));
+  }
 
-      $(`.js-${i}-slider`)
-        .data("ionRangeSlider")
-        .update({ from: this[`${i}From`], to: this[`${i}To`] });
-      this.searchForm.controls[i].setValue(null);
-    })
+  resetSlider(slider) {
+    $(`.js-${slider}-slider`)
+      .data('ionRangeSlider')
+      .update({ from: this[`${slider}From`], to: this[`${slider}To`] });
+
+    this.searchForm.controls[slider].setValue(null);
+    $(`.${slider}`).nextAll('.form-clear').addClass('d-none');
   }
 
   resetFilters() {
-    if (_.isEmpty(this.filteredAnnonces)) {
+    const filters = _.compact(_.map(this.searchForm.controls, f => f.value));
+    if (!_.isEmpty(filters)) {
       const { modeles, marques, selleries, versions } = this.data;
 
       this.modeles = _.clone(_.orderBy(modeles));
@@ -356,7 +359,7 @@ export class AnnoncesComponent implements OnInit {
       .then(() => (this.filteredAnnonces = _.clone(this.annonces)))
       .then(() => {
         this.initSliders();
-        this.utilsService.bootstrapClearButton(this.searchForm.controls);
+        this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
         this.hideSlidersOnClick();
         this.onFormChanges();
         this.onRouteChange();
