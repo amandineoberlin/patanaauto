@@ -195,18 +195,15 @@ export class AnnoncesComponent implements OnInit {
   }
 
   resetFilters() {
-    const filters = _.compact(_.map(this.searchForm.controls, f => f.value));
-    if (!_.isEmpty(filters)) {
-      const { modeles, marques, selleries, versions } = this.data;
+    const { modeles, marques, selleries, versions } = this.data;
 
-      this.modeles = _.clone(_.orderBy(modeles));
-      this.marques = _.clone(_.orderBy(marques));
-      this.selleries = _.clone(_.orderBy(selleries));
-      this.versions = _.clone(_.orderBy(versions));
+    this.modeles = _.clone(_.orderBy(modeles));
+    this.marques = _.clone(_.orderBy(marques));
+    this.selleries = _.clone(_.orderBy(selleries));
+    this.versions = _.clone(_.orderBy(versions));
 
-      this.searchForm.reset();
-      this.resetSliders();
-    }
+    this.searchForm.reset();
+    this.resetSliders();
   }
 
   clear(filter) {
@@ -216,15 +213,29 @@ export class AnnoncesComponent implements OnInit {
       case 'marque':
         _.forEach(['modele', 'version', 'sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
-          this.marques = _.clone(_.orderBy(this.data.marques));
-          this.resetSliders();
+          this.resetFilters();
+          return this.resetSliders();
       case 'modele':
-        _.forEach(['version', 'sellerie'], i =>
+        return _.forEach(['version', 'sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
       case 'version':
-        _.forEach(['version'], i =>
+        return _.forEach(['version'], i =>
+          this.searchForm.controls[i].setValue(null));
+      case 'sellerie':
+        return _.forEach(['sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
     }
+  }
+
+  update(current) {
+    const toBeFiltered = _.reduce(Constants.VEHICULE_PROPS, (acc, v, k) =>
+      (k !== current ? acc.concat(k) : acc), []);
+
+    _.forEach(toBeFiltered, (filter) => {
+      const filterNames = _.map(this.filteredAnnonces, (a) =>
+        a[Constants.VEHICULE_PROPS[filter]][0]);
+      this[filter] = _.orderBy(_.uniq(filterNames));
+    });
   }
 
   isInRange(val, start, end) {
