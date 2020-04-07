@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit {
       if (!this.showPriceRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
-      const isInsideInput = e.target.className.indexOf('prix') > -1;
+      const isInsideInput = e.target.className.indexOf('price') > -1;
       const hasSliderParent = $(e.target).parent()[0].className.indexOf('irs') > -1;
 
       if (!isInsideInput && !isInsideSlider && !hasSliderParent) return this.showPriceRange = false;
@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
         _.assign(this, dataObj);
         this.filteredAnnonces = _.clone(this.annonces);
         this.initSlider();
-        this.utilsService.bootstrapClearButton(this.quickSearch.controls);
+        this.utilsService.bootstrapClearButton(this.quickSearch.controls, ['price']);
         this.hideSliderOnClick();
     });
   }

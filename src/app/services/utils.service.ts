@@ -9,21 +9,23 @@ export class UtilsService {
 
   constructor() { }
 
-  bootstrapClearButton(form) {
-    const getPrice = () => form.price.value;
+  bootstrapClearButton(form, filters) {
+    _.forEach(filters, (filter) => {
+      const getValue = () => form[filter].value;
 
-    $('.price :input')
-      .on('keydown focus', _.debounce(() => {
-        if (!getPrice()) return;
-        $('.price :input').nextAll('.form-clear').removeClass('d-none');
-      }, 150))
-      .on('keydown keyup blur', () => {
-        if (getPrice()) return;
-        $('.price :input').nextAll('.form-clear').addClass('d-none');
+      $('.custom-input')
+        .on('keydown focus', _.debounce(() => {
+          if (!getValue()) return;
+          $(`.${filter}`).nextAll('.form-clear').removeClass('d-none');
+        }, 150))
+        .on('keydown keyup blur', () => {
+          if (getValue()) return;
+          $(`.${filter}`).nextAll('.form-clear').addClass('d-none');
+        });
+
+      $(`.${filter}`).siblings('.form-clear').on('click', () => {
+        $(`.${filter}`).next().addClass('d-none').prev(':input').val('');
       });
-
-    $('.form-clear').on('click', () => {
-      $('.form-clear').addClass('d-none').prevAll(':input').val('');
-    });
+    })
   }
 }
