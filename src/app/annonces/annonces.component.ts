@@ -191,7 +191,7 @@ export class AnnoncesComponent implements OnInit {
       .update({ from: this[`${slider}From`], to: this[`${slider}To`] });
 
     this.searchForm.controls[slider].setValue(null);
-    $(`.${slider}`).nextAll('.form-clear').addClass('d-none');
+    this.shouldAddSliderCross();
   }
 
   resetFilters() {
@@ -266,12 +266,21 @@ export class AnnoncesComponent implements OnInit {
     $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
   }
 
+  shouldAddSliderCross() {
+    _.forEach(['km', 'price'], (s) => {
+      return this.searchForm.controls[s].value ?
+        $(`.${s}`).nextAll('.form-clear').removeClass('d-none') :
+        $(`.${s}`).nextAll('.form-clear').addClass('d-none');
+    });
+  }
+
   onFormChanges() {
     this.searchForm
       .valueChanges
       .subscribe((val) => {
         const requestedFilters = _.reduce(val, (acc, v, k) => (v ? acc.concat(k) : acc), []);
         this.toggleVehiculeNumberBox(requestedFilters);
+        this.shouldAddSliderCross();
         return this.filterAnnonces(requestedFilters, null, null);
       });
   }
