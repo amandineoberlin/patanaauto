@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   blockSlider: Boolean = false;
   notFoundText: String = Constants.NOT_FOUND_MESSAGE;
   filteredAnnonces: Array<any> = [];
+  priceFrom: Number = 1000;
+  priceTo: Number = 25000;
 
   constructor(
     private formDataService: FormDataService,
@@ -72,15 +74,10 @@ export class HomeComponent implements OnInit {
     if (price) this.quickSearch.controls['price'].setValue(null);
   }
 
-  clearModele() {
-    this.updatePriceRange();
-  }
-
   clearMarque() {
     this.modeles = _.orderBy(this.data.modeles);
     this.marques = _.orderBy(this.data.marques);
     this.quickSearch.controls['modele'].setValue(null);
-    this.updatePriceRange();
   }
 
   update() {
@@ -94,54 +91,11 @@ export class HomeComponent implements OnInit {
       ]);
     this.marques = marques;
     this.modeles = modeles;
-    this.updatePriceRange();
   }
 
   choosePriceClass() {
     if (this.blockSlider) return 'hide';
     return this.showPriceRange ? 'show' : 'hide';
-  }
-
-  updatePriceRange() {
-    this.blockSlider = false;
-
-    const modele = this.quickSearch.controls['modele'].value;
-    const marque = this.quickSearch.controls['marque'].value;
-    const reset = !modele && !marque;
-    let availableMinPrice = null;
-
-    if (modele) {
-      const availableModelePrice = _.compact(_.map(this.annonces, (annonce) => {
-        if (annonce.VehiculeModele[0] === modele) return annonce['VehiculePrixVenteTTC'][0];
-      }));
-      availableMinPrice = parseInt(_.min(availableModelePrice));
-    } else if (marque) {
-      const availableModelePrice = _.compact(_.map(this.annonces, (annonce) => {
-        if (annonce.VehiculeMarque[0] === marque) return annonce['VehiculePrixVenteTTC'][0];
-      }));
-      availableMinPrice = parseInt(_.min(availableModelePrice));
-    } else {
-      availableMinPrice = 0;
-    }
-
-    if (availableMinPrice >= 0) {
-      const slider = $('.js-range-slider');
-      const sliderInstance = slider.data("ionRangeSlider");
-
-      if (availableMinPrice === this.maxAvailablePrice) {
-        this.quickSearch.controls['price'].setValue(`${availableMinPrice} €`);
-        return this.blockSlider = true;
-      }
-
-      sliderInstance.update({
-        min: availableMinPrice,
-        max: this.maxAvailablePrice,
-        from: reset ? this.initFromPrice : availableMinPrice,
-        to: reset ? this.initToPrice : this.maxAvailablePrice
-      });
-
-      this.quickSearch.controls['price'].setValue(`${slider.data('from')} - ${slider.data('to')} €`);
-    }
   }
 
   submit() {
@@ -180,8 +134,8 @@ export class HomeComponent implements OnInit {
       type: 'double',
       min: 0,
       max: _.ceil(this.maxAvailablePrice),
-      from: 1000,
-      to: 5000,
+      from: this.priceFrom,
+      to: this.priceTo,
       grid: true,
       prefix: '€',
       step: 50,
