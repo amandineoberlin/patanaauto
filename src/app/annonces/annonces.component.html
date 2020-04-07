@@ -13,13 +13,13 @@
                 <div class="col">
                   <ng-select class="form-group marque" [items]="marques" placeholder="marque..."
                     formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}">
+                    notFoundText="{{notFoundText}}" (change)="update('marques')">
                   </ng-select>
                 </div>
                 <div class="col">
                   <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..."
                     formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}">
+                    notFoundText="{{notFoundText}}" (change)="update('modeles')">
                   </ng-select>
                 </div>
                 <div class="col">
@@ -42,13 +42,14 @@
                 <div class="col">
                   <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
                     formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}"
-                    dropdownPosition="bottom" (open)="onVersionOpen()" (close)="onVersionClose()">
+                    dropdownPosition="bottom" (open)="onVersionOpen()" (close)="onVersionClose()"
+                    (change)="update('versions')">
                   </ng-select>
                 </div>
                 <div class="col">
                   <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..."
                     formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}">
+                    notFoundText="{{notFoundText}}" (change)="update('selleries')">
                   </ng-select>
                 </div>
                 <div class="col">
@@ -73,7 +74,12 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <button type="submit" class="custom-primary reinitButton" (click)="resetFilters()">
+                <button *ngIf="searchForm.controls.modele.value || searchForm.controls.marque.value &&
+                  searchForm.controls.version.value || searchForm.controls.sellerie.value &&
+                  searchForm.controls.price.value || searchForm.controls.km.value"
+                  type="submit"
+                  class="custom-primary reinitButton"
+                  (click)="resetFilters()">
                   <i class="fas fa-search"></i> Réinitialiser les filtres
                 </button>
               </div>
