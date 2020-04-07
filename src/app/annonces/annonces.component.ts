@@ -181,16 +181,46 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  resetFilters(filter) {
-    if (_.isEmpty(this.filteredAnnonces) || !filter) {
+  resetSliders() {
+    _.forEach(['price', 'km'], (i) => {
+      if (this.searchForm.controls[i].value) return;
+
+      $(`.js-${i}-slider`)
+        .data("ionRangeSlider")
+        .update({ from: this[`${i}From`], to: this[`${i}To`] });
+      this.searchForm.controls[i].setValue(null);
+    })
+  }
+
+  resetFilters() {
+    if (_.isEmpty(this.filteredAnnonces)) {
       const { modeles, marques, selleries, versions } = this.data;
 
-      this.modeles = _.clone(modeles);
-      this.marques = _.clone(marques);
-      this.selleries = _.clone(selleries);
-      this.versions = _.clone(versions);
+      this.modeles = _.clone(_.orderBy(modeles));
+      this.marques = _.clone(_.orderBy(marques));
+      this.selleries = _.clone(_.orderBy(selleries));
+      this.versions = _.clone(_.orderBy(versions));
 
       this.searchForm.reset();
+      this.resetSliders();
+    }
+  }
+
+  clear(filter) {
+    if (!filter) return;
+
+    switch (filter) {
+      case 'marque':
+        _.forEach(['modele', 'version', 'sellerie'], i =>
+          this.searchForm.controls[i].setValue(null));
+          this.marques = _.clone(_.orderBy(this.data.marques));
+          this.resetSliders();
+      case 'modele':
+        _.forEach(['version', 'sellerie'], i =>
+          this.searchForm.controls[i].setValue(null));
+      case 'version':
+        _.forEach(['version'], i =>
+          this.searchForm.controls[i].setValue(null));
     }
   }
 
@@ -220,7 +250,17 @@ export class AnnoncesComponent implements OnInit {
   toggleVehiculeNumberBox(filters) {
     if (!_.isEmpty(filters) && $('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
       $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
-    } else $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
+    } else if (_.isEmpty(filters) && !$('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
+      $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
+    };
+  }
+
+  onVersionOpen() {
+    $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
+  }
+
+  onVersionClose() {
+    $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
   }
 
   onFormChanges() {
