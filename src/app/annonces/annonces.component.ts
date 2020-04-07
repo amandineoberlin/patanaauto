@@ -192,9 +192,13 @@ export class AnnoncesComponent implements OnInit {
 
     this.searchForm.controls[slider].setValue(null);
     this.shouldAddSliderCross();
+    this.update();
   }
 
-  resetFilters() {
+  resetFilters(filters = []) {
+    if (!_.isEmpty(filters)) return _.forEach(filters, (f) =>
+      this[f] = _.clone(_.orderBy(this.data[f])));
+
     const { modeles, marques, selleries, versions } = this.data;
 
     this.modeles = _.clone(_.orderBy(modeles));
@@ -213,8 +217,7 @@ export class AnnoncesComponent implements OnInit {
       case 'marque':
         _.forEach(['modele', 'version', 'sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
-          this.resetFilters();
-          return this.resetSliders();
+          this.resetFilters(['modeles', 'versions', 'selleries']);
       case 'modele':
         return _.forEach(['version', 'sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
@@ -227,11 +230,11 @@ export class AnnoncesComponent implements OnInit {
     }
   }
 
-  update(current) {
-    const toBeFiltered = _.reduce(Constants.VEHICULE_PROPS, (acc, v, k) =>
-      (k !== current ? acc.concat(k) : acc), []);
+  update() {
+    // const toBeFiltered = _.reduce(Constants.VEHICULE_PROPS, (acc, v, k) =>
+    //   (k !== current ? acc.concat(k) : acc), []);
 
-    _.forEach(toBeFiltered, (filter) => {
+    _.forEach(['modeles', 'marques', 'versions', 'selleries'], (filter) => {
       const filterNames = _.map(this.filteredAnnonces, (a) =>
         a[Constants.VEHICULE_PROPS[filter]][0]);
       this[filter] = _.orderBy(_.uniq(filterNames));

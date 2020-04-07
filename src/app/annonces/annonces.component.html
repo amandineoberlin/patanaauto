@@ -13,13 +13,13 @@
                 <div class="col">
                   <ng-select class="form-group marque" [items]="marques" placeholder="marque..."
                     formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}" (change)="update('marques')">
+                    notFoundText="{{notFoundText}}" (change)="update()">
                   </ng-select>
                 </div>
                 <div class="col">
                   <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..."
                     formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}" (change)="update('modeles')">
+                    notFoundText="{{notFoundText}}" (change)="update()">
                   </ng-select>
                 </div>
                 <div class="col">
@@ -43,13 +43,13 @@
                   <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
                     formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}"
                     dropdownPosition="bottom" (open)="onVersionOpen()" (close)="onVersionClose()"
-                    (change)="update('versions')">
+                    (change)="update()">
                   </ng-select>
                 </div>
                 <div class="col">
                   <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..."
                     formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
-                    notFoundText="{{notFoundText}}" (change)="update('selleries')">
+                    notFoundText="{{notFoundText}}" (change)="update()">
                   </ng-select>
                 </div>
                 <div class="col">
@@ -79,7 +79,7 @@
                   searchForm.controls.price.value || searchForm.controls.km.value"
                   type="submit"
                   class="custom-primary reinitButton"
-                  (click)="resetFilters()">
+                  (click)="resetFilters([])">
                   <i class="fas fa-search"></i> Réinitialiser les filtres
                 </button>
               </div>
