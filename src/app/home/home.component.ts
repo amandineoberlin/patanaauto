@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   modeles: Array<string>;
   initFromPrice: number;
   initToPrice: number;
-  showPriceRange: false;
+  showPriceRange: boolean;
   blockSlider: false;
   notFoundText: string = Constants.NOT_FOUND_MESSAGE;
   filteredAnnonces: Array<any> = [];
@@ -150,6 +150,8 @@ export class HomeComponent implements OnInit {
       modele: [null],
       price: [null]
     });
+    
+    this.showPriceRange = false;
 
     this.formDataService.loadAnnonces({ quickSearch: true })
       .then(dataObj => {
