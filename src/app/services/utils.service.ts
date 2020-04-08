@@ -31,6 +31,6 @@ export class UtilsService {
       $(`.${filter}`).siblings('.form-clear').on('click', () => {
         $(`.${filter}`).next().addClass('d-none').prev(':input').val('');
       });
-    })
+    });
   }
 }

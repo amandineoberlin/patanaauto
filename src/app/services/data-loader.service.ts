@@ -40,8 +40,8 @@ export class DataLoaderService {
           selleries: _.uniq(selleries),
           versions: _.uniq(versions),
           annoncesSize
-        }
-      })
+        };
+      });
   }
 
   getSingleAnnonce(id) {
