@@ -38,8 +38,8 @@ export class AnnoncesComponent implements OnInit {
   blockPriceSlider: false;
   blockKmSlider: false;
   blockVersions: false;
-  showPriceRange: false;
-  showKmRange: false;
+  showPriceRange: boolean;
+  showKmRange: boolean;
   initFromPrice: number;
   initToPrice: number;
   notFoundText: string = Constants.NOT_FOUND_MESSAGE;
@@ -382,6 +382,9 @@ export class AnnoncesComponent implements OnInit {
       price: [null],
       km: [null]
     });
+
+    this.showPriceRange = false;
+    this.showKmRange = false;
 
     // @ts-ignore
     $('.dropdown-toggle').dropdown();
