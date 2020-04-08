@@ -82,29 +82,35 @@ export class AnnoncesComponent implements OnInit {
   togglePriceView() {
     if (this.blockPriceSlider) return;
 
-    const priceEl = $('.js-price-slider');
-
     this.showPriceRange = !this.showPriceRange;
-    if (this.showPriceRange) this.showKmRange = false;
 
-    const price = this.inputValue(priceEl);
-    if (_.isEmpty(price)) return;
+    const formValue = this.searchForm.controls['price'].value;
+    if (formValue) {
+      const priceFormatted = this.splitRange(formValue, '€');
+      return this.updateIonSlider('price', priceFormatted);
+    }
 
-    this.searchForm.controls['price'].setValue(`${priceEl.data('from')} - ${priceEl.data('to')} €`);
+    return this.updateIonSlider('price', {
+      from: this.priceFrom,
+      to: this.priceTo
+    });
   }
 
   toggleKmView() {
     if (this.blockKmSlider) return;
 
-    const kMEl = $('.js-km-slider');
-
     this.showKmRange = !this.showKmRange;
-    if (this.showKmRange) this.showPriceRange = false;
 
-    const km = this.inputValue(kMEl);
-    if (_.isEmpty(km)) return;
+    const formValue = this.searchForm.controls['km'].value;
+    if (formValue) {
+      const kmFormatted = this.splitRange(formValue, 'km');
+      return this.updateIonSlider('km', kmFormatted);
+    }
 
-    this.searchForm.controls['km'].setValue(`${kMEl.data('from')} - ${kMEl.data('to')} km`);
+    return this.updateIonSlider('km', {
+      from: this.kmFrom,
+      to: this.kmTo
+    });
   }
 
   displayFormValue(formProps, data) {
@@ -181,14 +187,21 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
+  updateIonSlider(slider, { from, to }) {
+    $(`.js-${slider}-slider`)
+      .data('ionRangeSlider')
+      .update({ from, to });
+  }
+
   resetSliders() {
     _.forEach(['price', 'km'], (i) => this.resetSlider(i));
   }
 
   resetSlider(slider) {
-    $(`.js-${slider}-slider`)
-      .data('ionRangeSlider')
-      .update({ from: this[`${slider}From`], to: this[`${slider}To`] });
+    this.updateIonSlider(slider, {
+      from: this[`${slider}From`],
+      to: this[`${slider}To`]
+    })
 
     this.searchForm.controls[slider].setValue(null);
     this.shouldAddSliderCross();
@@ -231,9 +244,6 @@ export class AnnoncesComponent implements OnInit {
   }
 
   update() {
-    // const toBeFiltered = _.reduce(Constants.VEHICULE_PROPS, (acc, v, k) =>
-    //   (k !== current ? acc.concat(k) : acc), []);
-
     _.forEach(['modeles', 'marques', 'versions', 'selleries'], (filter) => {
       const filterNames = _.map(this.filteredAnnonces, (a) =>
         a[Constants.VEHICULE_PROPS[filter]][0]);
@@ -248,15 +258,15 @@ export class AnnoncesComponent implements OnInit {
   splitRange(value, key) {
     const symbol = key === 'price' ? '€' : 'km';
     const range = _.split(value, '-');
-    const firstRange = parseInt(range[0]);
-    const secondRange = parseInt(range[1].split(symbol));
+    const from = parseInt(range[0]);
+    const to = parseInt(range[1].split(symbol));
 
-    return { firstRange, secondRange };
+    return { from, to };
   }
 
   isSliderInRange(filterValue, v, k) {
-    const { firstRange, secondRange } = this.splitRange(v, k);
-    const isWithinRange = this.isInRange(parseInt(filterValue), firstRange, secondRange);
+    const { from, to } = this.splitRange(v, k);
+    const isWithinRange = this.isInRange(parseInt(filterValue), from, to);
     return isWithinRange;
   }
 
