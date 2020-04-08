@@ -17,20 +17,20 @@ import { Constants } from '../constants';
 export class HomeComponent implements OnInit {
 
   quickSearch: FormGroup;
-  data: { [name: string]: Object };
-  annonces: Object;
-  annoncesSize: Number;
+  data: { [name: string]: object };
+  annonces: object;
+  annoncesSize: number;
   maxAvailablePrice: number;
   marques: Array<string>;
   modeles: Array<string>;
-  initFromPrice: Number;
-  initToPrice: Number;
-  showPriceRange: Boolean = false;
-  blockSlider: Boolean = false;
-  notFoundText: String = Constants.NOT_FOUND_MESSAGE;
+  initFromPrice: number;
+  initToPrice: number;
+  showPriceRange: false;
+  blockSlider: false;
+  notFoundText: string = Constants.NOT_FOUND_MESSAGE;
   filteredAnnonces: Array<any> = [];
-  priceFrom: Number = 1000;
-  priceTo: Number = 25000;
+  priceFrom: 1000;
+  priceTo: 25000;
 
   constructor(
     private formDataService: FormDataService,
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
     return this.router.navigate(['/annonces'],
       { queryParams });
-  };
+  }
 
   inputPriceValue() {
     const input = $('.js-range-slider');
@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
 
   hideSliderOnClick() {
     // hide price range slider when user clicks anywhere else than the input itself
-    $('html').click((e) => {
+    $('html').on('click', (e) => {
       if (!this.showPriceRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
@@ -123,13 +123,13 @@ export class HomeComponent implements OnInit {
   initSlider() {
     const updatePrice = (data) => {
       let value;
-      if (data.from === data.to) value = `${data.from} €`
+      if (data.from === data.to) value = `${data.from} €`;
       else value = `${data.from} - ${data.to} €`;
       this.quickSearch.controls['price']
-        .setValue(value, { emitEvent:false })
-    }
+        .setValue(value, { emitEvent: false });
+    };
 
-    //@ts-ignore
+    // @ts-ignore
     $('.js-range-slider').ionRangeSlider({
       type: 'double',
       min: 0,

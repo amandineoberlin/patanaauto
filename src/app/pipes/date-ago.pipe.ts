@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { UtilsService } from '../services/utils.service';
+import _ from 'lodash';
 
 @Pipe({
   name: 'dateAgo',
@@ -10,7 +11,7 @@ export class DateAgoPipe implements PipeTransform {
 
   constructor(
     private utilsService: UtilsService,
-  ){}
+  ) { }
 
   transform(value: any): any {
     if (value) {
@@ -20,17 +21,17 @@ export class DateAgoPipe implements PipeTransform {
       if (seconds < 29) return 'Just now';
 
       const intervals = {
-        'an': 31536000,
-        'moi': 2592000,
-        'année': 604800,
-        'jour': 86400,
-        'heure': 3600,
-        'minute': 60,
-        'seconde': 1
+        an: 31536000,
+        moi: 2592000,
+        année: 604800,
+        jour: 86400,
+        heure: 3600,
+        minute: 60,
+        seconde: 1
       };
 
       let counter;
-      for (const i in intervals) {
+      _.forIn(intervals, (v, i) => {
         counter = Math.floor(seconds / intervals[i]);
         if (counter > 0) {
           if (counter === 1) {
@@ -39,7 +40,7 @@ export class DateAgoPipe implements PipeTransform {
             return counter + ' ' + i + 's'; // plural (2 days ago)
           }
         }
-      }
+      });
     }
 
     return value;

@@ -26,32 +26,32 @@ export class AnnoncesComponent implements OnInit {
   ) { }
 
   searchForm: FormGroup;
-  data: { [name: string]: Object };
-  annonces: Object;
-  annoncesSize: Number;
+  data: { [name: string]: object };
+  annonces: object;
+  annoncesSize: number;
   maxAvailablePrice: number;
   maxAvailableKm: number;
   marques: Array<any>;
   modeles: Array<any>;
   versions: Array<any>;
   selleries: Array<any>;
-  blockPriceSlider: Boolean = false;
-  blockKmSlider: Boolean = false;
-  blockVersions: Boolean = false;
-  showPriceRange: Boolean = false;
-  showKmRange: Boolean = false;
-  initFromPrice: Number;
-  initToPrice: Number;
-  notFoundText: String = Constants.NOT_FOUND_MESSAGE;
-  limit: Number = 10;
+  blockPriceSlider: false;
+  blockKmSlider: false;
+  blockVersions: false;
+  showPriceRange: false;
+  showKmRange: false;
+  initFromPrice: number;
+  initToPrice: number;
+  notFoundText: string = Constants.NOT_FOUND_MESSAGE;
+  limit: 10;
   filteredAnnonces: Array<any> = [];
-  tri: String;
-  priceFrom: Number = 1000;
-  priceTo: Number = 25000;
-  kmFrom: Number = 0;
-  kmTo: Number = 230000;
+  tri: string;
+  priceFrom: 1000;
+  priceTo: 25000;
+  kmFrom: 0;
+  kmTo: 230000;
 
-  filtersMapping: Object = {
+  filtersMapping: object = {
     km: 'VehiculeKilometrage',
     price: 'VehiculePrixVenteTTC',
     marque: 'VehiculeMarque',
@@ -59,7 +59,7 @@ export class AnnoncesComponent implements OnInit {
     version: 'VehiculeVersion',
     sellerie: 'VehiculeSellerie',
     date: 'VehiculeCarteGriseDate'
-  }
+  };
 
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
@@ -118,13 +118,13 @@ export class AnnoncesComponent implements OnInit {
     if (_.isArray(formProps)) {
       _.forEach(formProps, prop => {
         if (_.size(data[prop]) === 1) this.searchForm.controls[prop].setValue(data[prop][0]);
-      })
+      });
     }
   }
 
   hideSlidersOnClick() {
-    $('html').click((e) => {
-      //@ts-ignore
+    $('html').on('click', (e) => {
+      // @ts-ignore
       if (!this.showPriceRange && !this.showKmRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
@@ -147,17 +147,17 @@ export class AnnoncesComponent implements OnInit {
       value = `${data.from} - ${data.to} €`;
       return this.searchForm.controls['price']
         .setValue(value, { emitEvent });
-    }
+    };
 
     const updateKm = (data, emitEvent) => {
       let value;
       if (data.from === data.to) return data.to = data.from + 10;
       value = `${data.from} - ${data.to} km`;
       return this.searchForm.controls['km']
-        .setValue(value, { emitEvent })
-    }
+        .setValue(value, { emitEvent });
+    };
 
-    //@ts-ignore
+    // @ts-ignore
     $('.js-price-slider').ionRangeSlider({
         type: 'double',
         min: 0,
@@ -172,7 +172,7 @@ export class AnnoncesComponent implements OnInit {
     });
 
     const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
-    //@ts-ignore
+    // @ts-ignore
     $('.js-km-slider').ionRangeSlider({
         type: 'double',
         min: 0,
@@ -201,7 +201,7 @@ export class AnnoncesComponent implements OnInit {
     this.updateIonSlider(slider, {
       from: this[`${slider}From`],
       to: this[`${slider}To`]
-    })
+    });
 
     this.searchForm.controls[slider].setValue(null);
     this.shouldAddSliderCross();
@@ -209,8 +209,9 @@ export class AnnoncesComponent implements OnInit {
   }
 
   resetFilters(filters = []) {
-    if (!_.isEmpty(filters)) return _.forEach(filters, (f) =>
-      this[f] = _.clone(_.orderBy(this.data[f])));
+    if (!_.isEmpty(filters)) {
+      return _.forEach(filters, (f) => this[f] = _.clone(_.orderBy(this.data[f])));
+    }
 
     const { modeles, marques, selleries, versions } = this.data;
 
@@ -230,16 +231,20 @@ export class AnnoncesComponent implements OnInit {
       case 'marque':
         _.forEach(['modele', 'version', 'sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
-          this.resetFilters(['modeles', 'versions', 'selleries']);
+        this.resetFilters(['modeles', 'versions', 'selleries']);
+        break;
       case 'modele':
-        return _.forEach(['version', 'sellerie'], i =>
+        _.forEach(['version', 'sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
+        break;
       case 'version':
-        return _.forEach(['version'], i =>
+        _.forEach(['version'], i =>
           this.searchForm.controls[i].setValue(null));
+        break;
       case 'sellerie':
-        return _.forEach(['sellerie'], i =>
+        _.forEach(['sellerie'], i =>
           this.searchForm.controls[i].setValue(null));
+        break;
     }
   }
 
@@ -258,28 +263,28 @@ export class AnnoncesComponent implements OnInit {
   splitRange(value, key) {
     const symbol = key === 'price' ? '€' : 'km';
     const range = _.split(value, '-');
-    const from = parseInt(range[0]);
-    const to = parseInt(range[1].split(symbol));
+    const from = parseInt(range[0], 10);
+    const to = parseInt(range[1].split(symbol), 10);
 
     return { from, to };
   }
 
   isSliderInRange(filterValue, v, k) {
     const { from, to } = this.splitRange(v, k);
-    const isWithinRange = this.isInRange(parseInt(filterValue), from, to);
+    const isWithinRange = this.isInRange(parseInt(filterValue, 10), from, to);
     return isWithinRange;
   }
 
   redirectToAnnonce(id) {
     return this.router.navigate(['/annonce'], { queryParams: { id } });
-  };
+  }
 
   toggleVehiculeNumberBox(filters) {
     if (!_.isEmpty(filters) && $('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
       $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
     } else if (_.isEmpty(filters) && !$('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
       $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
-    };
+    }
   }
 
   onVersionOpen() {
@@ -323,7 +328,7 @@ export class AnnoncesComponent implements OnInit {
 
       const annonceVal = annonce[v][0];
 
-      if (_.includes(['price', 'km'], k)) return !this.isSliderInRange(annonceVal, filterValue, k)
+      if (_.includes(['price', 'km'], k)) return !this.isSliderInRange(annonceVal, filterValue, k);
 
       return annonceVal !== filterValue;
     });
@@ -332,7 +337,7 @@ export class AnnoncesComponent implements OnInit {
   filterWithTri(filter, order) {
     const orderBy = _.map(this.filteredAnnonces, (a) => {
       let item = a[this.filtersMapping[filter]][0];
-      if (_.includes(['price', 'km'], filter)) item = parseInt(item);
+      if (_.includes(['price', 'km'], filter)) item = parseInt(item, 10);
       if (filter === 'date') item = this.utilsService.parseDate(item);
       return { _id: a._id, item };
     });
@@ -364,7 +369,7 @@ export class AnnoncesComponent implements OnInit {
         _.forIn(params, (v, k) => {
           this.searchForm.controls[k].setValue(v);
         });
-        this.filterAnnonces(_.keys(params), null, false)
+        this.filterAnnonces(_.keys(params), null, false);
       });
   }
 
@@ -378,8 +383,8 @@ export class AnnoncesComponent implements OnInit {
       km: [null]
     });
 
-    //@ts-ignore
-    $('.dropdown-toggle').dropdown()
+    // @ts-ignore
+    $('.dropdown-toggle').dropdown();
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
