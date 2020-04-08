@@ -14,8 +14,8 @@ import { Constants } from '../constants';
   templateUrl: './annonces.component.html',
   styleUrls: ['./annonces.component.scss']
 })
-export class AnnoncesComponent implements OnInit {
 
+export class AnnoncesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
@@ -27,17 +27,14 @@ export class AnnoncesComponent implements OnInit {
 
   searchForm: FormGroup;
   data: { [name: string]: Object };
-  marqueParam: String;
-  modeleParam: String;
-  priceParam: String;
   annonces: Object;
   annoncesSize: Number;
   maxAvailablePrice: number;
   maxAvailableKm: number;
-  marques: Array<string>;
-  modeles: Array<string>;
-  versions: Array<string>;
-  selleries: Array<string>;
+  marques: Array<any>;
+  modeles: Array<any>;
+  versions: Array<any>;
+  selleries: Array<any>;
   blockPriceSlider: Boolean = false;
   blockKmSlider: Boolean = false;
   blockVersions: Boolean = false;
@@ -49,32 +46,23 @@ export class AnnoncesComponent implements OnInit {
   limit: Number = 10;
   filteredAnnonces: Array<any> = [];
   tri: String;
-  filter: String;
-  order: String;
+  priceFrom: Number = 1000;
+  priceTo: Number = 25000;
+  kmFrom: Number = 0;
+  kmTo: Number = 230000;
+
+  filtersMapping: Object = {
+    km: 'VehiculeKilometrage',
+    price: 'VehiculePrixVenteTTC',
+    marque: 'VehiculeMarque',
+    modele: 'VehiculeModele',
+    version: 'VehiculeVersion',
+    sellerie: 'VehiculeSellerie',
+    date: 'VehiculeCarteGriseDate'
+  }
 
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
-  }
-
-  filterAnnonces(filter = null, order = null) {
-    if (!filter) {
-      this.filteredAnnonces = _.clone(this.annonces);
-    }
-
-    this.tri = order ? `${filter} ${order}` : filter;
-    this.filter = filter;
-    this.order = order;
-
-    if (filter === 'année') {
-      this.filteredAnnonces = _.orderBy(this.filteredAnnonces, 'VehiculeCarteGriseDate');
-    }
-    if (filter === 'km') {
-      this.filteredAnnonces = _.orderBy(this.annonces, 'VehiculeKilometrage');
-    }
-    if (filter === 'prix') {
-      const lodashOrderName = order === 'décroissant' ? 'desc' : 'asc';
-      this.filteredAnnonces = _.orderBy(this.annonces, 'VehiculeVenteTTC', lodashOrderName);
-    }
   }
 
   inputValue(el) {
@@ -94,95 +82,44 @@ export class AnnoncesComponent implements OnInit {
   togglePriceView() {
     if (this.blockPriceSlider) return;
 
-    const priceEl = $('.js-price-slider');
-
     this.showPriceRange = !this.showPriceRange;
-    if (this.showPriceRange) this.showKmRange = false;
 
-    const price = this.inputValue(priceEl);
-    if (_.isEmpty(price)) return;
+    const formValue = this.searchForm.controls['price'].value;
+    if (formValue) {
+      const priceFormatted = this.splitRange(formValue, '€');
+      return this.updateIonSlider('price', priceFormatted);
+    }
 
-    this.searchForm.controls['price'].setValue(`${priceEl.data('from')} - ${priceEl.data('to')} €`);
+    return this.updateIonSlider('price', {
+      from: this.priceFrom,
+      to: this.priceTo
+    });
   }
 
   toggleKmView() {
     if (this.blockKmSlider) return;
 
-    const kMEl = $('.js-km-slider');
-
     this.showKmRange = !this.showKmRange;
-    if (this.showKmRange) this.showPriceRange = false;
 
-    const km = this.inputValue(kMEl);
-    if (_.isEmpty(km)) return;
+    const formValue = this.searchForm.controls['km'].value;
+    if (formValue) {
+      const kmFormatted = this.splitRange(formValue, 'km');
+      return this.updateIonSlider('km', kmFormatted);
+    }
 
-    this.searchForm.controls['km'].setValue(`${kMEl.data('from')} - ${kMEl.data('to')} km`);
+    return this.updateIonSlider('km', {
+      from: this.kmFrom,
+      to: this.kmTo
+    });
   }
 
-  displayFormVal(formProps, data) {
+  displayFormValue(formProps, data) {
     if (_.isString(formProps)) this.searchForm.controls[formProps].setValue(data);
     if (_.isArray(formProps)) {
       _.forEach(formProps, prop => {
         if (_.size(data[prop]) === 1) this.searchForm.controls[prop].setValue(data[prop][0]);
       })
     }
-  }
-
-  clearData(data) {
-    this.formDataService.clearFormData(this.searchForm, data);
-  }
-
-  resetValues(values) {
-    _.forEach(values, v => this[v] === _.orderBy(this.data[v]));
-  }
-
-  clear(value) {
-    switch (value) {
-      case 'marque':
-        this.clearData(['modele', 'version', 'sellerie']);
-        this.resetValues(['marques', 'modeles', 'versions', 'selleries'])
-        break;
-      case 'modele':
-        this.clearData(['version', 'sellerie']);
-        this.resetValues(['modeles', 'versions', 'selleries'])
-        break;
-      case 'version':
-        this.clearData(['sellerie']);
-        this.resetValues(['versions', 'selleries'])
-        break;
-      case 'sellerie':
-        this.clearData(['version']);
-        this.resetValues(['selleries'])
-        break;
-    }
-  }
-
-  update(value) {
-    const form = this.searchForm.controls;
-    const formValues = _.compact(_.map(form, f => f.value));
-
-    if (_.isEmpty(formValues)) this.resetValues(['modeles', 'marques', 'versions', 'selleries']);
-    this.clear(value);
-
-    const {
-      marques,
-      modeles,
-      versions,
-      selleries
-    } = this.formDataService.matchTagValues(this.annonces, [
-      { marques: form['marque'].value },
-      { modeles: form['modele'].value },
-      { selleries: form['sellerie'].value },
-      { versions: form['version'].value }
-    ]);
-
-    this.marques = marques;
-    this.modeles = modeles;
-    this.versions = versions;
-    this.selleries = selleries;
-
-    this.displayFormVal(['marque', 'modele', 'version', 'sellerie'],
-      { marque: marques, modele: modeles, version: versions, sellerie: selleries });
   }
 
   hideSlidersOnClick() {
@@ -201,27 +138,37 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  navigateToAnnonce(id, state) {
-    this.router.navigateByUrl(`annonce/${id}`, { state });
-  }
-
   initSliders() {
     const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
+
+    const updatePrice = (data, emitEvent) => {
+      let value;
+      if (data.from === data.to) return data.to = data.from + 10;
+      value = `${data.from} - ${data.to} €`;
+      return this.searchForm.controls['price']
+        .setValue(value, { emitEvent });
+    }
+
+    const updateKm = (data, emitEvent) => {
+      let value;
+      if (data.from === data.to) return data.to = data.from + 10;
+      value = `${data.from} - ${data.to} km`;
+      return this.searchForm.controls['km']
+        .setValue(value, { emitEvent })
+    }
+
     //@ts-ignore
     $('.js-price-slider').ionRangeSlider({
         type: 'double',
         min: 0,
         max: roundMaxPrice,
-        from: 1000,
-        to: 5000,
+        from: this.priceFrom,
+        to: this.priceTo,
         grid: true,
         prefix: '€ ',
         step: 50,
-        onChange: (data) => {
-          const from = data.from;
-          const to = data.to;
-          this.searchForm.controls['price'].setValue(`${from} - ${to} €`);
-        }
+        onChange: (data) => updatePrice(data, true),
+        onUpdate: (data) => updatePrice(data, false)
     });
 
     const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
@@ -230,22 +177,196 @@ export class AnnoncesComponent implements OnInit {
         type: 'double',
         min: 0,
         max: roundMaxKm,
-        from: 0,
-        to: 80000,
+        from: this.kmFrom,
+        to: this.kmTo,
         grid: true,
         prefix: 'km: ',
         step: 50,
-        onChange: (data) => {
-          const from = data.from;
-          const to = data.to;
-          this.searchForm.controls['km'].setValue(`${from} - ${to} km`);
-        }
+        onChange: (data) => updateKm(data, true),
+        onUpdate: (data) => updateKm(data, false)
     });
+  }
+
+  updateIonSlider(slider, { from, to }) {
+    $(`.js-${slider}-slider`)
+      .data('ionRangeSlider')
+      .update({ from, to });
+  }
+
+  resetSliders() {
+    _.forEach(['price', 'km'], (i) => this.resetSlider(i));
+  }
+
+  resetSlider(slider) {
+    this.updateIonSlider(slider, {
+      from: this[`${slider}From`],
+      to: this[`${slider}To`]
+    })
+
+    this.searchForm.controls[slider].setValue(null);
+    this.shouldAddSliderCross();
+    this.update();
+  }
+
+  resetFilters(filters = []) {
+    if (!_.isEmpty(filters)) return _.forEach(filters, (f) =>
+      this[f] = _.clone(_.orderBy(this.data[f])));
+
+    const { modeles, marques, selleries, versions } = this.data;
+
+    this.modeles = _.clone(_.orderBy(modeles));
+    this.marques = _.clone(_.orderBy(marques));
+    this.selleries = _.clone(_.orderBy(selleries));
+    this.versions = _.clone(_.orderBy(versions));
+
+    this.searchForm.reset();
+    this.resetSliders();
+  }
+
+  clear(filter) {
+    if (!filter) return;
+
+    switch (filter) {
+      case 'marque':
+        _.forEach(['modele', 'version', 'sellerie'], i =>
+          this.searchForm.controls[i].setValue(null));
+          this.resetFilters(['modeles', 'versions', 'selleries']);
+      case 'modele':
+        return _.forEach(['version', 'sellerie'], i =>
+          this.searchForm.controls[i].setValue(null));
+      case 'version':
+        return _.forEach(['version'], i =>
+          this.searchForm.controls[i].setValue(null));
+      case 'sellerie':
+        return _.forEach(['sellerie'], i =>
+          this.searchForm.controls[i].setValue(null));
+    }
+  }
+
+  update() {
+    _.forEach(['modeles', 'marques', 'versions', 'selleries'], (filter) => {
+      const filterNames = _.map(this.filteredAnnonces, (a) =>
+        a[Constants.VEHICULE_PROPS[filter]][0]);
+      this[filter] = _.orderBy(_.uniq(filterNames));
+    });
+  }
+
+  isInRange(val, start, end) {
+    return val >= start && val <= end;
+  }
+
+  splitRange(value, key) {
+    const symbol = key === 'price' ? '€' : 'km';
+    const range = _.split(value, '-');
+    const from = parseInt(range[0]);
+    const to = parseInt(range[1].split(symbol));
+
+    return { from, to };
+  }
+
+  isSliderInRange(filterValue, v, k) {
+    const { from, to } = this.splitRange(v, k);
+    const isWithinRange = this.isInRange(parseInt(filterValue), from, to);
+    return isWithinRange;
   }
 
   redirectToAnnonce(id) {
     return this.router.navigate(['/annonce'], { queryParams: { id } });
   };
+
+  toggleVehiculeNumberBox(filters) {
+    if (!_.isEmpty(filters) && $('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
+      $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
+    } else if (_.isEmpty(filters) && !$('.vehiculeNumber').hasClass('vehiculeNumber-hidden')) {
+      $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
+    };
+  }
+
+  onVersionOpen() {
+    $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
+  }
+
+  onVersionClose() {
+    $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
+  }
+
+  shouldAddSliderCross() {
+    _.forEach(['km', 'price'], (s) => {
+      return this.searchForm.controls[s].value ?
+        $(`.${s}`).nextAll('.form-clear').removeClass('d-none') :
+        $(`.${s}`).nextAll('.form-clear').addClass('d-none');
+    });
+  }
+
+  onFormChanges() {
+    this.searchForm
+      .valueChanges
+      .subscribe((val) => {
+        const requestedFilters = _.reduce(val, (acc, v, k) => (v ? acc.concat(k) : acc), []);
+        this.toggleVehiculeNumberBox(requestedFilters);
+        this.shouldAddSliderCross();
+        return this.filterAnnonces(requestedFilters, null, null);
+      });
+  }
+
+  updateDropdownValuesAfterFilter() {
+    return _.forIn(this.filtersMapping, (name, key) => {
+      if (_.includes(['price', 'km'], key)) return;
+      this[`${key}s`] = _.uniq(_.flatMap(this.filteredAnnonces, (annonce) => annonce[name][0]));
+    });
+  }
+
+  addFiltersUp(annonce) {
+    return _.map(this.filtersMapping, (v, k) => {
+      const filterValue = this.searchForm.controls[k] ? this.searchForm.controls[k].value : null;
+      if (!filterValue) return;
+
+      const annonceVal = annonce[v][0];
+
+      if (_.includes(['price', 'km'], k)) return !this.isSliderInRange(annonceVal, filterValue, k)
+
+      return annonceVal !== filterValue;
+    });
+  }
+
+  filterWithTri(filter, order) {
+    const orderBy = _.map(this.filteredAnnonces, (a) => {
+      let item = a[this.filtersMapping[filter]][0];
+      if (_.includes(['price', 'km'], filter)) item = parseInt(item);
+      if (filter === 'date') item = this.utilsService.parseDate(item);
+      return { _id: a._id, item };
+    });
+
+    const orderedItems = _.orderBy(orderBy, ['item'], [order]);
+    this.filteredAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+    const o = order === 'asc' ? 'croissant' : 'decroissant';
+
+    return this.tri = filter === 'price' ? `prix ${o}` : `${filter}`;
+  }
+
+  filterAnnonces(filters = [], isTri, order) {
+    if (!filters || _.isEmpty(filters)) return this.filteredAnnonces = _.clone(this.annonces);
+
+    if (isTri && _.size(this.filteredAnnonces) > 1) return this.filterWithTri(filters[0], order);
+
+    this.filteredAnnonces = _.reduce(this.annonces, (acc, annonce) => {
+      const areSomeInvalidAnnonces = _.compact(this.addFiltersUp(annonce));
+      return _.isEmpty(areSomeInvalidAnnonces) ? acc.concat(annonce) : acc;
+    }, []);
+
+    this.updateDropdownValuesAfterFilter();
+  }
+
+  onRouteChange() {
+    this.activatedRoute.queryParams
+      .subscribe((params: any) => {
+        if (_.isEmpty(params)) return;
+        _.forIn(params, (v, k) => {
+          this.searchForm.controls[k].setValue(v);
+        });
+        this.filterAnnonces(_.keys(params), null, false)
+      });
+  }
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
@@ -260,21 +381,16 @@ export class AnnoncesComponent implements OnInit {
     //@ts-ignore
     $('.dropdown-toggle').dropdown()
 
-    this.activatedRoute.queryParams
-      .subscribe((params: any) => {
-        this.marqueParam = params['marque'];
-        this.modeleParam = params['modele'];
-        this.priceParam = params['price'];
-      });
-
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
-      .then(() => this.filterAnnonces())
+      .then(() => this.filteredAnnonces = _.clone(this.annonces))
+      .then(() => this.filterAnnonces(['date'], true, 'desc'))
       .then(() => {
         this.initSliders();
-        this.utilsService.bootstrapClearButton(this.searchForm.controls);
-        // hide price range slider when user clicks anywhere else than the input itself
+        this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
         this.hideSlidersOnClick();
+        this.onFormChanges();
+        this.onRouteChange();
       });
   }
 

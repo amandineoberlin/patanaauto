@@ -28,7 +28,7 @@
     }
 
     .bg-faded {
-      @include opacity($plain-white, 0.8);
+      @include opacity($plain-white, 0.85);
 
       .title {
         font-family: 'Raleway';
@@ -63,7 +63,7 @@
     .partLeft, .partRight {
       width: 21%;
       position: absolute;
-      top: 150px;
+      top: 80px;
       font-family: 'Karla';
       z-index: 10;
 
@@ -75,7 +75,7 @@
     }
 
     .partLeft {
-      left: 60px;
+      left: 50px;
 
       .vl {
         top: 40px;
@@ -85,13 +85,17 @@
     }
 
     .partRight {
-      right: 60px;
+      right: 50px;
+
+      .dot {
+        padding-right: 5px;
+      }
 
       .intro {
         font-family: 'Raleway';
         font-weight: 100;
         font-size: 18px;
-        color: $black;
+        color: $primary;
       }
 
       .suite {

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { UtilsService } from '../services/utils.service';
 
 @Pipe({
   name: 'dateAgo',
@@ -7,23 +8,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class DateAgoPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  constructor(
+    private utilsService: UtilsService,
+  ){}
 
-    // parse french format to js US format
-    const parseDate = (input) => {
-      var parts = input.match(/(\d+)/g);
-      return `${parts[1]}-${parts[0]}-${parts[2]}`;
-    };
-
+  transform(value: any): any {
     if (value) {
-      const seconds = Math.floor((+new Date() - +new Date(parseDate(value))) / 1000);
+      const seconds = Math.abs(Date.now() - new Date(this.utilsService.parseDate(value)).getTime()) / 1000;
 
       // less than 30 seconds ago will show as 'Just now'
       if (seconds < 29) return 'Just now';
 
       const intervals = {
         'an': 31536000,
-        'mois': 2592000,
+        'moi': 2592000,
         'année': 604800,
         'jour': 86400,
         'heure': 3600,
