@@ -95,10 +95,10 @@
             Trier par: {{tri}}
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="filterAnnonces(['price'], 'asc', true)">Prix croissant</a>
-            <a class="dropdown-item" (click)="filterAnnonces(['price'], 'desc', true)">Prix décroissant</a>
-            <a class="dropdown-item" (click)="filterAnnonces(['date'], null, true)">Année</a>
-            <a class="dropdown-item" (click)="filterAnnonces(['km'], null, true)">Km</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['price'], true, 'asc')">Prix croissant</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['price'], true, 'desc')">Prix décroissant</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['date'], true, 'desc')">Date</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['km'], true, 'asc')">Km</a>
           </div>
         </div>
       </div>

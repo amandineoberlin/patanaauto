@@ -9,6 +9,11 @@ export class UtilsService {
 
   constructor() { }
 
+  parseDate(input) {
+    const date = input.split('-');
+    return new Date(date[2], date[1], date[0]);
+  }
+
   bootstrapClearButton(form, filters) {
     _.forEach(filters, (filter) => {
       const getValue = () => form[filter].value;
