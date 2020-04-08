@@ -27,10 +27,10 @@ export class PlanComponent implements OnInit, AfterViewInit {
   email: '';
   subject: '';
   message: '';
-  submitting: false;
-  rejected: false;
-  accepted: false;
-  disableButton: true;
+  submitting: boolean;
+  rejected: boolean;
+  accepted: boolean;
+  disableButton: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -140,6 +140,11 @@ export class PlanComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.disableButton = true;
+    this.submitting = false;
+    this.rejected = false;
+    this.accepted = false;
+
     this.contactForm = this.fb.group({
       name: [null],
       email: [null],
