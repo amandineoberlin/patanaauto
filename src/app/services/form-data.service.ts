@@ -17,7 +17,7 @@ export class FormDataService {
     private http: HttpClient
   ) { }
 
-  annonces: Object;
+  annonces: object;
 
   contactForm(data): Promise<any> {
     return this.http.post<any[]>('send-contact-form', data)
@@ -25,7 +25,7 @@ export class FormDataService {
   }
 
   calculateMax(prop) {
-    return _.max(_.map(this.annonces, annonce => parseInt(annonce[prop][0])));
+    return _.max(_.map(this.annonces, annonce => parseInt(annonce[prop][0], 10)));
   }
 
   clearFormData(customForm, val) {
@@ -87,13 +87,13 @@ export class FormDataService {
           maxAvailablePrice,
           initFromPrice: Constants.DEFAULT_MIN_PRICE,
           initToPrice: Constants.DEFAULT_MAX_PRICE
-        }
+        };
 
         if (options.quickSearch) return minimiumData;
 
         const maxAvailableKm = this.calculateMax('VehiculeKilometrage');
 
-        if (options.fullSearch) return _.assign(minimiumData, { maxAvailableKm })
+        if (options.fullSearch) return _.assign(minimiumData, { maxAvailableKm });
       });
   }
 }
