@@ -1,118 +1,138 @@
-<div class="container-fluid annonces-container">
-  <div class="content-container">
+<div class="bg annonces-container">
+  <div class="container-fluid">
+    <div class="content-container">
 
-    <div class="row">
-      <div class="col-md-12">
-        <form class="inline" [formGroup]="searchForm">
-          <div class="row filters">
-            <div class="col-md-12">
-              <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
-            </div>
-            <div class="row input-group filter-box">
-              <div class="col">
-                <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
-                  (change)="update('marque')" (clear)="clear('marque')" dropdownPosition="bottom"
-                  notFoundText="{{notFoundText}}">
-                </ng-select>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="inline" [formGroup]="searchForm">
+            <div class="row filters">
+              <div class="col-md-12">
+                <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
               </div>
-              <div class="col">
-                <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele"
-                  (change)="update('modele')" (clear)="clear('modele')" dropdownPosition="bottom"
-                  notFoundText="{{notFoundText}}">
-                </ng-select>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <input type="text" class="form-control custom-input prix" placeholder="Prix max..."
-                    ngDisabled="blockPriceSlider" [ngClass]="[blockPriceSlider ? 'disabled' : '']"
-                    formControlName="price" (click)="togglePriceView()">
-                  <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
-                  <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
-                  <div [ngClass]="choosePriceClass()" class="slide-range slide-prix">
-                    <input type="text" class="js-price-slider" />
+              <div class="row input-group filter-box">
+                <div class="col">
+                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..."
+                    formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
+                    notFoundText="{{notFoundText}}" (change)="update()">
+                  </ng-select>
+                </div>
+                <div class="col">
+                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..."
+                    formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
+                    notFoundText="{{notFoundText}}" (change)="update()">
+                  </ng-select>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" class="form-control custom-input price" placeholder="Prix max..."
+                      ngDisabled="blockPriceSlider" [ngClass]="[blockPriceSlider ? 'disabled' : '']"
+                      formControlName="price" (click)="togglePriceView()">
+                    <div class="form-clear d-none" (click)="resetSlider('price')">
+                      <i class="fas fa-times fa-sm"></i>
+                    </div>
+                    <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
+                    <div [ngClass]="choosePriceClass()" class="slide-range slide-price">
+                      <input type="text" class="js-price-slider" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="row input-group">
-              <div class="col">
-                <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
-                  formControlName="version" (change)="update('version')" (clear)="clear('version')"
-                  notFoundText="{{notFoundText}}" dropdownPosition="bottom">
-                </ng-select>
-              </div>
-              <div class="col">
-                <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..." formControlName="sellerie"
-                  (change)="update('sellerie')" (clear)="clear('sellerie')" dropdownPosition="bottom"
-                  notFoundText="{{notFoundText}}">
-                </ng-select>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <input type="text" class="form-control custom-input km" placeholder="km max..." ngDisabled="blockKmSlider"
-                    [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km" (click)="toggleKmView()">
-                  <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
-                  <div class="icon"><i class="fas fa-tachometer-alt fa-sm"></i></div>
-                  <div [ngClass]="chooseKmClass()" class="slide-range slide-km">
-                    <input type="text" class="js-km-slider" />
+              <div class="row input-group">
+                <div class="col">
+                  <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
+                    formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}"
+                    dropdownPosition="bottom" (open)="onVersionOpen()" (close)="onVersionClose()"
+                    (change)="update()">
+                  </ng-select>
+                </div>
+                <div class="col">
+                  <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..."
+                    formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
+                    notFoundText="{{notFoundText}}" (change)="update()">
+                  </ng-select>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" class="form-control custom-input km" placeholder="km max..."
+                      ngDisabled="blockKmSlider" [ngClass]="[blockKmSlider ? 'disabled' : '']" formControlName="km"
+                      (click)="toggleKmView()">
+                    <div class="form-clear d-none" (click)="resetSlider('km')">
+                      <i class="fas fa-times fa-sm"></i>
+                    </div>
+                    <div class="icon"><i class="fas fa-tachometer-alt fa-sm"></i></div>
+                    <div [ngClass]="chooseKmClass()" class="slide-range slide-km">
+                      <input type="text" class="js-km-slider" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-12 length">
-              <h6 class="result-vehicules box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+              <div class="col-md-6">
+                <div class="vehiculeNumber vehiculeNumber-hidden">
+                  <h6 class="box">{{filteredAnnonces.length}} Véhicules correspondants</h6>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <button *ngIf="searchForm.controls.modele.value || searchForm.controls.marque.value &&
+                  searchForm.controls.version.value || searchForm.controls.sellerie.value &&
+                  searchForm.controls.price.value || searchForm.controls.km.value"
+                  type="submit"
+                  class="custom-primary reinitButton"
+                  (click)="resetFilters([])">
+                  <i class="fas fa-search"></i> Réinitialiser les filtres
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div class="row justify-content-end">
-      <div class="btn-group order">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          Trier par: {{tri}}
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" (click)="filterAnnonces('prix', 'décroissant')">Prix croissant</a>
-          <a class="dropdown-item" (click)="filterAnnonces('prix', 'croissant')">Prix décroissant</a>
-          <a class="dropdown-item" (click)="filterAnnonces('année')">Année</a>
-          <a class="dropdown-item" (click)="filterAnnonces('km')">Km</a>
+          </form>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-4 card-row" *ngFor="let annonce of filteredAnnonces; let i=index">
-        <div class="card mb-2" (click)="redirectToAnnonce(annonce._id)">
-          <div class="image">
-            <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
-            <img class="img-responsive card-img-top" [src]="mainImage(annonce)">
+      <div class="row justify-content-end">
+        <div class="btn-group order">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Trier par: {{tri}}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="filterAnnonces(['price'], true, 'asc')">Prix croissant</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['price'], true, 'desc')">Prix décroissant</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['date'], true, 'desc')">Date</a>
+            <a class="dropdown-item" (click)="filterAnnonces(['km'], true, 'asc')">Km</a>
           </div>
-          <div class="card-body">
-            <div class="material-card">
-              <h6>{{annonce.title}} </h6>
-              <small>{{annonce.VehiculeVersion}}</small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 card-row" *ngFor="let annonce of filteredAnnonces; let i=index">
+          <div class="card mb-2" (click)="redirectToAnnonce(annonce._id)">
+            <div class="image">
+              <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
+              <img class="img-responsive card-img-top" [src]="mainImage(annonce)">
             </div>
-            <div class="d-flex justify-content-center center-badges">
-              <div class="badges">
-                <span class="badge badge-light">
-                  <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
-                </span>
-                <span class="badge badge-light">
-                  <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
-                </span>
-                <span class="badge badge-light">
-                  <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
-                </span>
+            <div class="card-body">
+              <div class="material-card">
+                <h6>{{annonce.title}} </h6>
+                <small>{{annonce.VehiculeVersion}}</small>
+              </div>
+              <div class="d-flex justify-content-center center-badges">
+                <div class="badges">
+                  <span class="badge badge-light">
+                    <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
+                  </span>
+                  <span class="badge badge-light">
+                    <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
+                  </span>
+                  <span class="badge badge-light">
+                    <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>

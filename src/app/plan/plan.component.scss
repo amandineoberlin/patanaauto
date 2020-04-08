@@ -1,98 +1,89 @@
   @import "../app.component.scss";
 
   .plan-container {
-    .content-container {
-      color: $gray-700;
+    color: $gray-700;
+    text-align: center;
+
+    .map-descriptor {
+      @include opacity($plain-white, .85);
+      z-index: 1;
+      display: inline-block;
+      padding: 20px 5px 5px 5px;
+      position: relative;
+      width: 70%;
       text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 18px;
 
-      .map-descriptor {
-        @include opacity($white, .85);
-        z-index: 1;
-        display: inline-block;
-        padding: 20px 5px 5px 5px;
-        position: relative;
-        width: 70%;
-        text-align: center;
-        text-transform: uppercase;
+      .title {
+        border-radius: 7px;
+        font-weight: 100;
+        font-size: 1.6rem;
+        font-family: 'Raleway';
+        color: $primary;
+      }
 
-        .title {
-          border-radius: 7px;
-          font-weight: 100;
-          font-size: 1.6rem;
-          font-family: 'Raleway';
-          color: $primary;
+      .text {
+        padding: 0px 60px 0px 60px;
+        text-align: justify;
+        font-size: .85rem;
+        font-weight: 500;
+        font-family: 'Arima Madurai';
+        color: $gray-800;
+      }
+    }
+
+    .containers {
+      .map-content {
+        .zooms {
+          @include opacity($primary, .95);
+          margin: 10px 10px;
         }
 
-        .text {
-          padding: 0px 60px 20px 60px;
-          text-align: justify;
-          font-size: .85rem;
-          font-weight: 500;
-          font-family: 'Arima Madurai';
-          color: $gray-800;
+        .plus {
+          margin-bottom: 5px;
         }
       }
 
-      .containers {
-        .map-content, .form-content {
-          z-index: 10;
-          position: relative;
+      .form-content {
+        @include opacity($gray-900, 0.8);
+        position: relative;
+        z-index: 10;
+        height: 30rem;
+        width: auto;
+        padding: 30px 20px;
+        border-radius: 10px;
+
+        .alert {
+          position: absolute;
+          left: 0;
+          width: 100%;
         }
 
-        .map-content {
-          margin-top: -1.4rem;
+        .contact-container {
+          text-align: left;
+          font-family: 'Arima Madurai';
+          text-transform: uppercase;
 
-          .zooms {
-            @include opacity($primary, .95);
-            margin: 10px 10px;
+          .loader {
+            position: absolute; 
+            left: 0; 
+            right: 0; 
+            margin-left: auto; 
+            margin-right: auto;
+            top: 50%;
+            transform: translateY(-50%); 
           }
 
-          .plus {
-            margin-bottom: 5px;
-          }
-        }
-
-        .form-content {
-          @include opacity($gray-900, 0.8);
-          position: relative;
-          z-index: 10;
-          height: 30rem;
-          width: auto;
-          padding: 30px 20px;
-          border-radius: 10px;
-          margin-top: -1.4rem;
-
-          .alert {
-            position: absolute;
-            left: 0;
-            width: 100%;
+          .title {
+            color: $primary;
+            font-weight: 500;
+            font-size: 1.3rem;
           }
 
-          .contact-container {
-            text-align: left;
-            font-family: 'Arima Madurai';
-            text-transform: uppercase;
-
-            .loader {
-              position: absolute; 
-              left: 0; 
-              right: 0; 
-              margin-left: auto; 
-              margin-right: auto;
-              top: 50%;
-              transform: translateY(-50%); 
-            }
-
-            .title {
-              color: $primary;
-              font-weight: 500;
-              font-size: 1.3rem;
-            }
-
-            label {
-              color: rgba($white, .6);
-              font-size: .8rem;
-            }
+          label {
+            color: rgba($white, .6);
+            font-size: .8rem;
           }
         }
       }

@@ -1,99 +1,107 @@
-<div class="container-fluid plan-container">
-  <div class="content-container">
-    <div class="map-descriptor">
-      <p class="title">Pour venir sur notre parc :</p>
-      <p class="text">Situé à 15 mn de Melun - Soit Par la <span class="highlight">D 605</span>
-        - Soit Par l’autoroute <span class="highlight">A5</span>
-        (sortie Montereau Fault Yonne - direction Le Chatelet en Brie)
-        Accès transports en commun: <span class="highlight">RER D</span> station Melun
-        puis <span class="highlight">ligne 46</span> bus express « Seine et Marne » – arrêt Pamfou.</p>
-    </div>
-    <div class="row containers">
-      <div class="map-content col-md-6">
-        <div #map style="width:auto; height:30rem;border-radius: 10px;">
-          <div #cdZoomIn>
-            <div class="zooms plus">
-              <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32"
-                xml:space="preserve">
-                <g>
-                  <rect x="15" y="12" fill="#FFFFFF" width="2" height="8" />
-                  <rect x="12" y="15" fill="#FFFFFF" width="8" height="2" />
-                </g>
-              </svg>
-            </div>
-          </div>
-          <div #cdZoomOut>
-            <div class="zooms minus">
-              <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32"
-                xml:space="preserve">
-                <rect x="12" y="15" fill="#FFFFFF" width="8" height="2" />
-              </svg>
-            </div>
-          </div>
-        </div>
+<div class="bg plan-container">
+  <div class="container-fluid">
+    <div class="content-container">
+      <div class="map-descriptor">
+        <p class="title">Pour venir sur notre parc :</p>
+        <p class="text">
+          <i class="dot right"></i> Situé à 15 mn de Melun - Soit Par la
+            <span class="highlight"> D 605</span> - Soit Par l’autoroute
+            <span class="highlight"> A5</span>
+            (sortie Montereau Fault Yonne - direction Le Chatelet en Brie)
+        </p>
+        <p class="text">
+          <i class="dot right"></i> Accès transports en commun:
+            <span class="highlight"> RER D</span> station Melun puis
+            <span class="highlight"> ligne 46</span> bus express « Seine et Marne » – arrêt Pamfou.
+        </p>
       </div>
-      <div class="col-md-6 form-content">
-        <div class="alert alert-warning alert-dismissible " role="alert">
-          <strong>Une erreur</strong> est survenue, votre message n'a pas pu être envoyé 😞
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="alert alert-primary alert-dismissible" role="alert">
-          <strong>Votre message a bien été envoyé!</strong> Nous vous répondrons dans les plus brefs délais.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="contact-container">
-          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-            <div class="form-group" >
-              <label for="nameInput" class="bmd-label-floating">Nom</label>
-              <input type="text" class="form-control" id="nameInput" formControlName="name" [disabled]="submitting">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1" class="bmd-label-floating">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
-                [disabled]="submitting">
-            </div>
-            <div class="form-group">
-              <label for="subjectInput" class="bmd-label-floating">Sujet</label>
-              <input type="text" class="form-control" id="subjectInput" formControlName="subject"
-                [disabled]="submitting">
-            </div>
-            <div class="form-group">
-              <label for="textAreaInput">Message</label>
-              <textarea class="form-control" id="textAreaInput" rows="3" formControlName="message"
-                [disabled]="submitting">
-              </textarea>
-            </div>
-            <div class="text-center">
-              <button
-                type="button"
-                class="btn custom-primary"
-                (click)="onSubmit()"
-                [disabled]="disableButton || submitting">
-                  Envoyer
-              </button>
-            </div>
-
-            <div *ngIf="submitting" class="loader">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                style="margin: auto; background: none; display: block; shape-rendering: auto;" width="100px"
-                height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                <g transform="translate(50 50)">
-                  <g transform="rotate(26.5154)">
-                    <animateTransform attributeName="transform" type="rotate" values="0;32.72727272727273"
-                      keyTimes="0;1" dur="0.4484304932735426s" repeatCount="indefinite"></animateTransform>
-                    <path
-                      d="M27.45450782658469 -5.5 L32.45450782658469 -5.5 L32.45450782658469 5.5 L27.45450782658469 5.5 A28 28 0 0 1 26.06972619726147 10.216133123634352 L26.06972619726147 10.216133123634352 L30.275993861417376 12.919337210912339 L24.328944869405806 22.173126072055332 L20.1226772052499 19.469921984777343 A28 28 0 0 1 16.407990700190922 22.688716164262097 L16.407990700190922 22.688716164262097 L18.485065765200353 27.23687614103469 L8.479113816300654 31.80644128405544 L6.402038751291222 27.258281307282846 A28 28 0 0 1 1.536834089132092 27.95779213354448 L1.536834089132092 27.95779213354448 L0.8252598977656671 32.906899342949146 L-10.062775962924592 31.341436121943012 L-9.351201771558166 26.392328912538346 A28 28 0 0 1 -13.822256486475398 24.350466640746106 L-13.822256486475398 24.350466640746106 L-17.096560156201825 28.129214512517397 L-25.409805474098672 20.92574643911925 L-22.135501804372247 17.14699856734796 A28 28 0 0 1 -24.79287829102437 13.012040041686486 L-24.79287829102437 13.012040041686486 L-29.590343159096854 14.420702825893635 L-32.689401284352584 3.8662801161341536 L-27.8919364162801 2.4576173319270054 A28 28 0 0 1 -27.8919364162801 -2.4576173319269983 L-27.8919364162801 -2.4576173319269983 L-32.689401284352584 -3.8662801161341456 L-29.59034315909686 -14.420702825893628 L-24.792878291024373 -13.01204004168648 A28 28 0 0 1 -22.13550180437225 -17.146998567347957 L-22.13550180437225 -17.146998567347957 L-25.409805474098675 -20.925746439119248 L-17.09656015620184 -28.129214512517386 L-13.822256486475414 -24.350466640746095 A28 28 0 0 1 -9.351201771558179 -26.39232891253834 L-9.351201771558179 -26.39232891253834 L-10.062775962924604 -31.341436121943 L0.8252598977656651 -32.906899342949146 L1.5368340891320913 -27.95779213354448 A28 28 0 0 1 6.402038751291204 -27.25828130728285 L6.402038751291204 -27.25828130728285 L8.479113816300632 -31.806441284055442 L18.485065765200346 -27.236876141034696 L16.407990700190915 -22.688716164262104 A28 28 0 0 1 20.122677205249897 -19.469921984777347 L20.122677205249897 -19.469921984777347 L24.328944869405802 -22.173126072055332 L30.27599386141738 -12.919337210912332 L26.069726197261474 -10.216133123634345 A28 28 0 0 1 27.45450782658469 -5.500000000000012 M0 -19A19 19 0 1 0 0 19 A19 19 0 1 0 0 -19"
-                      fill="#a9040a"></path>
+      <div class="row containers">
+        <div class="map-content col-md-6">
+          <div #map style="width:auto; height:30rem;border-radius: 10px;">
+            <div #cdZoomIn>
+              <div class="zooms plus">
+                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32"
+                  xml:space="preserve">
+                  <g>
+                    <rect x="15" y="12" fill="#FFFFFF" width="2" height="8" />
+                    <rect x="12" y="15" fill="#FFFFFF" width="8" height="2" />
                   </g>
-                </g>
-              </svg>
+                </svg>
+              </div>
             </div>
+            <div #cdZoomOut>
+              <div class="zooms minus">
+                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32"
+                  xml:space="preserve">
+                  <rect x="12" y="15" fill="#FFFFFF" width="8" height="2" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 form-content">
+          <div class="alert alert-warning alert-dismissible " role="alert">
+            <strong>Une erreur</strong> est survenue, votre message n'a pas pu être envoyé 😞
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-primary alert-dismissible" role="alert">
+            <strong>Votre message a bien été envoyé!</strong> Nous vous répondrons dans les plus brefs délais.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="contact-container">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+              <div class="form-group" >
+                <label for="nameInput" class="bmd-label-floating">Nom</label>
+                <input type="text" class="form-control" id="nameInput" formControlName="name" [disabled]="submitting">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="bmd-label-floating">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
+                  [disabled]="submitting">
+              </div>
+              <div class="form-group">
+                <label for="subjectInput" class="bmd-label-floating">Sujet</label>
+                <input type="text" class="form-control" id="subjectInput" formControlName="subject"
+                  [disabled]="submitting">
+              </div>
+              <div class="form-group">
+                <label for="textAreaInput">Message</label>
+                <textarea class="form-control" id="textAreaInput" rows="3" formControlName="message"
+                  [disabled]="submitting">
+                </textarea>
+              </div>
+              <div class="text-center">
+                <button
+                  type="button"
+                  class="btn custom-primary"
+                  (click)="onSubmit()"
+                  [disabled]="disableButton || submitting">
+                    Envoyer
+                </button>
+              </div>
 
-          </form>
+              <div *ngIf="submitting" class="loader">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  style="margin: auto; background: none; display: block; shape-rendering: auto;" width="100px"
+                  height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                  <g transform="translate(50 50)">
+                    <g transform="rotate(26.5154)">
+                      <animateTransform attributeName="transform" type="rotate" values="0;32.72727272727273"
+                        keyTimes="0;1" dur="0.4484304932735426s" repeatCount="indefinite"></animateTransform>
+                      <path
+                        d="M27.45450782658469 -5.5 L32.45450782658469 -5.5 L32.45450782658469 5.5 L27.45450782658469 5.5 A28 28 0 0 1 26.06972619726147 10.216133123634352 L26.06972619726147 10.216133123634352 L30.275993861417376 12.919337210912339 L24.328944869405806 22.173126072055332 L20.1226772052499 19.469921984777343 A28 28 0 0 1 16.407990700190922 22.688716164262097 L16.407990700190922 22.688716164262097 L18.485065765200353 27.23687614103469 L8.479113816300654 31.80644128405544 L6.402038751291222 27.258281307282846 A28 28 0 0 1 1.536834089132092 27.95779213354448 L1.536834089132092 27.95779213354448 L0.8252598977656671 32.906899342949146 L-10.062775962924592 31.341436121943012 L-9.351201771558166 26.392328912538346 A28 28 0 0 1 -13.822256486475398 24.350466640746106 L-13.822256486475398 24.350466640746106 L-17.096560156201825 28.129214512517397 L-25.409805474098672 20.92574643911925 L-22.135501804372247 17.14699856734796 A28 28 0 0 1 -24.79287829102437 13.012040041686486 L-24.79287829102437 13.012040041686486 L-29.590343159096854 14.420702825893635 L-32.689401284352584 3.8662801161341536 L-27.8919364162801 2.4576173319270054 A28 28 0 0 1 -27.8919364162801 -2.4576173319269983 L-27.8919364162801 -2.4576173319269983 L-32.689401284352584 -3.8662801161341456 L-29.59034315909686 -14.420702825893628 L-24.792878291024373 -13.01204004168648 A28 28 0 0 1 -22.13550180437225 -17.146998567347957 L-22.13550180437225 -17.146998567347957 L-25.409805474098675 -20.925746439119248 L-17.09656015620184 -28.129214512517386 L-13.822256486475414 -24.350466640746095 A28 28 0 0 1 -9.351201771558179 -26.39232891253834 L-9.351201771558179 -26.39232891253834 L-10.062775962924604 -31.341436121943 L0.8252598977656651 -32.906899342949146 L1.5368340891320913 -27.95779213354448 A28 28 0 0 1 6.402038751291204 -27.25828130728285 L6.402038751291204 -27.25828130728285 L8.479113816300632 -31.806441284055442 L18.485065765200346 -27.236876141034696 L16.407990700190915 -22.688716164262104 A28 28 0 0 1 20.122677205249897 -19.469921984777347 L20.122677205249897 -19.469921984777347 L24.328944869405802 -22.173126072055332 L30.27599386141738 -12.919337210912332 L26.069726197261474 -10.216133123634345 A28 28 0 0 1 27.45450782658469 -5.500000000000012 M0 -19A19 19 0 1 0 0 19 A19 19 0 1 0 0 -19"
+                        fill="#a9040a"></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+
+            </form>
+          </div>
         </div>
       </div>
     </div>

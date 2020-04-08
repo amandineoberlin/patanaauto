@@ -1,177 +1,180 @@
-<div class="container-fluid annonce-container">
-  <div class="content-container">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card text-center">
-            <div class="card-header">
-              <div class="model">
-                <h4>{{annonce.title}}</h4>
-                <div class="version"><small>{{annonce.VehiculeVersion}}</small></div>
-              </div>
-              <div id="ribbon-container">
-                <a id="ribbon">{{annonce.VehiculePrixVenteTTC}}€</a>
-              </div>
-            </div>
-            <div class="card-body">
-
-              <div class="row">
-                <div class="col-md-7">
-                  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                      <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
-                        [ngClass]="[i==0 ? 'active' : '']">
-                        <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}" alt="First slide">
-                      </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
+<div class="bg annonce-container">
+  <div class="container-fluid">
+    <div class="content-container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card text-center">
+              <div class="card-header">
+                <div class="model">
+                  <h4>{{annonce.title}}</h4>
+                  <div class="version"><small>{{annonce.VehiculeVersion}}</small></div>
                 </div>
-
-                <div class="col-md-5 infos">
-                  <div class="title">
-                    <i class="fas fa-info-circle"></i>
-                    <span class="stroke"> Informations générales</span>
-                  </div>
-                  <div class="table-responsive table-borderless table-striped">
-                    <table class="table">
-                      <tbody>
-                        <tr>
-                          <th class="row-1">Version:</th>
-                          <th class="row-2">{{annonce.VehiculeVersion}}</th>
-                        </tr>
-                        <tr>
-                          <th class="row-1">Mise en circulation:</th>
-                          <th class="row-2">{{annonce.VehiculeCarteGriseDate}}</th>
-                        </tr>
-                        <tr>
-                          <th class="row-1">Kilométrage:</th>
-                          <th class="row-2">{{annonce.VehiculeKilometrage}}</th>
-                        </tr>
-                        <tr>
-                          <th class="row-1">N° de places:</th>
-                          <th class="row-2">{{annonce.VehiculeNbPlaces}}</th>
-                        </tr>
-                        <tr>
-                          <th class="row-1">N° de portes:</th>
-                          <th class="row-2">{{annonce.VehiculeNbPortes}}</th>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                <div id="ribbon-container">
+                  <a id="ribbon">{{annonce.VehiculePrixVenteTTC}}€</a>
                 </div>
+              </div>
+              <div class="card-body">
 
-                <div class="col-md-7">
-                  <div class="dock-container">
-                    <div class="dock">
-                      <ol class="carousel-indicators">
-                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
-                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
+                <div class="row">
+                  <div class="col-md-7">
+                    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+                      <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
+                          [ngClass]="[i==0 ? 'active' : '']">
                           <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
                             alt="First slide">
+                        </div>
+                      </div>
+                      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-5 infos">
+                    <div class="title">
+                      <i class="fas fa-info-circle"></i>
+                      <span class="stroke"> Informations générales</span>
+                    </div>
+                    <div class="table-responsive table-borderless table-striped">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <th class="row-1">Version:</th>
+                            <th class="row-2">{{annonce.VehiculeVersion}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">Mise en circulation:</th>
+                            <th class="row-2">{{annonce.VehiculeCarteGriseDate}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">Kilométrage:</th>
+                            <th class="row-2">{{annonce.VehiculeKilometrage}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">N° de places:</th>
+                            <th class="row-2">{{annonce.VehiculeNbPlaces}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">N° de portes:</th>
+                            <th class="row-2">{{annonce.VehiculeNbPortes}}</th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-md-7">
+                    <div class="dock-container">
+                      <div class="dock">
+                        <ol class="carousel-indicators">
+                          <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
+                            attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
+                            <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                              alt="First slide">
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--[if lt IE 10]>
+                <style>
+                .options li {
+                    width: 25%;
+                    float: left
+                }
+                </style>
+                <![endif]-->
+
+                <div class="row">
+                  <div class="col-md-12 options">
+                    <div class="title">
+                      <i class="fas fa-tools"></i>
+                      <span class="stroke"> Options & Equipements</span>
+                    </div>
+                    <div class="col-md-8 offset-md-2 list-infos">
+                      <ul>
+                        <li *ngFor="let o of options; let i=index">
+                          <i *ngIf="o" class="fas fa-check-circle"></i> {{o}}
                         </li>
-                      </ol>
+                      </ul>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!--[if lt IE 10]>
-              <style>
-              .options li {
-                  width: 25%;
-                  float: left
-              }
-              </style>
-              <![endif]-->
-
-              <div class="row">
-                <div class="col-md-12 options">
-                  <div class="title">
-                    <i class="fas fa-tools"></i>
-                    <span class="stroke"> Options & Equipements</span>
-                  </div>
-                  <div class="col-md-8 offset-md-2 list-infos">
-                    <ul>
-                      <li *ngFor="let o of options; let i=index">
-                        <i *ngIf="o" class="fas fa-check-circle"></i> {{o}}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12 autre">
-                  <div class="title">
-                    <i class="fas fa-info-circle"></i>
-                    <span class="stroke"> Autres informations</span>
-                  </div>
-                  <div class="col-md-8 offset-md-2 list-infos">
-                    <ul>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Sellerie:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Peinture métallisée:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Véhicule de première main:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Prix du véhicule neuf:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Couple moteur:
-                      </li>
-
-                      <li>{{annonce.VehiculeSellerie}}</li>
-                      <li>{{annonce.VehiculePeintureMetallisee}}</li>
-                      <li>{{annonce.VehiculePremiereMain}}</li>
-                      <li>{{annonce.VehiculePrixNeuf}}€</li>
-                      <li>{{annonce.VehiculeMoteurCouple}}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12 mesure">
-                  <div class="col-md-12 title">
-                    <i class="fas fa-battery-three-quarters"></i>
-                    <span class="stroke"> Puissance & Consommation</span>
-                  </div>
-
-                  <div class="row conso">
-                    <div class="col-md-12">
-                      <h6>Consommation</h6>
+                <div class="row">
+                  <div class="col-md-12 autre">
+                    <div class="title">
+                      <i class="fas fa-info-circle"></i>
+                      <span class="stroke"> Autres informations</span>
                     </div>
-                    <div class="col-md-6 offset-md-2">
-                      <div class="chart-container">
-                        <canvas id="consoChart"></canvas>
+                    <div class="col-md-8 offset-md-2 list-infos">
+                      <ul>
+                        <li>
+                          <i class="fas fa-check-circle"></i> Sellerie:
+                        </li>
+                        <li>
+                          <i class="fas fa-check-circle"></i> Peinture métallisée:
+                        </li>
+                        <li>
+                          <i class="fas fa-check-circle"></i> Véhicule de première main:
+                        </li>
+                        <li>
+                          <i class="fas fa-check-circle"></i> Prix du véhicule neuf:
+                        </li>
+                        <li>
+                          <i class="fas fa-check-circle"></i> Couple moteur:
+                        </li>
+
+                        <li>{{annonce.VehiculeSellerie}}</li>
+                        <li>{{annonce.VehiculePeintureMetallisee}}</li>
+                        <li>{{annonce.VehiculePremiereMain}}</li>
+                        <li>{{annonce.VehiculePrixNeuf}}€</li>
+                        <li>{{annonce.VehiculeMoteurCouple}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 mesure">
+                    <div class="col-md-12 title">
+                      <i class="fas fa-battery-three-quarters"></i>
+                      <span class="stroke"> Puissance & Consommation</span>
+                    </div>
+
+                    <div class="row conso">
+                      <div class="col-md-12">
+                        <h6>Consommation</h6>
+                      </div>
+                      <div class="col-md-6 offset-md-2">
+                        <div class="chart-container">
+                          <canvas id="consoChart"></canvas>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="row power">
-                    <div class="col-md-12">
-                      <h6>Puissance</h6>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="chart-container">
-                        <canvas id="fiscaleChart"></canvas>
+                    <div class="row power">
+                      <div class="col-md-12">
+                        <h6>Puissance</h6>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="chart-container">
-                        <canvas id="reelleChart"></canvas>
+                      <div class="col-md-6">
+                        <div class="chart-container">
+                          <canvas id="fiscaleChart"></canvas>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="chart-container">
+                          <canvas id="reelleChart"></canvas>
+                        </div>
                       </div>
                     </div>
                   </div>

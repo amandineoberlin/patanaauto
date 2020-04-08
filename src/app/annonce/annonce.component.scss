@@ -126,7 +126,6 @@
       }
 
       .infos {
-
         .table-striped tbody tr:nth-of-type(odd) {
           @include opacity($black, 0.1);
         }
@@ -152,12 +151,12 @@
       .infos, .options, .table, .autre, .mesure {
         font-family: 'Arima Madurai';
         color: white;
-        font-size: 12px;
+        font-size: .9rem;
         font-weight: 100;
 
         .title {
           text-transform: uppercase;
-          font-size: 16px;
+          font-size: 1.1rem;
           margin-bottom: 20px;
           font-weight: 900;
           color: $white;
@@ -215,6 +214,7 @@
 
           li {
             margin-bottom: 8px;
+            font-size: .9rem;
 
             i {
               padding-right: 5px;
