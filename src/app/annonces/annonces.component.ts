@@ -329,31 +329,25 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
-  filterAnnonces(filters = [], order = null, isTri) {
-    if (!filters || _.isEmpty(filters)) {
-      return this.filteredAnnonces = _.clone(this.annonces);
-    }
+  filterWithTri(filter, order) {
+    const orderBy = _.map(this.filteredAnnonces, (a) => {
+      let item = a[this.filtersMapping[filter]][0];
+      if (_.includes(['price', 'km'], filter)) item = parseInt(item);
+      if (filter === 'date') item = this.utilsService.parseDate(item);
+      return { _id: a._id, item };
+    });
 
-    if (isTri) {
-      const singleFilter = filters[0];
-      if (_.size(this.filteredAnnonces) < 2) return;
+    const orderedItems = _.orderBy(orderBy, ['item'], [order]);
+    this.filteredAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+    const o = order === 'asc' ? 'croissant' : 'decroissant';
 
-      const orderBy = _.map(this.filteredAnnonces, (a) => {
-        let item = a[this.filtersMapping[singleFilter]][0];
-        if (_.includes(['price', 'km'], singleFilter)) item = parseInt(item);
-        if (singleFilter === 'date') {
-          const date = item.split('-');
-          item = new Date(date[2], date[1], date[0]);
-        }
-        return { _id: a._id, item };
-      });
+    return this.tri = filter === 'price' ? `prix ${o}` : `${filter}`;
+  }
 
-      const orderedItems = _.orderBy(orderBy, ['item'], [order]);
+  filterAnnonces(filters = [], isTri, order) {
+    if (!filters || _.isEmpty(filters)) return this.filteredAnnonces = _.clone(this.annonces);
 
-      this.filteredAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
-
-      return this.tri = order ? `${singleFilter === 'price' ? 'prix' : singleFilter} ${order}` : singleFilter;
-    }
+    if (isTri && _.size(this.filteredAnnonces) > 1) return this.filterWithTri(filters[0], order);
 
     this.filteredAnnonces = _.reduce(this.annonces, (acc, annonce) => {
       const areSomeInvalidAnnonces = _.compact(this.addFiltersUp(annonce));
@@ -389,7 +383,8 @@ export class AnnoncesComponent implements OnInit {
 
     this.formDataService.loadAnnonces({ fullSearch: true })
       .then(dataObj => _.assign(this, dataObj))
-      .then(() => (this.filteredAnnonces = _.clone(this.annonces)))
+      .then(() => this.filteredAnnonces = _.clone(this.annonces))
+      .then(() => this.filterAnnonces(['date'], true, 'desc'))
       .then(() => {
         this.initSliders();
         this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
