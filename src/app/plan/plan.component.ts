@@ -20,17 +20,17 @@ export class PlanComponent implements OnInit, AfterViewInit {
   @ViewChild('cdZoomOut', { static: false }) zoomInElement: any;
 
   map: google.maps.Map;
-  markerUrl: string = '../../assets/images/marker.png'
+  markerUrl: '../../assets/images/marker.png';
   position: any = { lat: 48.4603297, lng: 2.8740947 };
   contactForm: FormGroup;
   name: '';
   email: '';
   subject: '';
   message: '';
-  submitting: Boolean = false;
-  rejected: Boolean = false;
-  accepted: Boolean = false;
-  disableButton: Boolean = true;
+  submitting: false;
+  rejected: false;
+  accepted: false;
+  disableButton: true;
 
   constructor(
     private fb: FormBuilder,
@@ -56,9 +56,11 @@ export class PlanComponent implements OnInit, AfterViewInit {
     const pinColor = '#ef4b4b';
     const pinLabel = '51 Avenue de la Libération 77830 Pamfou';
 
-    const pinSVGHole = 'M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z';
+    const pinSVGHole = 'M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,' +
+      '1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,' +
+      '7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z';
     const labelOriginHole = new google.maps.Point(20, -5);
-    var markerImage = {
+    const markerImage = {
       path: pinSVGHole,
       anchor: new google.maps.Point(12, 57),
       fillOpacity: 1,
@@ -69,17 +71,15 @@ export class PlanComponent implements OnInit, AfterViewInit {
       labelOrigin: labelOriginHole
     };
 
-    const label = {
-      text: pinLabel,
-      color: 'white',
-      fontSize: '12px',
-    };
-
-    new google.maps.Marker({
+    return new google.maps.Marker({
       map: this.map,
-      label: label,
+      label: {
+        text: pinLabel,
+        color: 'white',
+        fontSize: '12px'
+      },
       position: this.position,
-      icon: markerImage,
+      icon: markerImage
     });
   }
 
@@ -93,7 +93,7 @@ export class PlanComponent implements OnInit, AfterViewInit {
       styles: Constants.MAP_STYLES
     };
 
-    //@ts-ignore
+    // @ts-ignore
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
 
