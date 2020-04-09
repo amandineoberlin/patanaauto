@@ -28,7 +28,7 @@
     }
 
     .bg-faded {
-      @include opacity($plain-white, 0.85);
+      @include opacity($plain-white, 0.9);
 
       .title {
         font-family: 'Raleway';

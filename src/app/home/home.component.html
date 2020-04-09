@@ -1,6 +1,6 @@
 <div class="bg home-container">
   <div class="container-fluid">
-    <div class="content-container">
+    <div class="content-container" id="home-wrap">
       <div class="row">
         <div class="col-md-12">
           <form class="inline" [formGroup]="quickSearch">
@@ -9,16 +9,16 @@
                 <h6 class="searcher">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
               </div>
               <div class="row input-group filter-box">
-                <div class="col">
+                <div class="col-sm-12 col-lg">
                   <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
                     (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
                   </ng-select>
                 </div>
-                <div class="col">
+                <div class="col-sm-12 col-lg">
                   <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele" (change)="update()" notFoundText="{{notFoundText}}">
                   </ng-select>
                 </div>
-                <div class="col-3">
+                <div class="col-sm-12 col-lg">
                   <div class="form-group">
                     <input type="text" class="form-control price custom-input" placeholder="Prix max..."
                       ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
@@ -31,7 +31,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-auto filter-button">
+                <div class="col-sm-12 col-lg-auto filter-button">
                   <button type="submit" class="custom-primary" (click)="redirectToFilteredAnnonces()">
                     <i class="fas fa-search"></i> Rechercher
                   </button>
@@ -43,8 +43,8 @@
       </div>
 
       <div class="row presentation center-block">
-        <div class="col-md-6">
-          <div class="intro-text left-0 text-center bg-faded">
+        <div class="col-sm-12 col-md-12 col-lg-6 p-0">
+          <div class="intro-text text-center">
             <div class="section heading-upper">patana Auto</div>
             <div class="section heading-lower">à pamfou en seine et marne</div>
             <hr class="d-none d-lg-block mb-0 ml-0">
@@ -67,9 +67,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-12 col-md-12 col-lg-6 p-0">
           <div class="intro-img rounded">
-            <img class="img-responsive" src="../../assets/images/rubriques/parc.JPG" alt="">
+            <img class="img-fluid" src="../../assets/images/rubriques/parc.JPG" alt="">
           </div>
         </div>
 
