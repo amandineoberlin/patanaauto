@@ -1,5 +1,81 @@
 @import "../app.component.scss";
 
+@media only screen and (max-width: 992px) {
+  .home-container .presentation {
+    margin-top: 0px;
+  }
+
+  .filter-button button {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .home-container .presentation {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 1px) and (max-width: 576px) {
+  #home-wrap {
+    padding: 0 35px 0 35px;
+  }
+}
+
+// @media only screen and (min-width: 576px) and (max-width: 768px) {
+// }
+
+@media only screen and (max-width: 768px) {
+  .intro-img {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+
+  .intro-img {
+    margin-top: -15px;
+    position: relative;
+    z-index: 10;
+
+    img {
+      width: 80%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .home-container {
+    .intro-text {
+      margin-right: 0px;
+      margin-top: 0px;
+    }
+    .intro-img {
+      margin-left: -20px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 10;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .home-container {
+    .intro-text {
+      margin-right: -20px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .intro-img {
+      margin-left: 0px;
+      margin-top: 0px;
+    }
+  }
+}
+
 .home-container {
   color: $white;
 
@@ -11,90 +87,77 @@
     color: $gray-600;
   }
 
-  .input-group {
+  .filter-button {
+    cursor: initial;
+    margin-top: 2px;
+    word-wrap: break-word;
+
     i {
       padding-right: 5px;
-    }
-
-    .filter-button {
-      cursor: initial;
-      margin-top: 2px;
-    }
-  }
-
-  .presentation {
-    margin-top: 40px;
-
-    .intro-img {
-      margin-top: 15px;
-      margin-left: -45px;
-      height: 90%;
-      width: 90%;
-      
-      img {
-        width: 100%;
-        height: 100%;
-      }
     }
   }
 
   .intro-text {
+    @include opacity($plain-white, 1);
+    position: relative;
+    z-index: 10;
     color: $black;
-    height: auto;
     padding: 35px;
+  }
 
-    .section {
-      font-family: 'Raleway';
-      text-transform: uppercase;
-
-      &.heading-upper {
-        font-weight: 100;
-        font-size: 2rem;
-        color: $primary;
-      }
-
-      &.heading-lower {
-        color: $gray-800;
-        font-weight: 800;
-        font-size: 1rem;
-      }
-    }
-
-    .bullets {
-      margin-top: 30px;
-      padding-left: 20px;
-      border-left: 2px solid $primary;
-      text-align: left;
-
-      h6 {
-        i {
-          margin-right: 8px;
-        }
-      }
-    }
-
-    .subsection {
-      margin-top: 30px;
-      text-align: justify;
-
-      .button-container {
-        width: 100%;
-        margin-top: 20px;
-        text-align: center;
-
-        button {
-          display: inline-block;
-        }
-      }
-    }
-
-    hr {
-      @include opacity($gray-700, .5);
+  .intro-img {
+    img {
+      max-width: 100%;
+      height: auto;
     }
   }
 
-  .bg-faded {
-    @include opacity($plain-white, 0.85);
+  .section {
+    font-family: 'Raleway';
+    text-transform: uppercase;
+
+    &.heading-upper {
+      font-weight: 100;
+      font-size: 2rem;
+      color: $primary;
+    }
+
+    &.heading-lower {
+      color: $gray-800;
+      font-weight: 800;
+      font-size: 1rem;
+    }
   }
 
+  .bullets {
+    margin-top: 30px;
+    padding-left: 20px;
+    border-left: 2px solid $primary;
+    text-align: left;
+  }
+
+  h6 {
+    i {
+      margin-right: 8px;
+    }
+  }
+
+  .subsection {
+    margin-top: 30px;
+    text-align: justify;
+  }
+
+  .button-container {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+
+    button {
+      display: inline-block;
+    }
+  }
+
+  hr {
+    @include opacity($gray-700, .5);
+  }
 }
