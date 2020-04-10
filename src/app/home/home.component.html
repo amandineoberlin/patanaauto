@@ -10,12 +10,15 @@
               </div>
               <div class="row input-group filter-box">
                 <div class="col-sm-12 col-lg">
-                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..." formControlName="marque"
-                    (change)="update()" (clear)="clearMarque()" notFoundText="{{notFoundText}}">
+                  <ng-select class="form-group form-control marque" [items]="marques"
+                    placeholder="marque..." formControlName="marque" notFoundText="{{notFoundText}}"
+                    (change)="update()" (clear)="clearMarque()">
                   </ng-select>
                 </div>
                 <div class="col-sm-12 col-lg">
-                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..." formControlName="modele" (change)="update()" notFoundText="{{notFoundText}}">
+                  <ng-select class="form-group form-control modele" [items]="modeles"
+                    placeholder="modèle..." (change)="update()" notFoundText="{{notFoundText}}"
+                    formControlName="modele">
                   </ng-select>
                 </div>
                 <div class="col-sm-12 col-lg">

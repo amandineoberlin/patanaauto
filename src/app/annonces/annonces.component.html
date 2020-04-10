@@ -10,26 +10,25 @@
               </div>
               <div class="row input-group filter-box">
                 <div class="col-sm-12 col-md-4 order-md-1">
-                  <ng-select class="form-group marque" [items]="marques" placeholder="marque..."
+                  <ng-select class="form-group form-control marque" [items]="marques" placeholder="marque..."
                     formControlName="marque" (clear)="clear('marque')" dropdownPosition="bottom"
                     notFoundText="{{notFoundText}}" (change)="update()">
                   </ng-select>
                 </div>
                 <div class="col-sm-12 col-md-4 order-md-2">
-                  <ng-select class="form-group modele" [items]="modeles" placeholder="modèle..."
+                  <ng-select class="form-group form-control modele" [items]="modeles" placeholder="modèle..."
                     formControlName="modele" (clear)="clear('modele')" dropdownPosition="bottom"
                     notFoundText="{{notFoundText}}" (change)="update()">
                   </ng-select>
                 </div>
                 <div class="col-sm-12 col-md-4 order-md-4">
-                  <ng-select class="form-group version" [items]="versions" placeholder="version/finition..."
-                    formControlName="version" (clear)="clear('version')" notFoundText="{{notFoundText}}"
-                    dropdownPosition="bottom" (open)="onVersionOpen()" (close)="onVersionClose()"
-                    (change)="update()">
+                  <ng-select class="form-group form-control version" [items]="versions"
+                    placeholder="version/finition..." formControlName="version" (clear)="clear('version')" dropdownPosition="bottom" (open)="onVersionOpen()" (close)="onVersionClose()"
+                    (change)="update()" notFoundText="{{notFoundText}}" >
                   </ng-select>
                 </div>
                 <div class="col-sm-12 col-md-4 order-md-5">
-                  <ng-select class="form-group sellerie" [items]="selleries" placeholder="sellerie..."
+                  <ng-select class="form-group form-control sellerie" [items]="selleries" placeholder="sellerie..."
                     formControlName="sellerie" (clear)="clear('sellerie')" dropdownPosition="bottom"
                     (open)="onVersionOpen()" (close)="onVersionClose()" (change)="update()"
                     notFoundText="{{notFoundText}}">

@@ -52,12 +52,6 @@
 .annonces-container {
   .content-container {
     form {
-      padding: 0 0 20px 0;
-
-      .form-control {
-        background-image: none;
-      }
-
       .vehiculeNumber {
         opacity: 1;
         @include transition(all 0.3s);
