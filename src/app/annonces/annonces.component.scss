@@ -1,21 +1,26 @@
 @import "../app.component.scss";
 
 @media only screen and (max-width: 768px) {
-  .annonces-container .reinitButton {
-    display: block;
-    width: 100%;
-  }
-  .vehiculeNumber {
-    margin-top: 10px;
-    display: block;
-    width: 100%;
-  }
-  .cards-block .column {
-    width: 100%;
-    display: block;
-  }
-  .card {
-    margin-bottom: 20px;
+  .annonces-container {
+    .reinitButton {
+      display: block;
+      width: 100%;
+    }
+    .vehiculeNumber {
+      margin-top: 10px;
+      display: block;
+      width: 100%;
+    }
+    .cards-block .column {
+      width: 100%;
+      display: block;
+    }
+    h6 {
+      font-size: 1em;
+    }
+    small {
+      font-size: 0.9em;
+    }
   }
 }
 
@@ -25,47 +30,124 @@
   }
 }
 
+@media only screen and (max-width: 576px) {
+  .badge {
+    font-size: .9em;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+  .material-card {
+    height: 4.3em;
+  }
+  .column {
+    margin-bottom: 3.5em;
+  }
+}
+
 @media only screen and (min-width: 576px) {
+  .annonces-container
   .cards-block .column {
     width: calc(100% / 2);
   }
   .card {
     padding: 16px;
   }
+  .badge {
+    font-size: .7em;
+  }
+  .material-card {
+    height: 4.5em;
+  }
+  .column {
+    margin-bottom: 3em;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  .annonces-container .reinitButton {
-    float: right;
-  }
-  .vehiculeNumber {
-    float: left;
+  .annonces-container {
+    .reinitButton {
+      float: right;
+    }
+    .vehiculeNumber {
+      float: left;
+    }
+    .badge {
+      font-size: .9em;
+    }
+    h6 {
+      font-size: .9em;
+    }
+    small {
+      font-size: 0.8em;
+    }
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .cards-block .column {
-    width: calc(100% / 3);
+  .annonces-container {
+    .cards-block .column {
+      width: calc(100% / 3);
+    }
+    .badge {
+      font-size: .7em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .annonces-container {
+    .badge {
+      font-size: .8em;
+    }
+    h6 {
+      font-size: 1.1em;
+    }
+    small {
+      font-size: 1em;
+    }
+    .column {
+      margin-bottom: 3.5em;
+    }
+    .material-card {
+      height: 4.3em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .annonces-container {
+    .badge {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 1.3em;
+    }
+    small {
+      font-size: 1.1em;
+    }
+    .column {
+      margin-bottom: 5.4em;
+    }
+    .material-card {
+      height: 5.4em;
+    }
   }
 }
 
 .annonces-container {
   .content-container {
-    form {
-      .vehiculeNumber {
-        opacity: 1;
-        @include transition(all 0.3s);
-      }
+    .vehiculeNumber {
+      opacity: 1;
+      @include transition(all 0.3s);
+    }
 
-      .vehiculeNumber-hidden {
-        opacity: 0;
-      }
+    .vehiculeNumber-hidden {
+      opacity: 0;
+    }
 
-      .reinitButton {
-        i {
-          margin-right: 5px;
-        }
-      }
+    .reinitButton i {
+      margin-right: 5px;
     }
 
     .btn-group {
@@ -97,26 +179,27 @@
         font-size: small;
       }
 
-      .dropdown-item:hover {
-        @include opacity($primary, 0.55);
-        color: $plain-white;
+      .dropdown-item {
+        color: $white;
+
+        &:hover {
+          @include opacity($primary, 0.55);
+          color: $plain-white;
+        }
       }
 
       .dropdown-item {
-        color: $white;
-      }
-
-      a:not([href]):not([tabindex]),
-      a:not([href]):not([tabindex]):focus,
-      a:not([href]):not([tabindex]):hover {
         color: $plain-white;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
     .cards-block {
       .column {
         float: left;
-        margin-bottom: 50px;
       }
     }
 
@@ -129,77 +212,72 @@
         cursor: pointer;
         opacity: .8;
       }
+    }
 
-      .image {
-        .card-img-top {
-          display: block;
-          width: 100%;
-          height: auto;
-          object-fit: cover;
-        }
+    .card-img-top {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
 
-        .fa-camera {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          border-radius: 60px;
-          box-shadow: 0px 0px 2px #888;
-          padding: 0.5em 0.6em;
-          color: $white;
-          background-color: $primary;
-          z-index: 210;
-          
-          span {
-            padding-left: 3px;
-            font-family: 'Karla', sans-serif;
-          }
-        }
+    .fa-camera {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border-radius: 60px;
+      box-shadow: 0px 0px 2px #888;
+      padding: 0.5em 0.6em;
+      color: $white;
+      background-color: $primary;
+      z-index: 210;
+      
+      span {
+        padding-left: 3px;
+        font-family: 'Karla', sans-serif;
+        font-size: 1.1em;
+      }
+    }
+
+    .card-body {
+      position: relative;
+      color: $white;
+      padding: 0;
+    }
+
+    .material-card {
+      @include materialCard($primary);
+      top: 0;
+
+      .vertical-center {
+        padding: 5% 16px 0 16px;
       }
 
-      .card-body {
-        position: relative;
-        color: $white;
-        padding: 0;
+      h6 {
+        margin: 0;
+        line-height: 0;
+        margin-bottom: .7em;
+      }
 
-        .material-card {
-          @include materialCard($primary);
-          top: 0;
-          height: 53px;
+      small {
+        color: $gray-text;
+        z-index: 200;
+      }
+    }
 
-          h6 {
-            margin: 0;
-            line-height: 0;
-            padding: 8px 0 0.3vw 0;
-            font-size: 1vw;
-          }
+    .badges {
+      position: absolute;
+      bottom: 8px;
+      @include box-shadow-dark;
+    }
 
-          small {
-            color: $gray-text;
-            top: 30px;
-            left: 10px;
-            z-index: 200;
-            font-size: 0.9vw;
-          }
-        }
+    .badge {
+      border-radius: unset;
+      margin-right: 1px;
+      padding: 7px;
 
-        .center-badges {
-          .badges {
-            position: absolute;
-            bottom: 8px;
-            @include box-shadow-dark;
-
-            .badge {
-              border-radius: unset;
-              margin-right: 1px;
-              padding: 7px;
-              font-size: 0.9vw;
-
-              i {
-                padding-right: 3px;
-              }
-            }  
-          }
-        }
+      i {
+        padding-right: 3px;
       }
     }
   }
