@@ -1,5 +1,34 @@
 @import "../app.component.scss";
 
+@media only screen and (min-width: 1px) and (max-width: 768px) {
+  #annonces-wrap {
+    padding: 0 35px 0 35px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .annonces-container .reinitButton {
+    display: block;
+    width: 100%;
+  }
+
+  .vehiculeNumber {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .annonces-container .reinitButton {
+    float: right;
+  }
+
+  .vehiculeNumber {
+    float: left;
+  }
+}
+
 .annonces-container {
   .content-container {
     form {
@@ -10,8 +39,6 @@
       }
 
       .vehiculeNumber {
-        float: left;
-        margin-left: -15px;
         opacity: 1;
         @include transition(all 0.3s);
       }
@@ -21,8 +48,9 @@
       }
 
       .reinitButton {
-        float: right;
-        margin-right: 15px;
+        i {
+          margin-right: 5px;
+        }
       }
     }
 
