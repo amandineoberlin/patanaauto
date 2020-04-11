@@ -101,6 +101,36 @@ body {
     display: none !important;
   }
 
+  // full size image in annonce component
+  .cloned-img-container {
+    height: calc(100vh - 76.5px);
+    width: auto;
+    position: absolute;
+    top: 76.5px;
+    z-index: 100;
+  }
+
+  .cloned-img {
+    padding: .3rem;
+    border-radius: .125rem;
+  }
+
+  .cloned-img-icon {
+    cursor: pointer;
+    text-shadow: 1px 2px 2px $black;
+    color: $primary;
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 101;
+
+    &:hover {
+      font-size: 1.95em;
+      color: $hovered-red;
+    }
+  }
+
 
   /* forms and inputs */
   .filters {
@@ -298,6 +328,13 @@ body {
         border-radius: 10px;
       }
     }
+
+    img {
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+    }
+
     .carousel-control-next, .carousel-control-prev {
       opacity: .9;
 
@@ -308,16 +345,26 @@ body {
         }
       }
     }
+
     .carousel-control-next {
       justify-content: flex-end;
+      margin-right: 5px;
     }
+
     .carousel-control-prev {
       justify-content: flex-start;
+      margin-left: 5px;
     }
+
     .fa-chevron-circle-left, .fa-chevron-circle-right {
       color: $primary;
-      font-size: 1.8em;
+      font-size: 2em;
       text-shadow: 1px 2px 2px $black;
+
+      &:hover {
+        font-size: 1.95em;
+        color: $hovered-red;
+      }
     }
   }
 
@@ -404,17 +451,13 @@ body {
   }
 
   .custom-default {
-    font-family: 'Karla';
-    font-size: .8rem;
-    text-transform: uppercase;
-    padding: 5px 20px 5px 20px;
+    @include button;
     color: $gray-800;
     background-color: transparent;
     border: solid 2px $gray-800;
     border-radius: 20px;
 
     &:hover {
-      cursor: pointer;
       background-color: $gray-800;
       color: $plain-white;
       border-color: $gray-800;
@@ -422,17 +465,13 @@ body {
   }
 
   .custom-primary {
-    font-family: 'Karla';
-    font-size: .8rem;
-    text-transform: uppercase;
-    padding: 5px 20px 5px 20px;
+    @include button;
     color: $primary;
     background-color: transparent;
     border: solid 2px $primary;
     border-radius: 20px;
 
     &:hover {
-      cursor: pointer;
       background-color: $primary;
       color: $plain-white;
       border-color: $primary;
@@ -441,6 +480,21 @@ body {
     &:disabled {
       color: $gray-700;
       border-color: rgba($primary, .4);
+    }
+  }
+
+  .custom-primary-inversed {
+    @include button;
+    @include box-shadow-dark;
+    color: $plain-white;
+    background-color: $primary;
+    border-color: $primary;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: $hovered-red;
+      color: $white;
+      border-color: $hovered-red;
     }
   }
 }

@@ -15,12 +15,46 @@ export class AnnonceComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private dataLoaderService: DataLoaderService,
+    private dataLoaderService: DataLoaderService
   ) { }
 
   annonceId: number;
   annonce: any;
   options: Array<string>;
+
+  enlargeImage() {
+    if ($('.enlarged-img').length) return;
+
+    const image = $('#myCarousel .active').find('img');
+    if (!image) return;
+
+    $('body')
+      .prepend(`<div class="d-flex justify-content-center enlarged-img">` +
+        `<div class="cloned-img-container">` +
+        `<i class="fa fa-times-circle cloned-img-icon" (click)="clearEnlarged()"></i>` +
+        `<img class="cloned-img" src="../../assets/selsia-photos/${image.attr('src')}"></div></div>`)
+
+    $('.content').css({
+      opacity: .3,
+      overflow: 'hidden',
+      maxHeight: 'calc(100vh - 76.5px)'
+    });
+
+    $('.cloned-img-icon').on('click', () => this.clearEnlarged());
+  }
+
+  clearEnlarged() {
+    const enlargedEl = '.enlarged-img';
+    if (!$(enlargedEl)) return;
+
+    $('body').find(enlargedEl).remove();
+
+    $('.content').css({
+      opacity: 1,
+      overflow: 'auto',
+      maxHeight: '100%'
+    });
+  }
 
   changeActiveItem(i) {
     $('.carousel-indicators').children().each(function(index) {

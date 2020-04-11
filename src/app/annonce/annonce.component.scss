@@ -110,6 +110,17 @@
       @include magnifier;
       @include opacity($gray-650, 0.7);
 
+      .custom-primary-inversed {
+        position: absolute;
+        bottom: 7px;
+        right: 5px;
+        z-index: 11;
+
+        i {
+          margin-right: 7px;
+        }
+      }
+
       .carousel-indicators {
         position: relative;
         margin: 0 0 20px 0;
