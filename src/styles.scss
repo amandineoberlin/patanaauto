@@ -314,10 +314,10 @@ body {
     .carousel-control-prev {
       justify-content: flex-start;
     }
-    .carousel-control-next-icon, .carousel-control-prev-icon {
-      opacity: 1;
-      background-color: $primary;
-      padding: 20px 0 20px 0px;
+    .fa-chevron-circle-left, .fa-chevron-circle-right {
+      color: $primary;
+      font-size: 1.8em;
+      text-shadow: 1px 2px 2px $black;
     }
   }
 
