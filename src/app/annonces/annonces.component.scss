@@ -226,11 +226,11 @@
       top: 10px;
       right: 10px;
       border-radius: 60px;
-      box-shadow: 0px 0px 2px #888;
       padding: 0.5em 0.6em;
       color: $white;
       background-color: $primary;
       z-index: 210;
+      @include box-shadow-dark;
       
       span {
         padding-left: 3px;
@@ -247,6 +247,7 @@
 
     .material-card {
       @include materialCard($primary);
+      @include box-shadow-dark;
       top: 0;
 
       .vertical-center {
@@ -268,7 +269,7 @@
     .badges {
       position: absolute;
       bottom: 8px;
-      @include box-shadow-dark;
+      @include box-shadow-blur;
     }
 
     .badge {

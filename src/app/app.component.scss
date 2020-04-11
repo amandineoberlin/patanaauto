@@ -134,8 +134,13 @@ $primary: #A9040A !default;
   box-shadow: 0 2px 2px 0 rgba($plain-white, 0.50), 0 2px 10px 0 rgba($plain-white, 0.52);
 }
 
-@mixin box-shadow-dark {
+@mixin box-shadow-blur {
   box-shadow: 0 2px 5px 0 rgba($black, .16), 0 2px 10px 0 rgba($black, .12);
+}
+
+@mixin box-shadow-dark {
+  text-shadow: 1px 2px 2px $black;
+  box-shadow: 1px 2px 2px $black;
 }
 
 @mixin color-inputs {
@@ -290,5 +295,16 @@ $primary: #A9040A !default;
       font-family: $family;
       text-transform: $text;
     }
+  }
+}
+
+@mixin button {
+  font-family: 'Karla';
+  font-size: .8rem;
+  text-transform: uppercase;
+  padding: 5px 14px 5px 14px;
+
+  &:hover {
+    cursor: pointer;
   }
 }
