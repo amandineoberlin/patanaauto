@@ -21,12 +21,8 @@ $black: #0B0C0F !default;
 $light-red: #ef4b4b;
 $primary: #A9040A !default;
 
-// mixins
 
-@mixin opacity($color, $opacity) {
-  background-color: rgba($color, $opacity);
-}
-
+// font-family
 @font-face {
   font-family: 'Karla';
   src: url('/assets/fonts/Karla-Regular.woff2') format('woff2'),
@@ -128,6 +124,11 @@ $primary: #A9040A !default;
        url('/assets/fonts/Exo-ExtraLight.woff') format('woff');
   font-weight: 100;
   font-style: normal;
+}
+
+// mixins
+@mixin opacity($color, $opacity) {
+  background-color: rgba($color, $opacity);
 }
 
 @mixin box-shadow-light {
@@ -307,4 +308,10 @@ $primary: #A9040A !default;
   &:hover {
     cursor: pointer;
   }
+}
+
+@mixin stroke($color, $stroke, $width) {
+  -webkit-text-fill-color: $color;
+  -webkit-text-stroke-width: $width;
+  -webkit-text-stroke-color: $stroke;
 }

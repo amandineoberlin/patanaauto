@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="model">
                   <h4>{{annonce.title}}</h4>
-                  <div class="version"><small>{{annonce.VehiculeVersion}}</small></div>
+                  <div class="version">{{annonce.VehiculeVersion}}</div>
                 </div>
                 <div id="ribbon-container">
                   <a id="ribbon">{{annonce.VehiculePrixVenteTTC}}€</a>
@@ -41,10 +41,7 @@
                   </div>
 
                   <div class="col-md-5 infos">
-                    <div class="title">
-                      <i class="fas fa-info-circle"></i>
-                      <span class="stroke"> Informations générales</span>
-                    </div>
+                    <h5><i class="fas fa-info-circle"></i> Informations générales</h5>
                     <div class="table-responsive table-borderless table-striped">
                       <table class="table">
                         <tbody>
@@ -75,15 +72,13 @@
 
                   <div class="col-md-7">
                     <div class="dock-container">
-                      <div class="dock">
-                        <ol class="carousel-indicators">
-                          <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
-                            attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
-                            <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
-                              alt="First slide">
-                          </li>
-                        </ol>
-                      </div>
+                      <ol class="carousel-indicators">
+                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
+                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
+                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                            alt="First slide">
+                        </li>
+                      </ol>
                     </div>
                   </div>
                 </div>
@@ -97,66 +92,52 @@
                 </style>
                 <![endif]-->
 
-                <div class="row">
+                <div class="row no-gutters">
                   <div class="col-md-12 options">
-                    <div class="title">
-                      <i class="fas fa-tools"></i>
-                      <span class="stroke"> Options & Equipements</span>
-                    </div>
-                    <div class="col-md-8 offset-md-2 list-infos">
-                      <ul>
-                        <li *ngFor="let o of options; let i=index">
-                          <i *ngIf="o" class="fas fa-check-circle"></i> {{o}}
-                        </li>
-                      </ul>
-                    </div>
+                    <h5><i class="fas fa-tools"></i> Options & Equipements</h5>
+                    <ul class="list-infos">
+                      <li *ngFor="let o of options; let i=index">
+                        <i *ngIf="o" class="fas fa-check-circle"></i> {{o}}
+                      </li>
+                    </ul>
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row no-gutters">
                   <div class="col-md-12 autre">
-                    <div class="title">
-                      <i class="fas fa-info-circle"></i>
-                      <span class="stroke"> Autres informations</span>
-                    </div>
-                    <div class="col-md-8 offset-md-2 list-infos">
-                      <ul>
-                        <li>
-                          <i class="fas fa-check-circle"></i> Sellerie:
-                        </li>
-                        <li>
-                          <i class="fas fa-check-circle"></i> Peinture métallisée:
-                        </li>
-                        <li>
-                          <i class="fas fa-check-circle"></i> Véhicule de première main:
-                        </li>
-                        <li>
-                          <i class="fas fa-check-circle"></i> Prix du véhicule neuf:
-                        </li>
-                        <li>
-                          <i class="fas fa-check-circle"></i> Couple moteur:
-                        </li>
+                    <h5><i class="fas fa-info-circle"></i> Autres informations</h5>
+                    <ul class="list-infos">
+                      <li>
+                        <i class="fas fa-check-circle"></i> Sellerie:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Peinture métallisée:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Véhicule de première main:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Prix du véhicule neuf:
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Couple moteur:
+                      </li>
 
-                        <li>{{annonce.VehiculeSellerie}}</li>
-                        <li>{{annonce.VehiculePeintureMetallisee}}</li>
-                        <li>{{annonce.VehiculePremiereMain}}</li>
-                        <li>{{annonce.VehiculePrixNeuf}}€</li>
-                        <li>{{annonce.VehiculeMoteurCouple}}</li>
-                      </ul>
-                    </div>
+                      <li>{{annonce.VehiculeSellerie}}</li>
+                      <li>{{annonce.VehiculePeintureMetallisee}}</li>
+                      <li>{{annonce.VehiculePremiereMain}}</li>
+                      <li>{{annonce.VehiculePrixNeuf}}€</li>
+                      <li>{{annonce.VehiculeMoteurCouple}}</li>
+                    </ul>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12 mesure">
-                    <div class="col-md-12 title">
-                      <i class="fas fa-battery-three-quarters"></i>
-                      <span class="stroke"> Puissance & Consommation</span>
-                    </div>
-
+                    <h5><i class="fas fa-battery-three-quarters"></i> Puissance & Consommation</h5>
                     <div class="row conso">
                       <div class="col-md-12">
-                        <h6>Consommation</h6>
+                        <p>Consommation</p>
                       </div>
                       <div class="col-md-6 offset-md-2">
                         <div class="chart-container">
@@ -167,7 +148,7 @@
 
                     <div class="row power">
                       <div class="col-md-12">
-                        <h6>Puissance</h6>
+                        <p>Puissance</p>
                       </div>
                       <div class="col-md-6">
                         <div class="chart-container">
