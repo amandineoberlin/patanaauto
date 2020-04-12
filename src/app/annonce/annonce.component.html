@@ -38,6 +38,15 @@
                         <i class="fas fa-search-plus"></i>Agrandir
                       </button>
                     </div>
+                    <div class="dock-container">
+                      <ol class="carousel-indicators">
+                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
+                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
+                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                            alt="First slide">
+                        </li>
+                      </ol>
+                    </div>
                   </div>
 
                   <div class="col-md-5 infos">
@@ -65,20 +74,28 @@
                             <th class="row-1">N° de portes:</th>
                             <th class="row-2">{{annonce.VehiculeNbPortes}}</th>
                           </tr>
+                          <tr>
+                            <th class="row-1">Sellerie:</th>
+                            <th class="row-2">{{annonce.VehiculeSellerie}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">Peinture métallisée:</th>
+                            <th class="row-2">{{annonce.VehiculePeintureMetallisee}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">Véhicule de première main:</th>
+                            <th class="row-2">{{annonce.VehiculePremiereMain}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">Prix du véhicule neuf:</th>
+                            <th class="row-2">{{annonce.VehiculePrixNeuf}}</th>
+                          </tr>
+                          <tr>
+                            <th class="row-1">Couple moteur:</th>
+                            <th class="row-2">{{annonce.VehiculeMoteurCouple}}</th>
+                          </tr>
                         </tbody>
                       </table>
-                    </div>
-                  </div>
-
-                  <div class="col-md-7">
-                    <div class="dock-container">
-                      <ol class="carousel-indicators">
-                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
-                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
-                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
-                            alt="First slide">
-                        </li>
-                      </ol>
                     </div>
                   </div>
                 </div>
@@ -95,40 +112,16 @@
                 <div class="row no-gutters">
                   <div class="col-md-12 options">
                     <h5><i class="fas fa-tools"></i> Options & Equipements</h5>
-                    <ul class="list-infos">
-                      <li *ngFor="let o of options; let i=index">
-                        <i *ngIf="o" class="fas fa-check-circle"></i> {{o}}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="row no-gutters">
-                  <div class="col-md-12 autre">
-                    <h5><i class="fas fa-info-circle"></i> Autres informations</h5>
-                    <ul class="list-infos">
-                      <li>
-                        <i class="fas fa-check-circle"></i> Sellerie:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Peinture métallisée:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Véhicule de première main:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Prix du véhicule neuf:
-                      </li>
-                      <li>
-                        <i class="fas fa-check-circle"></i> Couple moteur:
-                      </li>
-
-                      <li>{{annonce.VehiculeSellerie}}</li>
-                      <li>{{annonce.VehiculePeintureMetallisee}}</li>
-                      <li>{{annonce.VehiculePremiereMain}}</li>
-                      <li>{{annonce.VehiculePrixNeuf}}€</li>
-                      <li>{{annonce.VehiculeMoteurCouple}}</li>
-                    </ul>
+                    <div class="table-responsive table-borderless table-striped col-md-8 offset-md-2">
+                      <table class="table">
+                        <tbody>
+                          <tr *ngFor="let o of options; let i=index">
+                            <td *ngIf="o.pair"><i class="fas fa-check-circle"></i> {{o.pair}}</td>
+                            <td *ngIf="o.impair"><i class="fas fa-check-circle"></i> {{o.impair}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
 

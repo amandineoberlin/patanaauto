@@ -18,8 +18,7 @@
   }
 
   h5 {
-    text-shadow: 1px 1px 2px rgba($gray-800, .5);
-    margin-bottom: 5vmin;
+    margin-bottom: 4vmin;
   }
 
   p {
@@ -154,67 +153,34 @@
         border-bottom: 2px solid $primary;
       }
 
-      .infos {
-        margin-top: 10px;
+      .table {
+        tr {
+          text-align: left;
 
-        .table {
-          tr {
-            &:nth-of-type(odd) {
-              @include opacity($gray-800, 0.8);
-              color: $white;
-            }
-            &:nth-child(even) {
-              color: $gray-800;
-            }
+          &:nth-of-type(odd) {
+            @include opacity($gray-800, 0.6);
+            color: $white;
           }
-          
-          th {
-            text-align: left;
+          &:nth-child(even) {
+            color: $gray-800;
           }
+        }
 
-          .row-1 {
-            font-family: 'Raleway';
-            font-weight: 500;
-            text-transform: uppercase;
-          }
+        .row-1 {
+          font-family: 'Raleway';
+          font-weight: 500;
+          text-transform: uppercase;
+        }
 
-          .row-2 {
-            font-weight: 100;
-          }
+        .row-2 {
+          font-weight: 100;
         }
       }
 
-      .options {
-        margin-top: 70px;
-      }
-
-      .autre, .mesure {
+      .options, .mesure {
         font-family: 'Arima Madurai';
         font-size: .9rem;
         margin-top: 40px;
-      }
-
-      .list-infos {
-        display: inline-block;
-        text-align: center;
-        padding: 0 30px;
-        -moz-column-count: 2;
-        -moz-column-gap: 20px;
-        -webkit-column-count: 2;
-        -webkit-column-gap: 20px;
-        column-count: 2;
-        column-gap: 20px;
-        list-style: none;
-        text-align: left;
-
-        li {
-          margin-bottom: 8px;
-          font-size: .9rem;
-
-          i {
-            padding-right: 5px;
-          }
-        }
       }
 
       .mesure {
