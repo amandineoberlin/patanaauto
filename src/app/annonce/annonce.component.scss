@@ -1,16 +1,36 @@
 @import "../app.component.scss";
 
 .annonce-container {
+
+  h3, h4, h5, h6, p {
+    font-family: 'Raleway';
+  }
+
+  h3, h4 {
+    color: $white;
+    font-weight: normal;
+  }
+
+  h5, h6 {
+    color: $gray-800;
+    text-transform: uppercase;
+    font-weight: 100;
+  }
+
+  h5 {
+    text-shadow: 1px 1px 2px rgba($gray-800, .5);
+    margin-bottom: 5vmin;
+  }
+
+  p {
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
   .card {
     border: unset;
     border-radius: unset;
     background-color: unset;
-
-    .stroke {
-      -webkit-text-fill-color: $white;
-      -webkit-text-stroke-width: .2px;
-      -webkit-text-stroke-color: $black;
-    }
 
     .card-header {
       background-color: $primary;
@@ -21,10 +41,6 @@
       .model {
         display: inline-block;
         text-align: left;
-
-        h4 {
-          color: $white;
-        }
 
         .version {
           margin-top: -10px;
@@ -108,7 +124,7 @@
 
     .card-body {
       @include magnifier;
-      @include opacity($gray-650, 0.7);
+      @include opacity($plain-white, 0.9);
 
       .custom-primary-inversed {
         position: absolute;
@@ -125,6 +141,8 @@
         position: relative;
         margin: 0 0 20px 0;
         padding: 0;
+        height: 100%;
+        width: 100%;
 
         li {
           width: 100%;
@@ -137,19 +155,26 @@
       }
 
       .infos {
-        .table-striped tbody tr:nth-of-type(odd) {
-          @include opacity($black, 0.1);
-        }
+        margin-top: 10px;
 
         .table {
-          padding-top: 20px;
-          border-left: 2px solid $primary;
+          tr {
+            &:nth-of-type(odd) {
+              @include opacity($gray-800, 0.8);
+              color: $white;
+            }
+            &:nth-child(even) {
+              color: $gray-800;
+            }
+          }
           
           th {
             text-align: left;
           }
 
           .row-1 {
+            font-family: 'Raleway';
+            font-weight: 500;
             text-transform: uppercase;
           }
 
@@ -159,77 +184,35 @@
         }
       }
 
-      .infos, .options, .table, .autre, .mesure {
-        font-family: 'Arima Madurai';
-        color: white;
-        font-size: .9rem;
-        font-weight: 100;
-
-        .title {
-          text-transform: uppercase;
-          font-size: 1.1rem;
-          margin-bottom: 20px;
-          font-weight: 900;
-          color: $white;
-          background-color: $gray-900;
-          padding: 20px 0;
-        }
-      }
-
       .options {
-        margin-top: 25px;
-        padding-bottom: 20px;
-
-        hr {
-          background-color: $gray-800;
-        }
-
-        ul {
-          -moz-column-count: 3;
-          -moz-column-gap: 20px;
-          -webkit-column-count: 3;
-          -webkit-column-gap: 20px;
-          column-count: 3;
-          column-gap: 20px;
-          list-style: none;
-          text-align: left;
-
-          li {
-            margin-bottom: 8px;
-          }
-        }
+        margin-top: 70px;
       }
 
-      .autre {
-        .table {
-          border-left: 2px solid $primary;
-
-          tr {
-            text-align: left;
-          }
-        }
+      .autre, .mesure {
+        font-family: 'Arima Madurai';
+        font-size: .9rem;
+        margin-top: 40px;
       }
 
       .list-infos {
-        border-left: 2px solid $primary;
+        display: inline-block;
+        text-align: center;
+        padding: 0 30px;
+        -moz-column-count: 2;
+        -moz-column-gap: 20px;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 20px;
+        column-count: 2;
+        column-gap: 20px;
+        list-style: none;
+        text-align: left;
 
-        ul {
-          -moz-column-count: 2;
-          -moz-column-gap: 20px;
-          -webkit-column-count: 2;
-          -webkit-column-gap: 20px;
-          column-count: 2;
-          column-gap: 20px;
-          list-style: none;
-          text-align: left;
+        li {
+          margin-bottom: 8px;
+          font-size: .9rem;
 
-          li {
-            margin-bottom: 8px;
-            font-size: .9rem;
-
-            i {
-              padding-right: 5px;
-            }
+          i {
+            padding-right: 5px;
           }
         }
       }
@@ -243,10 +226,6 @@
           padding-top: 50px;
         }
       }
-    }
-
-    h5, p {
-      color: $white;
     }
   }
 }
