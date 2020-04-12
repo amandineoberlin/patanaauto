@@ -20,7 +20,7 @@ export class AnnonceComponent implements OnInit {
 
   annonceId: number;
   annonce: any;
-  options: Array<string>;
+  options: object;
 
   enlargeImage() {
     if ($('.enlarged-img').length) return;
@@ -65,13 +65,6 @@ export class AnnonceComponent implements OnInit {
 
   mainImage(annonce) {
     return this.dataLoaderService.mainImage(annonce);
-  }
-
-  getOptions() {
-    const options = this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
-    const equip = this.annonce['VehiculeEquipementsSerieArgus'][0].split('|');
-
-    return _.concat(options, equip);
   }
 
   createConsoChart() {
@@ -200,6 +193,22 @@ export class AnnonceComponent implements OnInit {
     });
   }
 
+  buildOptionsObject() {
+    const options = this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
+    const equip = this.annonce['VehiculeEquipementsSerieArgus'][0].split('|');
+    const allOptions = _.concat(options, equip);
+
+    const part1 = [];
+    const part2 = [];
+    _.forEach(allOptions, o =>
+      _.indexOf(allOptions, o) % 2 === 0 ? part1.push({ pair: o }) : part2.push({ impair: o }));
+
+    const longest = part1.length > part2.length ? part1 : part2;
+    const shortest = part1.length <= part2.length ? part1 : part2;
+
+    return _.map(longest, (item, index) => ({ ...item, ...shortest[index] }));
+  }
+
   ngOnInit(): void {
     this.activatedRoute.queryParams
       .subscribe((params) => {
@@ -207,7 +216,8 @@ export class AnnonceComponent implements OnInit {
       });
 
     this.annonce = this.activatedRoute.snapshot.data['annonce'];
-    this.options = this.getOptions();
+
+    this.options = this.buildOptionsObject();
 
     this.createConsoChart();
     this.createFiscaleChart();
