@@ -310,7 +310,7 @@ body {
 
   // carousel
   .carousel {
-    .carousel-indicators {
+    &.carousel-thumbnails .carousel-indicators {
       li.active {
         background-color: $primary;
         border: solid 1px $primary;
