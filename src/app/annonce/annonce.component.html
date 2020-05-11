@@ -18,7 +18,7 @@
 
                 <div class="row">
                   <div class="col-md-7">
-                    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div id="annonceCarousel" class="carousel slide carousel-fade" data-ride="carousel">
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
                           [ngClass]="[i==0 ? 'active' : '']">
@@ -26,26 +26,26 @@
                             alt="First slide">
                         </div>
                       </div>
-                      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                      <a class="carousel-control-prev" href="#annonceCarousel" role="button" data-slide="prev">
                         <span class="fas fa-chevron-circle-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                       </a>
-                      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                      <a class="carousel-control-next" href="#annonceCarousel" role="button" data-slide="next">
                         <span class="fas fa-chevron-circle-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                       </a>
                       <button class="custom-primary-inversed" (click)="enlargeImage()">
                         <i class="fas fa-search-plus"></i>Agrandir
                       </button>
-                    </div>
-                    <div class="dock-container">
-                      <ol class="carousel-indicators">
-                        <li *ngFor="let image of annonce.images; let i=index" data-target="#myCarousel"
-                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
-                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
-                            alt="First slide">
-                        </li>
-                      </ol>
+                      <div class="dock-container">
+                        <ol class="carousel-indicators">
+                          <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
+                            attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
+                            <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                              alt="First slide">
+                          </li>
+                        </ol>
+                      </div>
                     </div>
                   </div>
 
@@ -54,10 +54,6 @@
                     <div class="table-responsive table-borderless table-striped">
                       <table class="table">
                         <tbody>
-                          <tr>
-                            <th class="row-1">Version:</th>
-                            <th class="row-2">{{annonce.VehiculeVersion}}</th>
-                          </tr>
                           <tr>
                             <th class="row-1">Mise en circulation:</th>
                             <th class="row-2">{{annonce.VehiculeCarteGriseDate}}</th>
@@ -81,10 +77,6 @@
                           <tr>
                             <th class="row-1">Peinture métallisée:</th>
                             <th class="row-2">{{annonce.VehiculePeintureMetallisee}}</th>
-                          </tr>
-                          <tr>
-                            <th class="row-1">Véhicule de première main:</th>
-                            <th class="row-2">{{annonce.VehiculePremiereMain}}</th>
                           </tr>
                           <tr>
                             <th class="row-1">Prix du véhicule neuf:</th>

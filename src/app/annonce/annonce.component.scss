@@ -127,8 +127,8 @@
 
       .custom-primary-inversed {
         position: absolute;
-        bottom: 7px;
-        right: 5px;
+        bottom: 70px;
+        right: 6px;
         z-index: 11;
 
         i {
@@ -137,32 +137,41 @@
       }
 
       .carousel-indicators {
+        @include opacity($gray-800, .9);
         position: relative;
-        margin: 0 0 20px 0;
+        margin: 3px 0 20px 0;
         padding: 0;
         height: 100%;
         width: 100%;
 
         li {
+          height: 100%;
+          opacity: 1;
           width: 100%;
+          background: transparent;
           box-sizing: border-box;
+          display: inline-table;
+        }
+
+        .active {
+          img {
+            border: 3px solid $primary;
+          }
         }
       }
 
-      .carousel-inner {
-        border-bottom: 2px solid $primary;
-      }
-
       .table {
+        @include opacity($gray-900, .55);
+
         tr {
           text-align: left;
 
           &:nth-of-type(odd) {
-            @include opacity($gray-800, 0.6);
+            @include opacity($gray-800, 0.8);
             color: $white;
           }
           &:nth-child(even) {
-            color: $gray-800;
+            color: $plain-white;
           }
         }
 

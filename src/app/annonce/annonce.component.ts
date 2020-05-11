@@ -25,7 +25,7 @@ export class AnnonceComponent implements OnInit {
   enlargeImage() {
     if ($('.enlarged-img').length) return;
 
-    const image = $('#myCarousel .active').find('img');
+    const image = $('#annonceCarousel .active').find('img');
     if (!image) return;
 
     $('body')
@@ -224,7 +224,7 @@ export class AnnonceComponent implements OnInit {
     this.createReelleChart();
 
     // @ts-ignore
-    $('#myCarousel').carousel();
+    $('#annonceCarousel').carousel();
   }
 
 }

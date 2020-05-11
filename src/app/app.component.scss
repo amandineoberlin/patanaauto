@@ -220,12 +220,10 @@ $primary: #A9040A !default;
 
   .dock-container li:hover img { 
     @include transform(scale(2));
-    margin: 0 2em;
   }
 
-  .dock-container li:hover + li img,
-  .dock-container li.prev img {
-    margin: 0 1.5em;
+  .dock-container li:hover img {
+    margin-left: 1.5rem;
   }
 }
 
