@@ -17,13 +17,13 @@
     font-weight: 100;
   }
 
-  h5 {
-    margin-bottom: 4vmin;
-  }
-
   p {
     font-weight: normal;
     text-transform: uppercase;
+  }
+
+  h5 {
+    margin-bottom: 4vmin;
   }
 
   .card {
@@ -160,17 +160,26 @@
         }
       }
 
-      .table {
-        @include opacity($gray-900, .55);
+      .infos .table {
+        border-collapse: separate; 
+        border-spacing: 15px 0; 
+      }
 
+      .options .table {
+        border-collapse: separate; 
+        border-spacing: 0 15px; 
+      }
+
+      .table {
         tr {
           text-align: left;
 
           &:nth-of-type(odd) {
-            @include opacity($gray-800, 0.8);
-            color: $white;
+            @include opacity($gray-400, 1);
+            color: $gray-800;
           }
           &:nth-child(even) {
+            @include opacity($gray-600, 1);
             color: $plain-white;
           }
         }
