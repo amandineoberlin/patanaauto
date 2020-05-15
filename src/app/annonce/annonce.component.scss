@@ -38,16 +38,73 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 768px) {
+  .annonce-container {
+    .card-header {
+      text-align: center;
+    }
+
+    #ribbon-container:before {
+      border-top: 29px solid rgba(0, 0, 0, .3);
+      border-bottom: 29px solid rgba(0, 0, 0, .3);
+      border-right: 29px solid rgba(0, 0, 0, .3);
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container:after {
+      left: 58px;
+      right: 3px;
+    }
+    #ribbon-container a:before {
+      border-top: 29px solid $white;
+      border-bottom: 29px solid $white;
+      border-right: 29px solid transparent;
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container a {
+      height: 58px;
+      padding: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #annonce-wrap {
+    padding: 0 ;
+  }
+
   .annonce-container {
     h3, h4, h5, h6 {
       font-size: 1em;
     }
 
     table tr, .model, p {
-      font-size: .9em;
+      font-size: 1em;
     }
 
+    .card-header {
+      text-align: left;
+    }
+
+    #ribbon-container:before {
+      border-top: 21px solid rgba(0, 0, 0, .3);
+      border-bottom: 21px solid rgba(0, 0, 0, .3);
+      border-right: 15px solid rgba(0, 0, 0, .3);
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container:after {
+      left: 44px;
+      right: 3px;
+    }
+    #ribbon-container a:before {
+      border-top: 21px solid $white;
+      border-bottom: 21px solid $white;
+      border-right: 15px solid transparent;
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container a {
+      height: 42px;
+      padding: 12px;
+    }
     #ribbon-container {
       font-size: .8rem;
     }
@@ -91,12 +148,10 @@
     .card-header {
       background-color: $primary;
       border-radius: unset;
-      text-align: center;
       position: relative;
 
       .model {
         display: inline-block;
-        text-align: left;
 
         .version {
           margin-top: -10px;
@@ -119,10 +174,6 @@
         position: absolute;
         top: 3px;
         left: 0;
-        border-top: 29px solid rgba(0, 0, 0, .3);
-        border-bottom: 29px solid rgba(0, 0, 0, .3);
-        border-right: 29px solid rgba(0, 0, 0, .3);
-        border-left: 29px solid transparent;
       }
 
       #ribbon-container:after {
@@ -132,18 +183,14 @@
         display: block;
         position: absolute;
         bottom: -3px;
-        left: 58px;
-        right: 3px;
       }
 
       #ribbon-container a {
         cursor: default;
         display: block;
-        padding: 20px;
         position: relative;
         background: $white;
         overflow: visible;
-        height: 58px;
         margin-left: 29px;
         color: $hovered-red;
         text-decoration: none;
@@ -169,10 +216,6 @@
         position: absolute;
         top: 0;
         left: -29px;
-        border-top: 29px solid $white;
-        border-bottom: 29px solid $white;
-        border-right: 29px solid transparent;
-        border-left: 29px solid transparent;
       }
     }
 
@@ -182,7 +225,7 @@
 
       .custom-primary-inversed {
         position: absolute;
-        bottom: 70px;
+        bottom: 8px;
         right: 6px;
         z-index: 11;
 
