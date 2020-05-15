@@ -6,15 +6,54 @@
       font-size: 1.6em;
     }
 
-    table tr {
+    table tr, .model, p {
       font-size: 1.3em;
     }
 
-    .model, p {
-      font-size: 1.2em;
+    #ribbon-container {
+      top: 18%;
+      font-size: 1.5rem;
     }
   }
 }
+
+@media only screen and (max-width: 1600px) {
+  .annonce-container {
+    #ribbon-container {
+      top: 13%;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 1135px) {
+  #annonce-wrap {
+    padding: 0 35px 0 35px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #annonceCarousel {
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .annonce-container {
+    h3, h4, h5, h6 {
+      font-size: 1em;
+    }
+
+    table tr, .model, p {
+      font-size: .9em;
+    }
+
+    #ribbon-container {
+      font-size: .8rem;
+    }
+  }
+}
+
 
 .annonce-container {
 
@@ -67,10 +106,8 @@
       #ribbon-container {
         font-family: 'Knewave', 'Karla', cursive;
         position: absolute;
-        top: 7.5px;
         right: -15px;
         overflow: visible;
-        font-size: 21px;
         line-height: 18px;
       }
 

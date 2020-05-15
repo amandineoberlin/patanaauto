@@ -1,6 +1,6 @@
 <div class="bg annonce-container">
   <div class="container-fluid">
-    <div class="content-container">
+    <div class="content-container" id="annonce-wrap">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -17,7 +17,7 @@
               <div class="card-body">
 
                 <div class="row">
-                  <div class="col-md-7">
+                  <div class="col-sm-12 col-lg-7">
                     <div id="annonceCarousel" class="carousel slide carousel-fade" data-ride="carousel">
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
@@ -49,7 +49,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-5 infos">
+                  <div class="col-sm-12 col-lg-5 infos">
                     <h5><i class="fas fa-info-circle"></i> Informations générales</h5>
                     <div class="table-responsive table-borderless table-striped">
                       <table class="table">
@@ -104,7 +104,7 @@
                 <div class="row no-gutters">
                   <div class="col-md-12 options">
                     <h5><i class="fas fa-tools"></i> Options & Equipements</h5>
-                    <div class="table-responsive table-borderless table-striped col-md-8 offset-md-2">
+                    <div class="table-responsive table-borderless table-striped col-sm-12 col-lg-8 offset-lg-2">
                       <table class="table">
                         <tbody>
                           <tr *ngFor="let o of options; let i=index">
