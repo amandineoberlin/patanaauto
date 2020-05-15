@@ -23,7 +23,7 @@ export class AboutComponent implements OnInit {
     ];
 
     // @ts-ignore
-    $('#myCarousel2').carousel();
+    $('#myCarousel2').carousel({ pause: false });
   }
 
 }
