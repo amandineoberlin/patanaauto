@@ -87,36 +87,42 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          display: false
+          position: 'right'
         },
         scales: {
           xAxes: [{
             display: true,
             ticks: {
-              suggestedMin: 3,
-              max: 12
+              suggestedMin: 0,
+              max: 30
             }
           }]
         }
       },
       data: {
-        labels,
-        barPercentage: 3,
         datasets: [{
+          label: labels[0],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          data: [mixte],
+          borderWidth: 1,
           barThickness: 30,
-          data: [mixte, urbaine, extra],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-          ],
-          borderWidth: 1
-        }]
+          borderColor: 'rgba(255, 99, 132, 1)'
+        }, {
+          label: labels[1],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          data: [urbaine],
+          borderWidth: 1,
+          barThickness: 30,
+          borderColor: 'rgba(54, 162, 235, 1)'
+        }, {
+          label: labels[2],
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          data: [extra],
+          borderWidth: 1,
+          barThickness: 30,
+          borderColor: 'rgba(255, 206, 86, 1)'
+        }],
+        barPercentage: 3
       },
     });
   }
@@ -131,7 +137,7 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          display: false,
+          position: 'top'
         },
         scales: {
           xAxes: [{
@@ -144,15 +150,15 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
-        labels: [`fiscale: ${powerFisc}cv`],
-        barPercentage: 1,
         datasets: [{
+          label: 'Fiscale',
           barThickness: 30,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
           data: [parseInt(powerFisc, 10)],
-          backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-          borderColor: ['rgba(75, 192, 192, 1)'],
-          borderWidth: 1
-        }]
+          borderWidth: 1,
+          borderColor: 'rgba(75, 192, 192, 1)'
+        }],
+        barPercentage: 1
       },
     });
   }
@@ -167,7 +173,7 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          display: false,
+          position: 'top'
         },
         scales: {
           xAxes: [{
@@ -180,9 +186,9 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
-        labels: [`réelle: ${powerReal}ch`],
         barPercentage: 1,
         datasets: [{
+          label: 'Réelle',
           barThickness: 30,
           data: [parseInt(powerReal, 10)],
           backgroundColor: ['rgba(153, 102, 255, 0.2)'],
