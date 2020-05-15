@@ -2,7 +2,7 @@
 
 .annonce-container {
 
-  h3, h4, h5, h6, p {
+  h3, h4, h5, h6 {
     font-family: 'Raleway';
   }
 
@@ -12,12 +12,14 @@
   }
 
   h5, h6 {
+    text-shadow: 1px 1px 2px $gray-600;
     color: $gray-800;
     text-transform: uppercase;
     font-weight: 100;
   }
 
   p {
+    font-family: 'Karla';
     font-weight: normal;
     text-transform: uppercase;
   }
@@ -155,39 +157,30 @@
 
         .active {
           img {
-            border: 3px solid $primary;
+            border: 3px solid rgba($hovered-red, .8);
           }
         }
       }
 
-      .infos .table {
-        border-collapse: separate; 
-        border-spacing: 15px 0; 
-      }
-
-      .options .table {
-        border-collapse: separate; 
-        border-spacing: 0 15px; 
-      }
-
       .table {
+        font-family: 'Karla';
+        text-transform: uppercase;
+
         tr {
           text-align: left;
 
           &:nth-of-type(odd) {
-            @include opacity($gray-400, 1);
+            @include opacity($gray-400, .5);
+            @include box-shadow-blur;
             color: $gray-800;
           }
           &:nth-child(even) {
-            @include opacity($gray-600, 1);
-            color: $plain-white;
+            color: $gray-800;
           }
         }
 
         .row-1 {
-          font-family: 'Raleway';
-          font-weight: 500;
-          text-transform: uppercase;
+          font-weight: 900;
         }
 
         .row-2 {

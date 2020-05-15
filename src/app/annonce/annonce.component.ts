@@ -224,7 +224,7 @@ export class AnnonceComponent implements OnInit {
     this.createReelleChart();
 
     // @ts-ignore
-    $('#annonceCarousel').carousel();
+    $('#annonceCarousel').carousel({ pause: false });
   }
 
 }
