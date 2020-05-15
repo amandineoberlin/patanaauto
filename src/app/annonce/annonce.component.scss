@@ -1,5 +1,21 @@
 @import "../app.component.scss";
 
+@media only screen and (min-width: 1600px) {
+  .annonce-container {
+    h3, h4, h5, h6 {
+      font-size: 1.6em;
+    }
+
+    table tr {
+      font-size: 1.3em;
+    }
+
+    .model, p {
+      font-size: 1.2em;
+    }
+  }
+}
+
 .annonce-container {
 
   h3, h4, h5, h6 {
@@ -190,7 +206,6 @@
 
       .options, .mesure {
         font-family: 'Arima Madurai';
-        font-size: .9rem;
         margin-top: 40px;
       }
 
