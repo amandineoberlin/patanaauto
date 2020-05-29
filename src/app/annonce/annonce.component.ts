@@ -69,8 +69,8 @@ export class AnnonceComponent implements OnInit {
 
   createConsoChart() {
     const consoMixte = this.annonce['VehiculeConsommationMixte'][0];
-    const consoUrbaine = this.annonce['VehiculeConsommationMixte'][0];
-    const consoExtraUrbaine = this.annonce['VehiculeConsommationMixte'][0];
+    const consoUrbaine = this.annonce['VehiculeConsommationUrbaine'][0];
+    const consoExtraUrbaine = this.annonce['VehiculeConsommationExtraUrbaine'][0];
     const mixte = parseInt(consoMixte, 10);
     const urbaine = parseInt(consoUrbaine, 10);
     const extra = parseInt(consoExtraUrbaine, 10);
@@ -87,14 +87,14 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          position: 'right'
+          position: 'top'
         },
         scales: {
           xAxes: [{
             display: true,
             ticks: {
               suggestedMin: 0,
-              max: 30
+              max: 20
             }
           }]
         }
@@ -180,7 +180,7 @@ export class AnnonceComponent implements OnInit {
             display: true,
             ticks: {
               suggestedMin: 0,
-              max: 200
+              max: 300
             }
           }]
         }
@@ -213,6 +213,10 @@ export class AnnonceComponent implements OnInit {
     const shortest = part1.length <= part2.length ? part1 : part2;
 
     return _.map(longest, (item, index) => ({ ...item, ...shortest[index] }));
+  }
+
+  ngOnDestroy() {
+    this.clearEnlarged();
   }
 
   ngOnInit(): void {
