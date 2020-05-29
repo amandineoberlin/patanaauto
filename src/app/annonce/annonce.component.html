@@ -104,11 +104,25 @@
                 <div class="row no-gutters">
                   <div class="col-md-12 options">
                     <h5><i class="fas fa-tools"></i> Options & Equipements</h5>
-                    <div class="table-responsive table-borderless table-striped col-sm-12 col-lg-8 offset-lg-2">
+                    <div class="table-responsive table-borderless table-striped
+                      col-sm-12 col-lg-8 offset-lg-2 d-none d-sm-block">
                       <table class="table">
                         <tbody>
                           <tr *ngFor="let o of options; let i=index">
                             <td *ngIf="o.pair"><i class="fas fa-check-circle"></i> {{o.pair}}</td>
+                            <td *ngIf="o.impair"><i class="fas fa-check-circle"></i> {{o.impair}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="table-responsive table-borderless table-striped col-xs-12 d-block d-sm-none">
+                      <table class="table">
+                        <tbody>
+                          <tr *ngFor="let o of options; let i=index">
+                            <td *ngIf="o.pair"><i class="fas fa-check-circle"></i> {{o.pair}}</td>
+                          </tr>
+                          <tr *ngFor="let o of options; let i=index">
                             <td *ngIf="o.impair"><i class="fas fa-check-circle"></i> {{o.impair}}</td>
                           </tr>
                         </tbody>
@@ -126,7 +140,7 @@
                       </div>
                       <div class="col-sm-12 col-md-8">
                         <div class="chart-container">
-                          <canvas id="consoChart"></canvas>
+                          <canvas id="consoChart" title="consommation"></canvas>
                         </div>
                       </div>
                     </div>
