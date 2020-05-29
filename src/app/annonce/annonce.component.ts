@@ -82,15 +82,15 @@ export class AnnonceComponent implements OnInit {
 
     const ctx = document.getElementById('consoChart');
     return new Chart(ctx, {
-      type: 'horizontalBar',
+      type: 'bar',
       options: {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          position: 'top'
+          display: false
         },
         scales: {
-          xAxes: [{
+          yAxes: [{
             display: true,
             ticks: {
               suggestedMin: 0,
@@ -100,27 +100,22 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
+        labels: [labels[0], labels[1], labels[2]],
         datasets: [{
           label: labels[0],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          data: [mixte],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)'
+          ],
+          data: [mixte, urbaine, extra],
           borderWidth: 1,
           barThickness: 30,
-          borderColor: 'rgba(255, 99, 132, 1)'
-        }, {
-          label: labels[1],
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          data: [urbaine],
-          borderWidth: 1,
-          barThickness: 30,
-          borderColor: 'rgba(54, 162, 235, 1)'
-        }, {
-          label: labels[2],
-          backgroundColor: 'rgba(255, 206, 86, 0.2)',
-          data: [extra],
-          borderWidth: 1,
-          barThickness: 30,
-          borderColor: 'rgba(255, 206, 86, 1)'
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)'
+          ]
         }],
         barPercentage: 3
       },
