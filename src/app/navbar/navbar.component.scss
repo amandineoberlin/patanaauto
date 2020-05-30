@@ -1,5 +1,21 @@
 @import "../app.component.scss";
 
+@media only screen and (min-width: 1600px) {
+  #mainNav {
+    .nav-link {
+      font-size: 1.1em;
+    }
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  #mainNav {
+    .nav-link {
+      font-size: .9em;
+    }
+  }
+}
+
 #mainNav {
   background-color: $gray-bg;
   position: fixed;
@@ -18,13 +34,13 @@
   .navbar-nav {
     .nav-item {
       .nav-link {
-        padding: 1.1em 1em !important;
-        font-size: 90%;
-        padding: 0.75em 0;
+        @include transition(color .3s ease-in-out);
+        padding: 1.1em 1em;
         letter-spacing: 1px;
         color: $white;
         &.active,
         &:hover {
+          text-shadow: 1px 2px 2px $black;
           color: $primary;
         }
       }
