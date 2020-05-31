@@ -1,15 +1,152 @@
 @import "../app.component.scss";
 
+@media only screen and (max-width: 560px) {
+  #about-wrap {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 561px) and (max-width: 992px) {
+  #about-wrap {
+    padding: 0 35px 0 35px;
+    .partLeft, .partRight {
+      width: 90%;
+    }
+    .second, .third {
+      margin-left: 30px;
+    }
+  }
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1130px) {
+  #about-wrap {
+    padding: 0 35px 0 35px;
+    .partLeft, .partRight {
+      width: 82%;
+    }
+    .second, .third {
+      margin-left: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1130px) {
+  #about-wrap {
+    .carousel {
+      width: 85%;
+      position: relative;
+      margin-bottom: 30px;
+    }
+    .partLeft, .partRight {
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+    }
+    .partLeft {
+      .bg-faded {
+        padding: 50px 50px 5px 50px;
+        border-top-left-radius: .175em;
+        border-top-right-radius: .175em;
+      }
+    }
+    .partRight {
+      margin-bottom: -25px;
+      .bg-faded {
+        padding: 0 50px 90px 50px;
+        border-bottom-left-radius: .175em;
+        border-bottom-right-radius: .175em;
+      }
+    }
+    .vl {
+      visibility: hidden;
+    }
+  }
+}
+
+@media only screen and (min-width: 1131px) {
+  .about-container {
+    .carousel {
+      width: 65%;
+    }
+    .bg-faded {
+      padding: 50px 50px 90px 50px;
+      border-radius: .175em;
+    }
+    .partLeft, .partRight {
+      top: 30px;
+      width: 290px;
+      position: absolute;
+    }
+    .partLeft {
+      left: -255px;
+    }
+    .partRight {
+      right: -255px;
+    }
+    .text {
+      font-size: .85em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .about-container {
+    .material-card {
+      font-size: 1rem;
+    }
+    .title {
+      font-size: 1.1em;
+    }
+    .patana-title {
+      font-size: 1.8em;
+    }
+    .intro {
+      font-size: 1.3em;
+    }
+    .suite {
+      font-size: 1em;
+    }
+    .horaires {
+      font-size: 1em;
+    }
+    .text {
+      font-size: 1em;
+    }
+  }
+}
+
+@media only screen and (max-width: 1599px) {
+  .about-container {
+    .material-card {
+      font-size: .8rem;
+    }
+    .title {
+      font-size: .9em;
+    }
+    .patana-title {
+      font-size: 1.6em;
+    }
+    .intro {
+      font-size: 1.1em;
+    }
+    .suite {
+      font-size: .8em;
+    }
+    .horaires {
+      font-size: .8em;
+    }
+  }
+}
+
 .about-container {
   font-family: 'Arima Madurai';
   text-transform: uppercase;
 
   .carousel {
-    width: 740px;
     height: auto;
-  }
 
-  .speech {
     .material-card {
       @include materialCard(rgba(168, 4, 10, .8));
       color: $white;
@@ -19,12 +156,7 @@
       bottom: 15px;
       font-family: 'Arima Madurai';
       font-weight: 100;
-      font-size: .8rem;
       text-align: center;
-    }
-
-    .bg-right {
-      padding: 50px 50px 90px 50px;
     }
 
     .bg-faded {
@@ -32,7 +164,6 @@
 
       .title {
         font-family: 'Raleway';
-        font-size: 15px;
         font-weight: 900;
         border-bottom: 1px solid $gray-900;
         padding-bottom: 5px;
@@ -43,7 +174,6 @@
         font-family: 'Raleway';
         color: $primary;
         font-weight: 100;
-        font-size: 1.6rem;
       }
 
       .text {
@@ -61,23 +191,15 @@
     }
 
     .partLeft, .partRight {
-      width: 21%;
-      position: absolute;
-      top: 80px;
       font-family: 'Karla';
       z-index: 10;
+    }
 
+    .partLeft {
       .vl {
         border-left: 3px solid $primary;
         z-index: 100;
         position: absolute;
-      }
-    }
-
-    .partLeft {
-      left: 50px;
-
-      .vl {
         top: 40px;
         left: 32px;
         height: 47%;
@@ -85,8 +207,6 @@
     }
 
     .partRight {
-      right: 50px;
-
       .dot {
         padding-right: 5px;
       }
@@ -94,7 +214,6 @@
       .intro {
         font-family: 'Raleway';
         font-weight: 100;
-        font-size: 18px;
         color: $primary;
       }
 
@@ -102,13 +221,11 @@
         font-family: 'Raleway';
         font-weight: 900;
         color: $gray-700;
-        font-size: 13px;
       }
 
       .horaires {
         color: $primary;
         font-family: 'Karla';
-        font-size: 14px;
 
         .l1, .l3 {
           font-weight: 700;
