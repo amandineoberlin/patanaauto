@@ -1,9 +1,43 @@
 <div class="bg about-container">
   <div class="container-fluid">
-    <div class="content-container">
+    <div class="content-container" id="about-wrap">
 
       <div class="row d-flex justify-content-center">
         <div id="myCarousel2" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+
+          <div class="partLeft">
+            <div class="vl"></div>
+            <div class="bg-faded">
+              <h5 class="title">Nos Engagements</h5>
+              <span class="patana-title">Patana Auto </span>
+              <p class="text">vous propose des véhicules toute marque, adaptés à tous budgets, 
+                mais également des véhicules nettoyés, révisés, contrôlés et garantis.
+              </p>
+              <p class="text second">
+                <i class="dot"></i> Tous nos véhicules sont visibles sur notre parc.
+              </p>
+              <p class="text third">
+                <i class="dot"></i> Un essai véhicule vous est proposé afin de faciliter votre prise de décision.
+              </p>
+            </div>
+          </div>
+
+          <div class="partRight">
+            <div class="bg-faded">
+              <p class="intro">Pour mieux vous servir</p>
+              <p class="suite">notre équipe est à votre disposition:</p>
+              <div class="horaires">
+                <p class="l1"><i class="fas fa-check fa-xs"></i> lundi - vendredi</p><br/>
+                <p class="l2">9h-12h / 14h-19h</p><br/>
+                <p class="l3"><i class="fas fa-check fa-xs"></i> samedi</p><br/>
+                <p class="l4">9h-19h.</p>
+              </div>
+              <div class="material-card">
+                51, avenue de la libération <br/>77830 Pamfou
+              </div>
+            </div>
+          </div>
+
           <ol class="carousel-indicators">
             <li *ngFor="let image of images; let i=index" data-target="#myCarousel2"
               attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']">
@@ -15,39 +49,7 @@
               <img class="d-block w-100 rounded" src="../../assets/images/{{image}}" alt="First slide">
             </div>
           </div>
-        </div>
-      </div>
-      <div class="speech">
-        <div class="partLeft">
-          <div class="vl"></div>
-          <div class="bg-faded rounded p-5">
-            <h5 class="title">Nos Engagements</h5>
-            <span class="patana-title">Patana Auto </span>
-            <p class="text">vous propose des véhicules toute marque, adaptés à tous budgets, 
-              mais également des véhicules nettoyés, révisés, contrôlés et garantis.
-            </p>
-            <p class="text second">
-              <i class="dot"></i> Tous nos véhicules sont visibles sur notre parc.
-            </p>
-            <p class="text third">
-              <i class="dot"></i> Un essai véhicule vous est proposé afin de faciliter votre prise de décision.
-            </p>
-          </div>
-        </div>
-        <div class="partRight">
-          <div class="bg-faded rounded bg-right">
-            <p class="intro">Pour mieux vous servir</p>
-            <p class="suite">notre équipe est à votre disposition:</p>
-            <div class="horaires">
-              <p class="l1"><i class="fas fa-check fa-xs"></i> lundi - vendredi</p><br/>
-              <p class="l2">9h-12h / 14h-19h</p><br/>
-              <p class="l3"><i class="fas fa-check fa-xs"></i> samedi</p><br/>
-              <p class="l4">9h-19h.</p>
-            </div>
-            <div class="material-card">
-              51, avenue de la libération <br/>77830 Pamfou
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
