@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js';
 
@@ -11,7 +11,7 @@ import { DataLoaderService } from '../services/data-loader.service';
   templateUrl: './annonce.component.html',
   styleUrls: ['./annonce.component.scss']
 })
-export class AnnonceComponent implements OnInit {
+export class AnnonceComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,7 +32,7 @@ export class AnnonceComponent implements OnInit {
       .prepend(`<div class="d-flex justify-content-center enlarged-img">` +
         `<div class="cloned-img-container">` +
         `<i class="fa fa-times-circle cloned-img-icon" (click)="clearEnlarged()"></i>` +
-        `<img class="cloned-img" src="../../assets/selsia-photos/${image.attr('src')}"></div></div>`)
+        `<img class="cloned-img" src="../../assets/selsia-photos/${image.attr('src')}"></div></div>`);
 
     $('.content').css({
       opacity: .3,
