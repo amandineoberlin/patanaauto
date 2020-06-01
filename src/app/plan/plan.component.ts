@@ -115,9 +115,12 @@ export class PlanComponent implements OnInit, AfterViewInit {
   }
 
   showAlert(type) {
+    this.disableButton = true;
     $(`.alert-${type}`).show('fast');
+    $('#contact-form').css({ opacity: .5 });
     setTimeout(() => {
       $(`.alert-${type}`).hide('fast');
+      $('#contact-form').css({ opacity: 1 });
       this.contactForm.reset();
     }, 4000);
   }
@@ -133,7 +136,6 @@ export class PlanComponent implements OnInit, AfterViewInit {
       .then(({ rejected, accepted }) => {
         this.rejected = isValue(rejected);
         this.accepted = isValue(accepted);
-        this.submitting = false;
         const alertType = accepted ? 'primary' : 'warning';
         this.showAlert(alertType);
       });
