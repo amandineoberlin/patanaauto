@@ -150,7 +150,7 @@ export class HomeComponent implements OnInit {
       modele: [null],
       price: [null]
     });
-    
+
     this.showPriceRange = false;
 
     this.formDataService.loadAnnonces({ quickSearch: true })

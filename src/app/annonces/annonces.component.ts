@@ -83,6 +83,7 @@ export class AnnoncesComponent implements OnInit {
     if (this.blockPriceSlider) return;
 
     this.showPriceRange = !this.showPriceRange;
+    if (this.showPriceRange) this.showKmRange = false;
 
     const formValue = this.searchForm.controls['price'].value;
     if (formValue) {
@@ -100,6 +101,7 @@ export class AnnoncesComponent implements OnInit {
     if (this.blockKmSlider) return;
 
     this.showKmRange = !this.showKmRange;
+    if (this.showKmRange) this.showPriceRange = false;
 
     const formValue = this.searchForm.controls['km'].value;
     if (formValue) {
@@ -288,10 +290,12 @@ export class AnnoncesComponent implements OnInit {
   }
 
   onVersionOpen() {
+    if ($(window).innerWidth() < 768) return;
     $('.vehiculeNumber').addClass('vehiculeNumber-hidden');
   }
 
   onVersionClose() {
+    if ($(window).innerWidth() < 768) return;
     $('.vehiculeNumber').removeClass('vehiculeNumber-hidden');
   }
 

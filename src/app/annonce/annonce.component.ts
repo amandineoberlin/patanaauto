@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js';
 
@@ -11,16 +11,50 @@ import { DataLoaderService } from '../services/data-loader.service';
   templateUrl: './annonce.component.html',
   styleUrls: ['./annonce.component.scss']
 })
-export class AnnonceComponent implements OnInit {
+export class AnnonceComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private dataLoaderService: DataLoaderService,
+    private dataLoaderService: DataLoaderService
   ) { }
 
   annonceId: number;
   annonce: any;
-  options: Array<string>;
+  options: object;
+
+  enlargeImage() {
+    if ($('.enlarged-img').length) return;
+
+    const image = $('#annonceCarousel .active').find('img');
+    if (!image) return;
+
+    $('body')
+      .prepend(`<div class="d-flex justify-content-center enlarged-img">` +
+        `<div class="cloned-img-container">` +
+        `<i class="fa fa-times-circle cloned-img-icon" (click)="clearEnlarged()"></i>` +
+        `<img class="cloned-img" src="../../assets/selsia-photos/${image.attr('src')}"></div></div>`);
+
+    $('.content').css({
+      opacity: .3,
+      overflow: 'hidden',
+      maxHeight: 'calc(100vh - 76.5px)'
+    });
+
+    $('.cloned-img-icon').on('click', () => this.clearEnlarged());
+  }
+
+  clearEnlarged() {
+    const enlargedEl = '.enlarged-img';
+    if (!$(enlargedEl)) return;
+
+    $('body').find(enlargedEl).remove();
+
+    $('.content').css({
+      opacity: 1,
+      overflow: 'auto',
+      maxHeight: '100%'
+    });
+  }
 
   changeActiveItem(i) {
     $('.carousel-indicators').children().each(function(index) {
@@ -33,17 +67,10 @@ export class AnnonceComponent implements OnInit {
     return this.dataLoaderService.mainImage(annonce);
   }
 
-  getOptions() {
-    const options = this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
-    const equip = this.annonce['VehiculeEquipementsSerieArgus'][0].split('|');
-
-    return _.concat(options, equip);
-  }
-
   createConsoChart() {
     const consoMixte = this.annonce['VehiculeConsommationMixte'][0];
-    const consoUrbaine = this.annonce['VehiculeConsommationMixte'][0];
-    const consoExtraUrbaine = this.annonce['VehiculeConsommationMixte'][0];
+    const consoUrbaine = this.annonce['VehiculeConsommationUrbaine'][0];
+    const consoExtraUrbaine = this.annonce['VehiculeConsommationExtraUrbaine'][0];
     const mixte = parseInt(consoMixte, 10);
     const urbaine = parseInt(consoUrbaine, 10);
     const extra = parseInt(consoExtraUrbaine, 10);
@@ -55,7 +82,7 @@ export class AnnonceComponent implements OnInit {
 
     const ctx = document.getElementById('consoChart');
     return new Chart(ctx, {
-      type: 'horizontalBar',
+      type: 'bar',
       options: {
         maintainAspectRatio: true,
         responsive: true,
@@ -63,33 +90,34 @@ export class AnnonceComponent implements OnInit {
           display: false
         },
         scales: {
-          xAxes: [{
+          yAxes: [{
             display: true,
             ticks: {
-              suggestedMin: 3,
-              max: 12
+              suggestedMin: 0,
+              max: 20
             }
           }]
         }
       },
       data: {
-        labels,
-        barPercentage: 3,
+        labels: [labels[0], labels[1], labels[2]],
         datasets: [{
-          barThickness: 30,
-          data: [mixte, urbaine, extra],
+          label: labels[0],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)'
           ],
+          data: [mixte, urbaine, extra],
+          borderWidth: 1,
+          barThickness: 30,
           borderColor: [
             'rgba(255, 99, 132, 1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-          ],
-          borderWidth: 1
-        }]
+            'rgba(255, 206, 86, 1)'
+          ]
+        }],
+        barPercentage: 3
       },
     });
   }
@@ -104,7 +132,7 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          display: false,
+          position: 'top'
         },
         scales: {
           xAxes: [{
@@ -117,15 +145,15 @@ export class AnnonceComponent implements OnInit {
         }
       },
       data: {
-        labels: [`fiscale: ${powerFisc}cv`],
-        barPercentage: 1,
         datasets: [{
+          label: 'Fiscale',
           barThickness: 30,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
           data: [parseInt(powerFisc, 10)],
-          backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-          borderColor: ['rgba(75, 192, 192, 1)'],
-          borderWidth: 1
-        }]
+          borderWidth: 1,
+          borderColor: 'rgba(75, 192, 192, 1)'
+        }],
+        barPercentage: 1
       },
     });
   }
@@ -140,22 +168,22 @@ export class AnnonceComponent implements OnInit {
         maintainAspectRatio: true,
         responsive: true,
         legend: {
-          display: false,
+          position: 'top'
         },
         scales: {
           xAxes: [{
             display: true,
             ticks: {
               suggestedMin: 0,
-              max: 200
+              max: 300
             }
           }]
         }
       },
       data: {
-        labels: [`réelle: ${powerReal}ch`],
         barPercentage: 1,
         datasets: [{
+          label: 'Réelle',
           barThickness: 30,
           data: [parseInt(powerReal, 10)],
           backgroundColor: ['rgba(153, 102, 255, 0.2)'],
@@ -166,6 +194,26 @@ export class AnnonceComponent implements OnInit {
     });
   }
 
+  buildOptionsObject() {
+    const options = this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
+    const equip = this.annonce['VehiculeEquipementsSerieArgus'][0].split('|');
+    const allOptions = _.concat(options, equip);
+
+    const part1 = [];
+    const part2 = [];
+    _.forEach(allOptions, o =>
+      _.indexOf(allOptions, o) % 2 === 0 ? part1.push({ pair: o }) : part2.push({ impair: o }));
+
+    const longest = part1.length > part2.length ? part1 : part2;
+    const shortest = part1.length <= part2.length ? part1 : part2;
+
+    return _.map(longest, (item, index) => ({ ...item, ...shortest[index] }));
+  }
+
+  ngOnDestroy() {
+    this.clearEnlarged();
+  }
+
   ngOnInit(): void {
     this.activatedRoute.queryParams
       .subscribe((params) => {
@@ -173,14 +221,15 @@ export class AnnonceComponent implements OnInit {
       });
 
     this.annonce = this.activatedRoute.snapshot.data['annonce'];
-    this.options = this.getOptions();
+
+    this.options = this.buildOptionsObject();
 
     this.createConsoChart();
     this.createFiscaleChart();
     this.createReelleChart();
 
     // @ts-ignore
-    $('#myCarousel').carousel();
+    $('#annonceCarousel').carousel({ pause: false });
   }
 
 }

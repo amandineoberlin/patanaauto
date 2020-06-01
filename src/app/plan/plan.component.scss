@@ -1,91 +1,131 @@
-  @import "../app.component.scss";
+@import "../app.component.scss";
 
+@media only screen and (max-width: 768px) {
   .plan-container {
-    color: $gray-700;
-    text-align: center;
-
-    .map-descriptor {
-      @include opacity($plain-white, .9);
-      z-index: 1;
-      display: inline-block;
-      padding: 20px 5px 5px 5px;
-      position: relative;
-      width: 70%;
-      text-align: center;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-
-      .title {
-        border-radius: 7px;
-        font-weight: 100;
-        font-size: 1.6rem;
-        font-family: 'Raleway';
-        color: $primary;
-      }
-
-      .text {
-        padding: 0px 60px 0px 60px;
-        text-align: justify;
-        font-size: .85rem;
-        font-weight: 500;
-        font-family: 'Arima Madurai';
-        color: $gray-800;
-      }
-    }
-
-    .containers {
-      .map-content {
-        .zooms {
-          @include opacity($primary, .95);
-          margin: 10px 10px;
-        }
-
-        .plus {
-          margin-bottom: 5px;
-        }
-      }
-
-      .form-content {
-        @include opacity($gray-900, 0.8);
-        position: relative;
-        z-index: 10;
-        height: 30rem;
-        width: auto;
-        padding: 30px 20px;
-        border-radius: 10px;
-
-        .alert {
-          position: absolute;
-          left: 0;
-          width: 100%;
-        }
-
-        .contact-container {
-          text-align: left;
-          font-family: 'Arima Madurai';
-          text-transform: uppercase;
-
-          .loader {
-            position: absolute; 
-            left: 0; 
-            right: 0; 
-            margin-left: auto; 
-            margin-right: auto;
-            top: 50%;
-            transform: translateY(-50%); 
-          }
-
-          .title {
-            color: $primary;
-            font-weight: 500;
-            font-size: 1.3rem;
-          }
-
-          label {
-            color: rgba($white, .6);
-            font-size: .8rem;
-          }
-        }
+    .contact-container {
+      margin-top: 20px;
+      form {
+        margin-bottom: 0;
       }
     }
   }
+}
+
+@media only screen and (max-width: 992px) {
+  #plan-wrap {
+    padding: 0 35px 0 35px;
+    .map-descriptor {
+      width: 100%;
+      margin: 0 15px 18px 15px;
+    }
+    .contact-container {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .plan-container {
+    .map-descriptor {
+      width: 80%;
+      margin-bottom: 18px;
+    }
+  }
+}
+
+.plan-container {
+  color: $gray-700;
+  text-align: center;
+
+  .map-descriptor {
+    @include opacity($plain-white, .9);
+    z-index: 1;
+    display: inline-block;
+    padding: 20px 5px 5px 5px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: .175em;
+
+    .title {
+      font-weight: 100;
+      font-size: 1.6rem;
+      font-family: 'Raleway';
+      color: $primary;
+    }
+
+    .text {
+      padding: 0px 60px 0px 60px;
+      text-align: justify;
+      font-size: .85rem;
+      font-weight: 500;
+      font-family: 'Arima Madurai';
+      color: $gray-800;
+    }
+  }
+
+  .map-content {
+    .zooms {
+      @include opacity($primary, .95);
+      margin: 10px 10px;
+    }
+
+    .plus {
+      margin-bottom: 5px;
+    }
+  }
+
+  .alert {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    right: 0;
+    margin: auto;
+    width: 95%;
+  }
+
+  input, textarea {
+    color: rgba($white, .7);
+    font-family: 'Arima Madurai';
+    text-transform: uppercase;
+    font-size: .7em;
+  }
+
+  .contact-container {
+    @include opacity($gray-800, 0.8);
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    padding: 30px 20px 5px 20px;
+    border-radius: .175em;
+    text-align: left;
+    font-family: 'Arima Madurai';
+    text-transform: uppercase;
+
+    .loader {
+      position: absolute; 
+      left: 0; 
+      right: 0; 
+      margin-left: auto; 
+      margin-right: auto;
+      top: 50%;
+      transform: translateY(-50%); 
+    }
+
+    .form-title {
+      color: $primary;
+      font-weight: 100;
+      font-size: 1.3rem;
+      font-family: 'Raleway';
+    }
+
+    label {
+      color: rgba($white, .9);
+      font-size: .8rem;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,30 +1,156 @@
 @import "../app.component.scss";
 
+@media only screen and (min-width: 1600px) {
+  .annonce-container {
+    h3, h4, h5, h6 {
+      font-size: 1.6em;
+    }
+
+    table tr, .model, p {
+      font-size: 1.3em;
+    }
+
+    #ribbon-container {
+      top: 18%;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .annonce-container {
+    #ribbon-container {
+      top: 13%;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 1135px) {
+  #annonce-wrap {
+    padding: 0 35px 0 35px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #annonceCarousel {
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .annonce-container {
+    .card-header {
+      text-align: center;
+    }
+
+    #ribbon-container:before {
+      border-top: 29px solid rgba(0, 0, 0, .3);
+      border-bottom: 29px solid rgba(0, 0, 0, .3);
+      border-right: 29px solid rgba(0, 0, 0, .3);
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container:after {
+      left: 58px;
+      right: 3px;
+    }
+    #ribbon-container a:before {
+      border-top: 29px solid $white;
+      border-bottom: 29px solid $white;
+      border-right: 29px solid transparent;
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container a {
+      height: 58px;
+      padding: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #annonce-wrap {
+    padding: 0;
+  }
+
+  .annonce-container {
+    h3, h4, h5, h6 {
+      font-size: 1em;
+    }
+
+    table tr, .model, p {
+      font-size: 1em;
+    }
+
+    .card-header {
+      text-align: left;
+    }
+
+    #ribbon-container:before {
+      border-top: 21px solid rgba(0, 0, 0, .3);
+      border-bottom: 21px solid rgba(0, 0, 0, .3);
+      border-right: 15px solid rgba(0, 0, 0, .3);
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container:after {
+      left: 44px;
+      right: 3px;
+    }
+    #ribbon-container a:before {
+      border-top: 21px solid $white;
+      border-bottom: 21px solid $white;
+      border-right: 15px solid transparent;
+      border-left: 29px solid transparent;
+    }
+    #ribbon-container a {
+      height: 42px;
+      padding: 12px;
+    }
+    #ribbon-container {
+      font-size: .8rem;
+    }
+  }
+}
+
+
 .annonce-container {
+
+  h3, h4, h5, h6 {
+    font-family: 'Raleway';
+  }
+
+  h3, h4 {
+    color: $white;
+    font-weight: normal;
+  }
+
+  h5, h6 {
+    color: $gray-800;
+    text-transform: uppercase;
+    font-weight: 100;
+  }
+
+  p {
+    font-family: 'Karla';
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  h5 {
+    margin-bottom: 4vmin;
+  }
+
   .card {
     border: unset;
     border-radius: unset;
     background-color: unset;
 
-    .stroke {
-      -webkit-text-fill-color: $white;
-      -webkit-text-stroke-width: .2px;
-      -webkit-text-stroke-color: $black;
-    }
-
     .card-header {
       background-color: $primary;
       border-radius: unset;
-      text-align: center;
       position: relative;
 
       .model {
         display: inline-block;
-        text-align: left;
-
-        h4 {
-          color: $white;
-        }
 
         .version {
           margin-top: -10px;
@@ -34,10 +160,8 @@
       #ribbon-container {
         font-family: 'Knewave', 'Karla', cursive;
         position: absolute;
-        top: 7.5px;
         right: -15px;
         overflow: visible;
-        font-size: 21px;
         line-height: 18px;
       }
 
@@ -49,10 +173,6 @@
         position: absolute;
         top: 3px;
         left: 0;
-        border-top: 29px solid rgba(0, 0, 0, .3);
-        border-bottom: 29px solid rgba(0, 0, 0, .3);
-        border-right: 29px solid rgba(0, 0, 0, .3);
-        border-left: 29px solid transparent;
       }
 
       #ribbon-container:after {
@@ -62,18 +182,14 @@
         display: block;
         position: absolute;
         bottom: -3px;
-        left: 58px;
-        right: 3px;
       }
 
       #ribbon-container a {
         cursor: default;
         display: block;
-        padding: 20px;
         position: relative;
         background: $white;
         overflow: visible;
-        height: 58px;
         margin-left: 29px;
         color: $hovered-red;
         text-decoration: none;
@@ -99,128 +215,77 @@
         position: absolute;
         top: 0;
         left: -29px;
-        border-top: 29px solid $white;
-        border-bottom: 29px solid $white;
-        border-right: 29px solid transparent;
-        border-left: 29px solid transparent;
       }
     }
 
     .card-body {
       @include magnifier;
-      @include opacity($gray-650, 0.7);
+      @include opacity($plain-white, 0.9);
+
+      .custom-primary-inversed {
+        position: absolute;
+        bottom: 8px;
+        right: 6px;
+        z-index: 11;
+
+        i {
+          margin-right: 7px;
+        }
+      }
 
       .carousel-indicators {
+        @include opacity($gray-800, .9);
         position: relative;
-        margin: 0 0 20px 0;
+        margin: 3px 0 20px 0;
         padding: 0;
+        height: 100%;
+        width: 100%;
 
         li {
+          height: 100%;
+          opacity: 1;
           width: 100%;
+          background: transparent;
           box-sizing: border-box;
-        }
-      }
-
-      .carousel-inner {
-        border-bottom: 2px solid $primary;
-      }
-
-      .infos {
-        .table-striped tbody tr:nth-of-type(odd) {
-          @include opacity($black, 0.1);
+          display: inline-table;
         }
 
-        .table {
-          padding-top: 20px;
-          border-left: 2px solid $primary;
-          
-          th {
-            text-align: left;
-          }
-
-          .row-1 {
-            text-transform: uppercase;
-          }
-
-          .row-2 {
-            font-weight: 100;
+        .active {
+          img {
+            border: 3px solid rgba($hovered-red, .8);
           }
         }
       }
 
-      .infos, .options, .table, .autre, .mesure {
-        font-family: 'Arima Madurai';
-        color: white;
-        font-size: .9rem;
-        font-weight: 100;
+      .table {
+        font-family: 'Karla';
+        text-transform: uppercase;
 
-        .title {
-          text-transform: uppercase;
-          font-size: 1.1rem;
-          margin-bottom: 20px;
+        tr {
+          text-align: left;
+
+          &:nth-of-type(odd) {
+            @include opacity($gray-400, .5);
+            @include box-shadow-blur;
+            color: $gray-800;
+          }
+          &:nth-child(even) {
+            color: $gray-800;
+          }
+        }
+
+        .row-1 {
           font-weight: 900;
-          color: $white;
-          background-color: $gray-900;
-          padding: 20px 0;
+        }
+
+        .row-2 {
+          font-weight: 100;
         }
       }
 
-      .options {
-        margin-top: 25px;
-        padding-bottom: 20px;
-
-        hr {
-          background-color: $gray-800;
-        }
-
-        ul {
-          -moz-column-count: 3;
-          -moz-column-gap: 20px;
-          -webkit-column-count: 3;
-          -webkit-column-gap: 20px;
-          column-count: 3;
-          column-gap: 20px;
-          list-style: none;
-          text-align: left;
-
-          li {
-            margin-bottom: 8px;
-          }
-        }
-      }
-
-      .autre {
-        .table {
-          border-left: 2px solid $primary;
-
-          tr {
-            text-align: left;
-          }
-        }
-      }
-
-      .list-infos {
-        border-left: 2px solid $primary;
-
-        ul {
-          -moz-column-count: 2;
-          -moz-column-gap: 20px;
-          -webkit-column-count: 2;
-          -webkit-column-gap: 20px;
-          column-count: 2;
-          column-gap: 20px;
-          list-style: none;
-          text-align: left;
-
-          li {
-            margin-bottom: 8px;
-            font-size: .9rem;
-
-            i {
-              padding-right: 5px;
-            }
-          }
-        }
+      .options, .mesure {
+        font-family: 'Arima Madurai';
+        margin-top: 40px;
       }
 
       .mesure {
@@ -232,10 +297,6 @@
           padding-top: 50px;
         }
       }
-    }
-
-    h5, p {
-      color: $white;
     }
   }
 }

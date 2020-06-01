@@ -1,29 +1,153 @@
 @import "../app.component.scss";
 
+@media only screen and (max-width: 768px) {
+  .annonces-container {
+    .reinitButton {
+      display: block;
+      width: 100%;
+    }
+    .vehiculeNumber {
+      margin-top: 10px;
+      display: block;
+      width: 100%;
+    }
+    .cards-block .column {
+      width: 100%;
+      display: block;
+    }
+    h6 {
+      font-size: 1em;
+    }
+    small {
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #annonces-wrap {
+    padding: 0 35px 0 35px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .badge {
+    font-size: .9em;
+  }
+  .card {
+    margin-bottom: 20px;
+  }
+  .material-card {
+    height: 4.3em;
+  }
+  .column {
+    margin-bottom: 3.5em;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .annonces-container
+  .cards-block .column {
+    width: calc(100% / 2);
+  }
+  .card {
+    padding: 16px;
+  }
+  .badge {
+    font-size: .7em;
+  }
+  .material-card {
+    height: 4.5em;
+  }
+  .column {
+    margin-bottom: 3em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .annonces-container {
+    .reinitButton {
+      float: right;
+    }
+    .vehiculeNumber {
+      float: left;
+    }
+    .badge {
+      font-size: .9em;
+    }
+    h6 {
+      font-size: .9em;
+    }
+    small {
+      font-size: 0.8em;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .annonces-container {
+    .cards-block .column {
+      width: calc(100% / 3);
+    }
+    .badge {
+      font-size: .7em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .annonces-container {
+    .badge {
+      font-size: .8em;
+    }
+    h6 {
+      font-size: 1.1em;
+    }
+    small {
+      font-size: 1em;
+    }
+    .column {
+      margin-bottom: 3.5em;
+    }
+    .material-card {
+      height: 4.3em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .annonces-container {
+    .badge {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 1.3em;
+    }
+    small {
+      font-size: 1.1em;
+    }
+    .column {
+      margin-bottom: 5.4em;
+    }
+    .material-card {
+      height: 5.4em;
+    }
+  }
+}
+
 .annonces-container {
   .content-container {
-    form {
-      padding: 0 0 20px 0;
+    .vehiculeNumber {
+      opacity: 1;
+      @include transition(all 0.3s);
+    }
 
-      .form-control {
-        background-image: none;
-      }
+    .vehiculeNumber-hidden {
+      opacity: 0;
+    }
 
-      .vehiculeNumber {
-        float: left;
-        margin-left: -15px;
-        opacity: 1;
-        @include transition(all 0.3s);
-      }
-
-      .vehiculeNumber-hidden {
-        opacity: 0;
-      }
-
-      .reinitButton {
-        float: right;
-        margin-right: 15px;
-      }
+    .reinitButton i {
+      margin-right: 5px;
     }
 
     .btn-group {
@@ -55,118 +179,106 @@
         font-size: small;
       }
 
-      .dropdown-item:hover {
-        @include opacity($primary, 0.55);
-        color: $plain-white;
+      .dropdown-item {
+        color: $white;
+
+        &:hover {
+          @include opacity($primary, 0.55);
+          color: $plain-white;
+        }
       }
 
       .dropdown-item {
-        color: $white;
-      }
-
-      a:not([href]):not([tabindex]),
-      a:not([href]):not([tabindex]):focus,
-      a:not([href]):not([tabindex]):hover {
         color: $plain-white;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
-    .card-row {
-      padding-top: 70px;
+    .cards-block {
+      .column {
+        float: left;
+      }
+    }
 
-      &:nth-child(-n+3) {
-        padding-top: 0;
+    .card {
+      border-radius: unset;
+      background: unset;
+
+      &:hover {
+        top: 2px;
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+
+    .card-img-top {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .fa-camera {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border-radius: 60px;
+      padding: 0.5em 0.6em;
+      color: $white;
+      background-color: $primary;
+      z-index: 210;
+      @include box-shadow-dark;
+      
+      span {
+        padding-left: 3px;
+        font-family: 'Karla', sans-serif;
+        font-size: 1.1em;
+      }
+    }
+
+    .card-body {
+      position: relative;
+      color: $white;
+      padding: 0;
+    }
+
+    .material-card {
+      @include materialCard($primary);
+      @include box-shadow-dark;
+      top: 0;
+
+      .vertical-center {
+        padding: 5% 16px 0 16px;
       }
 
-      &:first-child {
-        padding-left: 0;
+      h6 {
+        margin: 0;
+        line-height: 0;
+        margin-bottom: .7em;
       }
 
-      &:nth-child(3n+3) {
-        padding-right: 0;
+      small {
+        color: $gray-text;
+        z-index: 200;
       }
+    }
 
-      .card {
-        border-radius: unset;
-        background: unset;
+    .badges {
+      position: absolute;
+      bottom: 8px;
+      @include box-shadow-blur;
+    }
 
-        &:hover {
-          top: 2px;
-          cursor: pointer;
-          opacity: .8;
-        }
+    .badge {
+      border-radius: unset;
+      margin-right: 1px;
+      padding: 7px;
 
-        .image {
-          .card-img-top {
-            display: block;
-            width: 100%;
-            height: 17vw;
-            object-fit: cover;
-          }
-
-          .fa-camera {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            border-radius: 60px;
-            box-shadow: 0px 0px 2px #888;
-            padding: 0.5em 0.6em;
-            color: $white;
-            background-color: $primary;
-            z-index: 210;
-            
-            span {
-              padding-left: 3px;
-              font-family: 'Karla', sans-serif;
-            }
-          }
-        }
-
-        .card-body {
-          position: relative;
-          color: $white;
-          padding: 0;
-
-          .material-card {
-            @include materialCard($primary);
-            top: 0;
-            height: 53px;
-
-            h6 {
-              margin: 0;
-              line-height: 0;
-              padding: 8px 0 0.3vw 0;
-              font-size: 1vw;
-            }
-
-            small {
-              color: $gray-text;
-              top: 30px;
-              left: 10px;
-              z-index: 200;
-              font-size: 0.9vw;
-            }
-          }
-
-          .center-badges {
-            .badges {
-              position: absolute;
-              bottom: 8px;
-              @include box-shadow-dark;
-
-              .badge {
-                border-radius: unset;
-                margin-right: 1px;
-                padding: 7px;
-                font-size: 0.9vw;
-
-                i {
-                  padding-right: 3px;
-                }
-              }  
-            }
-          }
-        }
+      i {
+        padding-right: 3px;
       }
     }
   }
