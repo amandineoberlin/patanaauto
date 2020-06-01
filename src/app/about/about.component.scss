@@ -68,10 +68,9 @@
 @media only screen and (min-width: 1131px) {
   .about-container {
     .carousel {
-      width: 65%;
+      width: 62%;
     }
     .bg-faded {
-      padding: 50px 50px 90px 50px;
       border-radius: .175em;
     }
     .partLeft, .partRight {
@@ -81,9 +80,15 @@
     }
     .partLeft {
       left: -255px;
+      .bg-faded {
+        padding: 50px 50px 20px 50px;
+      }
     }
     .partRight {
       right: -255px;
+      .bg-faded {
+        padding: 50px 50px 90px 50px;
+      }
     }
     .text {
       font-size: .85em;
@@ -93,6 +98,12 @@
 
 @media only screen and (min-width: 1600px) {
   .about-container {
+    .carousel {
+      width: 63%;
+    }
+    .partLeft, .partRight {
+      width: 320px;
+    }
     .material-card {
       font-size: 1rem;
     }
