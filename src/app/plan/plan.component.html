@@ -1,23 +1,30 @@
 <div class="bg plan-container">
   <div class="container-fluid">
-    <div class="content-container">
-      <div class="map-descriptor">
-        <p class="title">Pour venir sur notre parc :</p>
-        <p class="text">
-          <i class="dot right"></i> Situé à 15 mn de Melun - Soit Par la
-            <span class="highlight"> D 605</span> - Soit Par l’autoroute
-            <span class="highlight"> A5</span>
-            (sortie Montereau Fault Yonne - direction Le Chatelet en Brie)
-        </p>
-        <p class="text">
-          <i class="dot right"></i> Accès transports en commun:
-            <span class="highlight"> RER D</span> station Melun puis
-            <span class="highlight"> ligne 46</span> bus express « Seine et Marne » – arrêt Pamfou.
-        </p>
+    <div class="content-container" id="plan-wrap">
+      <div class="row d-flex justify-content-center">
+        <div class="map-descriptor">
+          <p class="title">Pour venir sur notre parc :</p>
+          <p class="text">
+            <i class="dot right"></i> Situé à 15 mn de Melun - Soit Par la
+              <span class="highlight"> D 605</span> - Soit Par l’autoroute
+              <span class="highlight"> A5</span>
+              (sortie Montereau Fault Yonne - direction Le Chatelet en Brie)
+          </p>
+          <p class="text">
+            <i class="dot right"></i> Accès transports en commun:
+              <span class="highlight"> RER D</span> station Melun puis
+              <span class="highlight"> ligne 46</span> bus express « Seine et Marne » – arrêt Pamfou.
+          </p>
+        </div>
       </div>
-      <div class="row containers">
-        <div class="map-content col-md-6">
-          <div #map style="width:auto; height:30rem;border-radius: 10px;">
+      <div class="row">
+        <div class="map-content col-sm-12 col-md-6">
+          <div #map style=
+            "width:auto;
+            height:calc(100vh - 300px);
+            min-height: 400px;
+            max-height: 800px;
+            border-radius: .175em;">
             <div #cdZoomIn>
               <div class="zooms plus">
                 <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32"
@@ -39,21 +46,24 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 form-content">
-          <div class="alert alert-warning alert-dismissible " role="alert">
-            <strong>Une erreur</strong> est survenue, votre message n'a pas pu être envoyé 😞
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="alert alert-primary alert-dismissible" role="alert">
-            <strong>Votre message a bien été envoyé!</strong> Nous vous répondrons dans les plus brefs délais.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+        <div class="col-sm-12 col-md-6">
           <div class="contact-container">
-            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+            <div class="alert alert-warning alert-dismissible " role="alert">
+              <strong>Une erreur</strong> est survenue, votre message n'a pas pu être envoyé 😞
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="alert alert-primary alert-dismissible" role="alert">
+              <strong>Votre message a bien été envoyé!</strong> Nous vous répondrons dans les plus brefs délais.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <p class="text-center form-title">Ecrivez-nous!</p>
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" id="contact-form">
               <div class="form-group" >
                 <label for="nameInput" class="bmd-label-floating">Nom</label>
                 <input type="text" class="form-control" id="nameInput" formControlName="name" [disabled]="submitting">
@@ -70,7 +80,7 @@
               </div>
               <div class="form-group">
                 <label for="textAreaInput">Message</label>
-                <textarea class="form-control" id="textAreaInput" rows="3" formControlName="message"
+                <textarea class="form-control" id="textAreaInput" rows="8" formControlName="message"
                   [disabled]="submitting">
                 </textarea>
               </div>

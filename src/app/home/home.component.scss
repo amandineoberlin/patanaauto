@@ -1,12 +1,14 @@
 @import "../app.component.scss";
 
 @media only screen and (max-width: 992px) {
-  .home-container .presentation {
-    margin-top: 0px;
-  }
+  .home-container {
+    .presentation {
+      margin-top: 0px;
+    }
 
-  .filter-button button {
-    width: 100%;
+    .filter-button button {
+      width: 100%;
+    }
   }
 }
 
@@ -16,32 +18,28 @@
   }
 }
 
-@media only screen and (min-width: 1px) and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
   #home-wrap {
     padding: 0 35px 0 35px;
-  }
-}
 
-// @media only screen and (min-width: 576px) and (max-width: 768px) {
-// }
-
-@media only screen and (max-width: 768px) {
-  .intro-img {
-    margin-top: 10px;
+    .intro-img {
+      margin-top: 10px;
+    }
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
+  .home-container {
+    .intro-img {
+      margin-top: -15px;
+      position: relative;
+      z-index: 10;
 
-  .intro-img {
-    margin-top: -15px;
-    position: relative;
-    z-index: 10;
-
-    img {
-      width: 80%;
-      display: block;
-      margin: 0 auto;
+      img {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+      }
     }
   }
 }
@@ -78,10 +76,6 @@
 
 .home-container {
   color: $white;
-
-  .form-control {
-    background-image: none;
-  }
 
   .ng-placeholder {
     color: $gray-600;
