@@ -448,8 +448,24 @@ body {
     background-color: $white;
   }
 
+  .alert {
+    font-family: 'Karla';
+    border-radius: .175em;
+    z-index: 2500;
+  }
+
   .alert-default {
     background-color: transparent;
+    color: $white;
+  }
+
+  .alert-primary {
+    background-color: $green;
+    color: $white;
+  }
+
+  .alert-warning {
+    background-color: $hovered-red;
     color: $white;
   }
 
