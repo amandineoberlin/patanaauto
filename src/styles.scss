@@ -134,7 +134,7 @@ body {
   .filters {
     @include opacity($plain-white, 0.9);
     padding: 30px 50px 30px 50px;
-    border-radius: 10px;
+    border-radius: 0.175em;
 
   .input-group {
     padding-bottom: 5px;
@@ -487,6 +487,36 @@ body {
       border-color: rgba($primary, .2);
       text-shadow: unset;
       box-shadow: unset;
+    }
+  }
+
+  .custom-toggle {
+    button {
+      @include opacity($plain-white, 0.9);
+      border-radius: 0.175em;
+      color: $gray-700;
+      font-family: 'Karla';
+      font-size: .8rem;
+      text-transform: uppercase;
+      padding: 5px 14px 5px 14px;
+    }
+
+    .dropdown-menu {
+      @include opacity($plain-white, 0.9);
+      color: $gray-700;
+      font-family: 'Karla';
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    .dropdown-item {
+      color: $gray-700;
+
+      &:hover {
+        @include opacity($primary, 0.7);
+        color: $plain-white;
+        cursor: pointer;
+      }
     }
   }
 }

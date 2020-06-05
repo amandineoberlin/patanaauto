@@ -40,6 +40,7 @@
               "node_modules/jquery-mousewheel/jquery.mousewheel.js",
               "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js",
+              "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
               "node_modules/angular/angular.js",

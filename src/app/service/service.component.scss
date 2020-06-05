@@ -100,7 +100,7 @@
     .blocker {
       @include opacity($plain-white, .9);
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 0.175em;
     }
 
     .fa-dot-circle {
