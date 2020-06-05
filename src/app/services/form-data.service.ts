@@ -34,36 +34,6 @@ export class FormDataService {
     if (_.isArray(val)) return _.forEach(val, v => form[v].setValue(null));
   }
 
-  matchTagValues(annonces, tags) {
-    const marques = [];
-    const modeles = [];
-    const selleries = [];
-    const versions = [];
-    const vehicules = Constants.VEHICULE_PROPS;
-
-    _.forEach(tags, (tag) => {
-      const property = _.keys(tag)[0];
-      const tagValue = tag[property];
-      if (!tagValue) return;
-
-      _.forEach(annonces, (annonce) => {
-        if (annonce[vehicules[property]][0] === tagValue) {
-          marques.push(annonce[vehicules['marques']][0]);
-          modeles.push(annonce[vehicules['modeles']][0]);
-          selleries.push(annonce[vehicules['selleries']][0]);
-          versions.push(annonce[vehicules['versions']][0]);
-        }
-      });
-    });
-
-    return {
-      marques: _.uniq(marques),
-      modeles: _.uniq(modeles),
-      selleries: _.uniq(selleries),
-      versions: _.uniq(versions)
-    };
-  }
-
   loadAnnonces(options) {
     return this.dataService.getAnnonces()
       .then((dataObj) => {

@@ -18,7 +18,7 @@
                 <div class="col-sm-12 col-lg">
                   <ng-select class="form-group form-control modele" [items]="modeles"
                     placeholder="modèle..." (change)="update()" notFoundText="{{notFoundText}}"
-                    formControlName="modele">
+                    formControlName="modele" (clear)="clearModele()">
                   </ng-select>
                 </div>
                 <div class="col-sm-12 col-lg">
