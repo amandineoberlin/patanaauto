@@ -28,7 +28,7 @@
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+@media only screen and (min-width: 768px) and (max-width: 990px) {
   .home-container {
     .intro-img {
       margin-top: -15px;
@@ -44,14 +44,17 @@
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 991px) and (max-width: 1200px) {
   .home-container {
     .intro-text {
       margin-right: 0px;
       margin-top: 0px;
+      .bullets h6 {
+        font-size: .95rem;
+      }
     }
     .intro-img {
-      margin-left: -20px;
+      margin-left: -15px;
       margin-top: 20px;
       position: relative;
       z-index: 10;
@@ -83,7 +86,7 @@
 
   .filter-button {
     cursor: initial;
-    margin-top: 2px;
+    margin-top: 7px;
     word-wrap: break-word;
 
     i {
@@ -126,19 +129,29 @@
   .bullets {
     margin-top: 30px;
     padding-left: 20px;
-    border-left: 2px solid $primary;
+    border-left: 1px solid rgba($primary, .5);
     text-align: left;
-  }
+    color: rgba($gray-800, .8);
 
-  h6 {
-    i {
-      margin-right: 8px;
+    h6 {
+      text-transform: uppercase;
+      font-family: 'Karla';
+      font-weight: light;
+
+      i {
+        margin-right: 8px;
+        color: $primary;
+      }
     }
   }
 
   .subsection {
+    font-family: 'Arima Madurai';
+    font-weight: 500;
+    text-transform: uppercase;
     margin-top: 30px;
     text-align: justify;
+    color: $black;
   }
 
   .button-container {
