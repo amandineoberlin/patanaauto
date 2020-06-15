@@ -123,10 +123,14 @@ const matchImagesWithAnnonces = (annonces, images) => {
 };
 
 const getAnnonces = Promise.coroutine(function* () {
+  logger.info('Starting get-Annonces');
   const data = yield fs.readFileAsync(localDataPath, 'utf-8');
+  logger.info('finished reading file');
   const json = data ? yield xmlParser.parseStringAsync(data) : null;
+  logger.info('finished parsing xml file');
   const annonces = _.get(json, 'Stock.Vehicule');
   const images = yield getPhotosFromFile();
+  logger.info('finished getting photo from file');
   const annoncesWithId = createAnnoncesIdsAndTitle(annonces);
   const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
