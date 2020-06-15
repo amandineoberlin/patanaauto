@@ -222,7 +222,7 @@
       @include magnifier;
       @include opacity($plain-white, 0.9);
 
-      .custom-primary-inversed {
+      .custom-primary {
         position: absolute;
         bottom: 8px;
         right: 6px;
@@ -284,7 +284,6 @@
       }
 
       .options, .mesure {
-        font-family: 'Arima Madurai';
         margin-top: 40px;
       }
 

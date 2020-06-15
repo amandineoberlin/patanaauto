@@ -74,21 +74,64 @@ export class HomeComponent implements OnInit {
     if (price) this.quickSearch.controls['price'].setValue(null);
   }
 
+  clearModele() {
+    const form = this.quickSearch.controls;
+    form['modele'].setValue(null);
+
+    if (!form['marque'].value) {
+      this.modeles = _.orderBy(this.data.modeles);
+      this.marques = _.orderBy(this.data.marques);
+      return;
+    }
+
+    const { modeles } = this.matchTagValues(this.annonces, [
+      { marques: form['marque'].value }
+    ]);
+    this.modeles = modeles;
+  }
+
   clearMarque() {
+    this.quickSearch.controls['modele'].setValue(null);
     this.modeles = _.orderBy(this.data.modeles);
     this.marques = _.orderBy(this.data.marques);
-    this.quickSearch.controls['modele'].setValue(null);
+  }
+
+  matchTagValues(annonces, tags) {
+    const marques = [];
+    const modeles = [];
+    const selleries = [];
+    const versions = [];
+    const vehicules = Constants.VEHICULE_PROPS;
+
+    _.forEach(tags, (tag) => {
+      const property = _.keys(tag)[0];
+      const tagValue = tag[property];
+      if (!tagValue) return;
+
+      _.forEach(annonces, (annonce) => {
+        if (annonce[vehicules[property]][0] === tagValue) {
+          marques.push(annonce[vehicules['marques']][0]);
+          modeles.push(annonce[vehicules['modeles']][0]);
+          selleries.push(annonce[vehicules['selleries']][0]);
+          versions.push(annonce[vehicules['versions']][0]);
+        }
+      });
+    });
+
+    return {
+      marques: _.uniq(marques),
+      modeles: _.uniq(modeles),
+      selleries: _.uniq(selleries),
+      versions: _.uniq(versions)
+    };
   }
 
   update() {
-    this.marques = [];
-    this.modeles = [];
     const form = this.quickSearch.controls;
-    const { modeles, marques } = this.formDataService
-      .matchTagValues(this.annonces, [
-        { marques: form['marque'].value },
-        { modeles: form['modele'].value }
-      ]);
+    const { modeles, marques } = this.matchTagValues(this.annonces, [
+      { marques: form['marque'].value },
+      { modeles: form['modele'].value }
+    ]);
     this.marques = marques;
     this.modeles = modeles;
   }
