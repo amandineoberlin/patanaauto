@@ -150,51 +150,32 @@
       margin-right: 5px;
     }
 
-    .btn-group {
-      padding-bottom: 25px;
+    .dropdown {
+      margin-bottom: 25px;
 
-      button {
-        @include opacity($plain-white, .9);
-        color: $primary;
-        border: solid 2px $primary;
-        border-radius: 20px;
-        font-size: smaller;
-        font-weight: 500;
+      // .dropdown-menu {
+      //   @include opacity($gray-800, 0.85);
+      //   color: $white;
+      //   text-transform: lowercase;
+      //   font-size: small;
+      // }
 
-        &:hover {
-          background-color: $primary;
-          color: rgba($plain-white, .9);
-          border-color: rgba($plain-white, .9);
-        }
-      }
+      // .dropdown-item {
+      //   color: $white;
 
-      .itemNumber {
-        margin-right: 10px;
-      }
+      //   &:hover {
+      //     @include opacity($primary, 0.55);
+      //     color: $plain-white;
+      //   }
+      // }
 
-      .dropdown-menu {
-        @include opacity($gray-800, 0.85);
-        color: $white;
-        text-transform: lowercase;
-        font-size: small;
-      }
+      // .dropdown-item {
+      //   color: $plain-white;
 
-      .dropdown-item {
-        color: $white;
-
-        &:hover {
-          @include opacity($primary, 0.55);
-          color: $plain-white;
-        }
-      }
-
-      .dropdown-item {
-        color: $plain-white;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
+      //   &:hover {
+      //     cursor: pointer;
+      //   }
+      // }
     }
 
     .cards-block {

@@ -100,10 +100,12 @@
     .blocker {
       @include opacity($plain-white, .9);
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 0.175em;
     }
 
-    .dot {
+    .fa-dot-circle {
+      color: $primary;
+
       &.right {
         margin-right: 5px;
       }
@@ -128,7 +130,7 @@
     }
 
     .circle {
-      border: 3px solid $primary;
+      border: 2px solid rgba($plain-white, .9);
       z-index: 10;
       position: absolute;
       border-radius: 50%;

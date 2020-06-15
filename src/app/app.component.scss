@@ -95,38 +95,6 @@ $green: #0C9463 !default;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Knewave';
-  src: url('/assets/Knewave-Black.woff2') format('woff2'),
-       url('/assets/Knewave-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Exo';
-  src: url('/assets/fonts/Exo-Black.woff2') format('woff2'),
-       url('/assets/fonts/Exo-Black.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Exo';
-  src: url('/assets/fonts/Exo-Regular.woff2') format('woff2'),
-       url('/assets/fonts/Exo-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Exo';
-  src: url('/assets/fonts/Exo-ExtraLight.woff2') format('woff2'),
-       url('/assets/fonts/Exo-ExtraLight.woff') format('woff');
-  font-weight: 100;
-  font-style: normal;
-}
-
 // mixins
 @mixin opacity($color, $opacity) {
   background-color: rgba($color, $opacity);
@@ -303,6 +271,7 @@ $green: #0C9463 !default;
   font-size: .8rem;
   text-transform: uppercase;
   padding: 5px 14px 5px 14px;
+  border-radius: 20px;
 
   &:hover {
     cursor: pointer;
