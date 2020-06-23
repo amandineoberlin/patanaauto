@@ -1,8 +1,8 @@
+/// <reference types="googlemaps" />
 
 import _ from 'lodash';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { } from 'googlemaps';
 
 import { Constants } from '../constants';
 import { FormDataService } from '../services/form-data.service';
