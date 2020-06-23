@@ -10,7 +10,7 @@ const logger = require('./modules/logger');
 
 const limit = '10mb';
 const port = 5001;
-const static_folder = path.join(__dirname, 'dist/patanaauto');
+const static_folder = path.join(__dirname, 'src/dist/patanaauto');
 
 const app = express();
 const server = http.createServer(app);
