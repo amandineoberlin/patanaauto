@@ -1,3 +1,5 @@
-src/dist/**
-src/e2e/**
-src/assets/**
+node_modules/**
+public/node_modules/**
+public/dist/**
+public/e2e/**
+public/src/assets/**
