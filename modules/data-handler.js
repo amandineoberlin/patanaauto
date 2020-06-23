@@ -20,7 +20,7 @@ const splitData = data => data.toString().split('\n');
 const remoteDataPath = '/datas/acaa.xml';
 const remotePhotoPath = '/datas/photos.txt.zip';
 const localPath = 'selsia-data';
-const localPhotoDir = `src/assets/selsia-photos`;
+const localPhotoDir = `public/src/assets/selsia-photos`;
 const localPhotoPath = `${localPath}/photos.txt`;
 const tempDir = `${localPath}/new`;
 const tempZip = `${localPath}/new/photos.txt.zip`;
