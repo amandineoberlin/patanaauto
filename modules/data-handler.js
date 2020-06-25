@@ -20,12 +20,17 @@ const splitData = data => data.toString().split('\n');
 const remoteDataPath = '/datas/acaa.xml';
 const remotePhotoPath = '/datas/photos.txt.zip';
 const localPath = 'selsia-data';
-const localPhotoDir = `public/src/assets/selsia-photos`;
+const localPhotosDir = `${localPath}/photos`;
 const localPhotoPath = `${localPath}/photos.txt`;
 const tempDir = `${localPath}/new`;
 const tempZip = `${localPath}/new/photos.txt.zip`;
 const tempPhoto = `${localPath}/new/photos.txt`;
 const localDataPath = `${localPath}/acaa.xml`;
+
+fs.existsAsync = Promise.promisify
+(function exists2(path, exists2callback) {
+    fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
+ });
 
 const createFileFromStream = (stream, path, shouldUnZip) =>
   new Promise(function (resolve, reject) {
@@ -40,10 +45,10 @@ const createFileFromStream = (stream, path, shouldUnZip) =>
 
 const differentiatePhotos = Promise.coroutine(function*() {
   const logMesg = `retrieved photos by differentiation`;
-  const somePhotoAlreadyExists = yield fs.readdirAsync(localPhotoDir);
+  const somePhotoAlreadyExists = yield fs.readdirAsync(localPhotosDir);
   if(!_.size(somePhotoAlreadyExists)) {
     const photoData = yield fs.readFileAsync(tempPhoto, 'utf-8');
-    if (!photoData) return logger.error(`Impossible de récupérer le fichier ${tempPhoto}`);
+    if (!photoData) return logger.error(`Could not retrieve file ${tempPhoto}`);
     const photos = buildPhotoObject(splitData(photoData));
     yield loadFtpImages(photos);
 
@@ -77,20 +82,29 @@ const loadFtpData = Promise.coroutine(function* () {
   try {
     const ftp = new PromiseFtp();
     yield ftp.connect({ host, user, password });
+    logger.info(`connected to ftp`);
 
     const dataStream = yield ftp.get(remoteDataPath);
+    logger.info(`Retrieved ftp path ${remoteDataPath}`);
+
     yield createFileFromStream(dataStream, localDataPath);
+    logger.info(`created data file from stream`);
+
     const photoStream = yield ftp.get(remotePhotoPath);
+    logger.info(`Retrieved ftp path ${remotePhotoPath}`);
+
     yield createFileFromStream(photoStream, tempZip, true);
+    logger.info(`created photo file from stream`);
 
     if (yield fs.existsAsync(localPhotoPath)) {
       yield differentiatePhotos();
+      logger.info(`File already existed. Differentiation was made.`);
     } else {
       yield fs.copyFileAsync(tempPhoto, localPhotoPath);
+      logger.info(`No file already existed. New file was created.`);
     }
 
     yield ftp.end();
-
     logger.info(`retrieved and saved ${localDataPath} and ${localPhotoPath}`);
 
     return 'ftp data saved';
@@ -157,11 +171,11 @@ const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
 }, []);
 
 const loadFtpImages = photos => Promise.mapSeries(photos, photo => {
+  logger.info('loading image...');
   const url = buildImageFtpUrl(photo.directory);
   return ftpget
     .getAsync({ url, bufferType: 'buffer' })
-    .then(buffer => fs.writeFileAsync(`${localPhotoDir}/${photo.name}`, buffer, 'binary'))
-    .then(() => logger.info(`loaded ${url} from ftp`));
+    .then(buffer => fs.writeFileAsync(`${localPhotosDir}/${photo.name}`, buffer, 'binary'))
 });
 
 const getPhotosFromFile = Promise.coroutine(function* () {
@@ -182,13 +196,13 @@ const loadImages = Promise.coroutine(function* () {
   const photos = yield getPhotosFromFile();
   const images = yield loadFtpImages(photos);
 
-  return logger.info(`Retrieved ${_.size(images)} images from server`);
+  return logger.info(`Retrieved ${_.size(images)} images from ftp`);
 });
 
 const cleanPhotos = Promise.coroutine(function* () {
   const photosFile = yield getPhotosFromFile();
   const photoFileById = _.keyBy(photosFile, '_id');
-  const photoJpeg = yield fs.readdirAsync(localPhotoDir);
+  const photoJpeg = yield fs.readdirAsync(localPhotosDir);
 
   const deletedPhotos = [];
   yield Promise.mapSeries(photoJpeg, photo => {
@@ -197,7 +211,7 @@ const cleanPhotos = Promise.coroutine(function* () {
     const photoName = _.replace(photo, '.jpg', '');
     if (!photoFileById[photoName]) {
       deletedPhotos.push(photo);
-      return fs.unlinkAsync(`${localPhotoDir}/${photo}`);
+      return fs.unlinkAsync(`${localPhotosDir}/${photo}`);
     }
   });
 
