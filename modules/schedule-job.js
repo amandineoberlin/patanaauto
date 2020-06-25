@@ -4,17 +4,12 @@ const Promise = require('bluebird');
 
 const logger = require('./logger');
 
-const {
-  cleanPhotos,
-  loadFtpData,
-  getPhotos
-} = require('./data-handler');
+const { cleanPhotos, loadFtpData } = require('./data-handler');
 
 const retrieveData = Promise.coroutine(function* () {
   logger.info('scheduler for data loading launched...')
 
   yield loadFtpData();
-  yield getPhotos();
 });
 
 const cleanData = Promise.coroutine(function* () {
