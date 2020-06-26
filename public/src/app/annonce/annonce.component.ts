@@ -32,7 +32,7 @@ export class AnnonceComponent implements OnInit, OnDestroy {
       .prepend(`<div class="d-flex justify-content-center enlarged-img">` +
         `<div class="cloned-img-container">` +
         `<i class="fa fa-times-circle cloned-img-icon" (click)="clearEnlarged()"></i>` +
-        `<img class="cloned-img" src="../../assets/selsia-photos/${image.attr('src')}"></div></div>`);
+        `<img class="cloned-img" src="${image.attr('src')}"></div></div>`);
 
     $('.content').css({
       opacity: .3,
