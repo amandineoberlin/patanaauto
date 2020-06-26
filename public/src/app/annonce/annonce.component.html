@@ -108,9 +108,9 @@
                       col-sm-12 col-lg-8 offset-lg-2 d-none d-sm-block">
                       <table class="table">
                         <tbody>
-                          <tr *ngFor="let o of options; let i=index">
-                            <td *ngIf="o.pair"><i class="fas fa-check-circle"></i> {{o.pair}}</td>
-                            <td *ngIf="o.impair"><i class="fas fa-check-circle"></i> {{o.impair}}</td>
+                          <tr *ngFor="let optionDuo of options;">
+                            <td><i class="fas fa-check-circle"></i> {{optionDuo[0]}}</td>
+                            <td><i class="fas fa-check-circle"></i> {{optionDuo[1]}}</td>
                           </tr>
                         </tbody>
                       </table>
