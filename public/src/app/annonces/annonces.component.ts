@@ -50,6 +50,7 @@ export class AnnoncesComponent implements OnInit {
   priceTo: 25000;
   kmFrom: 0;
   kmTo: 230000;
+  loading: boolean = false;
 
   filtersMapping: object = {
     km: 'VehiculeKilometrage',
@@ -378,6 +379,15 @@ export class AnnoncesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.activatedRoute.data
+      .subscribe(({ annonces: dataObj }) => {
+        _.assign(this, dataObj);
+        this.filteredAnnonces = _.clone(this.annonces);
+        this.filterAnnonces(['date'], true, 'desc');
+        this.loading = false;
+      });
+
     this.searchForm = this.fb.group({
       marque: [null],
       modele: [null],
@@ -390,20 +400,14 @@ export class AnnoncesComponent implements OnInit {
     this.showPriceRange = false;
     this.showKmRange = false;
 
+    this.initSliders();
+    this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
+    this.hideSlidersOnClick();
+    this.onFormChanges();
+    this.onRouteChange();
+
     // @ts-ignore
     $('.dropdown-toggle').dropdown();
-
-    this.formDataService.loadAnnonces({ fullSearch: true })
-      .then(dataObj => _.assign(this, dataObj))
-      .then(() => this.filteredAnnonces = _.clone(this.annonces))
-      .then(() => this.filterAnnonces(['date'], true, 'desc'))
-      .then(() => {
-        this.initSliders();
-        this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
-        this.hideSlidersOnClick();
-        this.onFormChanges();
-        this.onRouteChange();
-      });
   }
 
 }

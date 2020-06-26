@@ -22,7 +22,7 @@
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
                           [ngClass]="[i==0 ? 'active' : '']">
-                          <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                          <img class="d-block w-100 rounded" src="{{image}}"
                             alt="First slide">
                         </div>
                         <button class="custom-primary" (click)="enlargeImage()">
@@ -41,7 +41,7 @@
                         <ol class="carousel-indicators">
                           <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
                             attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
-                            <img class="d-block w-100 rounded" src="../../assets/selsia-photos/{{image}}"
+                            <img class="d-block w-100 rounded" src="{{image}}"
                               alt="First slide">
                           </li>
                         </ol>

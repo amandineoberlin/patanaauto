@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DataLoaderService } from './services/data-loader.service';
-import { AnnonceResolve } from './annonce/annonce-resolver';
+import { AnnoncesResolver } from './annonces/annonces-resolver';
+import { AnnonceResolver } from './annonce/annonce-resolver';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 import { AppComponent } from './app.component';
@@ -45,7 +47,8 @@ import { ServiceComponent } from './service/service.component';
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [
     DataLoaderService,
-    AnnonceResolve
+    AnnonceResolver,
+    AnnoncesResolver
   ],
   bootstrap: [AppComponent]
 })
