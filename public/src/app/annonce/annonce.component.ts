@@ -197,17 +197,8 @@ export class AnnonceComponent implements OnInit, OnDestroy {
   buildOptionsObject() {
     const options = this.annonce['VehiculeEquipementsOptionArgus'][0].split('|');
     const equip = this.annonce['VehiculeEquipementsSerieArgus'][0].split('|');
-    const allOptions = _.concat(options, equip);
-
-    const part1 = [];
-    const part2 = [];
-    _.forEach(allOptions, o =>
-      _.indexOf(allOptions, o) % 2 === 0 ? part1.push({ pair: o }) : part2.push({ impair: o }));
-
-    const longest = part1.length > part2.length ? part1 : part2;
-    const shortest = part1.length <= part2.length ? part1 : part2;
-
-    return _.map(longest, (item, index) => ({ ...item, ...shortest[index] }));
+    const allOptions = _.compact(_.concat(options, equip));
+    return _.chunk(allOptions, 2);
   }
 
   ngOnDestroy() {

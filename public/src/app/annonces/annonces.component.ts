@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import _ from 'lodash';
 
-import { FormDataService } from '../services/form-data.service';
 import { DataLoaderService } from '../services/data-loader.service';
 import { UtilsService } from '../services/utils.service';
 import { Constants } from '../constants';
@@ -19,7 +18,6 @@ export class AnnoncesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private formDataService: FormDataService,
     private dataLoaderService: DataLoaderService,
     private utilsService: UtilsService,
     private router: Router
