@@ -12,7 +12,7 @@ export class DataLoaderService {
   constructor(private http: HttpClient) {}
 
   mainImage(annonce) {
-    return `../../assets/selsia-photos/${annonce.images[0]}`;
+    return `/${annonce.images[0]}`;
   }
 
   getAnnonces() {

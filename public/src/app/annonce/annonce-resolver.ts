@@ -5,7 +5,7 @@ import { DataLoaderService } from '../services/data-loader.service';
 import _ from 'lodash';
 
 @Injectable()
-export class AnnonceResolve implements Resolve<any> {
+export class AnnonceResolver implements Resolve<any> {
 
   constructor(private dataLoaderService: DataLoaderService) {}
 

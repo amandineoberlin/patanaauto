@@ -6,7 +6,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const schedule = require('node-schedule');
+
 const logger = require('./modules/logger');
+const createImagesRoutes = require('./modules/create-images-routes');
 
 const limit = '10mb';
 const port = 5001;
@@ -29,6 +31,10 @@ schedule.scheduleJob({ hour: 1, minute: 1, dayOfWeek: 0, start: Date.now() }, ()
 
 schedule.scheduleJob({ hour: 1, minute: 1, date: 1, start: Date.now() }, () =>
   require('./modules/schedule-job').cleanData());
+
+(async() => {
+  await createImagesRoutes.load(app);
+})()
 
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));

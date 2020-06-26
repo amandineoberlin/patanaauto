@@ -3,7 +3,7 @@
 const PromiseFtp = require('promise-ftp');
 const _ = require('lodash');
 const Promise = require('bluebird');
-const unzipper = require('unzipper')
+const unzipper = require('unzipper');
 
 const ftpget = Promise.promisifyAll(require('ftp-get'));
 const fs = Promise.promisifyAll(require('fs'));
