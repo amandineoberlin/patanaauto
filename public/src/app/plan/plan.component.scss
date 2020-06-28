@@ -94,6 +94,12 @@
     text-transform: uppercase;
     font-size: .7em;
   }
+  
+  .submitting {
+    div:not(.svg-loader) {
+      opacity: .5;
+    }
+  }
 
   .contact-container {
     @include opacity($gray-800, 0.8);
@@ -106,14 +112,15 @@
     font-family: 'Arima Madurai';
     text-transform: uppercase;
 
-    .loader {
+    .svg-loader {
       position: absolute; 
       left: 0; 
       right: 0; 
       margin-left: auto; 
       margin-right: auto;
       top: 50%;
-      transform: translateY(-50%); 
+      transform: translateY(-50%);
+      padding: 80px;
     }
 
     .form-title {

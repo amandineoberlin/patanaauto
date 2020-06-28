@@ -122,6 +122,7 @@ export class PlanComponent implements OnInit, AfterViewInit {
       $(`.alert-${type}`).hide('fast');
       $('#contact-form').css({ opacity: 1 });
       this.contactForm.reset();
+      this.contactForm.enable();
     }, 4000);
   }
 
@@ -132,12 +133,17 @@ export class PlanComponent implements OnInit, AfterViewInit {
     const isValue = val => (_.size(val) ? true : false);
 
     this.submitting = true;
+    this.contactForm.disable();
+
     return this.formDataService.contactForm(this.contactForm.value)
       .then(({ rejected, accepted }) => {
+        setTimeout(() => {
         this.rejected = isValue(rejected);
         this.accepted = isValue(accepted);
         const alertType = accepted ? 'primary' : 'warning';
         this.showAlert(alertType);
+        this.submitting = false;
+        }, 4000);
       });
   }
 
