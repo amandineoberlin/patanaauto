@@ -23,6 +23,12 @@ app.use(bodyParser.urlencoded({ extended: true, limit }));
 
 app.use('/', express.static(static_folder));
 
+// cache all http requests for a month
+app.use('*', (req, res, next) => {
+  res.set('Cache-Control', 'public, max-age=2628000');
+  return next();
+})
+
 require('./routes/annonces')(app);
 require('./routes/emailer')(app);
 
@@ -34,7 +40,7 @@ schedule.scheduleJob({ hour: 1, minute: 1, date: 1, start: Date.now() }, () =>
 
 (async() => {
   await createImagesRoutes.load(app);
-})()
+})();
 
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
