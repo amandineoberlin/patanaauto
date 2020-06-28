@@ -21,6 +21,7 @@ import { AboutComponent } from './about/about.component';
 import { PlanComponent } from './plan/plan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ServiceComponent } from './service/service.component';
+import { SvgLoaderComponent } from './svg-loader/svg-loader.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ServiceComponent } from './service/service.component';
     PageNotFoundComponent,
     DateAgoPipe,
     AnnonceComponent,
-    ServiceComponent
+    ServiceComponent,
+    SvgLoaderComponent
   ],
   imports: [
     BrowserModule,

@@ -104,7 +104,7 @@
       </div>
 
       <div class="row">
-        <div class="cards-block">
+        <div *ngIf="!loading" class="cards-block">
           <div class="column" *ngFor="let annonce of filteredAnnonces; let i=index">
             <div class="card" (click)="redirectToAnnonce(annonce._id)">
               <div class="image">
@@ -134,6 +134,10 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div *ngIf="loading" class="svg-loader">
+          <app-svg-loader></app-svg-loader>
         </div>
       </div>
     </div>
