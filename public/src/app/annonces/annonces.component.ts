@@ -48,7 +48,7 @@ export class AnnoncesComponent implements OnInit {
   priceTo: 25000;
   kmFrom: 0;
   kmTo: 230000;
-  loading: boolean = false;
+  loading: boolean = true;
 
   filtersMapping: object = {
     km: 'VehiculeKilometrage',
@@ -377,7 +377,6 @@ export class AnnoncesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
     this.activatedRoute.data
       .subscribe(({ annonces: dataObj }) => {
         _.assign(this, dataObj);
@@ -407,5 +406,4 @@ export class AnnoncesComponent implements OnInit {
     // @ts-ignore
     $('.dropdown-toggle').dropdown();
   }
-
 }
