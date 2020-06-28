@@ -86,6 +86,9 @@ body {
 
   @include color-inputs;
 
+  .pulsate {
+    @include pulsate;
+  }
 
   /* Map Styling */
   .gmnoprint div, .gmnoprint a {

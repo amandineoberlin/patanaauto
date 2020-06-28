@@ -137,6 +137,23 @@
 
 .annonces-container {
   .content-container {
+
+    .svg-loader {
+      position: relative;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 14%;
+
+      .pulsate {
+        font-family: 'Raleway';
+        color: $white;
+        position: absolute;
+        bottom: 40px;
+        right: -90px;
+      }
+    }
+
     .vehiculeNumber {
       opacity: 1;
       @include transition(all 0.3s);
@@ -152,30 +169,6 @@
 
     .dropdown {
       margin-bottom: 25px;
-
-      // .dropdown-menu {
-      //   @include opacity($gray-800, 0.85);
-      //   color: $white;
-      //   text-transform: lowercase;
-      //   font-size: small;
-      // }
-
-      // .dropdown-item {
-      //   color: $white;
-
-      //   &:hover {
-      //     @include opacity($primary, 0.55);
-      //     color: $plain-white;
-      //   }
-      // }
-
-      // .dropdown-item {
-      //   color: $plain-white;
-
-      //   &:hover {
-      //     cursor: pointer;
-      //   }
-      // }
     }
 
     .cards-block {
