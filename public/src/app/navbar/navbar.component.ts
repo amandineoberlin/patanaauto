@@ -9,5 +9,5 @@ export class NavbarComponent {
 
   constructor() { }
 
-  isShown: boolean = false;
+  isShown: false;
 }
