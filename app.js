@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit }));
 app.use('/', express.static(static_folder));
 
 // cache all http requests for a month
-app.use('*', (req, res, next) => {
+app.get('*', (req, res, next) => {
   res.set('Cache-Control', 'public, max-age=2628000');
   return next();
 })
