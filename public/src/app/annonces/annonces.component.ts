@@ -48,7 +48,7 @@ export class AnnoncesComponent implements OnInit {
   priceTo: 25000;
   kmFrom: 0;
   kmTo: 230000;
-  loading: boolean = true;
+  loading: true;
 
   filtersMapping: object = {
     km: 'VehiculeKilometrage',
