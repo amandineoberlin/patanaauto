@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
+    "start": "NODE_ENV=production node --max_old_space_size=8048 app.js",
     "build": "grunt",
     "lint": "eslint app.js modules/** routes/** config/**"
   },
