@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       },
       angular_cli_install: {
         cwd: 'public/',
-        command: 'npm install -g angular-cli'
+        command: 'npm install -g angular-cli@latest'
       },
       dev_build: {
         cwd: 'public/',
