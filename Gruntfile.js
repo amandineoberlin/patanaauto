@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     exec: {
       npm_install: {
         cwd: 'public/',
-        command: 'npm i'
+        command: 'npm i --production'
       },
       frontend_build: {
         cwd: 'public/',
@@ -16,6 +16,6 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-exec');
-  grunt.registerTask('installDeps', ['exec:npm_install', 'exec:frontend_build']);
-  grunt.registerTask('default', 'installDeps');
+  grunt.registerTask('installProdDeps', ['exec:npm_install', 'exec:frontend_build']);
+  grunt.registerTask('default', 'installProdDeps');
 };
