@@ -9,8 +9,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng build --prod",
-    "build:dev": "ng build --watch",
+    "start": "npm run build",
     "build": "ng build --prod",
     "lint": "ng lint",
     "e2e": "ng e2e"
