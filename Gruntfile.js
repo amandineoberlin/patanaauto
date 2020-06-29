@@ -7,11 +7,15 @@ module.exports = function(grunt) {
       npm_install: {
         cwd: 'public/',
         command: 'npm i'
+      },
+      frontend_build: {
+        cwd: 'public/',
+        command: 'ng build --prod'
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-exec');
-  grunt.registerTask('installDeps', ['exec:npm_install']);
+  grunt.registerTask('installDeps', ['exec:npm_install', 'exec:frontend_build']);
   grunt.registerTask('default', 'installDeps');
 };
