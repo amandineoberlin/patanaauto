@@ -8,9 +8,13 @@ module.exports = function(grunt) {
         cwd: 'public/',
         command: 'npm i --production'
       },
+      npm_install_dev_dep: {
+        cwd: 'public/',
+        command: 'npm install @angular-devkit/build-angular --save'
+      },
       angular_cli_install: {
         cwd: 'public/',
-        command: 'npm install -g angular-cli@latest'
+        command: 'npm install -g @angular/cli@8.3.5'
       },
       dev_build: {
         cwd: 'public/',
@@ -22,6 +26,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.registerTask('installProdDeps', [
     'exec:npm_install',
+    'exec:npm_install_dev_dep',
     'exec:angular_cli_install',
     'exec:dev_build']);
   grunt.registerTask('default', 'installProdDeps');
