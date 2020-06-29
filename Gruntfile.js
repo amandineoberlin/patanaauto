@@ -8,13 +8,13 @@ module.exports = function(grunt) {
         cwd: 'public/',
         command: 'npm i --production'
       },
-      frontend_build: {
+      angular_cli_install: {
         cwd: 'public/',
-        command: 'ng build --prod'
+        command: 'npm install -g angular-cli'
       },
       dev_build: {
         cwd: 'public/',
-        command: 'npm install --only=dev'
+        command: 'ng build --prod'
       }
     }
   });
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.registerTask('installProdDeps', [
     'exec:npm_install',
-    'exec:frontend_build',
+    'exec:angular_cli_install',
     'exec:dev_build']);
   grunt.registerTask('default', 'installProdDeps');
 };
