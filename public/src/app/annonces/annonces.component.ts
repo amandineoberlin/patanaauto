@@ -48,7 +48,7 @@ export class AnnoncesComponent implements OnInit {
   priceTo: 25000;
   kmFrom: 0;
   kmTo: 230000;
-  loading: boolean = false;
+  loading: boolean;
 
   filtersMapping: object = {
     km: 'VehiculeKilometrage',
@@ -396,6 +396,7 @@ export class AnnoncesComponent implements OnInit {
 
     this.showPriceRange = false;
     this.showKmRange = false;
+    this.loading = false;
 
     this.initSliders();
     this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
