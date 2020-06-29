@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=production node app.js",
+    "build": "grunt",
     "lint": "eslint app.js modules/** routes/** config/**"
   },
   "private": true,
@@ -32,8 +33,11 @@
     "xml2js": "^0.4.22"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0"
+    "@typescript-eslint/parser": "^2.23.0",
+    "compression": "^1.7.4",
+    "eslint": "^6.8.0",
+    "grunt": "^1.1.0",
+    "grunt-exec": "^3.0.0"
   }
 }
