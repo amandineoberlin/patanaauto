@@ -10,7 +10,7 @@ module.exports = function(grunt) {
       },
       npm_install_dev_dep: {
         cwd: 'public/',
-        command: 'npm install @angular-devkit/build-angular --save'
+        command: 'npm install --only=dev'
       },
       angular_cli_install: {
         cwd: 'public/',
