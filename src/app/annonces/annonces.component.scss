@@ -24,43 +24,38 @@
   }
 }
 
-@media only screen and (max-width: 992px) {
-  #annonces-wrap {
-    padding: 0 35px 0 35px;
-  }
-}
-
 @media only screen and (max-width: 576px) {
-  .badge {
-    font-size: .9em;
-  }
-  .card {
-    margin-bottom: 20px;
-  }
-  .material-card {
-    height: 4.3em;
-  }
-  .column {
-    margin-bottom: 3.5em;
+  .annonces-container {
+    .badge {
+      font-size: .9em;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .material-card {
+      height: 4.3em;
+    }
+    .column {
+      margin-bottom: 3.5em;
+    }
   }
 }
 
 @media only screen and (min-width: 576px) {
-  .annonces-container
-  .cards-block .column {
-    width: calc(100% / 2);
-  }
-  .card {
-    padding: 16px;
-  }
-  .badge {
-    font-size: .7em;
-  }
-  .material-card {
-    height: 4.5em;
-  }
-  .column {
-    margin-bottom: 3em;
+  .annonces-container {
+    .cards-block .column {
+      width: calc(100% / 2);
+      margin-bottom: 3em;
+    }
+    .card {
+      padding: 16px;
+    }
+    .badge {
+      font-size: .7em;
+    }
+    .material-card {
+      height: 4.5em;
+    }
   }
 }
 
@@ -88,6 +83,9 @@
   .annonces-container {
     .cards-block .column {
       width: calc(100% / 3);
+      &:last-child {
+        margin-bottom: 4rem;
+      }
     }
     .badge {
       font-size: .7em;
@@ -137,7 +135,6 @@
 
 .annonces-container {
   .content-container {
-
     .svg-loader {
       position: relative;
       display: block;

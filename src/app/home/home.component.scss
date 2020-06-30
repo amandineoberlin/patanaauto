@@ -19,9 +19,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #home-wrap {
-    padding: 0 35px 0 35px;
-
+  .home-container {
     .intro-img {
       margin-top: 10px;
     }
@@ -79,6 +77,10 @@
 
 .home-container {
   color: $white;
+
+  .content-container {
+    padding-bottom: 10px;
+  }
 
   .ng-placeholder {
     color: $gray-600;
