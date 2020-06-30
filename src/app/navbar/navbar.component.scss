@@ -8,6 +8,36 @@
   }
 }
 
+@media only screen and (max-width: 335px) {
+  #mainNav {
+    .navbar-brand {
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 336px) {
+  #mainNav {
+    .navbar-brand {
+      img {
+        width: 180px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 245px) {
+  #mainNav {
+    .navbar-brand {
+      display: none;
+    }
+  }
+}
+
 @media only screen and (max-width: 1600px) {
   #mainNav {
     .nav-link {

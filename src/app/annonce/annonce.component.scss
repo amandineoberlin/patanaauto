@@ -27,8 +27,25 @@
 }
 
 @media only screen and (max-width: 1135px) {
-  #annonce-wrap {
-    padding: 0 35px 0 35px;
+  .annonce-container {
+    .container-fluid {
+      padding: 0;
+      overflow-x: hidden;
+    }
+    #ribbon-container {
+      right: 0;
+      a:after {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1136px) {
+  .annonce-container {
+    #ribbon-container {
+      right: -15px;
+    }
   }
 }
 
@@ -55,8 +72,8 @@
       right: 3px;
     }
     #ribbon-container a:before {
-      border-top: 29px solid $white;
-      border-bottom: 29px solid $white;
+      border-top: 29px solid $plain-white;
+      border-bottom: 29px solid $plain-white;
       border-right: 29px solid transparent;
       border-left: 29px solid transparent;
     }
@@ -68,10 +85,6 @@
 }
 
 @media only screen and (max-width: 767px) {
-  #annonce-wrap {
-    padding: 0;
-  }
-
   .annonce-container {
     h3, h4, h5, h6 {
       font-size: 1em;
@@ -85,6 +98,10 @@
       text-align: left;
     }
 
+    .version {
+      padding-right: 70px;
+    }
+
     #ribbon-container:before {
       border-top: 21px solid rgba(0, 0, 0, .3);
       border-bottom: 21px solid rgba(0, 0, 0, .3);
@@ -96,8 +113,8 @@
       right: 3px;
     }
     #ribbon-container a:before {
-      border-top: 21px solid $white;
-      border-bottom: 21px solid $white;
+      border-top: 21px solid $plain-white;
+      border-bottom: 21px solid $plain-white;
       border-right: 15px solid transparent;
       border-left: 29px solid transparent;
     }
@@ -160,7 +177,6 @@
       #ribbon-container {
         font-family: 'Knewave', 'Karla', cursive;
         position: absolute;
-        right: -15px;
         overflow: visible;
         line-height: 18px;
       }
@@ -185,10 +201,10 @@
       }
 
       #ribbon-container a {
+        @include opacity($plain-white, 1);
         cursor: default;
         display: block;
         position: relative;
-        background: $white;
         overflow: visible;
         margin-left: 29px;
         color: $hovered-red;
@@ -203,7 +219,7 @@
         position: absolute;
         bottom: -15px;
         right: 0;
-        border-top: 15px solid $white;
+        border-top: 15px solid $plain-white;
         border-right: 15px solid transparent;
       }
 
@@ -220,7 +236,7 @@
 
     .card-body {
       @include magnifier;
-      @include opacity($plain-white, 0.9);
+      @include opacity($plain-white, 1);
 
       .custom-primary {
         position: absolute;
