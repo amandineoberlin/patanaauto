@@ -29,6 +29,7 @@ $green: #0C9463 !default;
   src: url('/assets/fonts/Karla-Regular.woff2') format('woff2'),
        url('/assets/fonts/Karla-Regular.woff') format('woff');
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -37,6 +38,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/Karla-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -45,6 +47,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/Raleway-Black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -53,6 +56,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/Raleway-ExtraLight.woff') format('woff');
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -61,6 +65,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/Raleway-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -69,6 +74,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/ArimaMadurai-Black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -77,6 +83,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/ArimaMadurai-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -85,6 +92,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/ArimaMadurai-ExtraLight.woff') format('woff');
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -93,6 +101,7 @@ $green: #0C9463 !default;
        url('/assets/fonts/Knewave-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 // mixins

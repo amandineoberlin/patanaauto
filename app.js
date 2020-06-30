@@ -6,15 +6,17 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const schedule = require('node-schedule');
+const compression = require('compression')
 
 const logger = require('./modules/logger');
 const createImagesRoutes = require('./modules/create-images-routes');
 
 const limit = '10mb';
 const port = 5001;
-const static_folder = path.join(__dirname, 'public/dist/patanaauto');
+const static_folder = path.join(__dirname, 'src/dist/patanaauto');
 
 const app = express();
+app.use(compression());
 const server = http.createServer(app);
 
 app.use(cookieParser());
