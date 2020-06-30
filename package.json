@@ -9,9 +9,11 @@
   },
   "license": "MIT",
   "scripts": {
+    "ng": "ng",
     "start": "NODE_ENV=production node app.js",
-    "build": "grunt",
-    "lint": "eslint app.js modules/** routes/** config/**"
+    "build": "ng build --prod",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -62,8 +64,6 @@
   "devDependencies": {
     "compression": "1.7.4",
     "eslint": "6.8.0",
-    "grunt": "1.1.0",
-    "grunt-exec": "3.0.0",
     "@angular-devkit/build-angular": "0.803.2",
     "@angular/language-service": "8.2.4",
     "@types/googlemaps": "3.39.7",
