@@ -50,6 +50,7 @@
   background-color: $gray-bg;
   position: fixed;
   z-index: 1000;
+  opacity: .97;
 
   .navbar-toggler {
     font-size: 12px;
@@ -59,6 +60,20 @@
     color: $white;
     border: 0;
     background-color: $primary;
+
+    i {
+      margin-left: 5px;
+    }
+
+    .normalBar {
+      transform: rotate(0deg);
+      transition: all .5s ease-in-out;
+    }
+
+    .rotatedBar {
+      transform: rotate(90deg);
+      transition: all .5s ease-in-out;
+    }
   }
 
   .navbar-nav {

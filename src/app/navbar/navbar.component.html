@@ -7,10 +7,10 @@
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-label="Menu" 
       (click)="isShown = !isShown" [attr.aria-expanded]="isShown">
       Menu
-      <i class="fas fa-bars"></i>
+      <i [ngClass]="isShown ? 'rotatedBar' : 'normalBar'" class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" [ngClass]="[isShown ? 'show' : 'hidden']" id="navbarResponsive">
-      <ul class="navbar-nav text-uppercase ml-auto">
+      <ul class="nav navbar-nav text-uppercase ml-auto">
         <li class="nav-item" (click)="isShown = false">
           <a class="nav-link js-scroll-trigger"
              routerLink="/home"
