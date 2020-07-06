@@ -4,33 +4,33 @@
   </a>
   <button class="navbar-toggler navbar-toggler-right" type="button" aria-expanded="false"
     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-label="Menu" 
-    (click)="isShown = !isShown" [attr.aria-expanded]="isShown">
+    (click)="toggle()" [attr.aria-expanded]="isShown">
     Menu
     <i [ngClass]="isShown ? 'rotatedBar' : 'normalBar'" class="fas fa-bars"></i>
   </button>
-  <div class="collapse navbar-collapse" [ngClass]="[isShown ? 'show' : 'hidden']" id="navbarResponsive">
+  <div class="collapse navbar-collapse" [@toggle]="isShown ? 'open' : 'closed'" id="navbarResponsive">
     <ul class="nav navbar-nav text-uppercase ml-auto">
-      <li class="nav-item" (click)="isShown = false">
+      <li class="nav-item" (click)="toggle()" >
         <a class="nav-link js-scroll-trigger"
             routerLink="/home"
             routerLinkActive="active">accueil</a>
       </li>
-      <li class="nav-item" (click)="isShown = false">
+      <li class="nav-item" (click)="toggle()" >
         <a class="nav-link js-scroll-trigger"
             routerLink="/annonces"
             routerLinkActive="active">nos véhicules</a>
       </li>
-      <li class="nav-item" (click)="isShown = false">
+      <li class="nav-item" (click)="toggle()" >
         <a class="nav-link js-scroll-trigger"
             routerLink="/service"
             routerLinkActive="active">services</a>
       </li>
-      <li class="nav-item" (click)="isShown = false">
+      <li class="nav-item" (click)="toggle()" >
         <a class="nav-link js-scroll-trigger"
             routerLink="/about"
             routerLinkActive="active">qui sommes-nous</a>
       </li>
-      <li class="nav-item" (click)="isShown = false">
+      <li class="nav-item" (click)="toggle()" >
         <a class="nav-link js-scroll-trigger"
             routerLink="/plan"
             routerLinkActive="active">contact</a>

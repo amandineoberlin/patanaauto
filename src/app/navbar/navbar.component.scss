@@ -52,6 +52,11 @@
   z-index: 1000;
   opacity: .97;
 
+  // disable default bootstrap toggle behaviour
+  .collapse:not(.show) {
+    display: block!important;
+  }
+
   .navbar-toggler {
     font-size: 12px;
     right: 0;
