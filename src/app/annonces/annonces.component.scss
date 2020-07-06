@@ -1,6 +1,6 @@
 @import "../app.component.scss";
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .annonces-container {
     .badge {
       font-size: 1em;
@@ -35,6 +35,9 @@
     .material-card {
       height: 4.3em;
     }
+    .fa-camera {
+      right: 6px;
+    }
   }
 }
 
@@ -57,7 +60,7 @@
   }
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 768px) {
   .annonces-container {
     .reinitButton {
       float: right;

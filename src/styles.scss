@@ -22,14 +22,14 @@
     }
   }
 }
-@media only screen and (min-width: 337px) and (max-width: 768px) {
+@media only screen and (min-width: 337px) and (max-width: 767px) {
   body {
     .bg {
       padding-top: 73.5px;
     }
   }
 }
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 768px) {
   body {
     .bg {
       padding-top: 100.5px;
@@ -51,7 +51,7 @@
   }
 }
 
-@media only screen and (min-width: 0px) and (max-width: 768px) {
+@media only screen and (min-width: 0px) and (max-width: 767px) {
   body {
     .content-container {
       padding: 0;
@@ -68,7 +68,7 @@
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1190px) {
+@media only screen and (min-width: 768px) and (max-width: 1190px) {
   body {
     .content-container {
       padding: 0 20px;
@@ -92,7 +92,7 @@
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 768px) {
   body {
     .filters {
       border-radius: 0.175em;
