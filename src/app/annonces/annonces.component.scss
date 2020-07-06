@@ -18,9 +18,6 @@
     h6 {
       font-size: 1em;
     }
-    small {
-      font-size: 0.9em;
-    }
   }
 }
 
@@ -34,9 +31,6 @@
     }
     .material-card {
       height: 4.3em;
-    }
-    .column {
-      margin-bottom: 3.5em;
     }
   }
 }
@@ -67,14 +61,14 @@
     .vehiculeNumber {
       float: left;
     }
+    .card {
+      margin-bottom: 25px;
+    }
     .badge {
       font-size: .9em;
     }
     h6 {
       font-size: .9em;
-    }
-    small {
-      font-size: 0.8em;
     }
   }
 }
@@ -101,18 +95,22 @@
     h6 {
       font-size: 1.1em;
     }
-    small {
-      font-size: 1em;
-    }
-    .column {
-      margin-bottom: 3.5em;
-    }
     .material-card {
       height: 4.3em;
     }
   }
 }
 
+@media only screen and (max-width: 1599px) {
+  .annonces-container {
+    small {
+      font-size: .85em;
+    }
+    .column {
+      margin-bottom: 3.5em;
+    }
+  }
+}
 @media only screen and (min-width: 1600px) {
   .annonces-container {
     .badge {
@@ -222,7 +220,7 @@
       top: 0;
 
       .vertical-center {
-        padding: 5% 16px 0 16px;
+        padding: 16px;
       }
 
       h6 {
