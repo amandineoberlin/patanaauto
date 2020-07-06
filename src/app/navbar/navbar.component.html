@@ -5,9 +5,14 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" aria-expanded="false"
     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-label="Menu" 
     (click)="toggle()" [attr.aria-expanded]="isShown">
-    <i [ngClass]="isShown ? 'rotatedBar' : 'normalBar'" class="fas fa-bars"></i>
+    <i [ngClass]="isShown && isSmallSize ? 'rotatedBar' : 'normalBar'" class="fas fa-bars"></i>
   </button>
-  <div class="collapse navbar-collapse" [@toggle]="isShown ? 'open' : 'closed'" id="navbarResponsive">
+
+  <div
+    *ngIf="isSmallSize"
+    class="collapse navbar-collapse menubar"
+    [@toggle]="isShown ? 'open' : 'closed'"
+    id="navbarResponsive">
     <ul class="nav navbar-nav text-uppercase ml-auto">
       <li class="nav-item" (click)="toggle()" >
         <a class="nav-link js-scroll-trigger"
@@ -30,6 +35,40 @@
             routerLinkActive="active">qui sommes-nous</a>
       </li>
       <li class="nav-item" (click)="toggle()" >
+        <a class="nav-link js-scroll-trigger"
+            routerLink="/plan"
+            routerLinkActive="active">contact</a>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    *ngIf="!isSmallSize"
+    class="collapse navbar-collapse"
+    [ngClass]="[isShown ? 'show' : 'hidden']"
+    id="navbarResponsive">
+    <ul class="nav navbar-nav text-uppercase ml-auto">
+      <li class="nav-item" >
+        <a class="nav-link js-scroll-trigger"
+            routerLink="/home"
+            routerLinkActive="active">accueil</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link js-scroll-trigger"
+            routerLink="/annonces"
+            routerLinkActive="active">nos véhicules</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link js-scroll-trigger"
+            routerLink="/service"
+            routerLinkActive="active">services</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link js-scroll-trigger"
+            routerLink="/about"
+            routerLinkActive="active">qui sommes-nous</a>
+      </li>
+      <li class="nav-item" >
         <a class="nav-link js-scroll-trigger"
             routerLink="/plan"
             routerLinkActive="active">contact</a>

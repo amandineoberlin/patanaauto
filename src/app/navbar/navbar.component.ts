@@ -1,60 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate
-} from '@angular/animations';
+import { NavbarOptions } from './navbar-options';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  animations: [
-    trigger('toggle', [
-      state('open',
-      style({
-        'max-height': '500px',
-        'opacity': '1',
-        'visibility': 'visible'
-      })),
-      state('closed',
-      style({ 
-        'max-height': '0px',
-        'opacity': '0',
-        'visibility': 'hidden'
-      })),
-      transition('open => closed', [
-        animate('200ms ease-in-out',
-        style({
-          'opacity': '0'
-        })),
-        animate('300ms ease-in-out',
-        style({
-          'max-height': '0px'
-        })),
-        animate('50ms ease-in-out',
-        style({
-          'visibility': 'hidden'
-        }))
-      ]),
-      transition('closed => open', [
-        animate('1ms ease-in-out',
-        style({
-          'visibility': 'visible'
-        })),
-        animate('300ms ease-in-out',
-        style({
-          'max-height': '500px'
-        })),
-        animate('200ms ease-in-out',
-        style({
-          'opacity': '1'
-        }))
-      ])
-    ])
-  ]
+  animations: NavbarOptions.animations,
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 
 export class NavbarComponent implements OnInit {
@@ -62,12 +16,32 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   isShown: boolean;
+  isSmallSize: boolean;
+
+  isSmallScreen() {
+    return $(window).width() <= 991;
+  }
+
+  onResize() {
+    const isSmallScreen = this.isSmallScreen();
+
+    this.isSmallSize = isSmallScreen ? true : false;
+    this.isShown = isSmallScreen ? false : true;
+  }
 
   toggle() {
     this.isShown = !this.isShown;
   }
 
   ngOnInit() {
-    this.isShown = false;
+    const isSmallScreen = this.isSmallScreen();
+
+    if (isSmallScreen) {
+      this.isSmallSize = true;
+      this.isShown = false;
+      return;
+    }
+
+    this.isShown = true;
   }
 }

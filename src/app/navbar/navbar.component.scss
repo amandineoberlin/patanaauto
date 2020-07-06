@@ -53,7 +53,7 @@
   opacity: .97;
 
   // disable default bootstrap toggle behaviour
-  .collapse:not(.show) {
+  .menubar:not(.show) {
     display: block!important;
   }
 
