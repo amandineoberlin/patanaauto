@@ -2,6 +2,9 @@
 
 @media only screen and (max-width: 768px) {
   .annonces-container {
+    .badge {
+      font-size: 1em;
+    }
     .reinitButton {
       display: block;
       width: 100%;
@@ -18,14 +21,14 @@
     h6 {
       font-size: 1em;
     }
+    .fa-camera {
+      right: 22px;
+    }
   }
 }
 
 @media only screen and (max-width: 576px) {
   .annonces-container {
-    .badge {
-      font-size: .9em;
-    }
     .card {
       margin-bottom: 20px;
     }
@@ -37,15 +40,16 @@
 
 @media only screen and (min-width: 576px) {
   .annonces-container {
-    .cards-block .column {
+    .cards-block {
+      margin-right: -16px;
+      margin-left: -16px;
+    }
+    .column {
       width: calc(100% / 2);
       margin-bottom: 3em;
     }
     .card {
       padding: 16px;
-    }
-    .badge {
-      font-size: .7em;
     }
     .material-card {
       height: 4.5em;
@@ -53,7 +57,7 @@
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
   .annonces-container {
     .reinitButton {
       float: right;
@@ -69,6 +73,9 @@
     }
     h6 {
       font-size: .9em;
+    }
+    .fa-camera {
+      right: 10px;
     }
   }
 }
@@ -192,8 +199,7 @@
 
     .fa-camera {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 4px;
       border-radius: 60px;
       padding: 0.5em 0.6em;
       color: $white;
