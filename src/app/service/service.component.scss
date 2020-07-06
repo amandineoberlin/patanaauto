@@ -1,47 +1,28 @@
 @import "../app.component.scss";
 
-@media only screen and (max-width: 1135px) {
-  #service-wrap {
-    padding: 0;
-  }
-}
-
-@media only screen and (min-width: 701px) {
+@media only screen and (max-width: 767px) {
   .service-container {
     .timeline-container {
-      padding: 0 50px 0 50px;
+      padding-top: 25px;
     }
   }
 }
 
-@media only screen and (min-width: 701px) {
+@media only screen and (min-width: 840px) {
   .service-container {
-    .circle {
-      width: 150px;
-      height: 115px;
-    }
-
-    .circle1 {
-      left: -135px;
-    }
-
-    .circle2 {
-      right: -135px;
-    }
-
-    .circle3 {
-      left: -135px;
+    .timeline-container {
+      margin-left: -20px;
+      margin-right: -20px;
     }
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 767px) {
   .service-container {
     .circle {
       width: 140px;
       height: 105px;
     }
-
     .block-1 {
       margin-top: 50px;
     }
@@ -62,6 +43,27 @@
     .circle3 {
       right: 0;
       top: -95px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .service-container {
+    .circle {
+      width: 150px;
+      height: 115px;
+    }
+
+    .circle1 {
+      left: -135px;
+    }
+
+    .circle2 {
+      right: -135px;
+    }
+
+    .circle3 {
+      left: -135px;
     }
   }
 }

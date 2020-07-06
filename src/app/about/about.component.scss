@@ -1,14 +1,7 @@
 @import "../app.component.scss";
 
-@media only screen and (max-width: 560px) {
-  #about-wrap {
-    padding: 0;
-  }
-}
-
 @media only screen and (min-width: 561px) and (max-width: 991px) {
-  #about-wrap {
-    padding: 0 35px 0 35px;
+  .about-container {
     .partLeft, .partRight {
       width: 90%;
     }
@@ -19,8 +12,7 @@
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1130px) {
-  #about-wrap {
-    padding: 0 35px 0 35px;
+  .about-container {
     .partLeft, .partRight {
       width: 82%;
     }
@@ -31,7 +23,7 @@
 }
 
 @media only screen and (max-width: 1130px) {
-  #about-wrap {
+  .about-container {
     .carousel {
       width: 85%;
       position: relative;
