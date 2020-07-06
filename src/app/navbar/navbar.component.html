@@ -5,7 +5,6 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" aria-expanded="false"
     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-label="Menu" 
     (click)="toggle()" [attr.aria-expanded]="isShown">
-    Menu
     <i [ngClass]="isShown ? 'rotatedBar' : 'normalBar'" class="fas fa-bars"></i>
   </button>
   <div class="collapse navbar-collapse" [@toggle]="isShown ? 'open' : 'closed'" id="navbarResponsive">
