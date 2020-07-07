@@ -67,6 +67,14 @@
         padding: 50px 50px 25px 50px;
         border-top-left-radius: .175em;
         border-top-right-radius: .175em;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          width: 60%;
+          height: 2px;
+          background: $primary;
+        }
       }
     }
     .partRight {
@@ -83,19 +91,36 @@
   }
 }
 
-@media only screen and (min-width: 1131px) {
+@media only screen and (min-width: 1131px) and (max-width: 1190px) {
+  .about-container {
+    .carousel {
+      width: 55%;
+    }
+    .partLeft, .partRight {
+      width: 280px;
+    }
+    .partLeft {
+      left: -245px;
+      .bg-faded {
+        padding: 30px 30px 10px 50px;
+      }
+    }
+    .partRight {
+      right: -245px;
+      .bg-faded {
+        padding: 30px 30px 90px 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1191px) {
   .about-container {
     .carousel {
       width: 62%;
-      margin-bottom: 0;
-    }
-    .bg-faded {
-      border-radius: .175em;
     }
     .partLeft, .partRight {
-      top: 30px;
       width: 290px;
-      position: absolute;
     }
     .partLeft {
       left: -255px;
@@ -108,6 +133,21 @@
       .bg-faded {
         padding: 50px 50px 90px 50px;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 1131px) {
+  .about-container {
+    .carousel {
+      margin-bottom: 0;
+    }
+    .bg-faded {
+      border-radius: .175em;
+    }
+    .partLeft, .partRight {
+      top: 30px;
+      position: absolute;
     }
     .text {
       font-size: .85em;
@@ -238,14 +278,6 @@
         top: 40px;
         left: 32px;
         height: 47%;
-      }
-      .bg-faded:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        width: 60%;
-        height: 2px;
-        background: $primary;
       }
     }
 

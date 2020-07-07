@@ -412,6 +412,9 @@ body {
   }
 
   // carousel
+  .carousel.pointer-event {
+    touch-action: pan-x pan-y pinch-zoom;
+  }
   .carousel {
     &.carousel-thumbnails .carousel-indicators {
       li.active {

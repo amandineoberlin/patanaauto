@@ -87,11 +87,15 @@
 @media only screen and (max-width: 767px) {
   .annonce-container {
     h3, h4, h5, h6 {
-      font-size: 1em;
+      font-size: 1.3em;
     }
 
     table tr, .model, p {
       font-size: 1em;
+    }
+
+    strong {
+      font-size: 1.2em;
     }
 
     .card-header {
@@ -100,6 +104,10 @@
 
     .version {
       padding-right: 70px;
+    }
+
+    .chart-container.reelle {
+      margin-top: 20px;
     }
 
     #ribbon-container:before {
@@ -150,10 +158,19 @@
     font-family: 'Karla';
     font-weight: normal;
     text-transform: uppercase;
+    color: rgba($primary, .4);
   }
 
   h5 {
     margin-bottom: 4vmin;
+  }
+
+  .chart-container {
+    @include opacity($gray-900, .03);
+    @include box-shadow-blur;
+
+    padding: 40px;
+    border-radius: .175em;
   }
 
   .card {

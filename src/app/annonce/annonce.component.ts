@@ -145,6 +145,7 @@ export class AnnonceComponent implements OnInit, OnDestroy {
         }
       },
       data: {
+        labels: [`${parseInt(powerFisc, 10)} CV`],
         datasets: [{
           label: 'Fiscale',
           barThickness: 30,
@@ -181,6 +182,7 @@ export class AnnonceComponent implements OnInit, OnDestroy {
         }
       },
       data: {
+        labels: [`${parseInt(powerReal, 10)} Kw`],
         barPercentage: 1,
         datasets: [{
           label: 'Réelle',

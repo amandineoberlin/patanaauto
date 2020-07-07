@@ -28,15 +28,15 @@
                         <button class="custom-primary" (click)="enlargeImage()">
                           <i class="fas fa-search-plus"></i>Agrandir
                         </button>
+                        <a class="carousel-control-prev" href="#annonceCarousel" role="button" data-slide="prev">
+                          <span class="fas fa-chevron-circle-left" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#annonceCarousel" role="button" data-slide="next">
+                          <span class="fas fa-chevron-circle-right" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
                       </div>
-                      <a class="carousel-control-prev" href="#annonceCarousel" role="button" data-slide="prev">
-                        <span class="fas fa-chevron-circle-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="carousel-control-next" href="#annonceCarousel" role="button" data-slide="next">
-                        <span class="fas fa-chevron-circle-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                      </a>
                       <div class="dock-container">
                         <ol class="carousel-indicators">
                           <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
@@ -109,8 +109,8 @@
                       <table class="table">
                         <tbody>
                           <tr *ngFor="let optionDuo of options;">
-                            <td><i class="fas fa-check-circle"></i> {{optionDuo[0]}}</td>
-                            <td><i class="fas fa-check-circle"></i> {{optionDuo[1]}}</td>
+                            <td><i *ngIf="optionDuo[0]" class="fas fa-check-circle"></i> {{optionDuo[0]}}</td>
+                            <td><i *ngIf="optionDuo[1]" class="fas fa-check-circle"></i> {{optionDuo[1]}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -155,7 +155,7 @@
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <div class="chart-container">
+                        <div class="chart-container reelle">
                           <canvas id="reelleChart"></canvas>
                         </div>
                       </div>
