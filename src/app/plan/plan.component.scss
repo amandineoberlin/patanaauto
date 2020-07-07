@@ -1,5 +1,20 @@
 @import "../app.component.scss";
 
+@media only screen and (max-width: 480px) {
+  .plan-container {
+    .form-title {
+      font-weight: 500;
+    }
+  }
+}
+@media only screen and (min-width: 481px) {
+  .plan-container {
+    .form-title {
+      font-weight: 100;
+    }
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .plan-container {
     form {
@@ -156,9 +171,9 @@
 
     .form-title {
       color: $primary;
-      font-weight: 100;
       font-size: 1.3rem;
       font-family: 'Raleway';
+      text-shadow: 1px 2px 2px black;
     }
 
     label {

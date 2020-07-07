@@ -1,10 +1,37 @@
-.not-found {
-  width: auto;
-  height: calc(100vh - 76.5px);
-  position: relative;
-  padding-top: 40px;
-  background-image: url('../../assets/images/404.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+@import "../app.component.scss";
+
+@media only screen and (max-width: 767px) {
+  .not-found-container {
+    .not-found {
+      width: auto;
+      height: calc(100vh - 76.5px);
+      position: relative;
+      background-image: url('../../assets/images/404.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .not-found-container {
+    .not-found {
+      width: auto;
+      height: calc(100vh - 76.5px);
+      position: relative;
+      background-image: url('../../assets/images/404.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+}
+
+.not-found-container {
+  padding-top: 76.5px;
+
+  .not-found {
+    background-color: $bg-white;
+  }
 }
