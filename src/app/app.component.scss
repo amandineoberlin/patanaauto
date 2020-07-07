@@ -199,6 +199,7 @@ $green: #0C9463 !default;
 
   .dock-container li:hover img { 
     @include transform(scale(2));
+    opacity: 1;
   }
 
   .dock-container li:hover img {
