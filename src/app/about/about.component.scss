@@ -1,5 +1,32 @@
 @import "../app.component.scss";
 
+@media only screen and (max-width: 560px) {
+  .about-container {
+    .carousel {
+      width: 100%;
+    }
+    .partLeft, .partRight {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 561px) {
+  .about-container {
+    .carousel {
+      width: 85%;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .about-container {
+    .carousel {
+      margin-bottom: 30px;
+    }
+  }
+}
+
 @media only screen and (min-width: 561px) and (max-width: 991px) {
   .about-container {
     .partLeft, .partRight {
@@ -25,9 +52,7 @@
 @media only screen and (max-width: 1130px) {
   .about-container {
     .carousel {
-      width: 85%;
       position: relative;
-      margin-bottom: 30px;
     }
     .partLeft, .partRight {
       position: relative;
@@ -38,7 +63,7 @@
     }
     .partLeft {
       .bg-faded {
-        padding: 50px 50px 5px 50px;
+        padding: 50px 50px 25px 50px;
         border-top-left-radius: .175em;
         border-top-right-radius: .175em;
       }
@@ -46,7 +71,7 @@
     .partRight {
       margin-bottom: -25px;
       .bg-faded {
-        padding: 0 50px 90px 50px;
+        padding: 25px 50px 90px 50px;
         border-bottom-left-radius: .175em;
         border-bottom-right-radius: .175em;
       }
@@ -61,6 +86,7 @@
   .about-container {
     .carousel {
       width: 62%;
+      margin-bottom: 0;
     }
     .bg-faded {
       border-radius: .175em;
@@ -211,6 +237,14 @@
         top: 40px;
         left: 32px;
         height: 47%;
+      }
+      .bg-faded:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 60%;
+        height: 2px;
+        background: $primary;
       }
     }
 
