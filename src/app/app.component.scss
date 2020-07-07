@@ -287,6 +287,32 @@ $green: #0C9463 !default;
   }
 }
 
+@mixin arrow-down-white {
+  z-index: 1000;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0; 
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-top: 20px solid rgba($plain-white, .9);
+}
+
+@mixin arrow-down-gray {
+  z-index: 1000;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0; 
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 20px solid $gray-800;
+}
+
 @mixin stroke($color, $stroke, $width) {
   -webkit-text-fill-color: $color;
   -webkit-text-stroke-width: $width;

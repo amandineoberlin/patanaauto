@@ -2,33 +2,66 @@
 
 @media only screen and (max-width: 767px) {
   .plan-container {
-    .contact-container {
-      margin-top: 20px;
-      form {
-        margin-bottom: 0;
-      }
+    form {
+      margin-bottom: 0;
+    }
+    .map-descriptor {
+      width: 100%;
+      border-radius: 0;
+    }
+    .map-content, .contact-content {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .arrow-down-white {
+      @include arrow-down-white;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .plan-container {
+    .map-descriptor {
+      width: 80%;
+      margin-bottom: 18px;
+      border-radius: .175em;
     }
   }
 }
 
 @media only screen and (max-width: 991px) {
   .plan-container {
-    padding: 0 35px 0 35px;
-    .map-descriptor {
-      width: 100%;
-      margin: 0 15px 18px 15px;
+    .map-container {
+      border-radius: 0;
+      border-top-left-radius: .175em;
+      border-top-right-radius: .175em;
     }
     .contact-container {
-      margin-bottom: 20px;
+      border-radius: 0;
+      border-bottom-left-radius: .175em;
+      border-bottom-right-radius: .175em;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 2px;
+        width: 50%;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $primary;
+      }
     }
   }
 }
 
 @media only screen and (min-width: 992px) {
   .plan-container {
-    .map-descriptor {
-      width: 80%;
-      margin-bottom: 18px;
+    .map-container {
+      border-radius: .175em;
+    }
+    .contact-container {
+      border-radius: .175em;
     }
   }
 }
@@ -45,7 +78,6 @@
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    border-radius: .175em;
 
     .title {
       font-weight: 100;
@@ -107,7 +139,6 @@
     z-index: 10;
     height: 100%;
     padding: 30px 20px 5px 20px;
-    border-radius: .175em;
     text-align: left;
     font-family: 'Arima Madurai';
     text-transform: uppercase;

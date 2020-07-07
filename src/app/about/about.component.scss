@@ -11,18 +11,19 @@
   }
 }
 
-@media only screen and (min-width: 561px) {
+@media only screen and (min-width: 768px) {
   .about-container {
     .carousel {
       width: 85%;
+      margin-bottom: 30px;
     }
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 991px) {
   .about-container {
-    .carousel {
-      margin-bottom: 30px;
+    .arrow-down-white {
+      @include arrow-down-white;
     }
   }
 }
@@ -30,7 +31,7 @@
 @media only screen and (min-width: 561px) and (max-width: 991px) {
   .about-container {
     .partLeft, .partRight {
-      width: 90%;
+      width: 100%;
     }
     .second, .third {
       margin-left: 30px;

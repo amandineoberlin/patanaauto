@@ -2,6 +2,10 @@
 
 @media only screen and (max-width: 991px) {
   .home-container {
+    .arrow-down-white {
+      @include arrow-down-gray;
+
+    }
     .presentation {
       margin-top: 0px;
     }
