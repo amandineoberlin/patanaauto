@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js';
 
@@ -11,7 +11,7 @@ import { DataLoaderService } from '../services/data-loader.service';
   templateUrl: './annonce.component.html',
   styleUrls: ['./annonce.component.scss']
 })
-export class AnnonceComponent implements OnInit, OnDestroy {
+export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,6 +21,9 @@ export class AnnonceComponent implements OnInit, OnDestroy {
   annonceId: number;
   annonce: any;
   options: object;
+  index: number;
+  isPrevDisabled: boolean;
+  isNextDisabled: boolean;
 
   enlargeImage() {
     if ($('.enlarged-img').length) return;
@@ -56,11 +59,20 @@ export class AnnonceComponent implements OnInit, OnDestroy {
     });
   }
 
+  setControlsActiveness() {
+    const imagesSize = _.size(this.annonce.images);
+    const i = this.index + 1;
+    this.isPrevDisabled = i === 1 ? true : false;
+    this.isNextDisabled = i >= imagesSize ? true : false;
+  }
+
   changeActiveItem(i) {
+    this.index = i;
     $('.carousel-indicators').children().each(function(index) {
       if ($(this).hasClass('active')) $(this).removeClass('active');
       if (index === i) $(this).addClass('active');
     });
+    this.setControlsActiveness();
   }
 
   mainImage(annonce) {
@@ -203,8 +215,79 @@ export class AnnonceComponent implements OnInit, OnDestroy {
     return _.chunk(allOptions, 2);
   }
 
+  scrollToSides(container, isPrev) {
+    const distance = 100;
+    const step = 10;
+
+    let scrollLeftValue = container.scrollLeft();
+    let scrollAmount = 0;
+    const slideTimer = setInterval(() => {
+      scrollLeftValue = isPrev ? (scrollLeftValue -= step) : (scrollLeftValue += step);
+      container.scrollLeft(scrollLeftValue);
+      scrollAmount = scrollAmount += step;
+      if (scrollAmount >= distance) window.clearInterval(slideTimer);
+    }, 25);
+  }
+
+  scrollLeftOrRight(direction) {
+    const container = $('.carousel-indicators');
+    const containerWidth = container.width();
+    const items = container.children();
+    const i = this.index;
+    const isPrev = direction === 'prev';
+    const isFirstOrLast = i < 1 || i >= (_.size(items) - 1);
+    const nextIndex = isPrev ? i - 1 : i + 1;
+    const index = isFirstOrLast ? i : nextIndex;
+    const nextItem = items[index];
+    const containerScrollLeft = container.scrollLeft();
+    const leftOffset = $(nextItem).offset().left;
+    const itemWidth = $(nextItem).width();
+    const itemNotNeedScroll = isPrev ?
+      (containerScrollLeft < leftOffset) :
+      ((leftOffset + itemWidth) < containerWidth);
+
+    if (!nextItem || itemNotNeedScroll) return;
+
+    return this.scrollToSides(container, isPrev);
+  }
+
+  handleCarouselScroll() {
+    $('.carousel-control-prev').click((event) => {
+      event.preventDefault();
+      return this.scrollLeftOrRight('prev');
+    });
+
+    $('.carousel-control-next').click((event) => {
+      event.preventDefault();
+      return this.scrollLeftOrRight('next');
+    });
+  }
+
+  watchForActiveClassChange() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName !== 'class') return;
+        const item = $(mutation.target);
+        const attributeValue = item.prop(mutation.attributeName);
+        if (!_.includes(attributeValue, 'active')) return;
+        this.index = item.index();
+        const direction = item.position().left < 0 ? 'prev' : 'next';
+        this.scrollLeftOrRight(direction);
+        return this.setControlsActiveness();
+      });
+    });
+
+    const indicators = $(".carousel-indicators").children();
+    indicators.each((i, el) => observer.observe(el, { attributes: true }));
+  }
+
   ngOnDestroy() {
     this.clearEnlarged();
+  }
+
+  ngAfterViewInit() {
+    this.handleCarouselScroll();
+    this.watchForActiveClassChange();
   }
 
   ngOnInit(): void {
@@ -214,15 +297,15 @@ export class AnnonceComponent implements OnInit, OnDestroy {
       });
 
     this.annonce = this.activatedRoute.snapshot.data['annonce'];
-
     this.options = this.buildOptionsObject();
+    this.isPrevDisabled = false;
+    this.isNextDisabled = true;
+    this.index = 0;
 
     this.createConsoChart();
     this.createFiscaleChart();
     this.createReelleChart();
-
-    // @ts-ignore
-    $('#annonceCarousel').carousel({ pause: false });
+    this.setControlsActiveness();
   }
 
 }

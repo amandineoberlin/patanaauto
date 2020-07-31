@@ -116,8 +116,6 @@ html {
 }
 
 body {
-  @include custom-scrollbar;
-
   height: 100%;
   width: 100%;
   margin: 0px;
@@ -416,6 +414,10 @@ body {
     touch-action: pan-x pan-y pinch-zoom;
   }
   .carousel {
+    .carousel-item img {
+      z-index: 15;
+    }
+
     &.carousel-thumbnails .carousel-indicators {
       li.active {
         box-shadow: 1px 2px 2px $black;
@@ -443,14 +445,9 @@ body {
 
     .carousel-control-next, .carousel-control-prev {
       opacity: .9;
-
-      &:hover {
-        .carousel-control-next-icon, .carousel-control-prev-icon {
-          opacity: .6;
-          transition: all 0.2s ease-in-out;
-        }
-      }
+      z-index: 20;
     }
+
 
     .carousel-control-next {
       justify-content: flex-end;
@@ -472,6 +469,16 @@ body {
       &:hover {
         @include transform(scale(0.9));
       }
+    }
+  }
+
+  a.disabled {
+    color: $gray-650;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .fas {
+      color: $gray-650;
     }
   }
 

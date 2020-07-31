@@ -252,7 +252,6 @@
     }
 
     .card-body {
-      @include magnifier;
       @include opacity($plain-white, 1);
 
       .custom-primary {
@@ -267,32 +266,46 @@
       }
 
       .carousel-indicators {
-        @include opacity($gray-800, .9);
+        @include opacity($gray-700, .9);
         position: relative;
-        margin: 3px 0 20px 0;
-        padding: 0;
         height: 100%;
         width: 100%;
+        overflow-y: hidden;
+        margin: 0;
 
         li {
-          height: 100%;
           opacity: 1;
-          width: 100%;
           background: transparent;
-          box-sizing: border-box;
-          display: inline-table;
-        }
+          height: 3.75rem;
+          width: 100%;
+          padding: 0.1rem;
 
-        .active {
-          img {
-            opacity: 1;
-            box-shadow: 1px 2px 2px $black;
+          &:first-child img {
+            margin-left: .2em;
+          }
+          &:last-child img {
+            margin-right: .4em;
           }
         }
 
-        li:not(active) {
-          img {
-            opacity: .3;
+        img {
+          height: 100%;
+          width: auto;
+          display: block;
+          object-fit: cover;
+        }
+
+        li.active img {
+          opacity: 1;
+          box-shadow: 3px 3px 3px $gray-900;
+        }
+
+        li:not(.active) img {
+          opacity: .3;
+          @include transition(all .2s);
+          &:hover {
+            @include transform(scale(0.95));
+            opacity: .7;
           }
         }
       }

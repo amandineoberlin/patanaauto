@@ -187,26 +187,6 @@ $green: #0C9463 !default;
   }
 }
 
-@mixin magnifier {
-  .dock-container li img {
-    @include transition(all 0.3s);
-    @include transformOrigin(100% 100%);
-  }
-
-  .dock-container li:hover {
-    opacity: 1;
-  }
-
-  .dock-container li:hover img { 
-    @include transform(scale(2));
-    opacity: 1;
-  }
-
-  .dock-container li:hover img {
-    margin-left: 1.5rem;
-  }
-}
-
 @mixin materialCard($color) {
   background-color: $color;
   position: absolute;

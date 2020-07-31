@@ -18,34 +18,35 @@
 
                 <div class="row">
                   <div class="col-sm-12 col-lg-7">
-                    <div id="annonceCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div id="annonceCarousel" class="carousel slide carousel-fade" data-ride="carousel"
+                      data-interval="false">
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
                           [ngClass]="[i==0 ? 'active' : '']">
-                          <img class="d-block w-100 rounded" src="{{image}}"
+                          <img class="d-block w-100" src="{{image}}"
                             alt="First slide">
                         </div>
                         <button class="custom-primary" (click)="enlargeImage()">
                           <i class="fas fa-search-plus"></i>Agrandir
                         </button>
-                        <a class="carousel-control-prev" href="#annonceCarousel" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#annonceCarousel" role="button"
+                          data-slide="prev" [ngClass]="[isPrevDisabled ? 'disabled' : '']">
                           <span class="fas fa-chevron-circle-left" aria-hidden="true"></span>
                           <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#annonceCarousel" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#annonceCarousel" role="button"
+                          data-slide="next" [ngClass]="[isNextDisabled ? 'disabled' : '']">
                           <span class="fas fa-chevron-circle-right" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>
                       </div>
-                      <div class="dock-container">
-                        <ol class="carousel-indicators">
-                          <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
-                            attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
-                            <img class="d-block w-100 rounded" src="{{image}}"
-                              alt="First slide">
-                          </li>
-                        </ol>
-                      </div>
+                      <ol class="carousel-indicators justify-content-start">
+                        <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
+                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']"
+                          (click)="changeActiveItem(i)">
+                          <img src="{{image}}" alt="First slide">
+                        </li>
+                      </ol>
                     </div>
                   </div>
 
