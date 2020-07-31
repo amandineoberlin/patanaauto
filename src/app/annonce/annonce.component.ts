@@ -251,18 +251,6 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.scrollToSides(container, isPrev);
   }
 
-  handleCarouselScroll() {
-    $('.carousel-control-prev').click((event) => {
-      event.preventDefault();
-      return this.scrollLeftOrRight('prev');
-    });
-
-    $('.carousel-control-next').click((event) => {
-      event.preventDefault();
-      return this.scrollLeftOrRight('next');
-    });
-  }
-
   watchForActiveClassChange() {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -286,7 +274,6 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.handleCarouselScroll();
     this.watchForActiveClassChange();
   }
 
