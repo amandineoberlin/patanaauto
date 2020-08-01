@@ -80,7 +80,7 @@
     .partRight {
       margin-bottom: -25px;
       .bg-faded {
-        padding: 25px 50px 90px 50px;
+        padding: 25px 50px 110px 50px;
         border-bottom-left-radius: .175em;
         border-bottom-right-radius: .175em;
       }
@@ -108,7 +108,7 @@
     .partRight {
       right: -245px;
       .bg-faded {
-        padding: 30px 30px 90px 30px;
+        padding: 30px 30px 110px 30px;
       }
     }
   }
@@ -131,7 +131,7 @@
     .partRight {
       right: -255px;
       .bg-faded {
-        padding: 50px 50px 90px 50px;
+        padding: 50px 50px 110px 50px;
       }
     }
   }
@@ -159,6 +159,11 @@
   .about-container {
     .carousel {
       width: 63%;
+    }
+    .partRight {
+      .bg-faded {
+        padding: 50px 50px 130px 50px;
+      }
     }
     .partLeft, .partRight {
       width: 320px;
