@@ -15,6 +15,7 @@
     }
   }
 }
+
 @media only screen and (min-width: 246px) and (max-width: 336px) {
   body {
     .bg {
@@ -22,31 +23,35 @@
     }
   }
 }
+
 @media only screen and (min-width: 337px) and (max-width: 767px) {
   body {
     .bg {
-      padding-top: 75.5px;
+      padding-top: 97.5px;
     }
   }
 }
+
 @media only screen and (min-width: 768px) {
   body {
     .bg {
-      padding-top: 100.5px;
+      padding-top: 120.5px;
     }
   }
 }
+
 @media only screen and (min-width: 992px) {
   body {
     .bg {
-      padding-top: 110.5px;
+      padding-top: 130.5px;
     }
   }
 }
+
 @media only screen and (min-width: 1500px) {
   body {
     .bg {
-      padding-top: 130.5px;
+      padding-top: 140.5px;
     }
   }
 }

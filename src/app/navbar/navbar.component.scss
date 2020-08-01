@@ -1,9 +1,9 @@
 @import "../app.component.scss";
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (max-width: 245px) {
   #mainNav {
-    .nav-link {
-      font-size: 1.1em;
+    .navbar-brand {
+      display: none;
     }
   }
 }
@@ -19,21 +19,35 @@
   }
 }
 
-@media only screen and (min-width: 336px) {
+@media only screen and (max-width: 991px) {
+  #mainNav {
+    .nav-link:hover {
+      @include opacity($gray-650, .2);
+    }
+  }
+}
+
+@media only screen and (min-width: 336px) and (max-width: 1599px) {
   #mainNav {
     .navbar-brand {
       img {
-        width: 180px;
-        height: 50px;
+        width: 200px;
+        height: auto;
       }
     }
   }
 }
 
-@media only screen and (max-width: 245px) {
+@media only screen and (min-width: 1600px) {
   #mainNav {
     .navbar-brand {
-      display: none;
+      img {
+        width: 220px;
+        height: auto;
+      }
+    }
+    .nav-link {
+      font-size: 1.15em;
     }
   }
 }
@@ -41,16 +55,28 @@
 @media only screen and (max-width: 1600px) {
   #mainNav {
     .nav-link {
-      font-size: .9em;
+      font-size: 1em;
     }
   }
 }
 
 #mainNav {
-  background-color: $gray-bg;
+  @include opacity($gray-bg, 1);
   position: fixed;
   z-index: 1000;
-  opacity: .97;
+  padding: 0;
+
+  .navbar-brand {
+    padding: .8rem 1rem;
+  }
+
+  .navbar-toggler {
+    margin: .5rem 1rem;
+  }
+
+  .navbar-collapse {
+    margin-top: .5rem;
+  }
 
   // disable default bootstrap toggle behaviour
   .menubar:not(.show) {
@@ -74,14 +100,15 @@
     .rotatedBar {
       transform: rotate(90deg);
       transition: all .5s ease-in-out;
+      display: inline-table;
     }
   }
 
   .navbar-nav {
     .nav-item {
       .nav-link {
-        @include transition(color .3s ease-in-out);
-        padding: 1.1em 1em;
+        @include transition(all .3s ease-in-out);
+        padding: 1.1em 1.2em;
         letter-spacing: 1px;
         color: $white;
         &.active,

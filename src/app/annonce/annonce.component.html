@@ -23,27 +23,25 @@
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
                           [ngClass]="[i==0 ? 'active' : '']">
-                          <img class="d-block w-100" src="{{image}}"
-                            alt="First slide">
+                          <img class="d-block w-100" src="{{image}}" alt="First slide">
                         </div>
                         <button class="custom-primary" (click)="enlargeImage()">
                           <i class="fas fa-search-plus"></i>Agrandir
                         </button>
-                        <a class="carousel-control-prev" href="#annonceCarousel" role="button"
-                          data-slide="prev" [ngClass]="[isPrevDisabled ? 'disabled' : '']">
+                        <a class="carousel-control-prev" href="#annonceCarousel" role="button" data-slide="prev"
+                          [ngClass]="[isPrevDisabled ? 'disabled' : '']">
                           <span class="fas fa-chevron-circle-left" aria-hidden="true"></span>
                           <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#annonceCarousel" role="button"
-                          data-slide="next" [ngClass]="[isNextDisabled ? 'disabled' : '']">
+                        <a class="carousel-control-next" href="#annonceCarousel" role="button" data-slide="next"
+                          [ngClass]="[isNextDisabled ? 'disabled' : '']">
                           <span class="fas fa-chevron-circle-right" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>
                       </div>
                       <ol class="carousel-indicators justify-content-start">
                         <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
-                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']"
-                          (click)="changeActiveItem(i)">
+                          attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
                           <img src="{{image}}" alt="First slide">
                         </li>
                       </ol>

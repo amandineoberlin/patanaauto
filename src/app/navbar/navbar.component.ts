@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import _ from 'lodash';
+
 import { NavbarOptions } from './navbar-options';
 
 @Component({
@@ -11,7 +13,7 @@ import { NavbarOptions } from './navbar-options';
   }
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
@@ -24,9 +26,8 @@ export class NavbarComponent implements OnInit {
 
   onResize() {
     const isSmallScreen = this.isSmallScreen();
-
     this.isSmallSize = isSmallScreen ? true : false;
-    this.isShown = isSmallScreen ? false : true;
+    this.isShown = false;
   }
 
   toggle() {
@@ -35,13 +36,17 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     const isSmallScreen = this.isSmallScreen();
+    if (isSmallScreen) return this.isSmallSize = true;
+    this.isShown = false;
+  }
 
-    if (isSmallScreen) {
-      this.isSmallSize = true;
-      this.isShown = false;
-      return;
-    }
-
-    this.isShown = true;
+  ngAfterViewInit() {
+    $('body').click((e) => {
+      const target = $(e.target);
+      const parents = target.parents();
+      const isNotNavbarElement = _.find(parents, p => $(p).hasClass('content'));
+      if (!isNotNavbarElement) return;
+      return this.isShown = false;
+    });
   }
 }
