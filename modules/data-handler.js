@@ -4,6 +4,7 @@ const PromiseFtp = require('promise-ftp');
 const _ = require('lodash');
 const Promise = require('bluebird');
 const unzipper = require('unzipper');
+const path = require('path');
 
 const ftpget = Promise.promisifyAll(require('ftp-get'));
 const fs = Promise.promisifyAll(require('fs'));
@@ -69,6 +70,7 @@ const loadFtpData = Promise.coroutine(function* () {
     logger.info(`created photo file from stream`);
 
     yield downloadPhotos();
+    yield cleanPhotos();
 
     yield ftp.end();
     logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
@@ -102,9 +104,11 @@ const downloadPhotos = Promise.coroutine(function*() {
   }
 
   const oldPhotos = yield getPhotosFromFile(oldPhotoFile);
+  if (_.size(photos) === _.size(oldPhotos)) return logger.info('No difference between old and new photos');
+
   const oldPhotosById = _.keyBy(oldPhotos, '_id');
 
-  const photosToKeep = _.reduce(photos, (acc, v) => {
+  const photosNeedingDownload = _.reduce(photos, (acc, v) => {
     if (!v) return acc;
 
     const id = v._id;
@@ -116,8 +120,7 @@ const downloadPhotos = Promise.coroutine(function*() {
     return acc;
   }, []);
 
-  yield getAndSaveFtpImages(photosToKeep);
-  yield cleanPhotos(photoFile);
+  yield getAndSaveFtpImages(photosNeedingDownload);
 
   return logger.info(logMesg);
 });
@@ -223,18 +226,21 @@ const loadImages = Promise.coroutine(function* () {
   return logger.info(`Retrieved ${_.size(images)} images from ftp`);
 });
 
-const cleanPhotos = Promise.coroutine(function* (photoFile) {
-  const photosFile = photoFile ? photoFile : yield getPhotosFromFile(newPhotoFile);
-  const photoFileById = _.keyBy(photosFile, '_id');
+const cleanPhotos = Promise.coroutine(function* () {
+  const photoFile = yield getPhotosFromFile(newPhotoFile);
+  const photoFileById = _.keyBy(photoFile, '_id');
   const photos = yield fs.readdirAsync(newPhotoDir);
 
-  const deletedPhotos = yield Promise.filter(photos, photo => {
+  const deletedPhotos = [];
+  yield Promise.mapSeries(photos, (photo) => {
     if (!photo) return;
     const photoName = _.replace(photo, '.jpg', '');
     const photoExistsInFile = photoFileById[photoName];
-    if (photoExistsInFile) return;
-    fs.unlinkAsync(`${localPhotosDir}/${photo}`);
-    return photo;
+    if (photoExistsInFile) return null;
+    const fileExtension = path.extname(photo);
+    if (!_.includes(['.jpg', '.jpeg', '.JPG', '.JPEG'], fileExtension)) return null;
+    deletedPhotos.push(photo);
+    return fs.unlinkAsync(`${newPhotoDir}/${photo}`);
   });
 
   if (_.isEmpty(deletedPhotos)) return logger.info({
@@ -243,9 +249,9 @@ const cleanPhotos = Promise.coroutine(function* (photoFile) {
   });
 
   return logger.info({
-    message: `les photos ont été nettoyées avec succès. ${_.size(deletedPhotos)} 
-      photos ont été effacées. Voici la liste ci-dessous: 
-      photos effacées: ${deletedPhotos}`
+    message: `les photos ont été nettoyées avec succès. ${_.size(deletedPhotos)}`+
+      ` photos ont été effacées. Voici la liste ci-dessous:` +
+      ` photos effacées: ${deletedPhotos}`
   });
 });
 
@@ -253,7 +259,7 @@ const getLatestAnnonces = Promise.coroutine(function* () {
   const oldAnnonces = yield getJsonAnnonces(oldDataFile);
   if (!oldAnnonces) return [];
   const newAnnonces = yield getJsonAnnonces(newDataFile);
-  if (newAnnonces) return [];
+  if (!newAnnonces) return [];
 
   const oldAnnoncesById = _.keyBy(oldAnnonces, '_id');
   return _.reduce(newAnnonces, (acc, v) => {
@@ -261,6 +267,7 @@ const getLatestAnnonces = Promise.coroutine(function* () {
 
     const id = v._id;
     const oldObj = oldAnnoncesById[id];
+    if (!oldObj) console.log('MOI: ', id);
 
     return !oldObj ? _.concat(acc, v) : acc;
   }, []);
