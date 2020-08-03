@@ -261,15 +261,14 @@ const getLatestAnnonces = Promise.coroutine(function* () {
   const newAnnonces = yield getJsonAnnonces(newDataFile);
   if (!newAnnonces) return [];
 
-  const oldAnnoncesById = _.keyBy(oldAnnonces, '_id');
+  const oldImmatriculations = _.flatMap(oldAnnonces, 'VehiculeImmatriculation');
   return _.reduce(newAnnonces, (acc, v) => {
     if (!v) return acc;
 
-    const id = v._id;
-    const oldObj = oldAnnoncesById[id];
-    if (!oldObj) console.log('MOI: ', id);
+    const newImmatriculation = v.VehiculeImmatriculation[0];
+    const existsInOldAnnonces = _.includes(oldImmatriculations, newImmatriculation);
 
-    return !oldObj ? _.concat(acc, v) : acc;
+    return !existsInOldAnnonces ? _.concat(acc, v) : acc;
   }, []);
 });
 
