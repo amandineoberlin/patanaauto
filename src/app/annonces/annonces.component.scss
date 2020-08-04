@@ -227,21 +227,6 @@
       @include materialCard($primary);
       @include box-shadow-dark;
       top: 0;
-
-      .vertical-center {
-        padding: 16px;
-      }
-
-      h6 {
-        margin: 0;
-        line-height: 0;
-        margin-bottom: .7em;
-      }
-
-      small {
-        color: $gray-text;
-        z-index: 20;
-      }
     }
 
     .badges {

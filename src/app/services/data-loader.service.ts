@@ -15,6 +15,11 @@ export class DataLoaderService {
     return `/${annonce.images[0]}`;
   }
 
+  getRecentAnnonces() {
+    return this.http.get<any[]>('get-latest')
+      .toPromise();
+  }
+
   getAnnonces() {
     const marques = [];
     const modeles = [];

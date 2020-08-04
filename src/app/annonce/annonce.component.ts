@@ -4,7 +4,7 @@ import Chart from 'chart.js';
 
 import _ from 'lodash';
 
-import { DataLoaderService } from '../services/data-loader.service';
+import { FormDataService } from '../services/form-data.service';
 
 @Component({
   selector: 'app-annonce',
@@ -15,7 +15,7 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private dataLoaderService: DataLoaderService
+    private formDataService: FormDataService
   ) { }
 
   annonceId: number;
@@ -76,7 +76,7 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   mainImage(annonce) {
-    return this.dataLoaderService.mainImage(annonce);
+    return this.formDataService.mainImage(annonce);
   }
 
   createConsoChart() {

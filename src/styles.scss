@@ -44,6 +44,17 @@
   body {
     .bg {
       padding-top: 130.5px;
+      background-position: 0 92px;
+      background-size: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  body {
+    .bg {
+      background-position: 0 100px;
+      background-size: 150%;
     }
   }
 }
@@ -112,8 +123,8 @@
 }
 
 html {
-  overflow:auto;
-  height: 100%;
+  overflow: auto;
+  // height: 100%;
 }
 
 * {
@@ -121,13 +132,13 @@ html {
 }
 
 body {
-  height: 100%;
+  // height: 100%;
   width: 100%;
   margin: 0px;
   padding: 0px;
   font-family: 'Karla', sans-serif;
   background-color: black;
-  
+
   .content {
     height: 100%;
     width: 100%;
@@ -139,9 +150,7 @@ body {
     height: 100%;
     position: relative;
     background-image: url('./assets/images/background.png');
-    background-position: center 0;
     background-repeat: no-repeat;
-    background-size: cover;
   }
 
   .content-container {
@@ -425,13 +434,13 @@ body {
 
     &.carousel-thumbnails .carousel-indicators {
       li.active {
-        box-shadow: 1px 2px 2px $black;
+        @include box-shadow-simple($black);
         border: solid 1px rgba($hovered-red, 1);
         background-color: rgba($hovered-red, 1);
       }
 
       li:not(active) {
-        box-shadow: 1px 2px 2px rgba($gray-900, .9);
+        @include box-shadow-simple(rgba($gray-900, .9));
         border: solid 1px rgba($plain-white, .8);
         background-color: rgba($plain-white, .8);
       }
@@ -524,6 +533,13 @@ body {
     &.hide {
       transform: scaleY(0);
     }
+  }
+
+  .circle-icon {
+    @include box-shadow-simple($gray-800);
+    background: $plain-white;
+    padding:30px;
+    border-radius: 50%;
   }
 
   .search-title {

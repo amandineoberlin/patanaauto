@@ -222,9 +222,9 @@
     height: auto;
 
     .material-card {
-      @include materialCard(rgba(168, 4, 10, .8));
+      @include materialCard($primary);
+      @include box-shadow-simple($black);
       color: $white;
-      bottom: 0;
       padding: 20px;
       height: auto;
       bottom: 15px;

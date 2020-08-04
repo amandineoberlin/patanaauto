@@ -43,6 +43,14 @@
     .presentation {
       margin-top: 40px;
     }
+    .material-card {
+      h6 {
+        font-size: 1.2em;
+      }
+      small {
+        font-size: 1em;
+      }
+    }
   }
 }
 
@@ -65,8 +73,6 @@
 @media only screen and (min-width: 991px) and (max-width: 1200px) {
   .home-container {
     .intro-text {
-      margin-right: 0px;
-      margin-top: 0px;
       .bullets h6 {
         font-size: .95rem;
       }
@@ -83,8 +89,6 @@
 @media only screen and (min-width: 1200px) {
   .home-container {
     .intro-text {
-      margin-right: -20px;
-      margin-top: 20px;
       position: relative;
       z-index: 10;
     }
@@ -112,12 +116,68 @@
     }
   }
 
-  .intro-text {
+  .last-annonces {
     @include opacity($plain-white, 1);
     position: relative;
+    width: 100%;
+    display: inline-block;
     z-index: 10;
     color: $black;
     padding: 35px;
+
+    .card {
+      width: (100% / 3);;
+    }
+
+    .material-card {
+      @include materialCard($primary);
+      @include box-shadow-dark;
+      bottom: -5em;
+      height: 5em;
+
+      h6 {
+        color: $white;
+      }
+
+      small {
+        text-shadow: none;
+        color: $black;
+      }
+    }
+
+    .fa-camera {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      border-radius: 60px;
+      padding: 0.5em 0.6em;
+      color: $white;
+      background-color: $primary;
+      z-index: 21;
+      @include box-shadow-dark;
+      
+      span {
+        padding-left: 3px;
+        font-family: 'Karla', sans-serif;
+        font-size: 1.1em;
+      }
+    }
+
+    .badges {
+      position: absolute;
+      bottom: -28px;
+      @include box-shadow-blur;
+    }
+
+    .badge {
+      border-radius: unset;
+      margin-right: 1px;
+      padding: 7px;
+
+      i {
+        padding-right: 3px;
+      }
+    }
   }
 
   .intro-img {
@@ -145,17 +205,34 @@
     }
   }
 
+  .intro-text {
+    @include opacity($plain-white, 1);
+    z-index: 10;
+    color: $black;
+    padding: 35px;
+    margin: 0 50px 50px 50px;
+    margin-top: -60px;
+  }
+
   .bullets {
     margin-top: 30px;
     padding-left: 20px;
-    border-left: 1px solid rgba($primary, .5);
     text-align: left;
     color: rgba($gray-800, .8);
+    text-align: center;
+
+    .bullet {
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+    }
 
     h6 {
       text-transform: uppercase;
       font-family: 'Karla';
       font-weight: light;
+      text-align: justify;
+      margin-top: 10px;
 
       i {
         margin-right: 8px;

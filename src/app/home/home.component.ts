@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   quickSearch: FormGroup;
   data: { [name: string]: object };
   annonces: object;
+  latestAnnonces: object;
   annoncesSize: number;
   maxAvailablePrice: number;
   marques: Array<string>;
@@ -136,6 +137,23 @@ export class HomeComponent implements OnInit {
     this.modeles = modeles;
   }
 
+  redirectToAnnonce(id) {
+    return this.router.navigate(['/annonce'], { queryParams: { id } });
+  }
+
+  mainImage(annonce) {
+    return this.formDataService.mainImage(annonce);
+  }
+
+  getLatestAnnonces() {
+    this.formDataService.loadRecentAnnonces()
+      .then((data) => {
+        const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
+        this.latestAnnonces = _.filter(this.annonces, a =>
+          _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]))
+      });
+  }
+
   choosePriceClass() {
     if (this.blockSlider) return 'hide';
     return this.showPriceRange ? 'show' : 'hide';
@@ -203,6 +221,7 @@ export class HomeComponent implements OnInit {
         this.initSlider();
         this.utilsService.bootstrapClearButton(this.quickSearch.controls, ['price']);
         this.hideSliderOnClick();
+        this.getLatestAnnonces();
     });
   }
 
