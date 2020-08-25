@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   filteredAnnonces: Array<any> = [];
   priceFrom: 1000;
   priceTo: 25000;
+  scrollIndicator: boolean;
 
   constructor(
     private formDataService: FormDataService,
@@ -149,8 +150,21 @@ export class HomeComponent implements OnInit {
     this.formDataService.loadRecentAnnonces()
       .then((data) => {
         const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
-        this.latestAnnonces = _.filter(this.annonces, a =>
-          _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]))
+        const latestAnnonces = _.filter(this.annonces, a =>
+          _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
+        const annoncesSize = _.size(latestAnnonces);
+        const defaultSize = 5;
+
+        if (annoncesSize === 3) return this.latestAnnonces = latestAnnonces;
+        if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
+        if (annoncesSize < 3) {
+          const orderBy = _.map(this.annonces, a =>
+            ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeCarteGriseDate[0]) }));
+          const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
+          const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+          const neededItemSize = defaultSize - annoncesSize;
+          return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
+        }
       });
   }
 
@@ -170,7 +184,7 @@ export class HomeComponent implements OnInit {
 
   hideSliderOnClick() {
     // hide price range slider when user clicks anywhere else than the input itself
-    $('html').on('click', (e) => {
+    $('body').on('click', (e) => {
       if (!this.showPriceRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
@@ -205,6 +219,34 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  scroll() {
+    const container = $('.last-annonces');
+    const distance = 100;
+    const step = 10;
+
+    let scrollLeftValue = container.scrollTop();
+    let scrollAmount = 0;
+    const slideTimer = setInterval(() => {
+      scrollLeftValue = scrollLeftValue += step;
+      container.scrollTop(scrollLeftValue);
+      scrollAmount = scrollAmount += step;
+      if (scrollAmount >= distance) {
+        window.clearInterval(slideTimer);
+      };
+    }, 25);
+  }
+
+  needsScrollIndicator() {
+    const container = $('.last-annonces');
+    const needsScrolling = container.get(0).scrollHeight > container.outerHeight();
+    return needsScrolling;
+  }
+
+  waitForElement(selector, callback) {
+    if ($(selector).length) return callback();
+    return setTimeout(() => this.waitForElement(selector, callback), 50);
+  };
+
   ngOnInit(): void {
     this.quickSearch = this.fb.group({
       marque: [null],
@@ -213,6 +255,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.showPriceRange = false;
+    this.scrollIndicator = false;
 
     this.formDataService.loadAnnonces({ quickSearch: true })
       .then(dataObj => {
@@ -222,7 +265,10 @@ export class HomeComponent implements OnInit {
         this.utilsService.bootstrapClearButton(this.quickSearch.controls, ['price']);
         this.hideSliderOnClick();
         this.getLatestAnnonces();
-    });
+      });
+
+    this.waitForElement('.annonce', () =>
+      setTimeout(() => this.scrollIndicator = this.needsScrollIndicator(), 200));
   }
 
 }

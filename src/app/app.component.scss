@@ -111,9 +111,9 @@ $green: #0C9463 !default;
 }
 
 @mixin box-shadow-light {
-  box-shadow: 0 2px 2px 0 rgba($plain-white, 0.50), 0 2px 10px 0 rgba($plain-white, 0.52);
-  -webkit-box-shadow: 0 2px 2px 0 rgba($plain-white, 0.50), 0 2px 10px 0 rgba($plain-white, 0.52);
-  -moz-box-shadow: 0 2px 2px 0 rgba($plain-white, 0.50), 0 2px 10px 0 rgba($plain-white, 0.52);
+  box-shadow: 0 1px 1px 0 rgba($plain-white, 0.30), 0 1px 2px 0 rgba($plain-white, 0.30);
+  -webkit-box-shadow: 0 1px 1px 0 rgba($plain-white, 0.30), 0 1px 2px 0 rgba($plain-white, 0.30);
+  -moz-box-shadow: 0 1px 1px 0 rgba($plain-white, 0.30), 0 1px 2px 0 rgba($plain-white, 0.30);
 }
 
 @mixin box-shadow-blur {

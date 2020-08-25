@@ -124,7 +124,7 @@ export class AnnoncesComponent implements OnInit {
   }
 
   hideSlidersOnClick() {
-    $('html').on('click', (e) => {
+    $('body').on('click', (e) => {
       // @ts-ignore
       if (!this.showPriceRange && !this.showKmRange) return;
 

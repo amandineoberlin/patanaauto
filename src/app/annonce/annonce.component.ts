@@ -234,6 +234,8 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
     const containerWidth = container.width();
     const items = container.children();
     const i = this.index;
+    if (i < 1) return container.scrollLeft(0);
+
     const isPrev = direction === 'prev';
     const isFirstOrLast = i < 1 || i >= (_.size(items) - 1);
     const nextIndex = isPrev ? i - 1 : i + 1;
