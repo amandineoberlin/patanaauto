@@ -23,7 +23,7 @@
 @media only screen and (max-width: 991px) {
   .about-container {
     .arrow-down-white {
-      @include arrow-down-white;
+      @include arrow-down-white(.9);
     }
   }
 }

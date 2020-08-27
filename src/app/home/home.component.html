@@ -3,138 +3,142 @@
     <div class="content-container">
       <div class="row presentation center-block">
 
-        <div class="annonces-container">
-          <div class="last-annonces">
-            <div class="last-adds-title">Nos dernières annonces</div>
-            <div class="caret-down"><i class="fas fa-caret-down"></i></div>
-            <div *ngFor="let annonce of latestAnnonces; let i=index" class="annonce">
-              <div class="card" (click)="redirectToAnnonce(annonce._id)">
-                <div class="image">
-                  <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
-                  <img class="img-responsive card-img-top" [src]="mainImage(annonce)">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="intro-img">
+            <img class="img-fluid" src="../../assets/images/cut_drone.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-9">
+          <div class="intro-text text-center">
+            <div class="heading-upper">
+              <img class="carte-grise" src="../../assets/images/carte-grise.png" alt="" />
+              <img class="logo-2" src="../../assets/images/logo_inversed.png" alt="">
+            </div>
+            <div class="heading-lower">à pamfou en seine et marne</div>
+            <hr class="d-none d-lg-block mb-0 ml-0">
+            <div class="bullets row">
+              <div class="col-md-4">
+                <div class="bullet">
+                  <i class="fas fa-car circle-icon fa-3x"></i>
+                  <h6>véhicules d'occasion <br />toute marque</h6>
                 </div>
-                <div class="material-card">
-                  <div class="banner">
-                    <h6>{{annonce.title}} </h6>
-                    <small>{{annonce.VehiculeVersion}}</small>
-                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="bullet">
+                  <i class="fas fa-hand-holding-usd circle-icon fa-3x"></i>
+                  <h6>achat - vente - reprise</h6>
                 </div>
-                <div class="d-flex justify-content-center center-badges">
-                  <div class="badges">
-                    <span class="badge badge-light">
-                      <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
-                    </span>
-                    <span class="badge badge-light">
-                      <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
-                    </span>
-                    <span class="badge badge-light">
-                      <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
-                    </span>
-                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="bullet">
+                  <i class="fas fa-shopping-cart circle-icon fa-3x"></i>
+                  <h6>financement et garantie</h6>
                 </div>
               </div>
             </div>
-          </div>
-          <div *ngIf="scrollIndicator" class="angle-down" (click)="scroll()">
-            <i class="fas fa-angle-down"></i>
+            <div class="subsection">
+              <p class="mb-3">
+                Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
+                internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
+                ainsi
+                votre prochaine visite dans nos locaux...</p>
+              <div class="button-container">
+                <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
+                  Venez nous rendre visite!
+                </button>
+              </div>
+            </div>
+            <div class="arrow-down-white"></div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <div class="intro-img">
-              <img class="img-fluid" src="../../assets/images/cut_drone.jpg" alt="">
+        <div class="custom-col">
+          <div class="annonces-container">
+            <div class="last-adds-title">Nos dernières annonces</div>
+            <div class="last-annonces">
+              <div *ngFor="let annonce of latestAnnonces; let i=index" class="annonce">
+                <div class="card" (click)="redirectToAnnonce(annonce._id)">
+                  <div class="image">
+                    <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
+                    <img class="img-responsive card-img-top" [src]="mainImage(annonce)">
+                  </div>
+                  <div class="material-card">
+                    <div class="banner">
+                      <h6>{{annonce.title}}</h6>
+                      <div class="modele">
+                        <small>{{annonce.VehiculeVersion}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center center-badges">
+                    <div class="badges">
+                      <span class="badge badge-light">
+                        <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
+                      </span>
+                      <span class="badge badge-light">
+                        <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
+                      </span>
+                      <span class="badge badge-light">
+                        <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-9">
-            <div class="intro-text text-center">
-              <div class="heading-upper">
-                <img class="carte-grise" src="../../assets/images/carte-grise.png" alt="" />
-                <img class="logo-2" src="../../assets/images/logo_inversed.png" alt="">
-              </div>
-              <div class="heading-lower">à pamfou en seine et marne</div>
-              <hr class="d-none d-lg-block mb-0 ml-0">
-              <div class="bullets row">
-                <div class="col-md-4">
-                  <div class="bullet">
-                    <i class="fas fa-car circle-icon fa-3x"></i>
-                    <h6>véhicules d'occasion <br />toute marque</h6>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="bullet">
-                    <i class="fas fa-hand-holding-usd circle-icon fa-3x"></i>
-                    <h6>achat - vente - reprise</h6>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="bullet">
-                    <i class="fas fa-shopping-cart circle-icon fa-3x"></i>
-                    <h6>financement et garantie</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="subsection">
-                <p class="mb-3">
-                  Tous nos véhicules sont disponibles et visibles dans nos locaux. Grâce à notre site
-                  internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
-                  ainsi
-                  votre prochaine visite dans nos locaux...</p>
-                <div class="button-container">
-                  <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
-                    Venez nous rendre visite!
-                  </button>
-                </div>
-              </div>
-              <div class="arrow-down-white"></div>
+            <div *ngIf="horizontalScrollIndicator" class="angle-down" (click)="scroll('horizontal')">
+              <i class="fas fa-angle-right"></i>
+            </div>
+            <div *ngIf="verticalScrollIndicator" class="angle-down" (click)="scroll('vertical')">
+              <i class="fas fa-angle-down"></i>
             </div>
           </div>
         </div>
       </div>
 
-        <div class="row d-flex justify-content-center">
-          <div class="col-sm-12 col-md-12 col-lg-12">
-            <form class="inline" [formGroup]="quickSearch">
-              <div class="row filters">
-                <div class="col-md-12">
-                  <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+          <form class="inline" [formGroup]="quickSearch">
+            <div class="row filters">
+              <div class="col-md-12">
+                <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+              </div>
+              <div class="row input-group filter-box">
+                <div class="col-sm-12 col-lg">
+                  <ng-select class="form-group form-control marque" [items]="marques" placeholder="marque..."
+                    formControlName="marque" notFoundText="{{notFoundText}}" (change)="update()"
+                    (clear)="clearMarque()">
+                  </ng-select>
                 </div>
-                <div class="row input-group filter-box">
-                  <div class="col-sm-12 col-lg">
-                    <ng-select class="form-group form-control marque" [items]="marques" placeholder="marque..."
-                      formControlName="marque" notFoundText="{{notFoundText}}" (change)="update()"
-                      (clear)="clearMarque()">
-                    </ng-select>
-                  </div>
-                  <div class="col-sm-12 col-lg">
-                    <ng-select class="form-group form-control modele" [items]="modeles" placeholder="modèle..."
-                      (change)="update()" notFoundText="{{notFoundText}}" formControlName="modele"
-                      (clear)="clearModele()">
-                    </ng-select>
-                  </div>
-                  <div class="col-sm-12 col-lg">
-                    <div class="form-group">
-                      <input type="text" class="form-control price custom-input" placeholder="Prix max..."
-                        ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
-                        (click)="togglePriceView()">
-                      <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
-                      <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
+                <div class="col-sm-12 col-lg">
+                  <ng-select class="form-group form-control modele" [items]="modeles" placeholder="modèle..."
+                    (change)="update()" notFoundText="{{notFoundText}}" formControlName="modele"
+                    (clear)="clearModele()">
+                  </ng-select>
+                </div>
+                <div class="col-sm-12 col-lg">
+                  <div class="form-group">
+                    <input type="text" class="form-control price custom-input" placeholder="Prix max..."
+                      ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
+                      (click)="togglePriceView()">
+                    <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
+                    <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
 
-                      <div [ngClass]="choosePriceClass()" class="slide-range price">
-                        <input type="text" class="js-range-slider" />
-                      </div>
+                    <div [ngClass]="choosePriceClass()" class="slide-range price">
+                      <input type="text" class="js-range-slider" />
                     </div>
                   </div>
-                  <div class="col-sm-12 col-lg-auto filter-button">
-                    <button type="submit" class="custom-primary" (click)="redirectToFilteredAnnonces()">
-                      <i class="fas fa-search"></i> Rechercher
-                    </button>
-                  </div>
+                </div>
+                <div class="col-sm-12 col-lg-auto filter-button">
+                  <button type="submit" class="custom-primary" (click)="redirectToFilteredAnnonces()">
+                    <i class="fas fa-search"></i> Rechercher
+                  </button>
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
+      </div>
 
     </div>
   </div>

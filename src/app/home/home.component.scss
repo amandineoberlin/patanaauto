@@ -1,16 +1,38 @@
 @import "../app.component.scss";
 
-@media only screen and (max-width: 991px) {
+@media only screen and (min-width: 768px) {
   .home-container {
-    .arrow-down-white {
-      @include arrow-down-gray;
-
+    .intro-text {
+      border-radius: 0.175em;
     }
+    .angle-down {
+      border-bottom-right-radius: 0.175em;
+      border-bottom-left-radius: 0.175em;
+    }
+    .intro-img {
+      img {
+        border-radius: 0.175em;
+      }
+    }
+    .annonces-container {
+      border-radius: 0.175em;
+    }
+    .filters {
+      border-radius: 0.175em;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .home-container {
     .presentation {
       margin-top: 0px;
     }
     .intro-text {
       border-radius: 0;
+      margin-top: 0;
+      width: auto;
+      margin: 0 -15px;
       &:after {
         content: '';
         position: absolute;
@@ -23,74 +45,195 @@
         background: $gray-800;
       }
     }
+    .carte-grise {
+      height: 5em;
+    }
     form {
       margin-bottom: 0;
     }
     .intro-img {
       margin-top: 0;
+      margin: 0 -15px;
+      img {
+        border-radius: 0;
+      }
     }
     .filter-button button {
       width: 100%;
+    }
+    .custom-col {
+      padding: 0;
+      margin-bottom: 0;
+      .annonces-container {
+        width: 100%;
+      }
+      .angle-down {
+        border-radius: 0;
+      }
+    }
+    .nopadding {
+      padding: 0;
+    }
+    .filters {
+      width: 100%;
+      margin: 0 auto;
+      border-radius: 0;
     }
   }
 }
 
 @media only screen and (min-width: 992px) {
   .home-container {
+    .annonces-container {
+      @include opacity($gray-800, .6);
+      position: absolute;
+      top: 3em;
+      z-index: 12;
+      height: auto;
+      margin-right: -20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .angle-down {
+      bottom: 0;
+      height: 4vh;
+    }
+    .annonce {
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+    .carte-grise {
+      height: 10em;
+    }
     .intro-text {
-      border-radius: 0.175em;
+      margin-left: 2em;
+      margin-top: -100px;
     }
-    .presentation {
-      margin-top: 0px;
-    }
-    .material-card {
-      h6 {
-        font-size: 1.2em;
-      }
-      small {
-        font-size: 1em;
-      }
+    .filters {
+      margin: 50px 0 20px 0;
     }
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 990px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .home-container {
-    .intro-img {
+    .intro-text {
+      margin-top: -2em;
+      width: 95%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .angle-down {
+      border-bottom-left-radius: 0;
+    }
+    .carte-grise {
+      height: 7em;
+    }
+    .custom-col {
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-bottom: 2em;
+      .annonces-container {
+        width: 95%; 
+      }
+    }
+    .filters {
+      width: 95%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .home-container {
+    .custom-col {
+      flex: 0 0 100%;
+      max-width: 100%;
       position: relative;
-      z-index: 10;
-
-      img {
-        width: 80%;
-        display: block;
-        margin: 0 auto;
-      }
+      width: 100%;
     }
-  }
-}
-
-@media only screen and (min-width: 991px) and (max-width: 1200px) {
-  .home-container {
-    .intro-text {
-      .bullets h6 {
-        font-size: .95rem;
-      }
+    .angle-down {
+      right: 0;
+      bottom: 0;
+      width: 5vw;
+      height: 100%;
     }
-    .intro-img {
-      z-index: 10;
+    .arrow-down-white {
+      @include arrow-down-white(1);
     }
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .home-container {
-    .intro-text {
+    .annonces-container {
+      @include opacity($gray-900, 1);
+      padding-top: 1.5em;
       position: relative;
-      z-index: 10;
+      white-space: nowrap;
+      margin: 0 auto;
+      .annonce {
+        display: inline-block;
+        width: 35vh;
+        height: 83%;
+        margin-right: -1em;
+        .card {
+          width: 80%;
+        }
+      }
     }
-    .intro-img {
-      margin-left: 0px;
-      margin-top: 0px;
+    .badges {
+      font-size: .8em;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1190px) {
+  .home-container {
+    .annonces-container {
+      right: 47px;
+      width: 25vw;
+      max-height: 48em;
+    }
+    .angle-down {
+      width: 25vw;
+    }
+    .intro-text {
+      width: 90%;
+    }
+    .badges {
+      font-size: .9em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1191px) {
+  .home-container {
+    .annonces-container {
+      right: 0;
+      width: 20vw;
+      max-height: 50em;
+    }
+    .angle-down {
+      width: 20vw;
+    }
+    .badges {
+      font-size: .8em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .home-container {
+    .badges {
+      font-size: 1em;
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .home-container {
+    .badges {
+      font-size: 1.2em;
     }
   }
 }
@@ -105,16 +248,8 @@
     font-weight: 900;
     font-size: 1.1em;
     margin-bottom: 15px;
+    padding-top: 15px;
     text-align: center;
-  }
-
-  .caret-down {
-    margin-top: -20px;
-    text-align: center;
-  }
-
-  .filters {
-    margin: 50px 0 20px 0;
   }
 
   .ng-placeholder {
@@ -135,27 +270,11 @@
     position: relative;
   }
 
-  .annonces-container {
-    position: absolute;
-    right: 0;
-    width: 20vw;
-    top: 3em;
-    z-index: 2;
-    height: auto;
-    max-height: 50em;
-    margin-right: -20px;
-    display: flex;
-    flex-direction: column;
-  }
-
   .angle-down {
+    @include opacity($white, .5);
     cursor: pointer;
-    background-color: rgba($white, .4);
     z-index: 101;
     position: absolute;
-    bottom: 0;
-    width: 20vw;
-    height: 2em;
     @include transition(all .3s);
 
     &:hover {
@@ -178,7 +297,7 @@
   }
 
   .last-annonces {
-    @include opacity($gray-800, .6);
+    @include custom-scrollbar;
     border-bottom: 15px solid rgba($gray-800, .080);
     border-top: 15px solid rgba($gray-800, .080);
     overflow-y: auto;
@@ -186,11 +305,8 @@
     position: relative;
 
     .annonce {
-      margin-bottom: 6em;
       transition: all .2s;
-      &:last-child {
-        padding-bottom: 0px;
-      }
+      margin-bottom: 6em;
       &:hover {
         top: 2px;
         cursor: pointer;
@@ -211,11 +327,6 @@
 
       h6 {
         color: $white;
-      }
-
-      small {
-        text-shadow: none;
-        color: $black;
       }
     }
 
@@ -239,7 +350,8 @@
 
     .badges {
       position: absolute;
-      bottom: -28px;
+      z-index: 100;
+      bottom: .5em;
       @include box-shadow-blur;
     }
 
@@ -257,7 +369,6 @@
   .intro-img {
     position: relative;
     img {
-      border-radius: 0.175em;
       max-width: 100%;
       height: auto;
     }
@@ -267,7 +378,6 @@
     position: absolute;
     top: 0;
     right: 1%;
-    height: 10em;
     width: auto;
   }
 
@@ -296,8 +406,6 @@
     z-index: 10;
     color: $black;
     padding: 35px;
-    margin-left: 2em;
-    margin-top: -100px;
   }
 
   .bullets {
@@ -347,5 +455,18 @@
 
   hr {
     @include opacity($gray-700, .5);
+  }
+
+  .slide-range {
+    top: 0;
+    left: 0;
+
+    &.show {
+      top: -90px;
+    }
+
+    &.hide {
+      top: 0;
+    }
   }
 }

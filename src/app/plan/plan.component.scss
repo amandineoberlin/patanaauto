@@ -29,7 +29,7 @@
       padding-left: 0;
     }
     .arrow-down-white {
-      @include arrow-down-white;
+      @include arrow-down-white(.9);
     }
   }
 }

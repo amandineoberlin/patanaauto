@@ -24,6 +24,9 @@
     .fa-camera {
       right: 22px;
     }
+    .filters {
+      border-radius: 0;
+    }
   }
 }
 
@@ -79,6 +82,9 @@
     }
     .fa-camera {
       right: 10px;
+    }
+    .filters {
+      border-radius: 0.175em;
     }
   }
 }
@@ -143,6 +149,10 @@
 
 .annonces-container {
   .content-container {
+    .slide-range {
+      margin-top: 0.2rem;
+    }
+
     .svg-loader {
       position: relative;
       display: block;

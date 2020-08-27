@@ -11,7 +11,10 @@ import { Constants } from '../constants';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 
 export class HomeComponent implements OnInit {
@@ -32,7 +35,8 @@ export class HomeComponent implements OnInit {
   filteredAnnonces: Array<any> = [];
   priceFrom: 1000;
   priceTo: 25000;
-  scrollIndicator: boolean;
+  verticalScrollIndicator: boolean;
+  horizontalScrollIndicator: boolean;
 
   constructor(
     private formDataService: FormDataService,
@@ -219,16 +223,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  scroll() {
+  scroll(side) {
     const container = $('.last-annonces');
     const distance = 100;
     const step = 10;
+    const isVertical = side === 'vertical';
 
-    let scrollLeftValue = container.scrollTop();
+    let scrollValue = isVertical ? container.scrollTop() : container.scrollLeft();
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
-      scrollLeftValue = scrollLeftValue += step;
-      container.scrollTop(scrollLeftValue);
+      scrollValue = scrollValue += step;
+      isVertical ? container.scrollTop(scrollValue) : container.scrollLeft(scrollValue);
       scrollAmount = scrollAmount += step;
       if (scrollAmount >= distance) {
         window.clearInterval(slideTimer);
@@ -236,10 +241,19 @@ export class HomeComponent implements OnInit {
     }, 25);
   }
 
-  needsScrollIndicator() {
+  onResize() {
+    this.setScrollIndicator();
+  }
+
+  isSmallScreen() {
+    return $(window).width() <= 991;
+  }
+
+  setScrollIndicator() {
     const container = $('.last-annonces');
-    const needsScrolling = container.get(0).scrollHeight > container.outerHeight();
-    return needsScrolling;
+    const isSmallScreen = this.isSmallScreen();
+    this.verticalScrollIndicator = container.get(0).scrollHeight > container.outerHeight() && !isSmallScreen;
+    this.horizontalScrollIndicator = container.get(0).scrollWidth > container.outerWidth() && isSmallScreen;
   }
 
   waitForElement(selector, callback) {
@@ -255,7 +269,6 @@ export class HomeComponent implements OnInit {
     });
 
     this.showPriceRange = false;
-    this.scrollIndicator = false;
 
     this.formDataService.loadAnnonces({ quickSearch: true })
       .then(dataObj => {
@@ -268,7 +281,7 @@ export class HomeComponent implements OnInit {
       });
 
     this.waitForElement('.annonce', () =>
-      setTimeout(() => this.scrollIndicator = this.needsScrollIndicator(), 200));
+      setTimeout(() => this.setScrollIndicator(), 200));
   }
 
 }

@@ -72,9 +72,6 @@
     .content-container {
       padding: 0;
     }
-    .filters {
-      border-radius: 0;
-    }
     .custom-toggle button {
       border-radius: 0;
       &:before {
@@ -110,9 +107,6 @@
 
 @media only screen and (min-width: 768px) {
   body {
-    .filters {
-      border-radius: 0.175em;
-    }
     .custom-toggle button {
       border-radius: 0.175em;
         &:before {
@@ -124,7 +118,6 @@
 
 html {
   overflow: auto;
-  // height: 100%;
 }
 
 * {
@@ -132,7 +125,6 @@ html {
 }
 
 body {
-  // height: 100%;
   width: 100%;
   margin: 0px;
   padding: 0px;
@@ -409,17 +401,17 @@ body {
   }
 
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-    @include opacity($gray-800, 0.8);
+    @include opacity($gray-800, .95);
     color: rgba($white, .7);
   }
 
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-    @include opacity($primary, 0.75);
+    @include opacity($primary, 0.95);
     color: $plain-white;
   }
 
   .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
-    @include opacity($primary, 0.75);
+    @include opacity($primary, 0.95);
     color: $plain-white;
   }
 
@@ -503,12 +495,11 @@ body {
     border-radius: 15px;
     position: absolute;
     z-index: 1000;
-    width: 100%;
+    width: 20em;
     transition: all .3s ease-in-out;
     transform-origin: left top;
-    transform: scaleY(0);
     padding: 15px;
-    margin-top: 0.2rem;
+    transform: scaleY(0);
 
     .irs--flat
     .irs-bar,
@@ -518,6 +509,9 @@ body {
     .irs-to, .irs-max {
       background-color: $primary;
       color: $plain-white;
+    }
+    .irs-to {
+      left: 81%!important;
     }
     .irs-from:before, .irs-to:before, .irs-single:before {
       border-top-color: $primary;
