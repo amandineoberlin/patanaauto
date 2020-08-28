@@ -20,6 +20,9 @@
     .filters {
       border-radius: 0.175em;
     }
+    .carte-grise {
+      right: -2%;
+    }
   }
 }
 
@@ -46,7 +49,8 @@
       }
     }
     .carte-grise {
-      height: 5em;
+      height: 6em;
+      right: 1%;
     }
     form {
       margin-bottom: 0;
@@ -64,12 +68,12 @@
     .custom-col {
       padding: 0;
       margin-bottom: 0;
-    }
-    .annonces-container {
-      width: 100%;
-    }
-    .angle-down {
-      border-radius: 0;
+      .annonces-container {
+        width: 100%;
+      }
+      .angle-down {
+        border-radius: 0;
+      }
     }
     .nopadding {
       padding: 0;
@@ -96,14 +100,12 @@
     }
     .angle-down {
       bottom: 0;
+      height: 4vh;
     }
     .annonce {
       &:last-child {
         padding-bottom: 0;
       }
-    }
-    .carte-grise {
-      height: 10em;
     }
     .intro-text {
       margin-left: 2em;
@@ -130,7 +132,7 @@
       border-bottom-left-radius: 0;
     }
     .carte-grise {
-      height: 7em;
+      height: 8em;
     }
     .custom-col {
       padding-right: 15px;
@@ -158,11 +160,8 @@
     .angle-down {
       right: 0;
       bottom: 0;
+      width: 5vw;
       height: 100%;
-      width: 3em;
-    }
-    .last-adds-title {
-      font-size: 1.3em;
     }
     .arrow-down-white {
       @include arrow-down-white(1);
@@ -196,18 +195,17 @@
       width: 25vw;
       max-height: 48em;
     }
-    .last-adds-title {
-      font-size: 1em;
-    }
     .angle-down {
       width: 25vw;
-      height: 2.5em;
     }
     .intro-text {
       width: 90%;
     }
     .badges {
       font-size: .9em;
+    }
+    .carte-grise {
+      height: 8em;
     }
   }
 }
@@ -219,15 +217,14 @@
       width: 20vw;
       max-height: 50em;
     }
-    .last-adds-title {
-      font-size: 1em;
-    }
     .angle-down {
       width: 20vw;
-      height: 3em;
     }
     .badges {
       font-size: .8em;
+    }
+    .carte-grise {
+      height: 9em;
     }
   }
 }
@@ -237,8 +234,8 @@
     .badges {
       font-size: 1em;
     }
-    .last-adds-title {
-      font-size: 1.1em;
+    .carte-grise {
+      height: 9em;
     }
   }
 }
@@ -248,8 +245,8 @@
     .badges {
       font-size: 1.2em;
     }
-    .last-adds-title {
-      font-size: 1.3em;
+    .carte-grise {
+      height: 10em;
     }
   }
 }
@@ -262,6 +259,8 @@
     text-transform: uppercase;
     font-family: 'Raleway';
     font-weight: 900;
+    font-size: 1.1em;
+    margin-bottom: 15px;
     padding-top: 15px;
     text-align: center;
   }
@@ -286,10 +285,10 @@
 
   .angle-down {
     @include opacity($white, .5);
-    @include transition(all .3s);
     cursor: pointer;
     z-index: 101;
     position: absolute;
+    @include transition(all .3s);
 
     &:hover {
       @include box-shadow-light;
@@ -303,10 +302,8 @@
       @include transition(all .3s);
       @include transform(translate(-50%, -50%));
       color: $plain-white;
-      text-shadow: 1px 2px 2px $black;
       position: absolute;
       margin: 0;
-      font-size: 150%;
       top: 50%;
       left: 50%;
     }
@@ -317,7 +314,7 @@
     border-bottom: 15px solid rgba($gray-800, .080);
     border-top: 15px solid rgba($gray-800, .080);
     overflow-y: auto;
-    padding: 15px 20px 0px 25px;
+    padding: 5px 20px 0px 25px;
     position: relative;
 
     .annonce {
@@ -392,8 +389,7 @@
 
   .carte-grise {
     position: absolute;
-    top: 0;
-    right: 1%;
+    top: -2%;
     width: auto;
   }
 
@@ -422,16 +418,6 @@
     z-index: 10;
     color: $black;
     padding: 35px;
-  }
-
-  .bullet-text {
-    text-shadow: 1px 1px 2px rgba($gray-700, .3);
-    color: $primary;
-    font-size: 1em;
-    font-family: 'Karla';
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-top: 10px;
   }
 
   .bullets {
