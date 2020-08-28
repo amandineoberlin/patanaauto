@@ -303,18 +303,14 @@ $green: #0C9463 !default;
   text-transform: uppercase;
   padding: 5px 14px 5px 14px;
   border-radius: 20px;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 @mixin arrow-down-white($opacity) {
+  @include transform(translate(-50%, -50%));
   z-index: 1000;
   position: absolute;
   bottom: -30px;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 0;
   height: 0; 
   border-left: 60px solid transparent;
@@ -323,11 +319,11 @@ $green: #0C9463 !default;
 }
 
 @mixin arrow-down-gray {
+  @include transform(translate(-50%, -50%));
   z-index: 1000;
   position: absolute;
   bottom: -30px;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 0;
   height: 0; 
   border-left: 40px solid transparent;
@@ -341,16 +337,20 @@ $green: #0C9463 !default;
   -webkit-text-stroke-color: $stroke;
 }
 
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -ms-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
+}
+
 @mixin pulsate {
-  -webkit-animation: pulsate 2s ease-out;
+  @include animation(pulsate 2s ease-out);
   -webkit-animation-iteration-count: infinite; 
-  -moz-animation: pulsate 2s ease-out;
   -moz-animation-iteration-count: infinite; 
-  -ms-animation: pulsate 2s ease-out;
   -ms-animation-iteration-count: infinite; 
-  -o-animation: pulsate 2s ease-out;
   -o-animation-iteration-count: infinite; 
-  animation: pulsate 2s ease-out;
   animation-iteration-count: infinite; 
   opacity: 0.2;
 

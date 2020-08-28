@@ -18,7 +18,7 @@
 
                 <div class="row">
                   <div class="col-sm-12 col-lg-7">
-                    <div id="annonceCarousel" class="carousel slide carousel-fade" data-ride="carousel"
+                    <div id="annonceCarousel" class="carousel" data-ride="carousel"
                       data-interval="false">
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
@@ -29,12 +29,12 @@
                           <i class="fas fa-search-plus"></i>Agrandir
                         </button>
                         <a class="carousel-control-prev" href="#annonceCarousel" role="button" data-slide="prev"
-                          [ngClass]="[isPrevDisabled ? 'disabled' : '']">
+                          [ngClass]="[isPrevDisabled ? 'disabled' : '']" (click)="switchSlides('prev')">
                           <span class="fas fa-chevron-circle-left" aria-hidden="true"></span>
                           <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#annonceCarousel" role="button" data-slide="next"
-                          [ngClass]="[isNextDisabled ? 'disabled' : '']">
+                          [ngClass]="[isNextDisabled ? 'disabled' : '']" (click)="switchSlides('next')">
                           <span class="fas fa-chevron-circle-right" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>

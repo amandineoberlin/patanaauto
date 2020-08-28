@@ -93,13 +93,13 @@
     background-color: $primary;
 
     .normalBar {
-      transform: rotate(0deg);
-      transition: all .5s ease-in-out;
+      @include transition(all .5s ease-in-out);
+      @include transform(rotate(0deg));
     }
 
     .rotatedBar {
-      transform: rotate(90deg);
-      transition: all .5s ease-in-out;
+      @include transition(all .5s ease-in-out);
+      @include transform(rotate(90deg));
       display: inline-table;
     }
   }

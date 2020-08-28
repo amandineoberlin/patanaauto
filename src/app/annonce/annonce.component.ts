@@ -71,6 +71,10 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
     $('.carousel-indicators').children().each(function(index) {
       if ($(this).hasClass('active')) $(this).removeClass('active');
       if (index === i) $(this).addClass('active');
+      $('.carousel-inner').children().each(function(index2) {
+        if (index2 !== i && $(this).hasClass('active')) $(this).removeClass('active');
+        if (index2 === i) $(this).addClass('active');
+      });
     });
     this.setControlsActiveness();
   }
@@ -269,6 +273,11 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const indicators = $(".carousel-indicators").children();
     indicators.each((i, el) => observer.observe(el, { attributes: true }));
+  }
+
+  switchSlides(side) {
+    // @ts-ignore
+    $('#annonceCarousel').carousel(side);
   }
 
   ngOnDestroy() {

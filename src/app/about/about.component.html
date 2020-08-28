@@ -3,7 +3,7 @@
     <div class="content-container">
 
       <div class="row d-flex justify-content-center">
-        <div id="myCarousel2" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+        <div id="myCarousel2" class="carousel carousel-thumbnails" data-ride="carousel">
 
           <div class="partLeft">
             <div class="vl"></div>
@@ -43,7 +43,7 @@
 
           <ol class="carousel-indicators">
             <li *ngFor="let image of images; let i=index" data-target="#myCarousel2"
-              attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']">
+              attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
             </li>
           </ol>
           <div class="carousel-inner" role="listbox">
