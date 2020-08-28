@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $('body').click((e) => {
+    $('body').on('click', (e) => {
       const target = $(e.target);
       const parents = target.parents();
       const isNotNavbarElement = _.find(parents, p => $(p).hasClass('content'));

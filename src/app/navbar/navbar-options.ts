@@ -11,44 +11,44 @@ export class NavbarOptions {
     trigger('toggle', [
       state('open',
       style({
-        'max-height': '500px',
-        'opacity': '1',
-        'visibility': 'visible'
+        maxHeight: '500px',
+        opacity: '1',
+        visibility: 'visible'
       })),
       state('closed',
-      style({ 
-        'max-height': '0px',
-        'opacity': '0',
-        'visibility': 'hidden'
+      style({
+        maxHeight: '0px',
+        opacity: '0',
+        visibility: 'hidden'
       })),
       transition('open => closed', [
         animate('200ms ease-in-out',
         style({
-          'opacity': '0'
+          opacity: '0'
         })),
         animate('300ms ease-in-out',
         style({
-          'max-height': '0px'
+          maxHeight: '0px'
         })),
         animate('50ms ease-in-out',
         style({
-          'visibility': 'hidden'
+          visibility: 'hidden'
         }))
       ]),
       transition('closed => open', [
         animate('1ms ease-in-out',
         style({
-          'visibility': 'visible'
+          visibility: 'visible'
         })),
         animate('300ms ease-in-out',
         style({
-          'max-height': '500px'
+          maxHeight: '500px'
         })),
         animate('200ms ease-in-out',
         style({
-          'opacity': '1'
+          opacity: '1'
         }))
       ])
     ])
-  ]
+  ];
 }

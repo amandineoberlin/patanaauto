@@ -18,7 +18,6 @@ import { Constants } from '../constants';
 })
 
 export class HomeComponent implements OnInit {
-
   quickSearch: FormGroup;
   data: { [name: string]: object };
   annonces: object;
@@ -237,7 +236,7 @@ export class HomeComponent implements OnInit {
       scrollAmount = scrollAmount += step;
       if (scrollAmount >= distance) {
         window.clearInterval(slideTimer);
-      };
+      }
     }, 25);
   }
 
@@ -259,7 +258,7 @@ export class HomeComponent implements OnInit {
   waitForElement(selector, callback) {
     if ($(selector).length) return callback();
     return setTimeout(() => this.waitForElement(selector, callback), 50);
-  };
+  }
 
   ngOnInit(): void {
     this.quickSearch = this.fb.group({

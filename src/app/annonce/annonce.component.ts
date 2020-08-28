@@ -271,7 +271,7 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     });
 
-    const indicators = $(".carousel-indicators").children();
+    const indicators = $('.carousel-indicators').children();
     indicators.each((i, el) => observer.observe(el, { attributes: true }));
   }
 
