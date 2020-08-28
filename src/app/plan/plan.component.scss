@@ -1,34 +1,82 @@
 @import "../app.component.scss";
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 480px) {
   .plan-container {
+    .form-title {
+      font-weight: 500;
+    }
+  }
+}
+@media only screen and (min-width: 481px) {
+  .plan-container {
+    .form-title {
+      font-weight: 100;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .plan-container {
+    form {
+      margin-bottom: 0;
+    }
+    .map-descriptor {
+      width: 100%;
+      border-radius: 0;
+    }
+    .map-content, .contact-content {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    .arrow-down-white {
+      @include arrow-down-white(.9);
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .plan-container {
+    .map-descriptor {
+      width: 80%;
+      margin-bottom: 18px;
+      border-radius: .175em;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .plan-container {
+    .map-container {
+      border-radius: 0;
+      border-top-left-radius: .175em;
+      border-top-right-radius: .175em;
+    }
     .contact-container {
-      margin-top: 20px;
-      form {
-        margin-bottom: 0;
+      border-radius: 0;
+      border-bottom-left-radius: .175em;
+      border-bottom-right-radius: .175em;
+      &:after {
+        @include transform(translate(-50%, -50%));
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 2px;
+        width: 50%;
+        top: 0;
+        left: 50%;
+        background: $primary;
       }
     }
   }
 }
 
-@media only screen and (max-width: 992px) {
-  #plan-wrap {
-    padding: 0 35px 0 35px;
-    .map-descriptor {
-      width: 100%;
-      margin: 0 15px 18px 15px;
+@media only screen and (min-width: 992px) {
+  .plan-container {
+    .map-container {
+      border-radius: .175em;
     }
     .contact-container {
-      margin-bottom: 20px;
-    }
-  }
-}
-
-@media only screen and (min-width: 993px) {
-  .plan-container {
-    .map-descriptor {
-      width: 80%;
-      margin-bottom: 18px;
+      border-radius: .175em;
     }
   }
 }
@@ -45,7 +93,6 @@
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    border-radius: .175em;
 
     .title {
       font-weight: 100;
@@ -107,27 +154,26 @@
     z-index: 10;
     height: 100%;
     padding: 30px 20px 5px 20px;
-    border-radius: .175em;
     text-align: left;
     font-family: 'Arima Madurai';
     text-transform: uppercase;
 
     .svg-loader {
+      @include transform(translateY(-50%));
       position: absolute; 
       left: 0; 
       right: 0; 
       margin-left: auto; 
       margin-right: auto;
       top: 50%;
-      transform: translateY(-50%);
       padding: 80px;
     }
 
     .form-title {
       color: $primary;
-      font-weight: 100;
       font-size: 1.3rem;
       font-family: 'Raleway';
+      text-shadow: 1px 2px 2px black;
     }
 
     label {

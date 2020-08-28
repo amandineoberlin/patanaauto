@@ -11,14 +11,17 @@ import { Constants } from '../constants';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 
 export class HomeComponent implements OnInit {
-
   quickSearch: FormGroup;
   data: { [name: string]: object };
   annonces: object;
+  latestAnnonces: object;
   annoncesSize: number;
   maxAvailablePrice: number;
   marques: Array<string>;
@@ -31,6 +34,8 @@ export class HomeComponent implements OnInit {
   filteredAnnonces: Array<any> = [];
   priceFrom: 1000;
   priceTo: 25000;
+  verticalScrollIndicator: boolean;
+  horizontalScrollIndicator: boolean;
 
   constructor(
     private formDataService: FormDataService,
@@ -136,6 +141,36 @@ export class HomeComponent implements OnInit {
     this.modeles = modeles;
   }
 
+  redirectToAnnonce(id) {
+    return this.router.navigate(['/annonce'], { queryParams: { id } });
+  }
+
+  mainImage(annonce) {
+    return this.formDataService.mainImage(annonce);
+  }
+
+  getLatestAnnonces() {
+    this.formDataService.loadRecentAnnonces()
+      .then((data) => {
+        const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
+        const latestAnnonces = _.filter(this.annonces, a =>
+          _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
+        const annoncesSize = _.size(latestAnnonces);
+        const defaultSize = 5;
+
+        if (annoncesSize === 3) return this.latestAnnonces = latestAnnonces;
+        if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
+        if (annoncesSize < 3) {
+          const orderBy = _.map(this.annonces, a =>
+            ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeCarteGriseDate[0]) }));
+          const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
+          const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+          const neededItemSize = defaultSize - annoncesSize;
+          return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
+        }
+      });
+  }
+
   choosePriceClass() {
     if (this.blockSlider) return 'hide';
     return this.showPriceRange ? 'show' : 'hide';
@@ -152,7 +187,7 @@ export class HomeComponent implements OnInit {
 
   hideSliderOnClick() {
     // hide price range slider when user clicks anywhere else than the input itself
-    $('html').on('click', (e) => {
+    $('body').on('click', (e) => {
       if (!this.showPriceRange) return;
 
       const isInsideSlider = e.target.className.indexOf('irs') > -1;
@@ -187,6 +222,44 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  scroll(side) {
+    const container = $('.last-annonces');
+    const distance = 100;
+    const step = 10;
+    const isVertical = side === 'vertical';
+
+    let scrollValue = isVertical ? container.scrollTop() : container.scrollLeft();
+    let scrollAmount = 0;
+    const slideTimer = setInterval(() => {
+      scrollValue = scrollValue += step;
+      isVertical ? container.scrollTop(scrollValue) : container.scrollLeft(scrollValue);
+      scrollAmount = scrollAmount += step;
+      if (scrollAmount >= distance) {
+        window.clearInterval(slideTimer);
+      }
+    }, 25);
+  }
+
+  onResize() {
+    this.setScrollIndicator();
+  }
+
+  isSmallScreen() {
+    return $(window).width() <= 991;
+  }
+
+  setScrollIndicator() {
+    const container = $('.last-annonces');
+    const isSmallScreen = this.isSmallScreen();
+    this.verticalScrollIndicator = container.get(0).scrollHeight > container.outerHeight() && !isSmallScreen;
+    this.horizontalScrollIndicator = container.get(0).scrollWidth > container.outerWidth() && isSmallScreen;
+  }
+
+  waitForElement(selector, callback) {
+    if ($(selector).length) return callback();
+    return setTimeout(() => this.waitForElement(selector, callback), 50);
+  }
+
   ngOnInit(): void {
     this.quickSearch = this.fb.group({
       marque: [null],
@@ -203,7 +276,11 @@ export class HomeComponent implements OnInit {
         this.initSlider();
         this.utilsService.bootstrapClearButton(this.quickSearch.controls, ['price']);
         this.hideSliderOnClick();
-    });
+        this.getLatestAnnonces();
+      });
+
+    this.waitForElement('.annonce', () =>
+      setTimeout(() => this.setScrollIndicator(), 200));
   }
 
 }

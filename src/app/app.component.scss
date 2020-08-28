@@ -2,6 +2,7 @@
 
 $white: #E3E2DE !default;
 $plain-white: #ffffff;
+$bg-white: #E6E6E6;
 $hovered-red: #a53d3f !default;
 $active-red: #7f0002 !default;
 $gray-100: #f8f9fa !default;
@@ -110,16 +111,34 @@ $green: #0C9463 !default;
 }
 
 @mixin box-shadow-light {
-  box-shadow: 0 2px 2px 0 rgba($plain-white, 0.50), 0 2px 10px 0 rgba($plain-white, 0.52);
+  box-shadow: 0 1px 1px 0 rgba($plain-white, 0.30), 0 1px 2px 0 rgba($plain-white, 0.30);
+  -webkit-box-shadow: 0 1px 1px 0 rgba($plain-white, 0.30), 0 1px 2px 0 rgba($plain-white, 0.30);
+  -moz-box-shadow: 0 1px 1px 0 rgba($plain-white, 0.30), 0 1px 2px 0 rgba($plain-white, 0.30);
 }
 
 @mixin box-shadow-blur {
   box-shadow: 0 2px 5px 0 rgba($black, .16), 0 2px 10px 0 rgba($black, .12);
+  -webkit-box-shadow: 0 2px 5px 0 rgba($black, .16), 0 2px 10px 0 rgba($black, .12);
+  -moz-box-shadow: 0 2px 5px 0 rgba($black, .16), 0 2px 10px 0 rgba($black, .12);
 }
 
 @mixin box-shadow-dark {
+  @include box-shadow-simple($black);
   text-shadow: 1px 2px 2px $black;
-  box-shadow: 1px 2px 2px $black;
+  -webkit-box-shadow: 1px 2px 2px $black;
+  -moz-box-shadow: 1px 2px 2px $black;
+}
+
+@mixin box-shadow-simple($color) {
+  -webkit-box-shadow: 1px 2px 2px $color;
+  -moz-box-shadow: 1px 2px 2px $color;
+  box-shadow: 1px 2px 2px $color;
+}
+
+@mixin box-shadow {
+  -webkit-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
+  -moz-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
+  box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
 }
 
 @mixin color-inputs {
@@ -149,12 +168,6 @@ $green: #0C9463 !default;
   -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
-@mixin box-shadow {
-  -webkit-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
-  -moz-box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
-  box-shadow: 1px -1px 7px -1px rgba(0,0,0,0.81);
-}
-
 @mixin transition($val) {
   -webkit-transition: $val;
   -moz-transition: $val;
@@ -180,29 +193,14 @@ $green: #0C9463 !default;
 }
 
 @mixin custom-scrollbar {
-  ::-webkit-scrollbar {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
     width: 0px;
     background: transparent;
   }
-}
 
-@mixin magnifier {
-  .dock-container li img {
-    @include transition(all 0.3s);
-    @include transformOrigin(100% 100%);
-  }
-
-  .dock-container li:hover {
-    opacity: 1;
-  }
-
-  .dock-container li:hover img { 
-    @include transform(scale(2));
-  }
-
-  .dock-container li:hover img {
-    margin-left: 1.5rem;
-  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 @mixin materialCard($color) {
@@ -212,6 +210,14 @@ $green: #0C9463 !default;
   margin: 0;
   left: -10px;
   z-index: 100;
+
+  .modele {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $black;
+    text-shadow: none;
+  }
 
   &:before, &:after {
     content: ' ';
@@ -237,6 +243,22 @@ $green: #0C9463 !default;
     border-left-color: transparent;
     top: auto;
     bottom: 0;
+  }
+
+  .banner {
+    padding: 16px;
+  }
+
+  h6 {
+    margin: 0;
+    line-height: 0;
+    margin-bottom: .7em;
+  }
+
+  small {
+    color: $black;
+    z-index: 20;
+    text-shadow: none;
   }
 }
 
@@ -281,10 +303,32 @@ $green: #0C9463 !default;
   text-transform: uppercase;
   padding: 5px 14px 5px 14px;
   border-radius: 20px;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+@mixin arrow-down-white($opacity) {
+  @include transform(translate(-50%, -50%));
+  z-index: 1000;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  width: 0;
+  height: 0; 
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-top: 20px solid rgba($plain-white, $opacity);
+}
+
+@mixin arrow-down-gray {
+  @include transform(translate(-50%, -50%));
+  z-index: 1000;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  width: 0;
+  height: 0; 
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 20px solid $gray-800;
 }
 
 @mixin stroke($color, $stroke, $width) {
@@ -293,16 +337,20 @@ $green: #0C9463 !default;
   -webkit-text-stroke-color: $stroke;
 }
 
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -ms-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
+}
+
 @mixin pulsate {
-  -webkit-animation: pulsate 2s ease-out;
+  @include animation(pulsate 2s ease-out);
   -webkit-animation-iteration-count: infinite; 
-  -moz-animation: pulsate 2s ease-out;
   -moz-animation-iteration-count: infinite; 
-  -ms-animation: pulsate 2s ease-out;
   -ms-animation-iteration-count: infinite; 
-  -o-animation: pulsate 2s ease-out;
   -o-animation-iteration-count: infinite; 
-  animation: pulsate 2s ease-out;
   animation-iteration-count: infinite; 
   opacity: 0.2;
 

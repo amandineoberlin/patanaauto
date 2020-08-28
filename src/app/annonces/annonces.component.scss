@@ -1,7 +1,10 @@
 @import "../app.component.scss";
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .annonces-container {
+    .badge {
+      font-size: 1em;
+    }
     .reinitButton {
       display: block;
       width: 100%;
@@ -18,40 +21,41 @@
     h6 {
       font-size: 1em;
     }
-    small {
-      font-size: 0.9em;
+    .fa-camera {
+      right: 22px;
+    }
+    .filters {
+      border-radius: 0;
     }
   }
 }
 
 @media only screen and (max-width: 576px) {
   .annonces-container {
-    .badge {
-      font-size: .9em;
-    }
     .card {
       margin-bottom: 20px;
     }
     .material-card {
       height: 4.3em;
     }
-    .column {
-      margin-bottom: 3.5em;
+    .fa-camera {
+      right: 6px;
     }
   }
 }
 
 @media only screen and (min-width: 576px) {
   .annonces-container {
-    .cards-block .column {
+    .cards-block {
+      margin-right: -16px;
+      margin-left: -16px;
+    }
+    .column {
       width: calc(100% / 2);
       margin-bottom: 3em;
     }
     .card {
       padding: 16px;
-    }
-    .badge {
-      font-size: .7em;
     }
     .material-card {
       height: 4.5em;
@@ -67,14 +71,20 @@
     .vehiculeNumber {
       float: left;
     }
+    .card {
+      margin-bottom: 25px;
+    }
     .badge {
       font-size: .9em;
     }
     h6 {
       font-size: .9em;
     }
-    small {
-      font-size: 0.8em;
+    .fa-camera {
+      right: 10px;
+    }
+    .filters {
+      border-radius: 0.175em;
     }
   }
 }
@@ -101,18 +111,22 @@
     h6 {
       font-size: 1.1em;
     }
-    small {
-      font-size: 1em;
-    }
-    .column {
-      margin-bottom: 3.5em;
-    }
     .material-card {
       height: 4.3em;
     }
   }
 }
 
+@media only screen and (max-width: 1599px) {
+  .annonces-container {
+    small {
+      font-size: .85em;
+    }
+    .column {
+      margin-bottom: 3.5em;
+    }
+  }
+}
 @media only screen and (min-width: 1600px) {
   .annonces-container {
     .badge {
@@ -135,6 +149,10 @@
 
 .annonces-container {
   .content-container {
+    .slide-range {
+      margin-top: 0.2rem;
+    }
+
     .svg-loader {
       position: relative;
       display: block;
@@ -175,13 +193,14 @@
     }
 
     .card {
+      @include transition(all .2s);
       border-radius: unset;
       background: unset;
 
       &:hover {
-        top: 2px;
+        @include transform(scale(.98));
         cursor: pointer;
-        opacity: .8;
+        opacity: .7;
       }
     }
 
@@ -194,8 +213,7 @@
 
     .fa-camera {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 4px;
       border-radius: 60px;
       padding: 0.5em 0.6em;
       color: $white;
@@ -220,21 +238,6 @@
       @include materialCard($primary);
       @include box-shadow-dark;
       top: 0;
-
-      .vertical-center {
-        padding: 5% 16px 0 16px;
-      }
-
-      h6 {
-        margin: 0;
-        line-height: 0;
-        margin-bottom: .7em;
-      }
-
-      small {
-        color: $gray-text;
-        z-index: 20;
-      }
     }
 
     .badges {

@@ -36,8 +36,6 @@ const routes: Routes = [
   { path: '**', redirectTo: '/404' }
 ];
 
-RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     useHash: true,

@@ -1,16 +1,37 @@
 @import "../app.component.scss";
 
 @media only screen and (max-width: 560px) {
-  #about-wrap {
-    padding: 0;
+  .about-container {
+    .carousel {
+      width: 100%;
+    }
+    .partLeft, .partRight {
+      width: 100%;
+    }
   }
 }
 
-@media only screen and (min-width: 561px) and (max-width: 992px) {
-  #about-wrap {
-    padding: 0 35px 0 35px;
+@media only screen and (min-width: 768px) {
+  .about-container {
+    .carousel {
+      width: 85%;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .about-container {
+    .arrow-down-white {
+      @include arrow-down-white(.9);
+    }
+  }
+}
+
+@media only screen and (min-width: 561px) and (max-width: 991px) {
+  .about-container {
     .partLeft, .partRight {
-      width: 90%;
+      width: 100%;
     }
     .second, .third {
       margin-left: 30px;
@@ -18,9 +39,8 @@
   }
 }
 
-@media only screen and (min-width: 993px) and (max-width: 1130px) {
-  #about-wrap {
-    padding: 0 35px 0 35px;
+@media only screen and (min-width: 992px) and (max-width: 1130px) {
+  .about-container {
     .partLeft, .partRight {
       width: 82%;
     }
@@ -31,11 +51,9 @@
 }
 
 @media only screen and (max-width: 1130px) {
-  #about-wrap {
+  .about-container {
     .carousel {
-      width: 85%;
       position: relative;
-      margin-bottom: 30px;
     }
     .partLeft, .partRight {
       position: relative;
@@ -46,15 +64,23 @@
     }
     .partLeft {
       .bg-faded {
-        padding: 50px 50px 5px 50px;
+        padding: 50px 50px 25px 50px;
         border-top-left-radius: .175em;
         border-top-right-radius: .175em;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          width: 60%;
+          height: 2px;
+          background: $primary;
+        }
       }
     }
     .partRight {
       margin-bottom: -25px;
       .bg-faded {
-        padding: 0 50px 90px 50px;
+        padding: 25px 50px 110px 50px;
         border-bottom-left-radius: .175em;
         border-bottom-right-radius: .175em;
       }
@@ -65,18 +91,36 @@
   }
 }
 
-@media only screen and (min-width: 1131px) {
+@media only screen and (min-width: 1131px) and (max-width: 1190px) {
+  .about-container {
+    .carousel {
+      width: 55%;
+    }
+    .partLeft, .partRight {
+      width: 280px;
+    }
+    .partLeft {
+      left: -245px;
+      .bg-faded {
+        padding: 30px 30px 10px 50px;
+      }
+    }
+    .partRight {
+      right: -245px;
+      .bg-faded {
+        padding: 30px 30px 110px 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1191px) {
   .about-container {
     .carousel {
       width: 62%;
     }
-    .bg-faded {
-      border-radius: .175em;
-    }
     .partLeft, .partRight {
-      top: 30px;
       width: 290px;
-      position: absolute;
     }
     .partLeft {
       left: -255px;
@@ -87,8 +131,23 @@
     .partRight {
       right: -255px;
       .bg-faded {
-        padding: 50px 50px 90px 50px;
+        padding: 50px 50px 110px 50px;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 1131px) {
+  .about-container {
+    .carousel {
+      margin-bottom: 0;
+    }
+    .bg-faded {
+      border-radius: .175em;
+    }
+    .partLeft, .partRight {
+      top: 30px;
+      position: absolute;
     }
     .text {
       font-size: .85em;
@@ -100,6 +159,11 @@
   .about-container {
     .carousel {
       width: 63%;
+    }
+    .partRight {
+      .bg-faded {
+        padding: 50px 50px 130px 50px;
+      }
     }
     .partLeft, .partRight {
       width: 320px;
@@ -158,9 +222,9 @@
     height: auto;
 
     .material-card {
-      @include materialCard(rgba(168, 4, 10, .8));
+      @include materialCard($primary);
+      @include box-shadow-simple($black);
       color: $white;
-      bottom: 0;
       padding: 20px;
       height: auto;
       bottom: 15px;

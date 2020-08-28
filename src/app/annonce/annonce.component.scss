@@ -27,12 +27,29 @@
 }
 
 @media only screen and (max-width: 1135px) {
-  #annonce-wrap {
-    padding: 0 35px 0 35px;
+  .annonce-container {
+    .container-fluid {
+      padding: 0;
+      overflow-x: hidden;
+    }
+    #ribbon-container {
+      right: 0;
+      a:after {
+        visibility: hidden;
+      }
+    }
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (min-width: 1136px) {
+  .annonce-container {
+    #ribbon-container {
+      right: -15px;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
   #annonceCarousel {
     padding-bottom: 20px;
   }
@@ -55,8 +72,8 @@
       right: 3px;
     }
     #ribbon-container a:before {
-      border-top: 29px solid $white;
-      border-bottom: 29px solid $white;
+      border-top: 29px solid $plain-white;
+      border-bottom: 29px solid $plain-white;
       border-right: 29px solid transparent;
       border-left: 29px solid transparent;
     }
@@ -68,21 +85,29 @@
 }
 
 @media only screen and (max-width: 767px) {
-  #annonce-wrap {
-    padding: 0;
-  }
-
   .annonce-container {
     h3, h4, h5, h6 {
-      font-size: 1em;
+      font-size: 1.3em;
     }
 
     table tr, .model, p {
       font-size: 1em;
     }
 
+    strong {
+      font-size: 1.2em;
+    }
+
     .card-header {
       text-align: left;
+    }
+
+    .version {
+      padding-right: 70px;
+    }
+
+    .chart-container.reelle {
+      margin-top: 20px;
     }
 
     #ribbon-container:before {
@@ -96,8 +121,8 @@
       right: 3px;
     }
     #ribbon-container a:before {
-      border-top: 21px solid $white;
-      border-bottom: 21px solid $white;
+      border-top: 21px solid $plain-white;
+      border-bottom: 21px solid $plain-white;
       border-right: 15px solid transparent;
       border-left: 29px solid transparent;
     }
@@ -133,10 +158,19 @@
     font-family: 'Karla';
     font-weight: normal;
     text-transform: uppercase;
+    color: rgba($primary, .4);
   }
 
   h5 {
     margin-bottom: 4vmin;
+  }
+
+  .chart-container {
+    @include opacity($gray-900, .03);
+    @include box-shadow-blur;
+
+    padding: 40px;
+    border-radius: .175em;
   }
 
   .card {
@@ -160,7 +194,6 @@
       #ribbon-container {
         font-family: 'Knewave', 'Karla', cursive;
         position: absolute;
-        right: -15px;
         overflow: visible;
         line-height: 18px;
       }
@@ -185,10 +218,10 @@
       }
 
       #ribbon-container a {
+        @include opacity($plain-white, 1);
         cursor: default;
         display: block;
         position: relative;
-        background: $white;
         overflow: visible;
         margin-left: 29px;
         color: $hovered-red;
@@ -203,7 +236,7 @@
         position: absolute;
         bottom: -15px;
         right: 0;
-        border-top: 15px solid $white;
+        border-top: 15px solid $plain-white;
         border-right: 15px solid transparent;
       }
 
@@ -219,14 +252,13 @@
     }
 
     .card-body {
-      @include magnifier;
-      @include opacity($plain-white, 0.9);
+      @include opacity($plain-white, 1);
 
       .custom-primary {
         position: absolute;
         bottom: 8px;
         right: 6px;
-        z-index: 11;
+        z-index: 21;
 
         i {
           margin-right: 7px;
@@ -234,25 +266,46 @@
       }
 
       .carousel-indicators {
-        @include opacity($gray-800, .9);
+        @include opacity($gray-700, .9);
         position: relative;
-        margin: 3px 0 20px 0;
-        padding: 0;
         height: 100%;
         width: 100%;
+        overflow-y: hidden;
+        margin: 0;
 
         li {
-          height: 100%;
           opacity: 1;
-          width: 100%;
           background: transparent;
-          box-sizing: border-box;
-          display: inline-table;
+          height: 3.75rem;
+          width: 100%;
+          padding: 0.1rem;
+
+          &:first-child img {
+            margin-left: .2em;
+          }
+          &:last-child img {
+            margin-right: .4em;
+          }
         }
 
-        .active {
-          img {
-            border: 3px solid rgba($hovered-red, .8);
+        img {
+          height: 100%;
+          width: auto;
+          display: block;
+          object-fit: cover;
+        }
+
+        li.active img {
+          opacity: 1;
+          box-shadow: 3px 3px 3px $gray-900;
+        }
+
+        li:not(.active) img {
+          opacity: .3;
+          @include transition(all .2s);
+          &:hover {
+            @include transform(scale(0.95));
+            opacity: .7;
           }
         }
       }

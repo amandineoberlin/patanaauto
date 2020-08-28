@@ -1,9 +1,53 @@
 @import "../app.component.scss";
 
+@media only screen and (max-width: 245px) {
+  #mainNav {
+    .navbar-brand {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 335px) {
+  #mainNav {
+    .navbar-brand {
+      img {
+        width: 100px;
+        height: auto;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #mainNav {
+    .nav-link:hover {
+      @include opacity($gray-650, .2);
+    }
+  }
+}
+
+@media only screen and (min-width: 336px) and (max-width: 1599px) {
+  #mainNav {
+    .navbar-brand {
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
+  }
+}
+
 @media only screen and (min-width: 1600px) {
   #mainNav {
+    .navbar-brand {
+      img {
+        width: 220px;
+        height: auto;
+      }
+    }
     .nav-link {
-      font-size: 1.1em;
+      font-size: 1.15em;
     }
   }
 }
@@ -11,15 +55,33 @@
 @media only screen and (max-width: 1600px) {
   #mainNav {
     .nav-link {
-      font-size: .9em;
+      font-size: 1em;
     }
   }
 }
 
 #mainNav {
-  background-color: $gray-bg;
+  @include opacity($gray-bg, 1);
   position: fixed;
   z-index: 1000;
+  padding: 0;
+
+  .navbar-brand {
+    padding: .8rem 1rem;
+  }
+
+  .navbar-toggler {
+    margin: .5rem 1rem;
+  }
+
+  .navbar-collapse {
+    margin-top: .5rem;
+  }
+
+  // disable default bootstrap toggle behaviour
+  .menubar:not(.show) {
+    display: block!important;
+  }
 
   .navbar-toggler {
     font-size: 12px;
@@ -29,13 +91,24 @@
     color: $white;
     border: 0;
     background-color: $primary;
+
+    .normalBar {
+      @include transition(all .5s ease-in-out);
+      @include transform(rotate(0deg));
+    }
+
+    .rotatedBar {
+      @include transition(all .5s ease-in-out);
+      @include transform(rotate(90deg));
+      display: inline-table;
+    }
   }
 
   .navbar-nav {
     .nav-item {
       .nav-link {
-        @include transition(color .3s ease-in-out);
-        padding: 1.1em 1em;
+        @include transition(all .3s ease-in-out);
+        padding: 1.1em 1.2em;
         letter-spacing: 1px;
         color: $white;
         &.active,

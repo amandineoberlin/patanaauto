@@ -8,7 +8,8 @@ const {
   getAnnonces,
   loadImages,
   getPhotos,
-  getSingleAnnonce
+  getSingleAnnonce,
+  getLatestAnnonces
 } = require('../modules/data-handler');
 
 const returnData = _.curry((res, data) => res.send(data));
@@ -20,4 +21,5 @@ module.exports = (app) => {
   app.get('/get-annonce/:id', (req, res) => getSingleAnnonce(req).then(returnData(res)));
   app.get('/load-images', (req, res) => loadImages().then(returnData(res)));
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
+  app.get('/get-latest', (req, res) => getLatestAnnonces().then(returnData(res)));
 }

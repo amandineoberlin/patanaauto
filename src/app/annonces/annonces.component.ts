@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import _ from 'lodash';
 
-import { DataLoaderService } from '../services/data-loader.service';
+import { FormDataService } from '../services/form-data.service';
 import { UtilsService } from '../services/utils.service';
 import { Constants } from '../constants';
 
@@ -18,7 +18,7 @@ export class AnnoncesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private dataLoaderService: DataLoaderService,
+    private formDataService: FormDataService,
     private utilsService: UtilsService,
     private router: Router
   ) { }
@@ -61,7 +61,7 @@ export class AnnoncesComponent implements OnInit {
   };
 
   mainImage(annonce) {
-    return this.dataLoaderService.mainImage(annonce);
+    return this.formDataService.mainImage(annonce);
   }
 
   inputValue(el) {
@@ -124,7 +124,7 @@ export class AnnoncesComponent implements OnInit {
   }
 
   hideSlidersOnClick() {
-    $('html').on('click', (e) => {
+    $('body').on('click', (e) => {
       // @ts-ignore
       if (!this.showPriceRange && !this.showKmRange) return;
 
