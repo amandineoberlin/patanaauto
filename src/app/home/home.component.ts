@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,10 +11,7 @@ import { Constants } from '../constants';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
+  styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
@@ -43,6 +40,10 @@ export class HomeComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router
   ) {}
+
+  @HostListener('window:resize') onResize() {
+    this.setScrollIndicator();
+  }
 
   redirectToFilteredAnnonces() {
     const { marque, modele, price } = this.quickSearch.controls;
@@ -238,10 +239,6 @@ export class HomeComponent implements OnInit {
         window.clearInterval(slideTimer);
       }
     }, 25);
-  }
-
-  onResize() {
-    this.setScrollIndicator();
   }
 
   isSmallScreen() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import _ from 'lodash';
 
 import { NavbarOptions } from './navbar-options';
@@ -7,27 +7,24 @@ import { NavbarOptions } from './navbar-options';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  animations: NavbarOptions.animations,
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
+  animations: NavbarOptions.animations
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
+  @HostListener('window:resize') onResize() {
+    const isSmallScreen = this.isSmallScreen();
+    this.isSmallSize = isSmallScreen ? true : false;
+    this.isShown = false;
+  }
+
   isShown: boolean;
   isSmallSize: boolean;
 
   isSmallScreen() {
     return $(window).width() <= 991;
-  }
-
-  onResize() {
-    const isSmallScreen = this.isSmallScreen();
-    this.isSmallSize = isSmallScreen ? true : false;
-    this.isShown = false;
   }
 
   toggle() {
