@@ -44,7 +44,7 @@
                         <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
                           attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
                           <img [ngClass]="imageClass(annonce._id)" src="{{image}}" alt="First slide"
-                            (error)="missingImage($event)">
+                            (error)="missingImage($event, false)">
                         </li>
                       </ol>
                     </div>
