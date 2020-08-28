@@ -30,7 +30,7 @@
     "@angular/router": "8.2.4",
     "@ng-select/ng-select": "3.0.7",
     "@popperjs/core": "2.4.0",
-    "angular": "1.7.8",
+    "angular": "1.8.0",
     "angular-bootstrap-md": "8.4.0",
     "angular-sanitize": "1.7.8",
     "bluebird": "3.5.5",
