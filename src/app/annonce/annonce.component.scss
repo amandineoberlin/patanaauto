@@ -251,6 +251,13 @@
       }
     }
 
+    .carousel-item {
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
     .card-body {
       @include opacity($plain-white, 1);
 

@@ -25,6 +25,19 @@ export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
   isPrevDisabled: boolean;
   isNextDisabled: boolean;
 
+  imageClass(id) {
+    return `${id}`;
+  }
+
+  missingImage(event, isMain) {
+    const element = event.target;
+    const index = $(event.target).index();
+    $(element).remove();
+    if (!isMain) return;
+    const newIndex = index === 0 ? 1 : index - 1;
+    this.changeActiveItem(newIndex);
+  }
+
   enlargeImage() {
     if ($('.enlarged-img').length) return;
 

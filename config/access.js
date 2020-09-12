@@ -3,16 +3,16 @@
 module.exports = {
   mailer: {
     auth: {
-      user: 'contact@patanaauto.fr',
-      pass: 'Amandine.77000',
+      user: process.env.MAIL_USER || null,
+      pass: process.env.MAIL_PASS || null
     },
-    host: 'pro1.mail.ovh.net',
-    port: 587
+    host: process.env.MAIL_HOST || null,
+    port: process.env.MAIL_PORT || null
   },
   ftp: {
-    host: 'ftp.publicationvo.com',
-    user: 'patanaauto',
-    password: '981cddf3b5',
+    host: process.env.FTP_HOST || null,
+    user: process.env.FTP_USER || null,
+    password: process.env.FTP_PASSWORD || null,
     dir: '/datas/'
   }
 }

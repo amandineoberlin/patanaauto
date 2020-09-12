@@ -5,7 +5,7 @@
 
         <div class="col-sm-12 col-md-12 col-lg-12">
           <div class="intro-img">
-            <img class="img-fluid" src="../../assets/images/cut_drone.jpg" alt="">
+            <img class="img-fluid" src="../../assets/images/cut_parc.png" alt="">
           </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-9">
@@ -19,20 +19,20 @@
             <div class="bullets row">
               <div class="col-md-4">
                 <div class="bullet">
-                  <i class="fas fa-car circle-icon fa-3x"></i>
-                  <h6>véhicules d'occasion <br />toute marque</h6>
+                  <i class="fas fa-car circle-icon fa-2x"></i>
+                  <p class="bullet-text">véhicules d'occasion <br />toute marque</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="bullet">
-                  <i class="fas fa-hand-holding-usd circle-icon fa-3x"></i>
-                  <h6>achat - vente - reprise</h6>
+                  <i class="fas fa-hand-holding-usd circle-icon fa-2x"></i>
+                  <p class="bullet-text">achat - vente - reprise</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="bullet">
-                  <i class="fas fa-shopping-cart circle-icon fa-3x"></i>
-                  <h6>financement et garantie</h6>
+                  <i class="fas fa-shopping-cart circle-icon fa-2x"></i>
+                  <p class="bullet-text">financement & garantie</p>
                 </div>
               </div>
             </div>
@@ -42,6 +42,17 @@
                 internet, découvrez régulièrement les nouveaux véhicules que nous faisons rentrer en parc, et préparez
                 ainsi
                 votre prochaine visite dans nos locaux...</p>
+              <div class="horaires">
+                <span class="addresse">
+                  <p>patana auto</p>
+                  <p>51, AVENUE DE LA LIBÉRATION</p>
+                  <p>77830 PAMFOU</p>
+                </span>
+                <div class="heures">
+                  <p>ouvert du lundi au samedi</p>
+                  <p>9H-12H / 14H-19H</p>
+                </div>
+              </div>
               <div class="button-container">
                 <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
                   Venez nous rendre visite!
@@ -60,7 +71,8 @@
                 <div class="card" (click)="redirectToAnnonce(annonce._id)">
                   <div class="image">
                     <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
-                    <img class="img-responsive card-img-top" [src]="mainImage(annonce)">
+                    <img [src]="mainImage(annonce)" [ngClass]="imageClass(annonce._id)"
+                      (error)="missingImage(annonce)">
                   </div>
                   <div class="material-card">
                     <div class="banner">

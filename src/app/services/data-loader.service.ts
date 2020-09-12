@@ -31,15 +31,20 @@ export class DataLoaderService {
       .then((annonces) => {
         const annoncesSize = _.size(annonces);
 
-        _.forEach(annonces, (vehicule) => {
+        const cleanAnnonces = _.map(annonces, (vehicule) => {
           modeles.push(vehicule.VehiculeModele.join());
           marques.push(vehicule.VehiculeMarque.join());
           selleries.push(vehicule.VehiculeSellerie.join());
           versions.push(vehicule.VehiculeVersion.join());
+
+          const images = _.get(vehicule, 'images');
+          if (!images) return;
+
+          return _.isEmpty(images) ? null : vehicule;
         });
 
         return {
-          annonces,
+          annonces: _.compact(cleanAnnonces),
           modeles: _.uniq(modeles),
           marques: _.uniq(marques),
           selleries: _.uniq(selleries),

@@ -20,6 +20,9 @@
     .filters {
       border-radius: 0.175em;
     }
+    .carte-grise {
+      right: -2%;
+    }
   }
 }
 
@@ -45,8 +48,12 @@
         background: $gray-800;
       }
     }
+    .bullet-text {
+      font-size: .9em;
+    }
     .carte-grise {
-      height: 5em;
+      height: 6em;
+      right: 1%;
     }
     form {
       margin-bottom: 0;
@@ -103,9 +110,6 @@
         padding-bottom: 0;
       }
     }
-    .carte-grise {
-      height: 10em;
-    }
     .intro-text {
       margin-left: 2em;
       margin-top: -100px;
@@ -130,8 +134,11 @@
     .angle-down {
       border-bottom-left-radius: 0;
     }
+    .bullet-text {
+      font-size: .9em;
+    }
     .carte-grise {
-      height: 7em;
+      height: 8em;
     }
     .custom-col {
       padding-right: 15px;
@@ -150,6 +157,9 @@
 
 @media only screen and (max-width: 991px) {
   .home-container {
+    .last-adds-title {
+      font-size: 1.1em;
+    }
     .custom-col {
       flex: 0 0 100%;
       max-width: 100%;
@@ -184,11 +194,24 @@
     .badges {
       font-size: .8em;
     }
+    .subsection {
+      p {
+        font-size: .9em;
+      }
+    }
+    .horaires {
+      p {
+        font-size: 1em;
+      }
+    }
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1190px) {
   .home-container {
+    .last-adds-title {
+      font-size: 1em;
+    }
     .annonces-container {
       right: 47px;
       width: 25vw;
@@ -197,17 +220,36 @@
     .angle-down {
       width: 25vw;
     }
+    .bullet-text {
+      font-size: .8em;
+    }
     .intro-text {
       width: 90%;
     }
     .badges {
       font-size: .9em;
     }
+    .carte-grise {
+      height: 8em;
+    }
+    .subsection {
+      p {
+        font-size: .8em;
+      }
+    }
+    .horaires {
+      p {
+        font-size: .9em;
+      }
+    }
   }
 }
 
 @media only screen and (min-width: 1191px) {
   .home-container {
+    .last-adds-title {
+      font-size: 1.05em;
+    }
     .annonces-container {
       right: 0;
       width: 20vw;
@@ -219,21 +261,81 @@
     .badges {
       font-size: .8em;
     }
+    .carte-grise {
+      height: 9em;
+    }
+    .bullet-text {
+      font-size: .9em;
+    }
+    .subsection {
+      p {
+        font-size: .8em;
+      }
+    }
+    .horaires {
+      p {
+        font-size: .9em;
+      }
+    }
   }
 }
 
 @media only screen and (min-width: 1300px) {
   .home-container {
+    .annonces-container {
+      max-height: 60em;
+    }
+    .last-adds-title {
+      font-size: 1.15em;
+    }
     .badges {
       font-size: 1em;
+    }
+    .carte-grise {
+      height: 9em;
+    }
+    .bullet-text {
+      font-size: 1em;
+    }
+    .subsection {
+      p {
+        font-size: .85em;
+      }
+    }
+    .horaires {
+      p {
+        font-size: 1em;
+      }
     }
   }
 }
 
 @media only screen and (min-width: 1600px) {
   .home-container {
+    .annonces-container {
+      max-height: 68em;
+    }
+    .last-adds-title {
+      font-size: 1.3em;
+    }
     .badges {
       font-size: 1.2em;
+    }
+    .carte-grise {
+      height: 10em;
+    }
+    .bullet-text {
+      font-size: 1.2em;
+    }
+    .subsection {
+      p {
+        font-size: .95em;
+      }
+    }
+    .horaires {
+      p {
+        font-size: 1.2em;
+      }
     }
   }
 }
@@ -246,7 +348,6 @@
     text-transform: uppercase;
     font-family: 'Raleway';
     font-weight: 900;
-    font-size: 1.1em;
     margin-bottom: 15px;
     padding-top: 15px;
     text-align: center;
@@ -376,8 +477,7 @@
 
   .carte-grise {
     position: absolute;
-    top: 0;
-    right: 1%;
+    top: -2%;
     width: auto;
   }
 
@@ -421,15 +521,35 @@
       vertical-align: middle;
     }
 
-    h6 {
+    .bullet-text {
       text-transform: uppercase;
       font-family: 'Karla';
       font-weight: light;
-      text-align: justify;
+      text-align: left;
       margin-top: 10px;
+      color: $gray-900;
+      font-weight: 900;
     }
 
     i {
+      color: $primary;
+    }
+  }
+
+  .horaires {
+    margin: 2em 0 2.5em 0;
+    p {
+      display: flex;
+      justify-content: center;
+      margin-bottom: -.05em;
+      font-family: 'Karla';
+      font-weight: 500;
+    }
+    .adresse {
+      color: rgba($gray-700, 1);
+    }
+    .heures {
+      margin-top: .5em;
       color: $primary;
     }
   }
@@ -440,7 +560,7 @@
     text-transform: uppercase;
     margin-top: 30px;
     text-align: justify;
-    color: $black;
+    color: $gray-700;
   }
 
   .button-container {

@@ -45,6 +45,16 @@ export class HomeComponent implements OnInit {
     this.setScrollIndicator();
   }
 
+  imageClass(id) {
+    return `img-responsive card-img-top ${id}`;
+  }
+
+  missingImage(annonce) {
+    const id = annonce._id;
+    const image = annonce.images[1];
+    $(`.${id}`).attr('src', `/${image}`);
+  }
+
   redirectToFilteredAnnonces() {
     const { marque, modele, price } = this.quickSearch.controls;
 
