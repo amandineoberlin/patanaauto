@@ -38,49 +38,49 @@ fs.existsAsync = Promise.promisify
   fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
 });
 
-const loadFtpData = Promise.coroutine(function* () {
+const loadFtpData = async function () {
   try {
     const ftp = new PromiseFtp();
-    yield ftp.connect({ host, user, password });
+    await ftp.connect({ host, user, password });
     logger.info(`connected to ftp`);
 
-    const dataStream = yield ftp.get(remoteDataFile);
+    const dataStream = await ftp.get(remoteDataFile);
     logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
-    const dataFileAlreadyExists = yield fs.existsAsync(newDataFile);
+    const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
     if (dataFileAlreadyExists) {
-      yield fs.renameAsync(newDataFile, oldDataFile);
+      await fs.renameAsync(newDataFile, oldDataFile);
       logger.info(`moved already existing data file to folder: \'old\'`);
     }
-    yield createFileFromStream(dataStream, newDataFile);
+    await createFileFromStream(dataStream, newDataFile);
     logger.info(`created data file from stream`);
 
-    const photoStream = yield ftp.get(remotePhotoFile);
+    const photoStream = await ftp.get(remotePhotoFile);
     logger.info(`Retrieved ftp path ${remotePhotoFile}`);
 
-    const photoFileAlreadyExists = yield fs.existsAsync(newPhotoFile);
-    const photoZipFileAlreadyExists = yield fs.existsAsync(newPhotoZipFile);
-    if (photoFileAlreadyExists) yield fs.renameAsync(newPhotoFile, oldPhotoFile);
+    const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
+    const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
+    if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
     if (photoZipFileAlreadyExists) {
-      yield fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
+      await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
       logger.info(`moved already existing photo files to folder: \'old\'`);
     }
 
-    yield createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
+    await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
     logger.info(`created photo file from stream`);
 
-    yield downloadPhotos();
-    yield cleanPhotos();
+    await downloadPhotos();
+    await cleanPhotos();
 
-    yield ftp.end();
+    await ftp.end();
     logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
 
-    return 'ftp data saved';
+    return Promise.resolve('ftp data saved');
   } catch(err) {
-    logger.error(`oups, an error occured: ${err}`);
-    return err;
+    logger.error(`oops, an error occured: ${err}`);
+    return Promise.reject(err);
   }
-});
+};
 
 const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
   new Promise(function (resolve, reject) {
