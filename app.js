@@ -36,32 +36,15 @@ require('./routes/annonces')(app);
 require('./routes/emailer')(app);
 
 // schedule ftp load every sunday at 2am
-const rule = new schedule.RecurrenceRule();
-_.assign(rule, {
-  second: 0,
-  minute: 0,
-  hour: 2,
-  dayOfWeek: 0
-});
- 
-schedule.scheduleJob(rule, async () => {
+schedule.scheduleJob('0 0 2 * * 7', async () => {
   logger.info(`FTP job scheduler launched! Date: ${new Date()}`);
   await require('./modules/schedule-job').retrieveData();
   await require('./modules/schedule-job').cleanData();
 });
 
-/* TODO: remove (test scheduler)
-   Testing if there is indeed a log every 5 minutes
-*/
-const testRule = new schedule.RecurrenceRule();
-_.assign(testRule, {
-  second: 0,
-  minute: 0,
-  hour: 2,
-  dayOfWeek: 0
-});
-schedule.scheduleJob(testRule, async () => {
-  logger.info(`TEST JOB LAUNCHED! Date: ${new Date()}`);
+/* TODO: remove (test scheduler) */
+schedule.scheduleJob('* */30 * * *', () => {
+  console.log(`TEST EVERY 30 MINUTES! Date: ${new Date()}`);
 });
 /* END OF TEST TO DELETE */
 

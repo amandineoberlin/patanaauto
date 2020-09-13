@@ -77,7 +77,8 @@ const loadFtpData = Promise.coroutine(function* () {
 
     return 'ftp data saved';
   } catch(err) {
-    logger.error({ err });
+    logger.error(`oups, an error occured: ${err}`);
+    return err;
   }
 });
 
@@ -243,16 +244,15 @@ const cleanPhotos = Promise.coroutine(function* () {
     return fs.unlinkAsync(`${newPhotoDir}/${photo}`);
   });
 
-  if (_.isEmpty(deletedPhotos)) return logger.info({
-    message: `Les photos ont été nettoyées avec succès, 
-      mais aucune n\'avait besoin d\'être effacée`
-  });
+  const message = _.isEmpty(deletedPhotos) ?
+    'Les photos ont été nettoyées avec succès, mais aucune n\'avait besoin d\'être effacée' :
+    `les photos ont été nettoyées avec succès. ${_.size(deletedPhotos)}`+
+    ` photos ont été effacées. Voici la liste ci-dessous:` +
+    ` photos effacées: ${deletedPhotos}`;
 
-  return logger.info({
-    message: `les photos ont été nettoyées avec succès. ${_.size(deletedPhotos)}`+
-      ` photos ont été effacées. Voici la liste ci-dessous:` +
-      ` photos effacées: ${deletedPhotos}`
-  });
+  logger.info({ message });
+
+  return message;
 });
 
 const getLatestAnnonces = Promise.coroutine(function* () {
