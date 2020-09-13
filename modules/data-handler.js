@@ -13,7 +13,7 @@ const xmlParser = Promise.promisifyAll(require('xml2js'));
 const access = require('../config/access').ftp;
 const logger = require('./logger');
 
-const { host, user, password } = access;
+const { host, user, password, connTimeout } = access;
 
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
 const splitData = data => data.toString().split('\n');
@@ -41,7 +41,7 @@ fs.existsAsync = Promise.promisify
 const loadFtpData = async function () {
   try {
     const ftp = new PromiseFtp();
-    await ftp.connect({ host, user, password });
+    await ftp.connect({ host, user, password, connTimeout });
     logger.info(`connected to ftp`);
 
     const dataStream = await ftp.get(remoteDataFile);

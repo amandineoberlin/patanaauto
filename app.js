@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const schedule = require('node-schedule');
 const compression = require('compression');
-const _ = require('lodash');
 
 const logger = require('./modules/logger');
 const createImagesRoutes = require('./modules/create-images-routes');

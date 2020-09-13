@@ -13,6 +13,7 @@ module.exports = {
     host: process.env.FTP_HOST || null,
     user: process.env.FTP_USER || null,
     password: process.env.FTP_PASSWORD || null,
+    connTimeout: process.env.FTP_TIMEOUT || 20000,
     dir: '/datas/'
   }
 }
