@@ -363,6 +363,9 @@ export class AnnoncesComponent implements OnInit {
   }
 
   filterAnnonces(filters = [], isTri, order) {
+    // @ts-ignore
+    if ($('.dropdown-menu').hasClass('show')) $('.dropdown-toggle').dropdown('toggle');
+
     if (!filters || _.isEmpty(filters)) return this.filteredAnnonces = _.clone(this.annonces);
 
     if (isTri && _.size(this.filteredAnnonces) > 1) return this.filterWithTri(filters[0], order);
