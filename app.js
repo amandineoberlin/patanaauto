@@ -6,7 +6,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const schedule = require('node-schedule');
-const compression = require('compression')
+const compression = require('compression');
+const _ = require('lodash');
 
 const logger = require('./modules/logger');
 const createImagesRoutes = require('./modules/create-images-routes');
@@ -34,11 +35,35 @@ app.get('*', (req, res, next) => {
 require('./routes/annonces')(app);
 require('./routes/emailer')(app);
 
-schedule.scheduleJob({ hour: 1, minute: 1, dayOfWeek: 0, start: Date.now() }, () =>
-  require('./modules/schedule-job').retrieveData());
+// schedule ftp load every sunday at 2am
+const rule = new schedule.RecurrenceRule();
+_.assign(rule, {
+  second: 0,
+  minute: 0,
+  hour: 2,
+  dayOfWeek: 0
+});
+ 
+schedule.scheduleJob(rule, async () => {
+  logger.info(`FTP job scheduler launched! Date: ${new Date()}`);
+  await require('./modules/schedule-job').retrieveData();
+  await require('./modules/schedule-job').cleanData();
+});
 
-schedule.scheduleJob({ hour: 1, minute: 1, date: 1, start: Date.now() }, () =>
-  require('./modules/schedule-job').cleanData());
+/* TODO: remove (test scheduler)
+   Testing if there is indeed a log every 5 minutes
+*/
+const testRule = new schedule.RecurrenceRule();
+_.assign(testRule, {
+  second: 0,
+  minute: 0,
+  hour: 2,
+  dayOfWeek: 0
+});
+schedule.scheduleJob(testRule, async () => {
+  logger.info(`TEST JOB LAUNCHED! Date: ${new Date()}`);
+});
+/* END OF TEST TO DELETE */
 
 (async() => {
   await createImagesRoutes.load(app);

@@ -193,7 +193,7 @@ const getAndSaveFtpImages = (photos) =>
     return ftpget
       .getAsync({ url, bufferType: 'buffer' })
       .then((buffer) => {
-        logger.info('Downloaded a photo');
+        logger.info(`Downloaded a photo (${p.name})`);
         return fs.writeFileAsync(`${newPhotoDir}/${p.name}`, buffer, 'binary');
       })
       .catch(() => logger.info(`Photo: ${p.name} could not be retrieved`));
