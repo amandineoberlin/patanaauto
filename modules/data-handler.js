@@ -5,15 +5,17 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const unzipper = require('unzipper');
 const path = require('path');
+const Queue = require('bull');
 
 const ftpget = Promise.promisifyAll(require('ftp-get'));
 const fs = Promise.promisifyAll(require('fs'));
 const xmlParser = Promise.promisifyAll(require('xml2js'));
 
-const access = require('../config/access').ftp;
+const access = require('../config/access');
 const logger = require('./logger');
 
-const { host, user, password, connTimeout } = access;
+const { host, user, password, connTimeout } = access.ftp;
+const { REDIS_URL } = access.redis;
 
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
 const splitData = data => data.toString().split('\n');
@@ -38,8 +40,11 @@ fs.existsAsync = Promise.promisify
   fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
 });
 
-const loadFtpData = async function () {
-  try {
+const loadFtpData = async(res) => {
+  const ftpQueue = new Queue('ftp queue', REDIS_URL);
+  await ftpQueue.add();
+
+  ftpQueue.process(async (job, done) => {
     const ftp = new PromiseFtp();
     await ftp.connect({ host, user, password, connTimeout });
     logger.info(`connected to ftp`);
@@ -75,22 +80,21 @@ const loadFtpData = async function () {
     await ftp.end();
     logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
 
-    return Promise.resolve('ftp data saved');
-  } catch(err) {
-    logger.error(`oops, an error occured: ${err}`);
-    return Promise.reject(err);
-  }
+    done();
+  });
+
+  ftpQueue.on('completed', () => {
+    return res.send('ftp data saved');
+  });
 };
 
 const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
-  new Promise(function (resolve, reject) {
+  new Promise((resolve, reject) => {
     stream.once('close', resolve);
     stream.once('error', reject);
     stream.pipe(fs.createWriteStream(path));
 
     if (shouldUnZip) stream.pipe(unzipper.Extract({ path: extractPath }));
-
-    return;
   });
 
 const downloadPhotos = Promise.coroutine(function*() {
