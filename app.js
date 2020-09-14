@@ -54,4 +54,6 @@ schedule.scheduleJob('* */30 * * *', () => {
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
 
+server.timeout = 240000;
+
 app.emit('ready');

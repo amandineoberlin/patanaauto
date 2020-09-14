@@ -89,8 +89,6 @@ const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
     stream.pipe(fs.createWriteStream(path));
 
     if (shouldUnZip) stream.pipe(unzipper.Extract({ path: extractPath }));
-
-    return;
   });
 
 const downloadPhotos = Promise.coroutine(function*() {
