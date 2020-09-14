@@ -15,5 +15,8 @@ module.exports = {
     password: process.env.FTP_PASSWORD || null,
     connTimeout: process.env.FTP_TIMEOUT || 20000,
     dir: '/datas/'
+  },
+  redis: {
+    url: process.env.REDIS_URL || 'redis://127.0.0.1:6379'
   }
 }
