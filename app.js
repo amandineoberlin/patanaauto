@@ -29,21 +29,27 @@ app.use('/', express.static(static_folder));
 app.get('*', (req, res, next) => {
   res.set('Cache-Control', 'public, max-age=2628000');
   return next();
-})
+});
 
 require('./routes/annonces')(app);
 require('./routes/emailer')(app);
 
-// schedule ftp load every sunday at 2am
-schedule.scheduleJob('0 0 2 * * 7', async () => {
+// schedule ftp load every sunday at 2.30am
+schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
   logger.info(`FTP job scheduler launched! Date: ${new Date()}`);
   await require('./modules/schedule-job').retrieveData();
   await require('./modules/schedule-job').cleanData();
 });
 
 /* TODO: remove (test scheduler) */
-schedule.scheduleJob('* */30 * * *', () => {
-  console.log(`TEST EVERY 30 MINUTES! Date: ${new Date()}`);
+schedule.scheduleJob({ hour: 11, minute: 1, dayOfWeek: 2 }, () => {
+  console.log(`TEST EVERY Tuesday at 11am! Date: ${new Date()}`);
+});
+schedule.scheduleJob('30 * * * * *', () => {
+  console.log(`This runs at the 30th mintue of every hour.! Date: ${new Date()}`);
+});
+schedule.scheduleJob('0 */3 * * *', () => {
+  console.log(`SCHEDULE TEST EVERY 3 MINUTES! Date: ${new Date()}`);
 });
 /* END OF TEST TO DELETE */
 
