@@ -22,7 +22,7 @@ const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = __dirname + '/../selsia-data';
+const localDir = path.join(__dirname + '/../selsia-data');
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
@@ -289,38 +289,61 @@ const deleteAll = async(req, res) => {
   await deleteQueue.add();
 
   deleteQueue.process(async(job, done) => {
-    if (await fs.existsAsync(oldDataFile)) await fs.unlinkAsync(oldDataFile);
-    if (await fs.existsAsync(newDataFile)) await fs.unlinkAsync(newDataFile);
-    if (await fs.existsAsync(oldPhotoFile)) await fs.unlinkAsync(oldPhotoFile);
-    if (await fs.existsAsync(newPhotoFile)) await fs.unlinkAsync(newPhotoFile);
-    if (await fs.existsAsync(oldPhotoZipFile)) await fs.unlinkAsync(oldPhotoZipFile);
-    if (await fs.existsAsync(newPhotoZipFile)) await fs.unlinkAsync(newPhotoZipFile);
+    try {
+      if (await fs.existsAsync(oldDataFile)) {
+        await fs.unlinkAsync(oldDataFile);
+        logger.info(`Deleted file: ${oldDataFile}`)
+      }
+      if (await fs.existsAsync(newDataFile)) {
+        await fs.unlinkAsync(newDataFile);
+        logger.info(`Deleted file: ${newDataFile}`)
+      }
+      if (await fs.existsAsync(oldPhotoFile)) {
+        await fs.unlinkAsync(oldPhotoFile);
+        logger.info(`Deleted file: ${oldPhotoFile}`)
+      }
+      if (await fs.existsAsync(newPhotoFile)) {
+        await fs.unlinkAsync(newPhotoFile);
+        logger.info(`Deleted file: ${newPhotoFile}`)
+      }
+      if (await fs.existsAsync(oldPhotoZipFile)) {
+        await fs.unlinkAsync(oldPhotoZipFile);
+        logger.info(`Deleted file: ${oldPhotoZipFile}`)
+      }
+      if (await fs.existsAsync(newPhotoZipFile)) {
+        await fs.unlinkAsync(newPhotoZipFile);
+        logger.info(`Deleted file: ${newPhotoZipFile}`)
+      }
 
-    const oldFiles = await fs.readdirAsync(oldPhotoDir);
-    if (!_.isEmpty(oldFiles)) {
-      for (const oldFile of oldFiles) {
-        const oldPath = path.join(oldPhotoDir, oldFile);
-        const oldFileExists = await fs.existsAsync(oldPath);
-        if (oldFileExists) {
-          logger.info(`deleting photo: ${oldPath}`);
-          await fs.unlinkAsync(oldPath);
+      const oldFiles = await fs.readdirAsync(oldPhotoDir);
+      if (!_.isEmpty(oldFiles)) {
+        for (const oldFile of oldFiles) {
+          const oldPath = path.join(oldPhotoDir, oldFile);
+          const oldFileExists = await fs.existsAsync(oldPath);
+          if (oldFileExists) {
+            logger.info(`deleting photo: ${oldPath}`);
+            await fs.unlinkAsync(oldPath);
+          }
         }
       }
-    }
 
-    const newFiles = await fs.readdirAsync(newPhotoDir);
-    if (!_.isEmpty(newFiles)) {
-      for (const newFile of newFiles) {
-        const newPath = path.join(newPhotoDir, newFile);
-        const newFileExists = await fs.existsAsync(newPath);
-        if (newFileExists) {
-          logger.info(`deleting photo: ${newPath}`);
-          await fs.unlinkAsync(newPath);
+      const newFiles = await fs.readdirAsync(newPhotoDir);
+      if (!_.isEmpty(newFiles)) {
+        for (const newFile of newFiles) {
+          const newPath = path.join(newPhotoDir, newFile);
+          const newFileExists = await fs.existsAsync(newPath);
+          if (newFileExists) {
+            logger.info(`deleting photo: ${newPath}`);
+            await fs.unlinkAsync(newPath);
+          }
         }
       }
-    }
 
-    done();
+      done();
+    } catch(e) {
+      logger.error(`error while deleting files . ${e}`);
+      done(e);
+    }
   });
 
   deleteQueue.on('completed', async() => {
