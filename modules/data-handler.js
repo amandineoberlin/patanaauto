@@ -26,6 +26,7 @@ const localDir = 'selsia-data';
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
+const oldPhotoDir = `${oldDir}/photos`;
 const oldPhotoFile = `${oldDir}/photos.txt`;
 const oldPhotoZipFile = `${oldDir}/photos.txt.zip`;
 
@@ -92,7 +93,7 @@ const loadFtpData = async(res) => {
     await ftp.end();
   });
 
-  return res.send('ftp data saved');
+  return res.send('ftp processing...');
 };
 
 const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
@@ -283,6 +284,52 @@ const getLatestAnnonces = Promise.coroutine(function* () {
   }, []);
 });
 
+const deleteAll = async(req, res) => {
+  const deleteQueue = new Queue('delete queue', REDIS_URL);
+  await deleteQueue.add();
+
+  deleteQueue.process(async(job, done) => {
+    if (await fs.existsAsync(oldDataFile)) await fs.unlinkAsync(oldDataFile);
+    if (await fs.existsAsync(newDataFile)) await fs.unlinkAsync(newDataFile);
+    if (await fs.existsAsync(oldPhotoFile)) await fs.unlinkAsync(oldPhotoFile);
+    if (await fs.existsAsync(newPhotoFile)) await fs.unlinkAsync(newPhotoFile);
+    if (await fs.existsAsync(oldPhotoZipFile)) await fs.unlinkAsync(oldPhotoZipFile);
+    if (await fs.existsAsync(newPhotoZipFile)) await fs.unlinkAsync(newPhotoZipFile);
+
+    const oldFiles = await fs.readdirAsync(oldPhotoDir);
+    if (!_.isEmpty(oldFiles)) {
+      for (const oldFile of oldFiles) {
+        const oldPath = path.join(oldPhotoDir, oldFile);
+        const oldFileExists = await fs.existsAsync(oldPath);
+        if (oldFileExists) {
+          logger.info(`deleting photo: ${oldPath}`);
+          await fs.unlinkAsync(oldPath);
+        }
+      }
+    }
+
+    const newFiles = await fs.readdirAsync(newPhotoDir);
+    if (!_.isEmpty(newFiles)) {
+      for (const newFile of newFiles) {
+        const newPath = path.join(newPhotoDir, newFile);
+        const newFileExists = await fs.existsAsync(newPath);
+        if (newFileExists) {
+          logger.info(`deleting photo: ${newPath}`);
+          await fs.unlinkAsync(newPath);
+        }
+      }
+    }
+
+    done();
+  });
+
+  deleteQueue.on('completed', async() => {
+    logger.info('deletion completed');
+  });
+
+  return res.send('data is being deleted....');
+};
+
 module.exports = {
   cleanPhotos,
   loadFtpData,
@@ -290,5 +337,6 @@ module.exports = {
   loadImages,
   getPhotos,
   getSingleAnnonce,
-  getLatestAnnonces
+  getLatestAnnonces,
+  deleteAll
 };

@@ -9,7 +9,8 @@ const {
   loadImages,
   getPhotos,
   getSingleAnnonce,
-  getLatestAnnonces
+  getLatestAnnonces,
+  deleteAll
 } = require('../modules/data-handler');
 
 const returnData = _.curry((res, data) => res.send(data));
@@ -22,4 +23,5 @@ module.exports = (app) => {
   app.get('/load-images', (req, res) => loadImages().then(returnData(res)));
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
   app.get('/get-latest', (req, res) => getLatestAnnonces().then(returnData(res)));
+  app.get('/delete-all', deleteAll);
 }
