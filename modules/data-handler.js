@@ -22,7 +22,7 @@ const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = 'selsia-data';
+const localDir = __dirname + '/../selsia-data';
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
