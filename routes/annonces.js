@@ -15,10 +15,18 @@ const {
 
 const returnData = _.curry((res, data) => res.send(data));
 
+const setNoCache = (app, res) => {
+  res.setHeader('Surrogate-Control', 'no-store');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  app.set('etag', false);
+}
+
 module.exports = (app) => {
   app.get('/clean-photos', (req, res) => cleanPhotos().then(returnData(res)));
   app.get('/load-ftp-data', (req, res) => {
-    res.set('Cache-Control', 'no-store');
+    setNoCache(app, res);
     return loadFtpData(res);
   });
   app.get('/get-annonces', (req, res) => getAnnonces().then(returnData(res)));
@@ -26,7 +34,7 @@ module.exports = (app) => {
   app.get('/load-images', (req, res) => loadImages().then(returnData(res)));
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
   app.get('/get-latest', (req, res) => {
-    res.set('Cache-Control', 'no-store');
+    setNoCache(app, res);
     return getLatestAnnonces()
       .then(returnData(res));
   });

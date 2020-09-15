@@ -160,25 +160,29 @@ export class HomeComponent implements OnInit {
     return this.formDataService.mainImage(annonce);
   }
 
+  getDefaultLatestAnnonces(latestAnnonces, annoncesSize) {
+    const defaultSize = 6;
+    const orderBy = _.map(this.annonces, a =>
+      ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeCarteGriseDate[0]) }));
+    const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
+    const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+    const neededItemSize = defaultSize - annoncesSize;
+    return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
+  }
+
   getLatestAnnonces() {
     this.formDataService.loadRecentAnnonces()
       .then((data) => {
+        if (_.isEmpty(data)) return this.getDefaultLatestAnnonces([], 0);
+
         const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
         const latestAnnonces = _.filter(this.annonces, a =>
           _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
         const annoncesSize = _.size(latestAnnonces);
-        const defaultSize = 5;
 
-        if (annoncesSize === 3) return this.latestAnnonces = latestAnnonces;
+        if (annoncesSize === 6) return this.latestAnnonces = latestAnnonces;
         if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
-        if (annoncesSize < 3) {
-          const orderBy = _.map(this.annonces, a =>
-            ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeCarteGriseDate[0]) }));
-          const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
-          const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
-          const neededItemSize = defaultSize - annoncesSize;
-          return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
-        }
+        if (annoncesSize < 3) return this.getDefaultLatestAnnonces(latestAnnonces, annoncesSize);
       });
   }
 
