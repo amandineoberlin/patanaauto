@@ -22,19 +22,18 @@ const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = path.join(__dirname + '/../selsia-data');
+const backDirOld = path.join(__dirname + '/../selsia-data/old');
+const backDirNew = path.join(__dirname + '/../selsia-data/new');
 
-const oldDir = `${localDir}/old`;
-const oldDataFile = `${oldDir}/acaa.xml`;
-const oldPhotoDir = `${oldDir}/photos`;
-const oldPhotoFile = `${oldDir}/photos.txt`;
-const oldPhotoZipFile = `${oldDir}/photos.txt.zip`;
+const oldDataFile = `${backDirOld}/acaa.xml`;
+const oldPhotoDir = path.join(__dirname + '/../src/assets/selsia-data/old');
+const oldPhotoFile = `${backDirOld}/photos.txt`;
+const oldPhotoZipFile = `${backDirOld}/photos.txt.zip`;
 
-const newDir = `${localDir}/new`;
-const newDataFile = `${newDir}/acaa.xml`;
-const newPhotoDir = `${newDir}/photos`;
-const newPhotoFile = `${newDir}/photos.txt`;
-const newPhotoZipFile = `${newDir}/photos.txt.zip`;
+const newDataFile = `${backDirNew}/acaa.xml`;
+const newPhotoDir = path.join(__dirname + '/../src/assets/selsia-data/new');
+const newPhotoFile = `${backDirNew}/photos.txt`;
+const newPhotoZipFile = `${backDirNew}/photos.txt.zip`;
 
 fs.existsAsync = Promise.promisify
 (function exists2(path, exists2callback) {

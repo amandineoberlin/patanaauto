@@ -9,7 +9,6 @@ const schedule = require('node-schedule');
 const compression = require('compression');
 
 const logger = require('./modules/logger');
-const createImagesRoutes = require('./modules/create-images-routes');
 
 const limit = '10mb';
 const port = 5001;
@@ -40,19 +39,6 @@ schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
   await require('./modules/schedule-job').retrieveData();
   await require('./modules/schedule-job').cleanData();
 });
-
-/* TODO: remove (test scheduler) */
-schedule.scheduleJob('* 30 * * * *', () => {
-  console.log(`This runs at the 30th mintue of every hour.! Date: ${new Date()}`);
-});
-schedule.scheduleJob('0 */3 * * *', () => {
-  console.log(`SCHEDULE TEST EVERY 3 MINUTES! Date: ${new Date()}`);
-});
-/* END OF TEST TO DELETE */
-
-(async() => {
-  await createImagesRoutes.load(app);
-})();
 
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));

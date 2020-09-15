@@ -25,18 +25,11 @@ const setNoCache = (app, res) => {
 
 module.exports = (app) => {
   app.get('/clean-photos', (req, res) => cleanPhotos().then(returnData(res)));
-  app.get('/load-ftp-data', (req, res) => {
-    setNoCache(app, res);
-    return loadFtpData(res);
-  });
+  app.get('/load-ftp-data', (req, res) => loadFtpData(res));
   app.get('/get-annonces', (req, res) => getAnnonces().then(returnData(res)));
   app.get('/get-annonce/:id', (req, res) => getSingleAnnonce(req).then(returnData(res)));
   app.get('/load-images', (req, res) => loadImages().then(returnData(res)));
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
-  app.get('/get-latest', (req, res) => {
-    setNoCache(app, res);
-    return getLatestAnnonces()
-      .then(returnData(res));
-  });
+  app.get('/get-latest', (req, res) => getLatestAnnonces().then(returnData(res)));
   app.get('/delete-all', deleteAll);
 }

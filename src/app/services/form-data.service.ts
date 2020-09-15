@@ -19,10 +19,6 @@ export class FormDataService {
 
   annonces: object;
 
-  mainImage(annonce) {
-    return this.dataService.mainImage(annonce);
-  }
-
   contactForm(data): Promise<any> {
     return this.http.post<any[]>('send-contact-form', data)
       .toPromise();

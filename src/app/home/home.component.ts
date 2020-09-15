@@ -49,12 +49,6 @@ export class HomeComponent implements OnInit {
     return `img-responsive card-img-top ${id}`;
   }
 
-  missingImage(annonce) {
-    const id = annonce._id;
-    const image = annonce.images[1];
-    $(`.${id}`).attr('src', `/${image}`);
-  }
-
   redirectToFilteredAnnonces() {
     const { marque, modele, price } = this.quickSearch.controls;
 
@@ -154,10 +148,6 @@ export class HomeComponent implements OnInit {
 
   redirectToAnnonce(id) {
     return this.router.navigate(['/annonce'], { queryParams: { id } });
-  }
-
-  mainImage(annonce) {
-    return this.formDataService.mainImage(annonce);
   }
 
   getDefaultLatestAnnonces(latestAnnonces, annoncesSize) {
