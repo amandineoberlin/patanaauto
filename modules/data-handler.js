@@ -162,8 +162,10 @@ const matchImagesWithAnnonces = (annonces, images) => {
 };
 
 const getJsonAnnonces = Promise.coroutine(function* (path) {
+  const isData = yield fs.existsAsync(path);
+  if (!isData) return Promise.resolve(null);
+
   const data = yield fs.readFileAsync(path, 'utf-8');
-  if (!data) return null;
   const json = yield xmlParser.parseStringAsync(data);
   return _.get(json, 'Stock.Vehicule');
 });
@@ -269,12 +271,12 @@ const cleanPhotos = Promise.coroutine(function* () {
 
 const getLatestAnnonces = Promise.coroutine(function* () {
   const oldAnnonces = yield getJsonAnnonces(oldDataFile);
-  if (!oldAnnonces) return [];
+  if (!oldAnnonces) return Promise.resolve([]);
   const newAnnonces = yield getJsonAnnonces(newDataFile);
-  if (!newAnnonces) return [];
+  if (!newAnnonces) return Promise.resolve([]);
 
   const oldImmatriculations = _.flatMap(oldAnnonces, 'VehiculeImmatriculation');
-  return _.reduce(newAnnonces, (acc, v) => {
+  const lastestAnnonces = _.reduce(newAnnonces, (acc, v) => {
     if (!v) return acc;
 
     const newImmatriculation = v.VehiculeImmatriculation[0];
@@ -282,6 +284,8 @@ const getLatestAnnonces = Promise.coroutine(function* () {
 
     return !existsInOldAnnonces ? _.concat(acc, v) : acc;
   }, []);
+
+  return Promise.resolve(lastestAnnonces);
 });
 
 const deleteAll = async(req, res) => {

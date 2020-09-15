@@ -25,6 +25,10 @@ module.exports = (app) => {
   app.get('/get-annonce/:id', (req, res) => getSingleAnnonce(req).then(returnData(res)));
   app.get('/load-images', (req, res) => loadImages().then(returnData(res)));
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
-  app.get('/get-latest', (req, res) => getLatestAnnonces().then(returnData(res)));
+  app.get('/get-latest', (req, res) => {
+    res.set('Cache-Control', 'no-store');
+    return getLatestAnnonces()
+      .then(returnData(res));
+  });
   app.get('/delete-all', deleteAll);
 }

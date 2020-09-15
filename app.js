@@ -42,10 +42,7 @@ schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
 });
 
 /* TODO: remove (test scheduler) */
-schedule.scheduleJob({ hour: 11, minute: 1, dayOfWeek: 2 }, () => {
-  console.log(`TEST EVERY Tuesday at 11am! Date: ${new Date()}`);
-});
-schedule.scheduleJob('30 * * * * *', () => {
+schedule.scheduleJob('* 30 * * * *', () => {
   console.log(`This runs at the 30th mintue of every hour.! Date: ${new Date()}`);
 });
 schedule.scheduleJob('0 */3 * * *', () => {
