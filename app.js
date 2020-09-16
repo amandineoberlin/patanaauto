@@ -24,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true, limit }));
 
 app.use('/', express.static(static_folder));
 
+app.use('/photos', express.static(__dirname + '/selsia-data/new/photos'));
+
 // cache all http requests for a month
 app.get('*', (req, res, next) => {
   res.set('Cache-Control', 'public, max-age=2628000');

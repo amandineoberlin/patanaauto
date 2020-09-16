@@ -22,18 +22,18 @@ const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const backDirOld = path.join(__dirname + '/../selsia-data/old');
-const backDirNew = path.join(__dirname + '/../selsia-data/new');
+const localDir = 'selsia-data';
 
-const oldDataFile = `${backDirOld}/acaa.xml`;
-const oldPhotoDir = path.join(__dirname + '/../src/assets/selsia-data/old');
-const oldPhotoFile = `${backDirOld}/photos.txt`;
-const oldPhotoZipFile = `${backDirOld}/photos.txt.zip`;
+const oldDir = `${localDir}/old`;
+const oldDataFile = `${oldDir}/acaa.xml`;
+const oldPhotoFile = `${oldDir}/photos.txt`;
+const oldPhotoZipFile = `${oldDir}/photos.txt.zip`;
 
-const newDataFile = `${backDirNew}/acaa.xml`;
-const newPhotoDir = path.join(__dirname + '/../src/assets/selsia-data/new');
-const newPhotoFile = `${backDirNew}/photos.txt`;
-const newPhotoZipFile = `${backDirNew}/photos.txt.zip`;
+const newDir = `${localDir}/new`;
+const newDataFile = `${newDir}/acaa.xml`;
+const newPhotoDir = `${newDir}/photos`;
+const newPhotoFile = `${newDir}/photos.txt`;
+const newPhotoZipFile = `${newDir}/photos.txt.zip`;
 
 fs.existsAsync = Promise.promisify
 (function exists2(path, exists2callback) {
@@ -316,18 +316,6 @@ const deleteAll = async(req, res) => {
       if (await fs.existsAsync(newPhotoZipFile)) {
         await fs.unlinkAsync(newPhotoZipFile);
         logger.info(`Deleted file: ${newPhotoZipFile}`)
-      }
-
-      const oldFiles = await fs.readdirAsync(oldPhotoDir);
-      if (!_.isEmpty(oldFiles)) {
-        for (const oldFile of oldFiles) {
-          const oldPath = path.join(oldPhotoDir, oldFile);
-          const oldFileExists = await fs.existsAsync(oldPath);
-          if (oldFileExists) {
-            logger.info(`deleting photo: ${oldPath}`);
-            await fs.unlinkAsync(oldPath);
-          }
-        }
       }
 
       const newFiles = await fs.readdirAsync(newPhotoDir);

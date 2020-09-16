@@ -71,8 +71,7 @@
                 <div class="card" (click)="redirectToAnnonce(annonce._id)">
                   <div class="image">
                     <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
-                    <img src="../../assets/selsia-data/new/{{annonce.images[0]}}"
-                      [ngClass]="imageClass(annonce._id)">
+                    <img src="/photos/{{annonce.images[0]}}" [ngClass]="imageClass(annonce._id)">
                   </div>
                   <div class="material-card">
                     <div class="banner">
