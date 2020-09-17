@@ -22,7 +22,7 @@ const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = 'selsia-data';
+const localDir = path.join(__dirname, '/../selsia-data');
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
@@ -54,7 +54,10 @@ const loadFtpData = async(res) => {
       logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
       const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
-      if (dataFileAlreadyExists) {
+      if (!dataFileAlreadyExists) {
+        logger.info('no already existing acaa.xml file');
+      }
+      else {
         await fs.renameAsync(newDataFile, oldDataFile);
         logger.info(`moved already existing data file to folder: \'old\'`);
       }
