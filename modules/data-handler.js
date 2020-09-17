@@ -177,7 +177,7 @@ const getAnnonces = Promise.coroutine(function* () {
 
   logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
 
-  return annoncesWithImages;
+  return Promise.resolve(annoncesWithImages);
 });
 
 const getSingleAnnonce = Promise.coroutine(function* (req) {
@@ -187,7 +187,7 @@ const getSingleAnnonce = Promise.coroutine(function* (req) {
   
   if (!singleAnnonce) {
     const noAddMess = `cannot retrieve single annonce with id ${id}`;
-    logger.error(noAddMess);
+    logger.error({ data: noAddMess });
     return Promise.resolve(noAddMess);
   };
 
