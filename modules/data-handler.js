@@ -54,6 +54,7 @@ const loadFtpData = async(res) => {
       logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
       const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
+      logger.info('HEYOY: ', dataFileAlreadyExists);
       if (!dataFileAlreadyExists) {
         logger.info('no already existing acaa.xml file');
       }
