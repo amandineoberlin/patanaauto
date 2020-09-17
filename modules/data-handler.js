@@ -185,10 +185,16 @@ const getSingleAnnonce = Promise.coroutine(function* (req) {
   const annonces = yield getAnnonces();
   const singleAnnonce = _.find(annonces, { _id: id });
   
-  if (!singleAnnonce) return logger.error(`cannot retrieve single annonce with id ${id}`);
-  logger.info(`retrieved single annonce with id ${id}`);
+  if (!singleAnnonce) {
+    const noAddMess = `cannot retrieve single annonce with id ${id}`;
+    logger.error(noAddMess);
+    return Promise.resolve(noAddMess);
+  };
 
-  return singleAnnonce;
+  const message = `retrieved single annonce with id ${id}`;
+  logger.info(message);
+
+  return Promise.resolve(message);
 });
 
 const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {

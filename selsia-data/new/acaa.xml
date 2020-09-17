@@ -817,43 +817,6 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
-  <VehiculeEquipementsOptionArgus>Gris Lunaire</VehiculeEquipementsOptionArgus>
-  <VehiculeEquipementsSerieArgus>6 Haut parleurs|Système anti blocage|Accoudoir arrière|Accoudoir central AV avec rangement|Aide au démarrage en côte|Airbag conducteur|Airbag genoux|Airbag passager|Airbags latéraux avant|Airbags rideaux AV et AR|Antidémarrage électronique|Anti patinage|Arrêt et redémarrage auto. du moteur|Bacs de portes avant|Banquette 60/40|Banquette AR rabattable|Banquette arrière 3 places|Boite à gant fermée|Boucliers AV et AR couleur caisse|Capteur de luminosité|Capteur de pluie|Ceinture de vitrage chromée|Ceintures avant ajustables en hauteur|Clim automatique bi-zones|Commandes vocales|Compte tours|Contrôle élect. de la pression des pneus|Démarrage sans clé|EBD|Echappement à double sortie|Eclairage d'ambiance|Ecran multifonction couleur|ESP|Feux de freinage d'urgence|Feux de jour à LED|Filtre à particules|Filtre à Pollen|Fixations Isofix aux places arrières|GPS Cartographique|Interface Media|Jantes en alliage|Kit mains-libres Bluetooth|Lampe de coffre|Lampes de lecture à l'arrière|Lampes de lecture à l'avant|Limiteur de vitesse|Miroir de courtoisie conducteur éclairé|Miroir de courtoisie passager éclairé|Ordinateur de Bord|Ouverture des vitres séquentielle|Phares antibrouillard|Phares halogènes|Poches d'aumonières|Poignées ton carrosserie|Pommeau de levier vitesse en cuir|Porte-gobelets avant|Prise 12V|Prise auxiliaire de connexion audio|Prise USB|Radar de stationnement AR|Autoradio K7|Régulateur de vitesse|Répétiteurs de clignotant dans rétro ext|Retroviseur intérieur electrochrome|Rétroviseurs dégivrants|Rétroviseurs électriques|Rétroviseurs rabattables électriquement|Siège avant sport|Siège conducteur avec réglable lombaire|Siège conducteur réglable en hauteur|Siège passager avec réglage lombaire|Siège passager réglable en hauteur|Système d'accès sans clé|Témoin de bouclage des ceintures AV|TMC|Troisième ceinture de sécurité|Verrouillage centralisé à distance|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant cuir|Volant cuir multifonction|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
-  <VehiculeImmatriculation>EK-095-PR</VehiculeImmatriculation>
-  <VehiculeModeleArgus>KUGA</VehiculeModeleArgus>
-  <VehiculeNumeroSerie>WF0AXXWPMAHU25317</VehiculeNumeroSerie>
-  <VehiculeCarteGriseDate>10-02-2020</VehiculeCarteGriseDate>
-  <VehiculeConsommationExtraUrbaine>4.0</VehiculeConsommationExtraUrbaine>
-  <VehiculeConsommationMixte>4.0</VehiculeConsommationMixte>
-  <VehiculeConsommationUrbaine>5.0</VehiculeConsommationUrbaine>
-  <VehiculeCylindresArchitecture/>
-  <VehiculeEquipementsSupplement/>
-  <VehiculeMoteurAlimentationType/>
-  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
-  <VehiculeMoteurType/>
-  <VehiculeMotorisationType/>
-  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
-  <VehiculeSellerie>CUIR / TISSUS</VehiculeSellerie>
-  <VehiculeKilometrage>112686</VehiculeKilometrage>
-  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
-  <VehiculeLieu/>
-  <VehiculeMarque>FORD</VehiculeMarque>
-  <VehiculeModele>KUGA</VehiculeModele>
-  <VehiculeNbPlaces>5</VehiculeNbPlaces>
-  <VehiculeNbPortes>5</VehiculeNbPortes>
-  <VehiculePremiereMain>Non</VehiculePremiereMain>
-  <VehiculePrixAvecTvaVente>Oui</VehiculePrixAvecTvaVente>
-  <VehiculePrixNeuf>33000</VehiculePrixNeuf>
-  <VehiculePrixVenteTTC>14900</VehiculePrixVenteTTC>
-  <VehiculePuissanceFiscale>8</VehiculePuissanceFiscale>
-  <VehiculePuissanceReelle>150</VehiculePuissanceReelle>
-  <VehiculeTransmission/>
-  <VehiculeTypeMine>M10FRDVP205X204</VehiculeTypeMine>
-  <VehiculeVersion>2.0 TDCI 150CH STOP&amp;START TITANIUM 4X2</VehiculeVersion>
- </Vehicule>
- <Vehicule>
-  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
-  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
   <VehiculeEquipementsOptionArgus>Peinture métal|Système de navigation &quot;RNS 315&quot;</VehiculeEquipementsOptionArgus>
   <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au freinage d'urgence|Airbags frontaux|Airbags latéraux avant|Airbags rideaux AV et AR|Anti patinage|Arrêt et redémarrage auto. du moteur|Banquette 1/3-2/3|Clim automatique bi-zones|Démarrage sans clé|Direction assistée asservie à la vitesse|ESP|Feux arrière à LED|Filtre à particules|Fixations Isofix aux places arrières|Frein stationnement électromécanique|Jantes en alliage|Kit Fumeur|Ordinateur de Bord|Pack Visibilité|Prise 12V|Prise auxiliaire de connexion audio|Radar de stationnement AV et AR|Régulateur de vitesse|Répartiteur électronique de freinage|Rétroviseurs électriques dégivrants|Roue de secours|Siège conducteur électrique|Siège conducteur réglable en hauteur|Siège passager réglable en hauteur|Système de détection de somnolence|Système de récupération énergie freinage|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Volant cuir multifonction|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
   <VehiculeImmatriculation>BE-569-BN</VehiculeImmatriculation>

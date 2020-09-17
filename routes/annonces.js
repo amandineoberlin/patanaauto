@@ -13,7 +13,7 @@ const {
   deleteAll
 } = require('../modules/data-handler');
 
-const returnData = _.curry((res, data) => res.send(data));
+const returnData = _.curry((res, data) => res.send({ data }));
 
 const setNoCache = (app, res) => {
   res.setHeader('Surrogate-Control', 'no-store');

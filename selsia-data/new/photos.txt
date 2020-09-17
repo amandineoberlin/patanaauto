@@ -222,16 +222,6 @@
 24487004_09_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2448-17895.jpg	71d76bcedee6ba9e1474a27dd9febe50
 24487004_10_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2448-17899.jpg	1dc308ba4d910cc6d5e2b7ffb166ec07
 24487004_11_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2448-17898.jpg	73ce91279e98b9b37e38ee349ae6bd52
-24317004_01_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17693.jpg	ab501f36fc2aea4e75f36dd82c4ec882
-24317004_02_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17694.jpg	17311879be78490b5348e1aed1ae79c5
-24317004_03_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17695.jpg	0569c373e1607cb6751ffc74674968da
-24317004_04_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17696.jpg	8ef3c7c4b17f4fee85d8e53618e3806c
-24317004_05_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17697.jpg	0d599d12e1acb40ed204d116d77c1eee
-24317004_06_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17698.jpg	13210223942d79d61bf6859d70615d2a
-24317004_07_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17699.jpg	9e23b114c741488b2966ced20e1ab4a1
-24317004_08_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17700.jpg	58fd1e91186c1feba0910f07ba59f9f5
-24317004_09_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17701.jpg	7d72f22ab9b04911c5706d37783aea0a
-24317004_10_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2431-17702.jpg	bdd1efad03353c78e4f2ad0b62078497
 24197004_01_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2419-17597.jpg	e01ce2f78f7f9a70b43909e6b270c23a
 24197004_02_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2419-17598.jpg	823a5cdafbdb0a057be5b65b64689cb0
 24197004_03_hd.jpg	/photos/cardiff/VO/ACAA/ACAA-2419-17599.jpg	7a347eacd916ac0f4d716c2560fdc2d6
