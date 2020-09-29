@@ -22,7 +22,7 @@ const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = path.join(__dirname, '/../selsia-data');
+const localDir = 'selsia-data';
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
@@ -53,36 +53,35 @@ const loadFtpData = async(res) => {
       const dataStream = await ftp.get(remoteDataFile);
       logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
-      fs.access(newDataFile, async (err) => {
-        if (!err) await fs.renameAsync(newDataFile, oldDataFile);
-        const mess = !err ? `moved already existing data file to folder: \'old\'` :
-          'no already existing acaa.xml file';
-        logger.info(mess);
+      const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
+      if (dataFileAlreadyExists) {
+        await fs.renameAsync(newDataFile, oldDataFile);
+        logger.info(`moved already existing data file to folder: \'old\'`);
+      }
 
-        await createFileFromStream(dataStream, newDataFile);
-        logger.info(`created data file from stream`);
+      await createFileFromStream(dataStream, newDataFile);
+      logger.info(`created data file from stream`);
 
-        const photoStream = await ftp.get(remotePhotoFile);
-        logger.info(`Retrieved ftp path ${remotePhotoFile}`);
+      const photoStream = await ftp.get(remotePhotoFile);
+      logger.info(`Retrieved ftp path ${remotePhotoFile}`);
 
-        const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
-        const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
-        if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
-        if (photoZipFileAlreadyExists) {
-          await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
-          logger.info(`moved already existing photo files to folder: \'old\'`);
-        }
+      const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
+      const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
+      if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
+      if (photoZipFileAlreadyExists) {
+        await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
+        logger.info(`moved already existing photo files to folder: \'old\'`);
+      }
 
-        await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
-        logger.info(`created photo file from stream`);
+      await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
+      logger.info(`created photo file from stream`);
 
-        await downloadPhotos();
-        await cleanPhotos();
+      // await downloadPhotos();
+      // await cleanPhotos();
 
-        logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
+      logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
 
-        done(await ftp.end());
-      });
+      done(await ftp.end());
 
     } catch (e) {
       logger.error(`An error occured while running ftp job: `, e);
@@ -278,9 +277,15 @@ const cleanPhotos = Promise.coroutine(function* () {
 
 const getLatestAnnonces = Promise.coroutine(function* () {
   const oldAnnonces = yield getJsonAnnonces(oldDataFile);
-  if (!oldAnnonces) return Promise.resolve([]);
+  if (!oldAnnonces) {
+    logger.info('getLatestAnnonces: no old annonces');
+    return Promise.resolve([]);
+  }
   const newAnnonces = yield getJsonAnnonces(newDataFile);
-  if (!newAnnonces) return Promise.resolve([]);
+  if (!newAnnonces) {
+    logger.info('getLatestAnnonces: no new annonces');
+    return Promise.resolve([]);
+  }
 
   const oldImmatriculations = _.flatMap(oldAnnonces, 'VehiculeImmatriculation');
   const lastestAnnonces = _.reduce(newAnnonces, (acc, v) => {
@@ -291,6 +296,8 @@ const getLatestAnnonces = Promise.coroutine(function* () {
 
     return !existsInOldAnnonces ? _.concat(acc, v) : acc;
   }, []);
+
+  logger.info(`Retrieved ${_.size(lastestAnnonces)} latest annonces`);
 
   return Promise.resolve(lastestAnnonces);
 });
