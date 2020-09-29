@@ -63,11 +63,12 @@ const loadFtpData = async(res) => {
 
       const dataFileAlreadyExists = isFileExists(newDataFile);
       if (dataFileAlreadyExists) {
-        await fs.renameSync(newDataFile, oldDataFile);
+        const rename = fs.renameSync(newDataFile, oldDataFile);
+        console.log('DID RENAME', rename);
         logger.info(`moved already existing data file to folder: \'old\'`);
       }
 
-      await createFileFromStream(dataStream, newDataFile);
+      createFileFromStream(dataStream, newDataFile);
       logger.info(`created data file from stream`);
 
       const photoStream = await ftp.get(remotePhotoFile);
