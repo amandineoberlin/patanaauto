@@ -20,9 +20,10 @@ const { REDIS_URL } = access.redis;
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
 const splitData = data => data.toString().split('\n');
 
+const isProd = process.env.PATANA_NODE_ENV === 'production';
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = 'selsia-data';
+const localDir = isProd ? path.join(__dirname, '/selsia-data') : 'selsia-data';
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
