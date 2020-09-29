@@ -35,10 +35,18 @@ const newPhotoDir = `${newDir}/photos`;
 const newPhotoFile = `${newDir}/photos.txt`;
 const newPhotoZipFile = `${newDir}/photos.txt.zip`;
 
-fs.existsAsync = Promise.promisify
-(function exists2(path, exists2callback) {
-  fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
-});
+// fs.existsAsync = Promise.promisify
+// (function exists2(path, exists2callback) {
+//   fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
+// });
+
+const isFileExists = (file) => {
+  try {
+    return fs.existsSync(file);
+  } catch (err) {
+      logger.error(err);
+  }
+};
 
 const loadFtpData = async(res) => {
   const ftpQueue = new Queue('ftp queue', REDIS_URL);
@@ -53,11 +61,11 @@ const loadFtpData = async(res) => {
       const dataStream = await ftp.get(remoteDataFile);
       logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
-      // const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
-      // if (dataFileAlreadyExists) {
-      //   await fs.renameAsync(newDataFile, oldDataFile);
-      //   logger.info(`moved already existing data file to folder: \'old\'`);
-      // }
+      const dataFileAlreadyExists = isFileExists(newDataFile);
+      if (dataFileAlreadyExists) {
+        await fs.renameAsync(newDataFile, oldDataFile);
+        logger.info(`moved already existing data file to folder: \'old\'`);
+      }
 
       await createFileFromStream(dataStream, newDataFile);
       logger.info(`created data file from stream`);
@@ -65,8 +73,8 @@ const loadFtpData = async(res) => {
       const photoStream = await ftp.get(remotePhotoFile);
       logger.info(`Retrieved ftp path ${remotePhotoFile}`);
 
-      const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
-      const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
+      const photoFileAlreadyExists = existsAsync(newPhotoFile);
+      const photoZipFileAlreadyExists = existsAsync(newPhotoZipFile);
       if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
       if (photoZipFileAlreadyExists) {
         await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
@@ -106,7 +114,7 @@ const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
   });
 
 const downloadPhotos = Promise.coroutine(function*() {
-  const existingOldPhotos = yield fs.existsAsync(oldPhotoFile);
+  const existingOldPhotos = existsAsync(oldPhotoFile);
   const logMesg = `downloaded photos${existingOldPhotos ? 'by differentiation.' : '.'}`;
 
   const photos = yield getPhotosFromFile(newPhotoFile);
@@ -162,7 +170,7 @@ const matchImagesWithAnnonces = (annonces, images) => {
 };
 
 const getJsonAnnonces = Promise.coroutine(function* (path) {
-  const isData = yield fs.existsAsync(path);
+  const isData = yield existsAsync(path);
   if (!isData) return Promise.resolve(null);
 
   const data = yield fs.readFileAsync(path, 'utf-8');
@@ -228,7 +236,7 @@ const getPhotosFromFile = Promise.coroutine(function* (path) {
 });
 
 const getPhotos = Promise.coroutine(function* () {
-  const fileExists = yield fs.existsAsync(newPhotoFile);
+  const fileExists = existsAsync(newPhotoFile);
   if (!fileExists) {
     logger.info(`Could not retrieve ${newPhotoFile} because it does not exists`);
     return [];
@@ -308,27 +316,27 @@ const deleteAll = async(req, res) => {
 
   deleteQueue.process(async(job, done) => {
     try {
-      if (await fs.existsAsync(oldDataFile)) {
+      if (existsAsync(oldDataFile)) {
         await fs.unlinkAsync(oldDataFile);
         logger.info(`Deleted file: ${oldDataFile}`)
       }
-      if (await fs.existsAsync(newDataFile)) {
+      if (existsAsync(newDataFile)) {
         await fs.unlinkAsync(newDataFile);
         logger.info(`Deleted file: ${newDataFile}`)
       }
-      if (await fs.existsAsync(oldPhotoFile)) {
+      if (existsAsync(oldPhotoFile)) {
         await fs.unlinkAsync(oldPhotoFile);
         logger.info(`Deleted file: ${oldPhotoFile}`)
       }
-      if (await fs.existsAsync(newPhotoFile)) {
+      if (existsAsync(newPhotoFile)) {
         await fs.unlinkAsync(newPhotoFile);
         logger.info(`Deleted file: ${newPhotoFile}`)
       }
-      if (await fs.existsAsync(oldPhotoZipFile)) {
+      if (existsAsync(oldPhotoZipFile)) {
         await fs.unlinkAsync(oldPhotoZipFile);
         logger.info(`Deleted file: ${oldPhotoZipFile}`)
       }
-      if (await fs.existsAsync(newPhotoZipFile)) {
+      if (existsAsync(newPhotoZipFile)) {
         await fs.unlinkAsync(newPhotoZipFile);
         logger.info(`Deleted file: ${newPhotoZipFile}`)
       }
@@ -337,7 +345,7 @@ const deleteAll = async(req, res) => {
       if (!_.isEmpty(newFiles)) {
         for (const newFile of newFiles) {
           const newPath = path.join(newPhotoDir, newFile);
-          const newFileExists = await fs.existsAsync(newPath);
+          const newFileExists = existsAsync(newPath);
           if (newFileExists) {
             logger.info(`deleting photo: ${newPath}`);
             await fs.unlinkAsync(newPath);
