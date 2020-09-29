@@ -42,9 +42,12 @@ const newPhotoZipFile = `${newDir}/photos.txt.zip`;
 
 const isFileExists = (file) => {
   try {
-    return fs.existsSync(file);
+    const isExists = fs.existsSync(file);
+    console.log('DOES IT EXISTS?: ', isExists);
+    return isExists;
   } catch (err) {
-      logger.error(err);
+    console.log('IS ERROR!!: ', err);
+    logger.error(err);
   }
 };
 
@@ -62,6 +65,7 @@ const loadFtpData = async(res) => {
       logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
       const dataFileAlreadyExists = isFileExists(newDataFile);
+      console.log('RESULT EXISTS: ', dataFileAlreadyExists);
       if (dataFileAlreadyExists) {
         await fs.renameAsync(newDataFile, oldDataFile);
         logger.info(`moved already existing data file to folder: \'old\'`);
