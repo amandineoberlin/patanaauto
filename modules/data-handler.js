@@ -35,7 +35,7 @@ const newPhotoDir = `${newDir}/photos`;
 const newPhotoFile = `${newDir}/photos.txt`;
 const newPhotoZipFile = `${newDir}/photos.txt.zip`;
 
-fs.isFileExists = Promise.promisify
+fs.existsAsync = Promise.promisify
 (function exists2(path, exists2callback) {
   fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
 });
@@ -310,27 +310,27 @@ const deleteAll = async(req, res) => {
 
   deleteQueue.process(async(job, done) => {
     try {
-      if (yield fs.existsAsync(oldDataFile)) {
+      if (await fs.existsAsync(oldDataFile)) {
         await fs.unlinkAsync(oldDataFile);
         logger.info(`Deleted file: ${oldDataFile}`)
       }
-      if (yield fs.existsAsync(newDataFile)) {
+      if (await fs.existsAsync(newDataFile)) {
         await fs.unlinkAsync(newDataFile);
         logger.info(`Deleted file: ${newDataFile}`)
       }
-      if (yield fs.existsAsync(oldPhotoFile)) {
+      if (await fs.existsAsync(oldPhotoFile)) {
         await fs.unlinkAsync(oldPhotoFile);
         logger.info(`Deleted file: ${oldPhotoFile}`)
       }
-      if (yield fs.existsAsync(newPhotoFile)) {
+      if (await fs.existsAsync(newPhotoFile)) {
         await fs.unlinkAsync(newPhotoFile);
         logger.info(`Deleted file: ${newPhotoFile}`)
       }
-      if (yield fs.existsAsync(oldPhotoZipFile)) {
+      if (await fs.existsAsync(oldPhotoZipFile)) {
         await fs.unlinkAsync(oldPhotoZipFile);
         logger.info(`Deleted file: ${oldPhotoZipFile}`)
       }
-      if (yield fs.existsAsync(newPhotoZipFile)) {
+      if (await fs.existsAsync(newPhotoZipFile)) {
         await fs.unlinkAsync(newPhotoZipFile);
         logger.info(`Deleted file: ${newPhotoZipFile}`)
       }
@@ -339,7 +339,7 @@ const deleteAll = async(req, res) => {
       if (!_.isEmpty(newFiles)) {
         for (const newFile of newFiles) {
           const newPath = path.join(newPhotoDir, newFile);
-          const newFileExists = yield fs.existsAsync(newPath);
+          const newFileExists = await fs.existsAsync(newPath);
           if (newFileExists) {
             logger.info(`deleting photo: ${newPath}`);
             await fs.unlinkAsync(newPath);
