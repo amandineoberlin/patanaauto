@@ -197,7 +197,7 @@ const getSingleAnnonce = Promise.coroutine(function* (req) {
   const message = `retrieved single annonce with id ${id}`;
   logger.info(message);
 
-  return Promise.resolve(message);
+  return Promise.resolve(singleAnnonce);
 });
 
 const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
