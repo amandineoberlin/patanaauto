@@ -78,8 +78,8 @@ const loadFtpData = async(res) => {
       await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
       logger.info(`created photo file from stream`);
 
-      // await downloadPhotos();
-      // await cleanPhotos();
+      await downloadPhotos();
+      await cleanPhotos();
 
       logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
 
