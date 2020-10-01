@@ -8,7 +8,6 @@ const { cleanPhotos, loadFtpData } = require('./data-handler');
 
 const retrieveData = Promise.coroutine(function* () {
   logger.info('scheduler for data loading launched...')
-
   yield loadFtpData();
 });
 

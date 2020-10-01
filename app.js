@@ -42,6 +42,11 @@ schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
   await require('./modules/schedule-job').cleanData();
 });
 
+// test job every thursday at 12.30am
+schedule.scheduleJob({ hour: 12, minute: 30, dayOfWeek: 4 }, async () => {
+  logger.info(`TEST FTP job scheduler of thursday launched! Date: ${new Date()}`);
+});
+
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
 
