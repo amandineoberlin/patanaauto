@@ -23,8 +23,7 @@
                       <div class="carousel-inner" role="listbox">
                         <div class="carousel-item" *ngFor="let image of annonce.images; let i=index"
                           [ngClass]="[i==0 ? 'active' : '']">
-                          <img [ngClass]="imageClass(annonce._id)" src="{{image}}" alt="First slide"
-                            (error)="missingImage($event, true)">
+                          <img alt="First slide" src="/photos/{{annonce.images[i]}}">
                         </div>
                         <button class="custom-primary" (click)="enlargeImage()">
                           <i class="fas fa-search-plus"></i>Agrandir
@@ -43,8 +42,7 @@
                       <ol class="carousel-indicators justify-content-start">
                         <li *ngFor="let image of annonce.images; let i=index" data-target="#annonceCarousel"
                           attr.data-slide-to="{{i}}" [ngClass]="[i==0 ? 'active' : '']" (click)="changeActiveItem(i)">
-                          <img [ngClass]="imageClass(annonce._id)" src="{{image}}" alt="First slide"
-                            (error)="missingImage($event, false)">
+                          <img alt="First slide" src="/photos/{{annonce.images[i]}}">
                         </li>
                       </ol>
                     </div>

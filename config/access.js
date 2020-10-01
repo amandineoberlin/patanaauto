@@ -15,5 +15,8 @@ module.exports = {
     password: process.env.FTP_PASSWORD || null,
     connTimeout: process.env.FTP_TIMEOUT || 20000,
     dir: '/datas/'
+  },
+  redis: {
+    REDIS_URL: process.env.HEROKU_REDIS_IVORY_URL || 'redis://127.0.0.1:6379'
   }
 }

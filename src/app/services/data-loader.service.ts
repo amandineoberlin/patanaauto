@@ -11,10 +11,6 @@ export class DataLoaderService {
 
   constructor(private http: HttpClient) {}
 
-  mainImage(annonce) {
-    return `/${annonce.images[0]}`;
-  }
-
   getRecentAnnonces() {
     return this.http.get<any[]>('get-latest')
       .toPromise();

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
 
 import _ from 'lodash';
 
@@ -15,15 +14,10 @@ export class FormDataService {
 
   constructor(
     private dataService: DataLoaderService,
-    private http: HttpClient,
-    private activatedRoute: ActivatedRoute,
+    private http: HttpClient
   ) { }
 
   annonces: object;
-
-  mainImage(annonce) {
-    return this.dataService.mainImage(annonce);
-  }
 
   contactForm(data): Promise<any> {
     return this.http.post<any[]>('send-contact-form', data)

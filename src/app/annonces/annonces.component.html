@@ -109,8 +109,7 @@
             <div class="card" (click)="redirectToAnnonce(annonce._id)">
               <div class="image">
                 <i class="fas fa-camera"><span>{{annonce.images.length}}</span></i>
-                <img [ngClass]="imageClass(annonce._id)" [src]="mainImage(annonce)"
-                  (error)="missingImage(annonce)">
+                <img [ngClass]="imageClass(annonce._id)" src="/photos/{{annonce.images[0]}}" >
               </div>
               <div class="card-body">
                 <div class="material-card">

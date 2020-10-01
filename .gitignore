@@ -7,14 +7,6 @@
 *.log
 .vscode
 dist/
-selsia-data/new/photos
-selsia-data/old/photos
-selsia-data/new/acaa.xml
-selsia-data/new/photos.txt.zip
-selsia-data/new/photos.zip
-selsia-data/old/acaa.xml
-selsia-data/old/photos.txt.zip
-selsia-data/old/photos.zip
 
 # User-specific files
 *.suo

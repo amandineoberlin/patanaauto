@@ -5,22 +5,24 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const unzipper = require('unzipper');
 const path = require('path');
+const Queue = require('bull');
 
 const ftpget = Promise.promisifyAll(require('ftp-get'));
 const fs = Promise.promisifyAll(require('fs'));
 const xmlParser = Promise.promisifyAll(require('xml2js'));
 
-const access = require('../config/access').ftp;
+const access = require('../config/access');
 const logger = require('./logger');
 
-const { host, user, password, connTimeout } = access;
+const { host, user, password, connTimeout } = access.ftp;
+const { REDIS_URL } = access.redis;
 
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
 const splitData = data => data.toString().split('\n');
 
 const remoteDataFile = '/datas/acaa.xml';
 const remotePhotoFile = '/datas/photos.txt.zip';
-const localDir = 'selsia-data';
+const localDir = path.join(__dirname, '../selsia-data');
 
 const oldDir = `${localDir}/old`;
 const oldDataFile = `${oldDir}/acaa.xml`;
@@ -38,52 +40,66 @@ fs.existsAsync = Promise.promisify
   fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
 });
 
-const loadFtpData = async function () {
-  try {
-    const ftp = new PromiseFtp();
-    await ftp.connect({ host, user, password, connTimeout });
-    logger.info(`connected to ftp`);
+const loadFtpData = async(res) => {
+  const ftpQueue = new Queue('ftp queue', REDIS_URL);
+  await ftpQueue.add();
 
-    const dataStream = await ftp.get(remoteDataFile);
-    logger.info(`Retrieved ftp path ${remoteDataFile}`);
+  ftpQueue.process(async(job, done) => {
+    try {
+      const ftp = new PromiseFtp();
+      await ftp.connect({ host, user, password, connTimeout });
+      logger.info(`connected to ftp`);
 
-    const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
-    if (dataFileAlreadyExists) {
-      await fs.renameAsync(newDataFile, oldDataFile);
-      logger.info(`moved already existing data file to folder: \'old\'`);
+      const dataStream = await ftp.get(remoteDataFile);
+      logger.info(`Retrieved ftp path ${remoteDataFile}`);
+
+      const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
+      if (dataFileAlreadyExists) {
+        const isOldFolderExists = await fs.existsAsync(oldDir);
+        if (!isOldFolderExists) await fs.mkdirAsync(oldDir);
+        await fs.renameAsync(newDataFile, oldDataFile);
+        logger.info(`moved already existing data file to folder: \'old\'`);
+      }
+
+      await createFileFromStream(dataStream, newDataFile);
+      logger.info(`created data file from stream`);
+
+      const photoStream = await ftp.get(remotePhotoFile);
+      logger.info(`Retrieved ftp path ${remotePhotoFile}`);
+
+      const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
+      const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
+      if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
+      if (photoZipFileAlreadyExists) {
+        await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
+        logger.info(`moved already existing photo files to folder: \'old\'`);
+      }
+
+      await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
+      logger.info(`created photo file from stream`);
+
+      await downloadPhotos();
+      await cleanPhotos();
+
+      logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
+
+      done(await ftp.end());
+
+    } catch (e) {
+      logger.error(`An error occured while running ftp job: `, e);
+      done(new Error(e));
     }
-    await createFileFromStream(dataStream, newDataFile);
-    logger.info(`created data file from stream`);
+  });
 
-    const photoStream = await ftp.get(remotePhotoFile);
-    logger.info(`Retrieved ftp path ${remotePhotoFile}`);
+  ftpQueue.on('completed', async() => {
+    logger.info('ftp completed')
+  });
 
-    const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
-    const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
-    if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
-    if (photoZipFileAlreadyExists) {
-      await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
-      logger.info(`moved already existing photo files to folder: \'old\'`);
-    }
-
-    await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
-    logger.info(`created photo file from stream`);
-
-    await downloadPhotos();
-    await cleanPhotos();
-
-    await ftp.end();
-    logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
-
-    return Promise.resolve('ftp data saved');
-  } catch(err) {
-    logger.error(`oops, an error occured: ${err}`);
-    return Promise.reject(err);
-  }
+  return res.send('ftp processing...');
 };
 
 const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
-  new Promise(function (resolve, reject) {
+  new Promise((resolve, reject) => {
     stream.once('close', resolve);
     stream.once('error', reject);
     stream.pipe(fs.createWriteStream(path));
@@ -148,8 +164,10 @@ const matchImagesWithAnnonces = (annonces, images) => {
 };
 
 const getJsonAnnonces = Promise.coroutine(function* (path) {
+  const isData = yield fs.existsAsync(path);
+  if (!isData) return Promise.resolve(null);
+
   const data = yield fs.readFileAsync(path, 'utf-8');
-  if (!data) return null;
   const json = yield xmlParser.parseStringAsync(data);
   return _.get(json, 'Stock.Vehicule');
 });
@@ -162,7 +180,7 @@ const getAnnonces = Promise.coroutine(function* () {
 
   logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
 
-  return annoncesWithImages;
+  return Promise.resolve(annoncesWithImages);
 });
 
 const getSingleAnnonce = Promise.coroutine(function* (req) {
@@ -170,10 +188,16 @@ const getSingleAnnonce = Promise.coroutine(function* (req) {
   const annonces = yield getAnnonces();
   const singleAnnonce = _.find(annonces, { _id: id });
   
-  if (!singleAnnonce) return logger.error(`cannot retrieve single annonce with id ${id}`);
-  logger.info(`retrieved single annonce with id ${id}`);
+  if (!singleAnnonce) {
+    const noAddMess = `cannot retrieve single annonce with id ${id}`;
+    logger.error({ data: noAddMess });
+    return Promise.resolve(noAddMess);
+  };
 
-  return singleAnnonce;
+  const message = `retrieved single annonce with id ${id}`;
+  logger.info(message);
+
+  return Promise.resolve(message);
 });
 
 const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
@@ -255,12 +279,18 @@ const cleanPhotos = Promise.coroutine(function* () {
 
 const getLatestAnnonces = Promise.coroutine(function* () {
   const oldAnnonces = yield getJsonAnnonces(oldDataFile);
-  if (!oldAnnonces) return [];
+  if (!oldAnnonces) {
+    logger.info('getLatestAnnonces: no old annonces');
+    return Promise.resolve([]);
+  }
   const newAnnonces = yield getJsonAnnonces(newDataFile);
-  if (!newAnnonces) return [];
+  if (!newAnnonces) {
+    logger.info('getLatestAnnonces: no new annonces');
+    return Promise.resolve([]);
+  }
 
   const oldImmatriculations = _.flatMap(oldAnnonces, 'VehiculeImmatriculation');
-  return _.reduce(newAnnonces, (acc, v) => {
+  const lastestAnnonces = _.reduce(newAnnonces, (acc, v) => {
     if (!v) return acc;
 
     const newImmatriculation = v.VehiculeImmatriculation[0];
@@ -268,7 +298,68 @@ const getLatestAnnonces = Promise.coroutine(function* () {
 
     return !existsInOldAnnonces ? _.concat(acc, v) : acc;
   }, []);
+
+  logger.info(`Retrieved ${_.size(lastestAnnonces)} latest annonces`);
+
+  return Promise.resolve(lastestAnnonces);
 });
+
+const deleteAll = async(req, res) => {
+  const deleteQueue = new Queue('delete queue', REDIS_URL);
+  await deleteQueue.add();
+
+  deleteQueue.process(async(job, done) => {
+    try {
+      if (await fs.existsAsync(oldDataFile)) {
+        await fs.unlinkAsync(oldDataFile);
+        logger.info(`Deleted file: ${oldDataFile}`)
+      }
+      if (await fs.existsAsync(newDataFile)) {
+        await fs.unlinkAsync(newDataFile);
+        logger.info(`Deleted file: ${newDataFile}`)
+      }
+      if (await fs.existsAsync(oldPhotoFile)) {
+        await fs.unlinkAsync(oldPhotoFile);
+        logger.info(`Deleted file: ${oldPhotoFile}`)
+      }
+      if (await fs.existsAsync(newPhotoFile)) {
+        await fs.unlinkAsync(newPhotoFile);
+        logger.info(`Deleted file: ${newPhotoFile}`)
+      }
+      if (await fs.existsAsync(oldPhotoZipFile)) {
+        await fs.unlinkAsync(oldPhotoZipFile);
+        logger.info(`Deleted file: ${oldPhotoZipFile}`)
+      }
+      if (await fs.existsAsync(newPhotoZipFile)) {
+        await fs.unlinkAsync(newPhotoZipFile);
+        logger.info(`Deleted file: ${newPhotoZipFile}`)
+      }
+
+      const newFiles = await fs.readdirAsync(newPhotoDir);
+      if (!_.isEmpty(newFiles)) {
+        for (const newFile of newFiles) {
+          const newPath = path.join(newPhotoDir, newFile);
+          const newFileExists = await fs.existsAsync(newPath);
+          if (newFileExists) {
+            logger.info(`deleting photo: ${newPath}`);
+            await fs.unlinkAsync(newPath);
+          }
+        }
+      }
+
+      done();
+    } catch(e) {
+      logger.error(`error while deleting files . ${e}`);
+      done(e);
+    }
+  });
+
+  deleteQueue.on('completed', async() => {
+    logger.info('deletion completed');
+  });
+
+  return res.send('data is being deleted....');
+};
 
 module.exports = {
   cleanPhotos,
@@ -277,5 +368,6 @@ module.exports = {
   loadImages,
   getPhotos,
   getSingleAnnonce,
-  getLatestAnnonces
+  getLatestAnnonces,
+  deleteAll
 };

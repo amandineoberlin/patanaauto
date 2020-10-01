@@ -64,16 +64,6 @@ export class AnnoncesComponent implements OnInit {
     return `img-responsive card-img-top ${id}`;
   }
 
-  missingImage(annonce) {
-    const id = annonce._id;
-    const image = annonce.images[1];
-    $(`.${id}`).attr('src', `/${image}`);
-  }
-
-  mainImage(annonce) {
-    return this.formDataService.mainImage(annonce);
-  }
-
   inputValue(el) {
     return el.data();
   }
