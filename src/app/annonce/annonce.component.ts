@@ -4,8 +4,6 @@ import Chart from 'chart.js';
 
 import _ from 'lodash';
 
-import { FormDataService } from '../services/form-data.service';
-
 @Component({
   selector: 'app-annonce',
   templateUrl: './annonce.component.html',
@@ -14,8 +12,7 @@ import { FormDataService } from '../services/form-data.service';
 export class AnnonceComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private formDataService: FormDataService
+    private activatedRoute: ActivatedRoute
   ) { }
 
   annonceId: number;

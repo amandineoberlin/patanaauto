@@ -13,15 +13,9 @@ const {
   deleteAll
 } = require('../modules/data-handler');
 
-const returnData = _.curry((res, data) => res.send(data));
+const { setNoCache, clearAllCaches } = require('../modules/cache-handler');
 
-const setNoCache = (app, res) => {
-  res.setHeader('Surrogate-Control', 'no-store');
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  app.set('etag', false);
-}
+const returnData = _.curry((res, data) => res.send(data));
 
 module.exports = (app) => {
   app.get('/clean-photos', (req, res) => cleanPhotos().then(returnData(res)));
@@ -35,4 +29,8 @@ module.exports = (app) => {
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
   app.get('/get-latest', (req, res) => getLatestAnnonces().then(returnData(res)));
   app.get('/delete-all', deleteAll);
+  app.get('/clear-caches', (req, res) => {
+    setNoCache(app, res);
+    clearAllCaches(res);
+  });
 }
