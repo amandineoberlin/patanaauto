@@ -3,13 +3,13 @@ const Promise = require('bluebird');
 
 const fs = Promise.promisifyAll(require('fs'));
 
-const logger = require('../modules/logger');
+const logger = require('./logger');
 
 const appVersion = require('../package.json').version;
 
 logger.info('\nRunning post-build tasks');
 
-const versionFilePath = path.join(__dirname + '/../src/dist/patanaauto/version.json');
+const versionFilePath = path.join(__dirname + '/../src/dist/patanaauto/build-version.json');
 
 let mainHash = '';
 let mainBundleFile = '';

@@ -5,7 +5,6 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const unzipper = require('unzipper');
 const path = require('path');
-const Queue = require('bull');
 
 const ftpget = Promise.promisifyAll(require('ftp-get'));
 const fs = Promise.promisifyAll(require('fs'));
@@ -15,7 +14,6 @@ const access = require('../config/access');
 const logger = require('./logger');
 
 const { host, user, password, connTimeout } = access.ftp;
-const { REDIS_URL } = access.redis;
 
 const buildImageFtpUrl = dir => `ftp://${user}:${password}@ftp.publicationvo.com${dir}`;
 const splitData = data => data.toString().split('\n');
@@ -35,67 +33,43 @@ const newPhotoDir = `${newDir}/photos`;
 const newPhotoFile = `${newDir}/photos.txt`;
 const newPhotoZipFile = `${newDir}/photos.txt.zip`;
 
-fs.existsAsync = Promise.promisify
-(function exists2(path, exists2callback) {
-  fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
-});
+const loadFtpData = async() => {
+  const ftp = new PromiseFtp();
+  await ftp.connect({ host, user, password, connTimeout });
+  logger.info(`connected to ftp`);
 
-const loadFtpData = async(res) => {
-  const ftpQueue = new Queue('ftp queue', REDIS_URL);
-  await ftpQueue.add();
+  const dataStream = await ftp.get(remoteDataFile);
+  logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
-  ftpQueue.process(async(job, done) => {
-    try {
-      const ftp = new PromiseFtp();
-      await ftp.connect({ host, user, password, connTimeout });
-      logger.info(`connected to ftp`);
+  const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
+  if (dataFileAlreadyExists) {
+    const isOldFolderExists = await fs.existsAsync(oldDir);
+    if (!isOldFolderExists) await fs.mkdirAsync(oldDir);
+    await fs.renameAsync(newDataFile, oldDataFile);
+    logger.info(`moved already existing data file to folder: \'old\'`);
+  }
 
-      const dataStream = await ftp.get(remoteDataFile);
-      logger.info(`Retrieved ftp path ${remoteDataFile}`);
+  await createFileFromStream(dataStream, newDataFile);
+  logger.info(`created data file from stream`);
 
-      const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
-      if (dataFileAlreadyExists) {
-        const isOldFolderExists = await fs.existsAsync(oldDir);
-        if (!isOldFolderExists) await fs.mkdirAsync(oldDir);
-        await fs.renameAsync(newDataFile, oldDataFile);
-        logger.info(`moved already existing data file to folder: \'old\'`);
-      }
+  const photoStream = await ftp.get(remotePhotoFile);
+  logger.info(`Retrieved ftp path ${remotePhotoFile}`);
 
-      await createFileFromStream(dataStream, newDataFile);
-      logger.info(`created data file from stream`);
+  const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
+  const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
+  if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
+  if (photoZipFileAlreadyExists) {
+    await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
+    logger.info(`moved already existing photo files to folder: \'old\'`);
+  }
 
-      const photoStream = await ftp.get(remotePhotoFile);
-      logger.info(`Retrieved ftp path ${remotePhotoFile}`);
+  await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
+  logger.info(`created photo file from stream`);
 
-      const photoFileAlreadyExists = await fs.existsAsync(newPhotoFile);
-      const photoZipFileAlreadyExists = await fs.existsAsync(newPhotoZipFile);
-      if (photoFileAlreadyExists) await fs.renameAsync(newPhotoFile, oldPhotoFile);
-      if (photoZipFileAlreadyExists) {
-        await fs.renameAsync(newPhotoZipFile, oldPhotoZipFile);
-        logger.info(`moved already existing photo files to folder: \'old\'`);
-      }
+  await downloadPhotos();
 
-      await createFileFromStream(photoStream, newPhotoZipFile, true, newDir);
-      logger.info(`created photo file from stream`);
-
-      await downloadPhotos();
-      await cleanPhotos();
-
-      logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
-
-      done(await ftp.end());
-
-    } catch (e) {
-      logger.error(`An error occured while running ftp job: `, e);
-      done(new Error(e));
-    }
-  });
-
-  ftpQueue.on('completed', async() => {
-    logger.info('ftp completed')
-  });
-
-  return res.send('ftp processing...');
+  logger.info(`retrieved and saved ${newDataFile}, ${newPhotoZipFile}, ${newPhotoFile}`);
+  return;
 };
 
 const createFileFromStream = (stream, path, shouldUnZip, extractPath) =>
@@ -274,7 +248,7 @@ const cleanPhotos = Promise.coroutine(function* () {
 
   logger.info({ message });
 
-  return message;
+  return;
 });
 
 const getLatestAnnonces = Promise.coroutine(function* () {

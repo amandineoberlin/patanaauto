@@ -36,6 +36,8 @@ app.get('*', (req, res, next) => {
 require('./routes/annonces')(app);
 require('./routes/emailer')(app);
 
+require('./modules/async-exists');
+
 // schedule ftp load every sunday at 2.30am
 schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
   logger.info(`FTP job scheduler launched! Date: ${new Date()}`);

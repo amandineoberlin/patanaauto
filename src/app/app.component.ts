@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BuildVersionCheckService } from './services/build-version-check.service';
+import { VersionCheckService } from './services/version-check.service';
 
 @Component({
   selector: 'app',
@@ -11,12 +11,12 @@ import { BuildVersionCheckService } from './services/build-version-check.service
 export class AppComponent implements OnInit {
 
   constructor(
-    private buildVersionService: BuildVersionCheckService
+    private versionService: VersionCheckService
   ) { }
 
   title = 'Patana Auto';
 
   ngOnInit(): void {
-    this.buildVersionService.initVersionCheck();
+    this.versionService.initVersionCheck();
   }
 }
