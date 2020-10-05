@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash/fp');
+const path = require('path');
 
 const {
   cleanPhotos,
@@ -29,4 +30,5 @@ module.exports = (app) => {
     setNoCache(app, res);
     clearAllCaches(res);
   });
+  app.get('/sitemap', (req, res) => res.sendFile(path.join(__dirname, '../sitemap.xml')));
 }
