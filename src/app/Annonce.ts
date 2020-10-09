@@ -7,6 +7,7 @@ export interface Annonce {
   VehiculeModeleArgus: Array<string>;
   VehiculeNumeroSerie: Array<string>;
   VehiculeCarteGriseDate: Array<string>;
+  VehiculeDate1Mec: Array<string>;
   VehiculeConsommationExtraUrbaine: Array<string>;
   VehiculeConsommationMixte: Array<string>;
   VehiculeConsommationUrbaine: Array<string>;

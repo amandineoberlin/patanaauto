@@ -153,7 +153,7 @@ export class HomeComponent implements OnInit {
   getDefaultLatestAnnonces(latestAnnonces, annoncesSize) {
     const defaultSize = 6;
     const orderBy = _.map(this.annonces, a =>
-      ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeCarteGriseDate[0]) }));
+      ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeDate1Mec[0]) }));
     const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
     const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
     const neededItemSize = defaultSize - annoncesSize;

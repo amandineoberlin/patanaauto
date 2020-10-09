@@ -55,7 +55,7 @@ export class AnnoncesComponent implements OnInit {
     modele: 'VehiculeModele',
     version: 'VehiculeVersion',
     sellerie: 'VehiculeSellerie',
-    date: 'VehiculeCarteGriseDate'
+    date: 'VehiculeDate1Mec'
   };
 
   imageClass(id) {
