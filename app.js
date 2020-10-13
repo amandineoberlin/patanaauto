@@ -45,7 +45,7 @@ schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
 });
 
 // test job every tuesday at 14.00
-schedule.scheduleJob({ hour: 14, minute: 00, dayOfWeek: 2 }, async () => {
+schedule.scheduleJob({ hour: 14, minute: 15, dayOfWeek: 2 }, async () => {
   logger.info(`FTP ALTERNATE job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
