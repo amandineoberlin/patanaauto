@@ -160,20 +160,17 @@ export class HomeComponent implements OnInit {
     return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
   }
 
-  getLatestAnnonces() {
-    this.formDataService.loadRecentAnnonces()
-      .then((data) => {
-        if (_.isEmpty(data)) return this.getDefaultLatestAnnonces([], 0);
+  buildLatestAnnonces(data) {
+    if (_.isEmpty(data)) return this.getDefaultLatestAnnonces([], 0);
 
-        const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
-        const latestAnnonces = _.filter(this.annonces, a =>
-          _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
-        const annoncesSize = _.size(latestAnnonces);
+    const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
+    const latestAnnonces = _.filter(this.annonces, a =>
+      _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
+    const annoncesSize = _.size(latestAnnonces);
 
-        if (annoncesSize === 6) return this.latestAnnonces = latestAnnonces;
-        if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
-        if (annoncesSize < 3) return this.getDefaultLatestAnnonces(latestAnnonces, annoncesSize);
-      });
+    if (annoncesSize === 6) return this.latestAnnonces = latestAnnonces;
+    if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
+    if (annoncesSize < 6) return this.getDefaultLatestAnnonces(latestAnnonces, annoncesSize);
   }
 
   choosePriceClass() {
@@ -270,14 +267,20 @@ export class HomeComponent implements OnInit {
 
     this.showPriceRange = false;
 
-    this.formDataService.loadAnnonces({ quickSearch: true })
-      .then(dataObj => {
-        _.assign(this, dataObj);
+    const dataPromises = [
+      this.formDataService.loadAnnonces({ quickSearch: true }),
+      this.formDataService.loadRecentAnnonces()
+    ];
+
+    Promise
+      .all(dataPromises)
+      .then(([{ data: annonce }, recentAnnonces]) => {
+        _.assign(this, annonce);
         this.filteredAnnonces = _.clone(this.annonces);
         this.initSlider();
         this.utilsService.bootstrapClearButton(this.quickSearch.controls, ['price']);
         this.hideSliderOnClick();
-        this.getLatestAnnonces();
+        this.buildLatestAnnonces(recentAnnonces);
       });
 
     this.waitForElement('.annonce', () =>
