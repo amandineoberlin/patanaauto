@@ -5,7 +5,7 @@ const http = require('http');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const schedule = require('node-schedule');
+const cron = require('node-cron');
 const compression = require('compression');
 
 const logger = require('./modules/logger');
@@ -39,13 +39,13 @@ require('./routes/emailer')(app);
 require('./modules/async-exists');
 
 // schedule ftp load every sunday at 2.30am
-schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
+cron.schedule('15 14 * * sun', async () => {
   logger.info(`FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
 
 // test job every tuesday at 14.00
-schedule.scheduleJob({ hour: 13, minute: 00, dayOfWeek: 2 }, async () => {
+cron.schedule('45 13 * * tuesday', async () => {
   logger.info(`FTP ALTERNATE job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
