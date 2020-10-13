@@ -44,9 +44,10 @@ schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 0 }, async () => {
   await scheduler.launch();
 });
 
-// test job every thursday at 12.30am
-schedule.scheduleJob({ hour: 12, minute: 30, dayOfWeek: 4 }, () => {
-  logger.info(`TEST FTP job scheduler of thursday launched! Date: ${new Date()}`);
+// test job every tuesday at 14.00
+schedule.scheduleJob({ hour: 14, minute: 00, dayOfWeek: 2 }, async () => {
+  logger.info(`FTP ALTERNATE job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
 });
 
 server.listen(process.env.PORT || port, () => 

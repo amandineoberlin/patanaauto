@@ -54,7 +54,7 @@
                 </div>
               </div>
               <div class="button-container">
-                <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
+                <button class="custom-transparent custom-xl center-block" routerLink="/plan" routerLinkActive="active">
                   Venez nous rendre visite!
                 </button>
               </div>
@@ -111,8 +111,10 @@
         <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
           <form class="inline" [formGroup]="quickSearch">
             <div class="row filters">
-              <div class="col-md-12">
-                <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+              <div class="col-md-12 d-flex justify-content-center">
+                <button class="custom-transparent" (click)="redirectToFilteredAnnonces()">
+                  Recherchez parmi nos {{annoncesSize}} véhicules
+                </button>
               </div>
               <div class="row input-group filter-box">
                 <div class="col-sm-12 col-lg">
