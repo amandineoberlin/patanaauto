@@ -45,7 +45,7 @@ cron.schedule('15 14 * * sun', async () => {
 });
 
 // test job every tuesday at 14.00
-cron.schedule('45 13 * * tuesday', async () => {
+cron.schedule('15 15 * * tuesday', async () => {
   logger.info(`FTP ALTERNATE job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });

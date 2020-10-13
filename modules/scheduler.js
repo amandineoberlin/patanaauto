@@ -71,7 +71,7 @@ const handleVersion = async () => {
   }
 };
 
-const launch = async (res) => {
+const launch = async () => {
   const queue = new Queue('ftp data queue', REDIS_URL);
 
   queue.process(async(job, done) => {
@@ -90,10 +90,8 @@ const launch = async (res) => {
   await queue.add();
 
   queue.on('completed', () => {
-    return logger.info('scheduler data completed');
+    return logger.info('scheduler data completed with success');
   });
-
-  return res.end('started ftp data loading...');
 };
 
 module.exports = { launch };
