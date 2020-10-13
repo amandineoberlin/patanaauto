@@ -71,7 +71,7 @@ export class VersionCheckService {
       .toPromise()
       .then((response: any) => {
         if (response.success) console.log(`emptied caches successfully due to new ${kind} version`);
-      }, err => console.log('Error: could not empty caches', err))
+      }, err => console.log('Error: could not empty caches', err));
   }
 
   private emptyStorage() {

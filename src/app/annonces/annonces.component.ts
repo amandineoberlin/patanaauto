@@ -143,7 +143,7 @@ export class AnnoncesComponent implements OnInit {
       const isDropdownOpen = $('.dropdown-menu').hasClass('show');
       if (!isDropdownOpen) return;
       // @ts-ignore
-      $('.dropdown-toggle').dropdown('toggle')
+      $('.dropdown-toggle').dropdown('toggle');
     });
   }
 
