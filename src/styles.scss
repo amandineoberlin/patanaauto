@@ -72,12 +72,6 @@
     .content-container {
       padding: 0;
     }
-    .custom-toggle button {
-      border-radius: 0;
-      &:before {
-        border-radius: 0;
-      }
-    }
   }
 }
 
@@ -101,17 +95,6 @@
   body {
     .content-container {
       padding: 0 120px;
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  body {
-    .custom-toggle button {
-      border-radius: 0.175em;
-        &:before {
-          border-radius: 0.175em;
-        }
     }
   }
 }
@@ -643,21 +626,14 @@ body {
 
   .custom-toggle {
     margin: 10px 0;
-    button:before {
-      @include opacity($plain-white, 0.9);
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
 
     button {
-      @include transition(all .3s ease-in-out);
+      @include button;
+      @include box-shadow-simple(rgba($gray-800, .4));
+      @include transform(perspective(1px) translateZ(0));
+      @include transition(all .3s);
       color: $gray-700;
-      border: 0;
+      border: solid 1px $primary;
       font-family: 'Karla';
       font-size: .8rem;
       text-transform: uppercase;
@@ -666,6 +642,7 @@ body {
 
       .fas {
         margin-right: .255em;
+        vertical-align: middle;
       }
 
       span {
@@ -673,10 +650,18 @@ body {
       }
 
       &:hover {
-        @include transition(all .3s ease-in-out);
-        text-shadow: 1px 1px 1px rgba($gray-650, .5);
-        color: $gray-900;
+        @include transform(scale(0.9));
+        background-color: $primary;
+        color: $plain-white;
+        span {
+          color: $gray-900;
+          font-weight: bolder;
+        }
       }
+    }
+
+    .dropdown-toggle:before {
+      content: none;
     }
 
     .dropdown-menu {
@@ -685,6 +670,7 @@ body {
       font-family: 'Karla';
       font-size: .75rem;
       text-transform: uppercase;
+      margin-right: .5rem;
     }
 
     .dropdown-left-manual {

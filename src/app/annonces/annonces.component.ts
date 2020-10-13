@@ -137,6 +137,16 @@ export class AnnoncesComponent implements OnInit {
     });
   }
 
+  dropDownHandler() {
+    // @ts-ignore
+    $('.custom-toggle').on('focusout', () => {
+      const isDropdownOpen = $('.dropdown-menu').hasClass('show');
+      if (!isDropdownOpen) return;
+      // @ts-ignore
+      $('.dropdown-toggle').dropdown('toggle')
+    });
+  }
+
   initSliders() {
     const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
 
@@ -404,8 +414,8 @@ export class AnnoncesComponent implements OnInit {
     this.hideSlidersOnClick();
     this.onFormChanges();
     this.onRouteChange();
-
     // @ts-ignore
     $('.dropdown-toggle').dropdown();
+    this.dropDownHandler();
   }
 }
