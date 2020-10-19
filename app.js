@@ -38,15 +38,21 @@ require('./routes/emailer')(app);
 
 require('./modules/async-exists');
 
-// schedule ftp load every sunday at 2.30am
-cron.schedule('15 14 * * sun', async () => {
-  logger.info(`FTP job scheduler launched! Date: ${new Date()}`);
+// schedule ftp load every sunday at 1.30am
+cron.schedule('30 01 * * sun', async () => {
+  logger.info(`Sunday FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
 
-// test job every tuesday at 14.00
-cron.schedule('15 15 * * tuesday', async () => {
-  logger.info(`FTP ALTERNATE job scheduler launched! Date: ${new Date()}`);
+// test job every tuesday at 01.30am
+cron.schedule('30 01 * * wednesday', async () => {
+  logger.info(`Wednesday FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+
+// to be deleted
+cron.schedule('45 13 * * monday', async () => {
+  logger.info(`TEST FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
 
