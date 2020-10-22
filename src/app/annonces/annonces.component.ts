@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { Constants } from '../constants';
   styleUrls: ['./annonces.component.scss']
 })
 
-export class AnnoncesComponent implements OnInit {
+export class AnnoncesComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
@@ -134,16 +134,6 @@ export class AnnoncesComponent implements OnInit {
         this.showPriceRange = false;
         this.showKmRange = false;
       }
-    });
-  }
-
-  dropDownHandler() {
-    // @ts-ignore
-    $('.custom-toggle').on('focusout', () => {
-      const isDropdownOpen = $('.dropdown-menu').hasClass('show');
-      if (!isDropdownOpen) return;
-      // @ts-ignore
-      $('.dropdown-toggle').dropdown('toggle');
     });
   }
 
@@ -361,9 +351,6 @@ export class AnnoncesComponent implements OnInit {
   }
 
   filterAnnonces(filters = [], isTri, order) {
-    // @ts-ignore
-    if ($('.dropdown-menu').hasClass('show')) $('.dropdown-toggle').dropdown('toggle');
-
     if (!filters || _.isEmpty(filters)) return this.filteredAnnonces = _.clone(this.annonces);
 
     if (isTri && _.size(this.filteredAnnonces) > 1) return this.filterWithTri(filters[0], order);
@@ -385,6 +372,40 @@ export class AnnoncesComponent implements OnInit {
         });
         this.filterAnnonces(_.keys(params), null, false);
       });
+  }
+
+  sort() {
+    const dropdown = $('.dropdown-menu');
+    dropdown.toggleClass('show');
+    if (dropdown.hasClass('show')) return this.dropdownListener();
+  }
+
+  silenceDropdownListener() {
+    return $('body').off('mouseup');
+  }
+
+  dropdownListener() {
+    const dropdown = $('.dropdown-menu');
+
+    $('body').on('mouseup', (e) => {
+      const isToggleButton = $(e.target).hasClass('dropdown-toggle');
+      if (isToggleButton) return this.silenceDropdownListener();
+
+      const isDropdownContainerTarget = dropdown.is(e.target);
+      const isDropdownChildrenTarget = !_.isEmpty(dropdown.has(e.target));
+      if (!isDropdownChildrenTarget || !isDropdownContainerTarget) {
+        dropdown.removeClass('show');
+        return this.silenceDropdownListener();
+      }
+    });
+  }
+
+  removeAllEventListeners() {
+    return $('body').off();
+  }
+
+  ngOnDestroy(): void {
+    this.removeAllEventListeners();
   }
 
   ngOnInit(): void {
@@ -414,8 +435,5 @@ export class AnnoncesComponent implements OnInit {
     this.hideSlidersOnClick();
     this.onFormChanges();
     this.onRouteChange();
-    // @ts-ignore
-    $('.dropdown-toggle').dropdown();
-    this.dropDownHandler();
   }
 }

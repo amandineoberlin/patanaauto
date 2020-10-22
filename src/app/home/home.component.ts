@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { Constants } from '../constants';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   quickSearch: FormGroup;
   data: { [name: string]: object };
   annonces: object;
@@ -256,6 +256,14 @@ export class HomeComponent implements OnInit {
   waitForElement(selector, callback) {
     if ($(selector).length) return callback();
     return setTimeout(() => this.waitForElement(selector, callback), 50);
+  }
+
+  removeAllEventListeners() {
+    return $('body').off();
+  }
+
+  ngOnDestroy(): void {
+    this.removeAllEventListeners();
   }
 
   ngOnInit(): void {
