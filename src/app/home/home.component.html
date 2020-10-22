@@ -134,7 +134,9 @@
                     <input type="text" class="form-control price custom-input" placeholder="Prix max..."
                       ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
                       (click)="togglePriceView()">
-                    <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
+                    <div class="form-clear d-none" (click)="clearPrice()">
+                      <i class="fas fa-times fa-sm"></i>
+                    </div>
                     <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
 
                     <div [ngClass]="choosePriceClass()" class="slide-range price">

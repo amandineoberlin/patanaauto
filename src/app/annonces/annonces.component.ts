@@ -25,8 +25,6 @@ export class AnnoncesComponent implements OnInit, OnDestroy {
   data: { [name: string]: object };
   annonces: object;
   annoncesSize: number;
-  maxAvailablePrice: number;
-  maxAvailableKm: number;
   marques: Array<any>;
   modeles: Array<any>;
   versions: Array<any>;
@@ -42,10 +40,10 @@ export class AnnoncesComponent implements OnInit, OnDestroy {
   limit: 10;
   filteredAnnonces: Array<any> = [];
   tri: string;
-  priceFrom: 1000;
-  priceTo: 25000;
-  kmFrom: 0;
-  kmTo: 230000;
+  priceFrom: number;
+  priceTo: number;
+  kmFrom: number;
+  kmTo: number;
   loading: boolean;
 
   filtersMapping: object = {
@@ -138,20 +136,18 @@ export class AnnoncesComponent implements OnInit, OnDestroy {
   }
 
   initSliders() {
-    const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
-
     const updatePrice = (data, emitEvent) => {
-      let value;
       if (data.from === data.to) return data.to = data.from + 10;
-      value = `${data.from} - ${data.to} €`;
+
+      const value = `${data.from} - ${data.to} €`;
       return this.searchForm.controls['price']
         .setValue(value, { emitEvent });
     };
 
     const updateKm = (data, emitEvent) => {
-      let value;
       if (data.from === data.to) return data.to = data.from + 10;
-      value = `${data.from} - ${data.to} km`;
+
+      const value = `${data.from} - ${data.to} km`;
       return this.searchForm.controls['km']
         .setValue(value, { emitEvent });
     };
@@ -160,7 +156,7 @@ export class AnnoncesComponent implements OnInit, OnDestroy {
     $('.js-price-slider').ionRangeSlider({
         type: 'double',
         min: 0,
-        max: roundMaxPrice,
+        max: Constants.MAX_PRICE,
         from: this.priceFrom,
         to: this.priceTo,
         grid: true,
@@ -170,12 +166,11 @@ export class AnnoncesComponent implements OnInit, OnDestroy {
         onUpdate: (data) => updatePrice(data, false)
     });
 
-    const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
     // @ts-ignore
     $('.js-km-slider').ionRangeSlider({
         type: 'double',
         min: 0,
-        max: roundMaxKm,
+        max: Constants.MAX_KM,
         from: this.kmFrom,
         to: this.kmTo,
         grid: true,
@@ -429,6 +424,10 @@ export class AnnoncesComponent implements OnInit, OnDestroy {
     this.showPriceRange = false;
     this.showKmRange = false;
     this.loading = false;
+    this.priceFrom = Constants.PRICE_FROM;
+    this.priceTo = Constants.PRICE_TO;
+    this.kmFrom = Constants.KM_FROM;
+    this.kmTo = Constants.KM_TO;
 
     this.initSliders();
     this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);

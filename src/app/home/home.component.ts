@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   annonces: object;
   latestAnnonces: object;
   annoncesSize: number;
-  maxAvailablePrice: number;
   marques: Array<string>;
   modeles: Array<string>;
   initFromPrice: number;
@@ -29,8 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   blockSlider: false;
   notFoundText: string = Constants.NOT_FOUND_MESSAGE;
   filteredAnnonces: Array<any> = [];
-  priceFrom: 1000;
-  priceTo: 25000;
+  priceFrom: number;
+  priceTo: number;
   verticalScrollIndicator: boolean;
   horizontalScrollIndicator: boolean;
 
@@ -82,6 +81,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     const price = this.inputPriceValue();
     if (price) this.quickSearch.controls['price'].setValue(null);
+
+    return $('.js-range-slider')
+      .data('ionRangeSlider')
+      .update({
+        from: this.priceFrom,
+        to: this.priceTo
+      });
   }
 
   clearModele() {
@@ -202,9 +208,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   initSlider() {
     const updatePrice = (data) => {
-      let value;
-      if (data.from === data.to) value = `${data.from} €`;
-      else value = `${data.from} - ${data.to} €`;
+      const value = (data.from === data.to) ? `${data.from} €` : `${data.from} - ${data.to} €`;
       this.quickSearch.controls['price']
         .setValue(value, { emitEvent: false });
     };
@@ -213,7 +217,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     $('.js-range-slider').ionRangeSlider({
       type: 'double',
       min: 0,
-      max: _.ceil(this.maxAvailablePrice),
+      max: Constants.MAX_PRICE,
       from: this.priceFrom,
       to: this.priceTo,
       grid: true,
@@ -274,6 +278,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this.showPriceRange = false;
+    this.priceFrom = Constants.PRICE_FROM;
+    this.priceTo = Constants.PRICE_TO;
 
     const dataPromises = [
       this.formDataService.loadAnnonces({ quickSearch: true }),
