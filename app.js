@@ -44,15 +44,9 @@ cron.schedule('30 01 * * sun', async () => {
   await scheduler.launch();
 });
 
-// test job every tuesday at 01.30am
+// test job every wednesday at 01.30am
 cron.schedule('30 01 * * wednesday', async () => {
   logger.info(`Wednesday FTP job scheduler launched! Date: ${new Date()}`);
-  await scheduler.launch();
-});
-
-// to be deleted
-cron.schedule('45 13 * * monday', async () => {
-  logger.info(`TEST FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
 
