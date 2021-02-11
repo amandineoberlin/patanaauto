@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cron = require('node-cron');
 const compression = require('compression');
+const pem = require('pem')
 
 const logger = require('./modules/logger');
 const scheduler = require('./modules/scheduler');
@@ -15,44 +16,49 @@ const limit = '10mb';
 const port = 5001;
 const static_folder = path.join(__dirname, 'src/dist/patanaauto');
 
-const app = express();
-app.use(compression());
-const server = http.createServer(app);
+pem.createCertificate({ days: 1, selfSigned: true }, (err, keys) => {
+  if (err) throw err;
 
-app.use(cookieParser());
-app.use(bodyParser.json({ limit }));
-app.use(bodyParser.urlencoded({ extended: true, limit }));
+  const app = express();
+  app.use(compression());
+  const server = http.createServer({ key: keys.serviceKey, cert: keys.certificate }, app);
 
-app.use('/', express.static(static_folder));
+  app.use(cookieParser());
+  app.use(bodyParser.json({ limit }));
+  app.use(bodyParser.urlencoded({ extended: true, limit }));
 
-app.use('/photos', express.static(__dirname + '/selsia-data/new/photos'));
+  app.use('/', express.static(static_folder));
 
-// cache all http requests for a month
-app.get('*', (req, res, next) => {
-  res.set('Cache-Control', 'public, max-age=2628000');
-  return next();
+  app.use('/photos', express.static(__dirname + '/selsia-data/new/photos'));
+
+  // cache all http requests for a month
+  app.get('*', (req, res, next) => {
+    res.set('Cache-Control', 'public, max-age=2628000');
+    return next();
+  });
+
+  require('./routes/annonces')(app);
+  require('./routes/emailer')(app);
+
+  require('./modules/async-exists');
+
+  // schedule ftp load every sunday at 1.30am
+  cron.schedule('30 01 * * sun', async () => {
+    logger.info(`Sunday FTP job scheduler launched! Date: ${new Date()}`);
+    await scheduler.launch();
+  });
+
+  // test job every wednesday at 01.30am
+  cron.schedule('30 01 * * wednesday', async () => {
+    logger.info(`Wednesday FTP job scheduler launched! Date: ${new Date()}`);
+    await scheduler.launch();
+  });
+
+  server.listen(process.env.PORT || port, () => 
+    logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
+
+  server.timeout = 240000;
+
+  app.emit('ready');
+
 });
-
-require('./routes/annonces')(app);
-require('./routes/emailer')(app);
-
-require('./modules/async-exists');
-
-// schedule ftp load every sunday at 1.30am
-cron.schedule('30 01 * * sun', async () => {
-  logger.info(`Sunday FTP job scheduler launched! Date: ${new Date()}`);
-  await scheduler.launch();
-});
-
-// test job every wednesday at 01.30am
-cron.schedule('30 01 * * wednesday', async () => {
-  logger.info(`Wednesday FTP job scheduler launched! Date: ${new Date()}`);
-  await scheduler.launch();
-});
-
-server.listen(process.env.PORT || port, () => 
-  logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
-
-server.timeout = 240000;
-
-app.emit('ready');
