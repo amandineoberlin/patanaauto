@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,13 +14,12 @@ import { Constants } from '../constants';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   quickSearch: FormGroup;
   data: { [name: string]: object };
   annonces: object;
   latestAnnonces: object;
   annoncesSize: number;
-  maxAvailablePrice: number;
   marques: Array<string>;
   modeles: Array<string>;
   initFromPrice: number;
@@ -29,8 +28,8 @@ export class HomeComponent implements OnInit {
   blockSlider: false;
   notFoundText: string = Constants.NOT_FOUND_MESSAGE;
   filteredAnnonces: Array<any> = [];
-  priceFrom: 1000;
-  priceTo: 25000;
+  priceFrom: number;
+  priceTo: number;
   verticalScrollIndicator: boolean;
   horizontalScrollIndicator: boolean;
 
@@ -82,6 +81,13 @@ export class HomeComponent implements OnInit {
 
     const price = this.inputPriceValue();
     if (price) this.quickSearch.controls['price'].setValue(null);
+
+    return $('.js-range-slider')
+      .data('ionRangeSlider')
+      .update({
+        from: this.priceFrom,
+        to: this.priceTo
+      });
   }
 
   clearModele() {
@@ -153,27 +159,24 @@ export class HomeComponent implements OnInit {
   getDefaultLatestAnnonces(latestAnnonces, annoncesSize) {
     const defaultSize = 6;
     const orderBy = _.map(this.annonces, a =>
-      ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeCarteGriseDate[0]) }));
+      ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeDate1Mec[0]) }));
     const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
     const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
     const neededItemSize = defaultSize - annoncesSize;
     return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
   }
 
-  getLatestAnnonces() {
-    this.formDataService.loadRecentAnnonces()
-      .then((data) => {
-        if (_.isEmpty(data)) return this.getDefaultLatestAnnonces([], 0);
+  buildLatestAnnonces(data) {
+    if (_.isEmpty(data)) return this.getDefaultLatestAnnonces([], 0);
 
-        const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
-        const latestAnnonces = _.filter(this.annonces, a =>
-          _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
-        const annoncesSize = _.size(latestAnnonces);
+    const dataImmatriculation = _.flatMap(data, 'VehiculeImmatriculation');
+    const latestAnnonces = _.filter(this.annonces, a =>
+      _.includes(dataImmatriculation, a.VehiculeImmatriculation[0]));
+    const annoncesSize = _.size(latestAnnonces);
 
-        if (annoncesSize === 6) return this.latestAnnonces = latestAnnonces;
-        if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
-        if (annoncesSize < 3) return this.getDefaultLatestAnnonces(latestAnnonces, annoncesSize);
-      });
+    if (annoncesSize === 6) return this.latestAnnonces = latestAnnonces;
+    if (annoncesSize > 6) return this.latestAnnonces = _.slice(latestAnnonces, 0, 6);
+    if (annoncesSize < 6) return this.getDefaultLatestAnnonces(latestAnnonces, annoncesSize);
   }
 
   choosePriceClass() {
@@ -205,9 +208,7 @@ export class HomeComponent implements OnInit {
 
   initSlider() {
     const updatePrice = (data) => {
-      let value;
-      if (data.from === data.to) value = `${data.from} €`;
-      else value = `${data.from} - ${data.to} €`;
+      const value = (data.from === data.to) ? `${data.from} €` : `${data.from} - ${data.to} €`;
       this.quickSearch.controls['price']
         .setValue(value, { emitEvent: false });
     };
@@ -216,7 +217,7 @@ export class HomeComponent implements OnInit {
     $('.js-range-slider').ionRangeSlider({
       type: 'double',
       min: 0,
-      max: _.ceil(this.maxAvailablePrice),
+      max: Constants.MAX_PRICE,
       from: this.priceFrom,
       to: this.priceTo,
       grid: true,
@@ -261,6 +262,14 @@ export class HomeComponent implements OnInit {
     return setTimeout(() => this.waitForElement(selector, callback), 50);
   }
 
+  removeAllEventListeners() {
+    return $('body').off();
+  }
+
+  ngOnDestroy(): void {
+    this.removeAllEventListeners();
+  }
+
   ngOnInit(): void {
     this.quickSearch = this.fb.group({
       marque: [null],
@@ -269,15 +278,23 @@ export class HomeComponent implements OnInit {
     });
 
     this.showPriceRange = false;
+    this.priceFrom = Constants.PRICE_FROM;
+    this.priceTo = Constants.PRICE_TO;
 
-    this.formDataService.loadAnnonces({ quickSearch: true })
-      .then(dataObj => {
-        _.assign(this, dataObj);
+    const dataPromises = [
+      this.formDataService.loadAnnonces({ quickSearch: true }),
+      this.formDataService.loadRecentAnnonces()
+    ];
+
+    Promise
+      .all(dataPromises)
+      .then(([{ data: annonce }, recentAnnonces]) => {
+        _.assign(this, annonce);
         this.filteredAnnonces = _.clone(this.annonces);
         this.initSlider();
         this.utilsService.bootstrapClearButton(this.quickSearch.controls, ['price']);
         this.hideSliderOnClick();
-        this.getLatestAnnonces();
+        this.buildLatestAnnonces(recentAnnonces);
       });
 
     this.waitForElement('.annonce', () =>

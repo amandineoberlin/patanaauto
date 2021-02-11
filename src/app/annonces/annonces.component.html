@@ -90,8 +90,9 @@
             class="dropdown-toggle"
             data-toggle="dropdown"
             aria-haspopup="true"
-            aria-expanded="false">
-              <i class="fas fa-caret-left"></i>
+            aria-expanded="false"
+            (click)="sort()">
+              <i class="fas fa-caret-left fa-lg"></i>
                 Trier par: <span>{{tri}}</span>
           </button>
           <div class="dropdown-menu">
@@ -126,7 +127,7 @@
                       <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
                     </span>
                     <span class="badge badge-light">
-                      <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
+                      <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeDate1Mec[0] | dateAgo}}
                     </span>
                     <span class="badge badge-light">
                       <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km

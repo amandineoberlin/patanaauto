@@ -18,7 +18,7 @@
       "es2018",
       "dom"
     ],
-    "types": ["jquery", "jquery-mousewheel"]
+    "types": ["jquery", "jquery-mousewheel", "node"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -54,7 +54,7 @@
                 </div>
               </div>
               <div class="button-container">
-                <button class="custom-default custom-xl center-block" routerLink="/plan" routerLinkActive="active">
+                <button class="custom-transparent custom-xl center-block" routerLink="/plan" routerLinkActive="active">
                   Venez nous rendre visite!
                 </button>
               </div>
@@ -87,7 +87,7 @@
                         <i class="fas fa-euro-sign"></i>{{annonce.VehiculePrixVenteTTC[0]}}
                       </span>
                       <span class="badge badge-light">
-                        <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeCarteGriseDate[0] | dateAgo}}
+                        <i class="fas fa-birthday-cake"></i>{{annonce.VehiculeDate1Mec[0] | dateAgo}}
                       </span>
                       <span class="badge badge-light">
                         <i class="fas fa-tachometer-alt"></i>{{annonce.VehiculeKilometrage[0]}} km
@@ -111,8 +111,10 @@
         <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
           <form class="inline" [formGroup]="quickSearch">
             <div class="row filters">
-              <div class="col-md-12">
-                <h6 class="search-title">Recherchez parmi nos {{annoncesSize}} véhicules</h6>
+              <div class="col-md-12 d-flex justify-content-center">
+                <button class="custom-transparent" (click)="redirectToFilteredAnnonces()">
+                  Recherchez parmi nos {{annoncesSize}} véhicules
+                </button>
               </div>
               <div class="row input-group filter-box">
                 <div class="col-sm-12 col-lg">
@@ -132,7 +134,9 @@
                     <input type="text" class="form-control price custom-input" placeholder="Prix max..."
                       ngDisabled="blockSlider" [ngClass]="[blockSlider ? 'disabled' : '']" formControlName="price"
                       (click)="togglePriceView()">
-                    <div class="form-clear d-none"><i class="fas fa-times fa-sm"></i></div>
+                    <div class="form-clear d-none" (click)="clearPrice()">
+                      <i class="fas fa-times fa-sm"></i>
+                    </div>
                     <div class="icon"><i class="fas fa-euro-sign fa-sm"></i></div>
 
                     <div [ngClass]="choosePriceClass()" class="slide-range price">

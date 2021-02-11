@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import _ from 'lodash';
 
-import { FormDataService } from '../services/form-data.service';
 import { UtilsService } from '../services/utils.service';
 import { Constants } from '../constants';
 
@@ -14,11 +13,10 @@ import { Constants } from '../constants';
   styleUrls: ['./annonces.component.scss']
 })
 
-export class AnnoncesComponent implements OnInit {
+export class AnnoncesComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private formDataService: FormDataService,
     private utilsService: UtilsService,
     private router: Router
   ) { }
@@ -27,8 +25,6 @@ export class AnnoncesComponent implements OnInit {
   data: { [name: string]: object };
   annonces: object;
   annoncesSize: number;
-  maxAvailablePrice: number;
-  maxAvailableKm: number;
   marques: Array<any>;
   modeles: Array<any>;
   versions: Array<any>;
@@ -44,10 +40,10 @@ export class AnnoncesComponent implements OnInit {
   limit: 10;
   filteredAnnonces: Array<any> = [];
   tri: string;
-  priceFrom: 1000;
-  priceTo: 25000;
-  kmFrom: 0;
-  kmTo: 230000;
+  priceFrom: number;
+  priceTo: number;
+  kmFrom: number;
+  kmTo: number;
   loading: boolean;
 
   filtersMapping: object = {
@@ -57,7 +53,7 @@ export class AnnoncesComponent implements OnInit {
     modele: 'VehiculeModele',
     version: 'VehiculeVersion',
     sellerie: 'VehiculeSellerie',
-    date: 'VehiculeCarteGriseDate'
+    date: 'VehiculeDate1Mec'
   };
 
   imageClass(id) {
@@ -140,20 +136,18 @@ export class AnnoncesComponent implements OnInit {
   }
 
   initSliders() {
-    const roundMaxPrice = _.ceil(this.maxAvailablePrice) > 30000 ? _.ceil(this.maxAvailablePrice) : 30000;
-
     const updatePrice = (data, emitEvent) => {
-      let value;
       if (data.from === data.to) return data.to = data.from + 10;
-      value = `${data.from} - ${data.to} €`;
+
+      const value = `${data.from} - ${data.to} €`;
       return this.searchForm.controls['price']
         .setValue(value, { emitEvent });
     };
 
     const updateKm = (data, emitEvent) => {
-      let value;
       if (data.from === data.to) return data.to = data.from + 10;
-      value = `${data.from} - ${data.to} km`;
+
+      const value = `${data.from} - ${data.to} km`;
       return this.searchForm.controls['km']
         .setValue(value, { emitEvent });
     };
@@ -162,7 +156,7 @@ export class AnnoncesComponent implements OnInit {
     $('.js-price-slider').ionRangeSlider({
         type: 'double',
         min: 0,
-        max: roundMaxPrice,
+        max: Constants.MAX_PRICE,
         from: this.priceFrom,
         to: this.priceTo,
         grid: true,
@@ -172,12 +166,11 @@ export class AnnoncesComponent implements OnInit {
         onUpdate: (data) => updatePrice(data, false)
     });
 
-    const roundMaxKm = _.ceil(this.maxAvailableKm) > 250000 ? _.ceil(this.maxAvailableKm) : 250000;
     // @ts-ignore
     $('.js-km-slider').ionRangeSlider({
         type: 'double',
         min: 0,
-        max: roundMaxKm,
+        max: Constants.MAX_KM,
         from: this.kmFrom,
         to: this.kmTo,
         grid: true,
@@ -353,9 +346,6 @@ export class AnnoncesComponent implements OnInit {
   }
 
   filterAnnonces(filters = [], isTri, order) {
-    // @ts-ignore
-    if ($('.dropdown-menu').hasClass('show')) $('.dropdown-toggle').dropdown('toggle');
-
     if (!filters || _.isEmpty(filters)) return this.filteredAnnonces = _.clone(this.annonces);
 
     if (isTri && _.size(this.filteredAnnonces) > 1) return this.filterWithTri(filters[0], order);
@@ -379,6 +369,40 @@ export class AnnoncesComponent implements OnInit {
       });
   }
 
+  sort() {
+    const dropdown = $('.dropdown-menu');
+    dropdown.toggleClass('show');
+    if (dropdown.hasClass('show')) return this.dropdownListener();
+  }
+
+  silenceDropdownListener() {
+    return $('body').off('mouseup');
+  }
+
+  dropdownListener() {
+    const dropdown = $('.dropdown-menu');
+
+    $('body').on('mouseup', (e) => {
+      const isToggleButton = $(e.target).hasClass('dropdown-toggle');
+      if (isToggleButton) return this.silenceDropdownListener();
+
+      const isDropdownContainerTarget = dropdown.is(e.target);
+      const isDropdownChildrenTarget = !_.isEmpty(dropdown.has(e.target));
+      if (!isDropdownChildrenTarget || !isDropdownContainerTarget) {
+        dropdown.removeClass('show');
+        return this.silenceDropdownListener();
+      }
+    });
+  }
+
+  removeAllEventListeners() {
+    return $('body').off();
+  }
+
+  ngOnDestroy(): void {
+    this.removeAllEventListeners();
+  }
+
   ngOnInit(): void {
     this.activatedRoute.data
       .subscribe(({ annonces: dataObj }) => {
@@ -400,14 +424,15 @@ export class AnnoncesComponent implements OnInit {
     this.showPriceRange = false;
     this.showKmRange = false;
     this.loading = false;
+    this.priceFrom = Constants.PRICE_FROM;
+    this.priceTo = Constants.PRICE_TO;
+    this.kmFrom = Constants.KM_FROM;
+    this.kmTo = Constants.KM_TO;
 
     this.initSliders();
     this.utilsService.bootstrapClearButton(this.searchForm.controls, ['price', 'km']);
     this.hideSlidersOnClick();
     this.onFormChanges();
     this.onRouteChange();
-
-    // @ts-ignore
-    $('.dropdown-toggle').dropdown();
   }
 }

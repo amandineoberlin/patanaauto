@@ -1,4 +1,10 @@
 export class Constants {
+  public static readonly PRICE_FROM: number = 1000;
+  public static readonly PRICE_TO: number = 25000;
+  public static readonly KM_FROM: number = 0;
+  public static readonly KM_TO: number = 230000;
+  public static readonly MAX_PRICE: number = 30000;
+  public static readonly MAX_KM: number = 250000;
   public static readonly DEFAULT_MIN_PRICE: number = 1000;
   public static readonly DEFAULT_MAX_PRICE: number = 5000;
   public static readonly NOT_FOUND_MESSAGE: string = 'aucun résultat';
