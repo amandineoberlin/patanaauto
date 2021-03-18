@@ -38,8 +38,38 @@ require('./routes/emailer')(app);
 
 require('./modules/async-exists');
 
-// schedule ftp load every sunday at 1.30am
-cron.schedule('10 18= * * thu', async () => {
+// schedule ftp load every day at 23:00pm
+// usage is not nice but when using cron.schedule('59 23 * * *') it didnt work on heroku
+// although it did work locally. So this is a workaround
+cron.schedule('00 23 * * mon', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('00 23 * * tue', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('00 23 * * wed', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('00 23 * * thu', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('30 18 * * thu', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('00 23 * * fri', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('00 23 * * sat', async () => {
+  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
+  await scheduler.launch();
+});
+cron.schedule('00 23 * * sun', async () => {
   logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
