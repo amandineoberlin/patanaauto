@@ -39,7 +39,7 @@ require('./routes/emailer')(app);
 require('./modules/async-exists');
 
 // schedule ftp load every sunday at 1.30am
-cron.schedule('00 18 * * *', async () => {
+cron.schedule('10 18= * * thu', async () => {
   logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
