@@ -53,14 +53,6 @@ cron.schedule('00 23 * * wed', async () => {
   logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
 });
-cron.schedule('00 23 * * thu', async () => {
-  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
-  await scheduler.launch();
-});
-cron.schedule('30 18 * * thu', async () => {
-  logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
-  await scheduler.launch();
-});
 cron.schedule('00 23 * * fri', async () => {
   logger.info(`Daily FTP job scheduler launched! Date: ${new Date()}`);
   await scheduler.launch();
