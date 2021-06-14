@@ -8,6 +8,8 @@ const compression = require('compression');
 
 const logger = require('./modules/logger');
 
+const scheduler = require('./modules/scheduler');
+
 const limit = '10mb';
 const port = 5001;
 const static_folder = path.join(__dirname, 'src/dist/patanaauto');
@@ -40,5 +42,7 @@ server.listen(process.env.PORT || port, () =>
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));
 
 server.timeout = 240000;
+
+(async () => await scheduler.launch())();
 
 app.emit('ready');
