@@ -162,8 +162,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       ({ _id: a._id, item: this.utilsService.parseDate(a.VehiculeDate1Mec[0]) }));
     const orderedItems = _.orderBy(orderBy, ['item'], ['desc']);
     const orderedAnnonces = _.map(orderedItems, a => _.find(this.filteredAnnonces, { _id: a._id }));
+    const uniqAnnonces = _.remove(orderedAnnonces, a => !_.find(latestAnnonces, { _id: a._id }))
     const neededItemSize = defaultSize - annoncesSize;
-    return this.latestAnnonces = _.concat(latestAnnonces, _.slice(orderedAnnonces, 0, neededItemSize));
+    return this.latestAnnonces = _.concat(latestAnnonces, _.slice(uniqAnnonces, 0, neededItemSize));
   }
 
   buildLatestAnnonces(data) {
