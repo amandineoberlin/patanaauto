@@ -3,6 +3,44 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
+  <VehiculeEquipementsOptionArgus>Alarme antivol|Détecteur de pluie et allumage auto|JA 17&quot; &quot;Conical Spoke&quot;|Pack Connected|Préparation Bluetooth avec port USB#|Rétroviseurs rabattables électriquement#|Système de navigation MINI#</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag passager|Airbags latéraux avant|Airbags rideaux AV et AR|Antidémarrage électronique|Anti patinage|Bacs de portes arrière|Bacs de portes avant|Banquette 2 places|Banquette 50/50|Banquette AR rabattable|Becquet arrière|Boite à gant fermée|Boucliers AV et AR couleur caisse|Calandre chromée|Ceinture de vitrage chromée|Ceintures avant ajustables en hauteur|Clim automatique bi-zones|Compte tours|Contrôle de freinage en courbe|Contrôle élect. de la pression des pneus|Démarrage sans clé|EBD|Echappement à double sortie|ESP|Essuie-glace arrière|Feux de freinage d'urgence|Filtre à particules|Filtre à Pollen|Kit anti-crevaison|Ordinateur de Bord|Ouverture des vitres séquentielle|Palettes changement vitesses au volant|Phares antibrouillard|Phares halogènes|Poches d'aumonières|Pommeau de levier vitesse en cuir|Porte-gobelets arrière|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise Jack|Radio CD MP3 6HP|Régulateur de vitesse|Rétroviseurs électriques|Siège conducteur réglable en hauteur|Sièges avant sport|Sortie d'échappement chromée|Système facilitant l'accès aux places AR|Tablette cache bagages|Température extérieure|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres avant électriques|Vitres teintées|Volant cuir + commandes audio au volant|Volant réglable en profondeur et hauteur|Volant sport|Volume automatique de la radio</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>CX-063-ZX</VehiculeImmatriculation>
+  <VehiculeModeleArgus>MINI</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>WMWSW710X0T433870</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>12-01-2018</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>4.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>5.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>6.0</VehiculeConsommationUrbaine>
+  <VehiculeCylindresArchitecture/>
+  <VehiculeEquipementsSupplement/>
+  <VehiculeMoteurAlimentationType/>
+  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
+  <VehiculeMoteurType/>
+  <VehiculeMotorisationType/>
+  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
+  <VehiculeSellerie>TISSU</VehiculeSellerie>
+  <VehiculeKilometrage>109412</VehiculeKilometrage>
+  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
+  <VehiculeLieu/>
+  <VehiculeMarque>MINI</VehiculeMarque>
+  <VehiculeModele>MINI</VehiculeModele>
+  <VehiculeNbPlaces>4</VehiculeNbPlaces>
+  <VehiculeNbPortes>3</VehiculeNbPortes>
+  <VehiculePremiereMain>Non</VehiculePremiereMain>
+  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
+  <VehiculePrixNeuf>32230</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>11900</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>8</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>143</VehiculePuissanceReelle>
+  <VehiculeTransmission/>
+  <VehiculeTypeMine>M10MN1VP0017039</VehiculeTypeMine>
+  <VehiculeVersion>COOPER SD 143CH BVA</VehiculeVersion>
+  <VehiculeDate1Mec>23-08-2013</VehiculeDate1Mec>
+ </Vehicule>
+ <Vehicule>
+  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
+  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
   <VehiculeEquipementsOptionArgus>Baguette noire soulignant l'insert|Caméra de recul</VehiculeEquipementsOptionArgus>
   <VehiculeEquipementsSerieArgus>Système anti blocage|Accoudoir arrière|Accoudoir central AV avec rangement|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux AV et AR|Antidémarrage électronique|Anti patinage|Appel d'Assistance Localisé|Appel d'Urgence Localisé|Arrêt et redémarrage auto. du moteur|Bacs de portes avant|Banquette 40/20/40|Banquette AR rabattable|Banquette arrière 3 places|Blocage électronique du différentiel|Capteur de luminosité|Capteur de Pluie|Ciel de pavillon Anthrazit|Clim automatique tri-zones|Clim manuelle arriere|Coffre assisté électriquement|Coffre avec fermeture à distance|Commande Climatisation AR|Compte tours|Contrôle de freinage en courbe|Démarrage sans clé|EBD|Eclairage d'ambiance|Eclairage statique d'intersection|Ecran multifonction couleur|ESP|Feux arrière à LED|Feux de freinage d'urgence|Feux de jour à LED|Filtre à particules|Filtre à Pollen|Fixations Isofix aux places arrières|Follow me home|Frein à main en cuir|GPS Cartographique|Inserts de porte métal|Inserts de tableau de bord métal|Jantes en alliage|Kit Fumeur|Kit mains-libres Bluetooth|Lampe de coffre|Lampes de lecture à l'avant|Lave-phares|Levier vitesse cuir|Limiteur de vitesse|Miroir de courtoisie conducteur éclairé|Miroir de courtoisie passager éclairé|Ordinateur de Bord|Ouverture des vitres séquentielle|Phares antibrouillard|Phares avant LED|Phares de route adaptatifs|Phares directionnels|Poignées ton carrosserie|Pommeau de levier vitesse en cuir|Porte-gobelets avant|Prise 12V|Prise auxiliaire de connexion audio|Prise USB|Radar de stationnement AR|Radar de stationnement AV|Radio CD MP3 6HP|Régulateur de vitesse|Répétiteurs de clignotant dans rétro ext|Rétroviseur intérieur électrochrome|Rétroviseurs dégivrants|Rétroviseurs électriques|Rétroviseurs ext. indexés à la marche AR|Rétroviseurs extérieurs électrochromes|Rétroviseurs rabattables électriquement|Services connectés|Siège conducteur réglable en hauteur|Siège passager réglable en hauteur|Sièges avant sport|Sortie d'échappement chromée|Système anti-éblouissement|Température extérieure|Tissu/Alcantara Hexagon Anthrazit|TMC|Troisième ceinture de sécurité|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant cuir|Volant métal|Volant multifonction|Volant réglable en profondeur et hauteur|Volant sport</VehiculeEquipementsSerieArgus>
   <VehiculeImmatriculation>DP-495-CV</VehiculeImmatriculation>
@@ -75,6 +113,44 @@
   <VehiculeTypeMine>MJS1004XR802</VehiculeTypeMine>
   <VehiculeVersion>1.0 GL 5P</VehiculeVersion>
   <VehiculeDate1Mec>08-07-2008</VehiculeDate1Mec>
+ </Vehicule>
+ <Vehicule>
+  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
+  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
+  <VehiculeEquipementsOptionArgus>Gris Aluminium (M) - Toit Blanc Opale|Pack Select Tissu Akinen Noir Basalte</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>Système anti blocage|Accoudoir central AV|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux AV et AR|Allumage des phares automatique|Antidémarrage électronique|Anti patinage|Arrêt et redémarrage auto. du moteur|Bacs de portes arrière|Bacs de portes avant|Banquette 1/3-2/3|Banquette AR rabattable|Banquette arrière 3 places|Boite à gants fermée|Boucliers AV et AR couleur caisse|Calandre chromée|Capteur de pluie|Clim automatique|Compte tours|Décor Noir Brillant|Détecteur de sous-gonflage|EBD|Eclairage d'ambiance|ESP|Essuie-glace arrière|Feux Ar. 3D à LED|Feux de freinage d'urgence|Feux de jour à LED|Filtre à Pollen|JA 16&quot; ARISTÉE|Jantes en alliage|Lampe de coffre|Lampes de lecture à l'avant|Miroir de courtoisie conducteur éclairé|Miroir de courtoisie passager éclairé|Ordinateur de Bord|Ouverture des vitres séquentielle|Pack Auto|Phares antibrouillard LED|Phares halogènes|Poches d'aumonières|Porte-gobelets avant|Préparation Isofix|Prise 12V|Répétiteurs de clignotant dans rétro ext|Rétroviseur intérieur électrochrome|Rétroviseurs dégivrants|Rétroviseurs électriques|Rétroviseurs rabattables électriquement|Siège conducteur réglable en hauteur|Sortie d'échappement chromée|Tablette cache bagages|Témoin de bouclage des ceintures AV|Température extérieure|Tissu Grand Rayados Noir Basalte|Troisième ceinture de sécurité|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres avant électriques|Vitres et lunette arrière surteintées|Vitres teintées|Volant cuir|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>EK-003-AM</VehiculeImmatriculation>
+  <VehiculeModeleArgus>DS 3</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>VF7SAHNZ6HW505985</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>11-06-2018</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>3.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>4.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>5.0</VehiculeConsommationUrbaine>
+  <VehiculeCylindresArchitecture/>
+  <VehiculeEquipementsSupplement/>
+  <VehiculeMoteurAlimentationType/>
+  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
+  <VehiculeMoteurType/>
+  <VehiculeMotorisationType/>
+  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
+  <VehiculeSellerie>TISSU</VehiculeSellerie>
+  <VehiculeKilometrage>66756</VehiculeKilometrage>
+  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
+  <VehiculeLieu/>
+  <VehiculeMarque>DS</VehiculeMarque>
+  <VehiculeModele>DS 3</VehiculeModele>
+  <VehiculeNbPlaces>5</VehiculeNbPlaces>
+  <VehiculeNbPortes>3</VehiculeNbPortes>
+  <VehiculePremiereMain>Non</VehiculePremiereMain>
+  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
+  <VehiculePrixNeuf>21700</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>11890</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>5</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>110</VehiculePuissanceReelle>
+  <VehiculeTransmission/>
+  <VehiculeTypeMine>M10CPFVP000R248</VehiculeTypeMine>
+  <VehiculeVersion>PURETECH 110CH SO CHIC S&amp;S</VehiculeVersion>
+  <VehiculeDate1Mec>14-02-2017</VehiculeDate1Mec>
  </Vehicule>
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
@@ -193,44 +269,6 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
-  <VehiculeEquipementsOptionArgus>Tissu Gris/Rouge</VehiculeEquipementsOptionArgus>
-  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au démarrage en côte|Airbag conducteur|Airbag genoux|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux|Antidémarrage électronique|Anti patinage|Bacs de portes avant|Banquette 2 places|Banquette 50/50|Banquette AR rabattable|BAS|Boucliers AV et AR couleur caisse|Clim manuelle|Commandes du système audio au volant|Commandes vocales|Compte tours|Direction assistée asservie à la vitesse|EBD|ESP|Essuie-glace arrière|Filtre à Pollen|Kit mains-libres Bluetooth|Miroir de courtoisie passager|Ordinateur de Bord|Phares halogènes|Porte-gobelets arrière|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise USB|Radio CD MP3|Rétroviseurs électriques|Tablette cache bagages|Verrouillage centralisé à distance|Vitres électriques avant|Vitres teintées|Volant cuir|Volant multifonction|Volant réglable en hauteur</VehiculeEquipementsSerieArgus>
-  <VehiculeImmatriculation>DV-335-FV</VehiculeImmatriculation>
-  <VehiculeModeleArgus>500</VehiculeModeleArgus>
-  <VehiculeNumeroSerie>ZFA3120000J381192</VehiculeNumeroSerie>
-  <VehiculeCarteGriseDate>26-08-2015</VehiculeCarteGriseDate>
-  <VehiculeConsommationExtraUrbaine>4.0</VehiculeConsommationExtraUrbaine>
-  <VehiculeConsommationMixte>5.0</VehiculeConsommationMixte>
-  <VehiculeConsommationUrbaine>6.0</VehiculeConsommationUrbaine>
-  <VehiculeCylindresArchitecture/>
-  <VehiculeEquipementsSupplement/>
-  <VehiculeMoteurAlimentationType/>
-  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
-  <VehiculeMoteurType/>
-  <VehiculeMotorisationType/>
-  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
-  <VehiculeSellerie>TISSU</VehiculeSellerie>
-  <VehiculeKilometrage>77026</VehiculeKilometrage>
-  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
-  <VehiculeLieu/>
-  <VehiculeMarque>FIAT</VehiculeMarque>
-  <VehiculeModele>500</VehiculeModele>
-  <VehiculeNbPlaces>4</VehiculeNbPlaces>
-  <VehiculeNbPortes>3</VehiculeNbPortes>
-  <VehiculePremiereMain>Non</VehiculePremiereMain>
-  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
-  <VehiculePrixNeuf>13690</VehiculePrixNeuf>
-  <VehiculePrixVenteTTC>6900</VehiculePrixVenteTTC>
-  <VehiculePuissanceFiscale>4</VehiculePuissanceFiscale>
-  <VehiculePuissanceReelle>69</VehiculePuissanceReelle>
-  <VehiculeTransmission/>
-  <VehiculeTypeMine>M10FATVP049N265</VehiculeTypeMine>
-  <VehiculeVersion>1.2 8V 69CH COLOR THERAPY</VehiculeVersion>
-  <VehiculeDate1Mec>26-05-2015</VehiculeDate1Mec>
- </Vehicule>
- <Vehicule>
-  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
-  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
   <VehiculeEquipementsOptionArgus>Pack Confort</VehiculeEquipementsOptionArgus>
   <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au freinage d'urgence|Airbag conducteur|Airbag passager|Airbags latéraux avant|Airbags rideaux AV et AR|Antidémarrage électronique|Anti patinage|Appuis-tête avant actifs|Bacs de portes avant|Banquette 1/3-2/3|Banquette AR rabattable|Banquette arrière 3 places|Becquet arrière|Boite à gant fermée|Boucliers AV et AR couleur caisse|Ceinture de vitrage chromée|Ceintures avant ajustables en hauteur|Clim manuelle|Compte tours|Configuration 5 places|Démarrage sans clé|Direction assistée asservie à la vitesse|EBD|Echappement à double sortie|Eclairage au sol|ESP|Essuie-glace arrière|Feux de freinage d'urgence|Filtre à particules|Filtre à Pollen|Jantes Alu 17&quot;|Kit anti-crevaison|Lampe de coffre|Lampes de lecture à l'arrière|Lampes de lecture à l'avant|Miroir de courtoisie conducteur éclairé|Miroir de courtoisie passager éclairé|Ordinateur de Bord|Ouverture des vitres séquentielle|Phares antibrouillard|Phares halogènes|Poches d'aumonières|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise Jack|Radio CD 6HP|Régulateur de vitesse|Répétiteurs de clignotant dans rétro ext|Rétroviseurs dégivrants|Rétroviseurs électriques|Sellerie tissu|Siège avant sport|Siège conduct réglable hauteur-lombaire|Sièges rang 2 rabattables à plat|Sortie d'échappement chromée|Tablette Cache Bagages|Température extérieure|Troisième ceinture de sécurité|Verrouillage centralisé à distance|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant cuir + commandes audio au volant|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
   <VehiculeImmatriculation>CN-714-GD</VehiculeImmatriculation>
@@ -265,6 +303,44 @@
   <VehiculeTypeMine>M10FRDVP019W001</VehiculeTypeMine>
   <VehiculeVersion>2.0 TDCI 140CH FAP TREND 4X2</VehiculeVersion>
   <VehiculeDate1Mec>27-11-2012</VehiculeDate1Mec>
+ </Vehicule>
+ <Vehicule>
+  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
+  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
+  <VehiculeEquipementsOptionArgus>Tissu Gris/Rouge</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au démarrage en côte|Airbag conducteur|Airbag genoux|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux|Antidémarrage électronique|Anti patinage|Bacs de portes avant|Banquette 2 places|Banquette 50/50|Banquette AR rabattable|BAS|Boucliers AV et AR couleur caisse|Clim manuelle|Commandes du système audio au volant|Commandes vocales|Compte tours|Direction assistée asservie à la vitesse|EBD|ESP|Essuie-glace arrière|Filtre à Pollen|Kit mains-libres Bluetooth|Miroir de courtoisie passager|Ordinateur de Bord|Phares halogènes|Porte-gobelets arrière|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise USB|Radio CD MP3|Rétroviseurs électriques|Tablette cache bagages|Verrouillage centralisé à distance|Vitres électriques avant|Vitres teintées|Volant cuir|Volant multifonction|Volant réglable en hauteur</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>DV-335-FV</VehiculeImmatriculation>
+  <VehiculeModeleArgus>500</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>ZFA3120000J381192</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>26-08-2015</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>4.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>5.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>6.0</VehiculeConsommationUrbaine>
+  <VehiculeCylindresArchitecture/>
+  <VehiculeEquipementsSupplement/>
+  <VehiculeMoteurAlimentationType/>
+  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
+  <VehiculeMoteurType/>
+  <VehiculeMotorisationType/>
+  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
+  <VehiculeSellerie>TISSU</VehiculeSellerie>
+  <VehiculeKilometrage>77026</VehiculeKilometrage>
+  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
+  <VehiculeLieu/>
+  <VehiculeMarque>FIAT</VehiculeMarque>
+  <VehiculeModele>500</VehiculeModele>
+  <VehiculeNbPlaces>4</VehiculeNbPlaces>
+  <VehiculeNbPortes>3</VehiculeNbPortes>
+  <VehiculePremiereMain>Non</VehiculePremiereMain>
+  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
+  <VehiculePrixNeuf>13690</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>6900</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>4</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>69</VehiculePuissanceReelle>
+  <VehiculeTransmission/>
+  <VehiculeTypeMine>M10FATVP049N265</VehiculeTypeMine>
+  <VehiculeVersion>1.2 8V 69CH COLOR THERAPY</VehiculeVersion>
+  <VehiculeDate1Mec>26-05-2015</VehiculeDate1Mec>
  </Vehicule>
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
@@ -383,6 +459,44 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
+  <VehiculeEquipementsOptionArgus>Clim automatique|Phares antibrouillard</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au freinage d'urgence|Airbags frontaux|Airbags latéraux avant|Airbags rideaux|Anti patinage|Arrêt et redémarrage auto. du moteur|Banquette 60/40|Détecteur de sous-gonflage|Direction assistée électrique|ESP|Fixations Isofix aux places arrières|Jantes en alliage|Ordinateur de Bord|Porte-gobelets avant|Prise auxiliaire de connexion audio|Radar de recul|Radio CD MP3|Rétroviseurs électriques|Siège conducteur réglable en hauteur|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Volant cuir|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>DR-684-HT</VehiculeImmatriculation>
+  <VehiculeModeleArgus>COUNTRYMAN</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>WMWZB31080WK54504</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>07-05-2015</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>5.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>6.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>7.0</VehiculeConsommationUrbaine>
+  <VehiculeCylindresArchitecture/>
+  <VehiculeEquipementsSupplement/>
+  <VehiculeMoteurAlimentationType/>
+  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
+  <VehiculeMoteurType/>
+  <VehiculeMotorisationType/>
+  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
+  <VehiculeSellerie>TISSU</VehiculeSellerie>
+  <VehiculeKilometrage>84324</VehiculeKilometrage>
+  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
+  <VehiculeLieu/>
+  <VehiculeMarque>MINI</VehiculeMarque>
+  <VehiculeModele>COUNTRYMAN</VehiculeModele>
+  <VehiculeNbPlaces>5</VehiculeNbPlaces>
+  <VehiculeNbPortes>5</VehiculeNbPortes>
+  <VehiculePremiereMain>Non</VehiculePremiereMain>
+  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
+  <VehiculePrixNeuf>23850</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>9900</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>7</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>122</VehiculePuissanceReelle>
+  <VehiculeTransmission/>
+  <VehiculeTypeMine>M10MN1VP000N480</VehiculeTypeMine>
+  <VehiculeVersion>COOPER 122CH</VehiculeVersion>
+  <VehiculeDate1Mec>26-11-2010</VehiculeDate1Mec>
+ </Vehicule>
+ <Vehicule>
+  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
+  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
   <VehiculeEquipementsOptionArgus>TEP &amp; Tissu Piedimonte Mistral</VehiculeEquipementsOptionArgus>
   <VehiculeEquipementsSerieArgus>2 sièges arrière supplémentaires|3 sièges individuels en rang 2|6 Haut parleurs|Système anti blocage|Accès et démarrage mains libres|Accoudoir central AV avec rangement|Affichage tête haute|Aide au démarrage en pente|Aide au freinage d'urgence|Airbag conducteur|Airbag passager|Airbags latéraux avant|Airbags rideaux|Airbags rideaux AR|Allumage des phares automatique|Antidémarrage électronique|Appuis-tête avant actifs|Appui-tête conducteur réglable hauteur|Appui-tête passager réglable en hauteur|Arrêt et redémarrage auto. du moteur|Bacs de portes avant|Barres de toit|Boite à gant fermée|Capteur de Pluie|Ceintures avant ajustables en hauteur|Clim automatique bi-zones|Commandes du système audio au volant|Détecteur de sous-gonflage indirect|Eclairage d'ambiance|Ecran couleur|Ecran multifonction couleur|Ecran tactile|ESP|Essuie-glace arrière|Feux de jour à LED|Fixations Isofix aux places arrières|Follow me home|Fonction Mirror Screen|Fonction MP3|Inserts de porte métal|Jantes en alliage|Kit mains-libres Bluetooth|Limiteur de vitesse|Miroir de courtoisie conducteur éclairé|Miroir de courtoisie passager éclairé|Ouverture des vitres séquentielle|Pack City 1|Pack Eclairage d'ambiance|Pack Enfants|Pack Safety Plus|Phares halogènes|Plafonnier central AV et AR à LED|Poches d'aumonières|Porte-gobelets avant|Prise 12V|Prise USB|Projecteurs antibrouillard halogènes|Radar de stationnement AR|Autoradio K7|Reconnaissance panneaux de signalisation|Régulateur de vitesse|Répartiteur électronique de freinage|Rétro. ext. Rab. Élect. + éclairage LED|Rétroviseur intérieur électrochrome|Rétroviseurs dégivrants|Rétroviseurs électriques|Sabot de pare-choc avant gris métallisé|Siège conducteur avec réglage lombaire|Siège conducteur réglable en hauteur|Siège passager avec dossier repliable|Siège passager réglable en hauteur|Sièges arrière coulissants|Sièges rang 2 inclinables|Sièges rang 2 rabattables à plat|Sièges rang 3 rabattables à plat|Toggle Switches chromés|Troisième ceinture de sécurité|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres électriques avant|Vitres lat. et lunette AR surteintées|Volant cuir|Volant multifonction|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
   <VehiculeImmatriculation>EY-775-YA</VehiculeImmatriculation>
@@ -400,7 +514,7 @@
   <VehiculeMotorisationType/>
   <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
   <VehiculeSellerie>CUIR / TISSUS</VehiculeSellerie>
-  <VehiculeKilometrage>48238</VehiculeKilometrage>
+  <VehiculeKilometrage>48521</VehiculeKilometrage>
   <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
   <VehiculeLieu/>
   <VehiculeMarque>PEUGEOT</VehiculeMarque>
@@ -1447,44 +1561,6 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
-  <VehiculeEquipementsOptionArgus>Pack visibilité 2|Sellerie cuir|Sièges avant chauffants|Système de navigation MINI#</VehiculeEquipementsOptionArgus>
-  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au démarrage en côte|Aide au freinage d'urgence|Airbags frontaux|Airbags latéraux avant|Antidémarrage électronique|Arceaux de sécurité actifs|Arrêt et redémarrage auto. du moteur|Banquette 50/50|Capote souple|Capteur de pluie et de luminosité|Clim automatique|Contrôle de freinage en courbe|Détecteur de sous-gonflage|Direction assistée électrique|ESP|Feux arrière à LED|Fixations Isofix aux places arrières|Jantes Alu 17&quot;|Kit anti-crevaison|Ordinateur de Bord|Pack Red Hot Chili|Phares antibrouillard|Phares bi-xénon|Porte-gobelets arrière|Porte-gobelets avant|Prise 12V|Prise auxiliaire de connexion audio|Radar de recul|Radio CD MP3 6HP|Rétroviseurs électriques|Siège conducteur réglable en hauteur|Sièges avant sport|Système de récupération énergie freinage|Système facilitant l'accès aux places AR|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant Multif. + Régulateur de vitesse|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
-  <VehiculeImmatriculation>BK-601-YC</VehiculeImmatriculation>
-  <VehiculeModeleArgus>CABRIO</VehiculeModeleArgus>
-  <VehiculeNumeroSerie>WMWZP31000TY46465</VehiculeNumeroSerie>
-  <VehiculeCarteGriseDate>05-10-2015</VehiculeCarteGriseDate>
-  <VehiculeConsommationExtraUrbaine>5.0</VehiculeConsommationExtraUrbaine>
-  <VehiculeConsommationMixte>6.0</VehiculeConsommationMixte>
-  <VehiculeConsommationUrbaine>7.0</VehiculeConsommationUrbaine>
-  <VehiculeCylindresArchitecture/>
-  <VehiculeEquipementsSupplement/>
-  <VehiculeMoteurAlimentationType/>
-  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
-  <VehiculeMoteurType/>
-  <VehiculeMotorisationType/>
-  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
-  <VehiculeSellerie>CUIR</VehiculeSellerie>
-  <VehiculeKilometrage>154801</VehiculeKilometrage>
-  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
-  <VehiculeLieu/>
-  <VehiculeMarque>MINI</VehiculeMarque>
-  <VehiculeModele>CABRIO</VehiculeModele>
-  <VehiculeNbPlaces>4</VehiculeNbPlaces>
-  <VehiculeNbPortes>2</VehiculeNbPortes>
-  <VehiculePremiereMain>Non</VehiculePremiereMain>
-  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
-  <VehiculePrixNeuf>34340</VehiculePrixNeuf>
-  <VehiculePrixVenteTTC>10900</VehiculePrixVenteTTC>
-  <VehiculePuissanceFiscale>10</VehiculePuissanceFiscale>
-  <VehiculePuissanceReelle>184</VehiculePuissanceReelle>
-  <VehiculeTransmission/>
-  <VehiculeTypeMine>M10MN1VP0009200</VehiculeTypeMine>
-  <VehiculeVersion>COOPER S 184CH PACK RED HOT CHILI</VehiculeVersion>
-  <VehiculeDate1Mec>25-03-2011</VehiculeDate1Mec>
- </Vehicule>
- <Vehicule>
-  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
-  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
   <VehiculeEquipementsOptionArgus>Navigation multimédia Business</VehiculeEquipementsOptionArgus>
   <VehiculeEquipementsSerieArgus>6 Haut parleurs|Système anti blocage|Accoudoir central AR avec trappe à skis|Accoudoir central AV avec rangement|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux AV et AR|Antidémarrage électronique|Anti patinage|Appel d'Assistance Localisé|Appel d'Urgence Localisé|Appui-tête conducteur réglable hauteur|Appui-tête passager réglable en hauteur|Arrêt et redémarrage auto. du moteur|Bacs de portes arrière|Bacs de portes avant|Banquette 40/20/40|Banquette AR rabattable|Banquette arrière 3 places|Banquette coulissante|Becquet arrière|Blocage électronique du différentiel|Boite à gants éclairée et réfrigérable|Boucliers AV et AR couleur caisse|Buses de lave-glace chauffantes|Capteur de luminosité|Capteur de pluie|Climatisation|Compte tours|Contrôle élect. de la pression des pneus|Démarrage sans clé|EBD|Ecran multifonction couleur|ESP|Feux de freinage d'urgence|Feux de jour à LED|Filets de coffre|Filtre à Pollen|Fixation Isofix siège passager avant|Fixations Isofix aux places arrières|Fonction MP3|Freinage automatique d'urgence|Jantes en alliage|Kit mains-libres Bluetooth|Lampe de coffre|Lecteur CD|Limiteur de vitesse|Lunette AR dégivrante|Lunette arrière|Ordinateur de Bord|Ouverture des vitres séquentielle|Phares antibrouillard|Phares halogènes|Poches d'aumonières|Poignées ton carrosserie|Porte-gobelets arrière|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise iPod|Prise USB|Autoradio K7|Rangement sous siège conducteur|Régulateur de vitesse|Répétiteurs de clignotant dans rétro ext|Rétroviseurs dégivrants|Rétroviseurs électriques|Services connectés|Siège conducteur réglable en hauteur|Siège passager réglable en hauteur|Sièges rang 2 inclinables|Sortie d'échappement chromée|Système avancé de détection d'obstacles|Système d'assistance à la descente|Système de détection de somnolence|Système de prévention des collisions|Température extérieure|Tissu Grid Anthrazit/Schwarz|Troisième ceinture de sécurité|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant cuir|Volant multifonction|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
   <VehiculeImmatriculation>EP-682-NV</VehiculeImmatriculation>
@@ -1519,6 +1595,44 @@
   <VehiculeTypeMine>M10BMWVP0409310</VehiculeTypeMine>
   <VehiculeVersion>(F45) 216I 102CH LOUNGE</VehiculeVersion>
   <VehiculeDate1Mec>28-07-2017</VehiculeDate1Mec>
+ </Vehicule>
+ <Vehicule>
+  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
+  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
+  <VehiculeEquipementsOptionArgus>Pack visibilité 2|Sellerie cuir|Sièges avant chauffants|Système de navigation MINI#</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au démarrage en côte|Aide au freinage d'urgence|Airbags frontaux|Airbags latéraux avant|Antidémarrage électronique|Arceaux de sécurité actifs|Arrêt et redémarrage auto. du moteur|Banquette 50/50|Capote souple|Capteur de pluie et de luminosité|Clim automatique|Contrôle de freinage en courbe|Détecteur de sous-gonflage|Direction assistée électrique|ESP|Feux arrière à LED|Fixations Isofix aux places arrières|Jantes Alu 17&quot;|Kit anti-crevaison|Ordinateur de Bord|Pack Red Hot Chili|Phares antibrouillard|Phares bi-xénon|Porte-gobelets arrière|Porte-gobelets avant|Prise 12V|Prise auxiliaire de connexion audio|Radar de recul|Radio CD MP3 6HP|Rétroviseurs électriques|Siège conducteur réglable en hauteur|Sièges avant sport|Système de récupération énergie freinage|Système facilitant l'accès aux places AR|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant Multif. + Régulateur de vitesse|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>BK-601-YC</VehiculeImmatriculation>
+  <VehiculeModeleArgus>CABRIO</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>WMWZP31000TY46465</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>05-10-2015</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>5.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>6.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>7.0</VehiculeConsommationUrbaine>
+  <VehiculeCylindresArchitecture/>
+  <VehiculeEquipementsSupplement/>
+  <VehiculeMoteurAlimentationType/>
+  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
+  <VehiculeMoteurType/>
+  <VehiculeMotorisationType/>
+  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
+  <VehiculeSellerie>CUIR</VehiculeSellerie>
+  <VehiculeKilometrage>154801</VehiculeKilometrage>
+  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
+  <VehiculeLieu/>
+  <VehiculeMarque>MINI</VehiculeMarque>
+  <VehiculeModele>CABRIO</VehiculeModele>
+  <VehiculeNbPlaces>4</VehiculeNbPlaces>
+  <VehiculeNbPortes>2</VehiculeNbPortes>
+  <VehiculePremiereMain>Non</VehiculePremiereMain>
+  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
+  <VehiculePrixNeuf>34340</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>10900</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>10</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>184</VehiculePuissanceReelle>
+  <VehiculeTransmission/>
+  <VehiculeTypeMine>M10MN1VP0009200</VehiculeTypeMine>
+  <VehiculeVersion>COOPER S 184CH PACK RED HOT CHILI</VehiculeVersion>
+  <VehiculeDate1Mec>25-03-2011</VehiculeDate1Mec>
  </Vehicule>
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
@@ -1637,44 +1751,6 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
-  <VehiculeEquipementsOptionArgus>Noir Métallisé|Pack Techno</VehiculeEquipementsOptionArgus>
-  <VehiculeEquipementsSerieArgus>6 Haut parleurs|Système anti blocage|Aide au freinage d'urgence|Airbag conducteur|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux AV et AR|Anti patinage|Banquette 60/40|Banquette AR rabattable|Banquette arrière 3 places|Becquet arrière|Boucliers AV et AR couleur caisse|Caméra de recul|Capteur de luminosité|Capteur de pluie|Ceintures avant ajustables en hauteur|Chassis Sport|Clim automatique|Commandes du système audio au volant|Compte tours|Contrôle élect. de la pression des pneus|Démarrage sans clé|EBD|Ecran multifonction couleur|Ecran tactile|ESP|Essuie-glace arrière|Feux de jour à LED|Feux de position à LED|Filtre à Pollen|Fixations Isofix aux places arrières|Fonction MP3|GPS Cartographique|Jantes en alliage|Kit mains-libres Bluetooth|Lecteur CD|Levier vitesse cuir|Limiteur de vitesse|Lunette AR dégivrante|Lunette arrière|Lunette et vitres arrières surteintées|Miroir de courtoisie conducteur|Miroir de courtoisie passager|Ordinateur de Bord|Ouverture des vitres séquentielle|Palettes changement vitesses au volant|Pédalier sport|Phares antibrouillard|Phares halogènes|Poches d'aumonières|Poignées ton carrosserie|Pommeau de levier vitesse en cuir|Pont à vecteur de couple|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise USB|Autoradio K7|Régulateur de vitesse|Répétiteurs de clignotant dans rétro ext|Rétroviseurs dégivrants|Rétroviseurs électriques|Rétroviseurs rabattables automatique|Rétroviseurs rabattables électriquement|Services connectés|Siège conducteur chauffant|Siège conducteur réglable en hauteur|Siège passager chauffant|Sièges avant sport|Sortie d'échappement chromée|Suédine Sport avec surpiqûres rouges|Système d'accès sans clé|Système de mesure de place disponible|Tablette Cache Bagages|Température extérieure|TMC|Troisième ceinture de sécurité|Verrouillage centralisé à distance|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant cuir|Volant multifonction|Volant réglable en hauteur</VehiculeEquipementsSerieArgus>
-  <VehiculeImmatriculation>DS-721-MF</VehiculeImmatriculation>
-  <VehiculeModeleArgus>JUKE</VehiculeModeleArgus>
-  <VehiculeNumeroSerie>SJNFANF15U7072009</VehiculeNumeroSerie>
-  <VehiculeCarteGriseDate>12-07-2017</VehiculeCarteGriseDate>
-  <VehiculeConsommationExtraUrbaine>6.0</VehiculeConsommationExtraUrbaine>
-  <VehiculeConsommationMixte>7.0</VehiculeConsommationMixte>
-  <VehiculeConsommationUrbaine>9.0</VehiculeConsommationUrbaine>
-  <VehiculeCylindresArchitecture/>
-  <VehiculeEquipementsSupplement/>
-  <VehiculeMoteurAlimentationType/>
-  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
-  <VehiculeMoteurType/>
-  <VehiculeMotorisationType/>
-  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
-  <VehiculeSellerie>ALCANTARA</VehiculeSellerie>
-  <VehiculeKilometrage>103397</VehiculeKilometrage>
-  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
-  <VehiculeLieu/>
-  <VehiculeMarque>NISSAN</VehiculeMarque>
-  <VehiculeModele>JUKE</VehiculeModele>
-  <VehiculeNbPlaces>5</VehiculeNbPlaces>
-  <VehiculeNbPortes>5</VehiculeNbPortes>
-  <VehiculePremiereMain>Non</VehiculePremiereMain>
-  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
-  <VehiculePrixNeuf>31950</VehiculePrixNeuf>
-  <VehiculePrixVenteTTC>13900</VehiculePrixVenteTTC>
-  <VehiculePuissanceFiscale>13</VehiculePuissanceFiscale>
-  <VehiculePuissanceReelle>214</VehiculePuissanceReelle>
-  <VehiculeTransmission/>
-  <VehiculeTypeMine>M10NSSVP0232683</VehiculeTypeMine>
-  <VehiculeVersion>1.6 DIG-T 214CH NISMO RS ALL-MODE 4X4-I XTRONIC</VehiculeVersion>
-  <VehiculeDate1Mec>18-06-2015</VehiculeDate1Mec>
- </Vehicule>
- <Vehicule>
-  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
-  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
   <VehiculeEquipementsOptionArgus>Cuir Abarth Rouge|Toit Skydome avec rideau pare-soleil</VehiculeEquipementsOptionArgus>
   <VehiculeEquipementsSerieArgus>ABS|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag genoux|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux|Antidémarrage électronique|Antipatinage|Bacs de portes avant|Banquette 2 places|Banquette 50/50|Banquette AR rabattable|Becquet arrière|Boite à gant fermée|Boucliers AV et AR couleur caisse|Clim automatique bi-zones|Commandes vocales|Compte tours|EBD|Echappement à double sortie|Ecran multifonction couleur|ESP|Essuie-glace arrière|Feux de jour|Filtre à Pollen|Jantes Alu|Kit Fumeur|Kit mains-libres Bluetooth|Lampe de coffre|Lave-phares|Lunette arrière surteintée|Miroir de courtoisie passager éclairé|Ordinateur de bord|Pare-brise thermique|Pédalier sport|Phares antibrouillard|Phares bi-xénon|Pommeau de levier de vitesse métal|Porte-gobelets arrière|Porte-gobelets avant|Préparation Isofix|Prise auxiliaire de connexion audio|Prise USB|Radio CD MP3 6HP|Rétroviseur intérieur électrochrome|Rétroviseurs dégivrants|Rétroviseurs électriques|Siège conducteur réglable en hauteur|Sièges avant sport|Sortie d'échappement chromée|Suspensions Sport|Système facilitant l'accès aux places AR|Tablette cache bagages|Température extérieure|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres arrière et lunette AR surteintées|Vitres arrière surteintées|Vitres avant électriques|Vitres teintées|Volant cuir + commandes audio au volant|Volant multifonction|Volant réglable en hauteur|Volant sport</VehiculeEquipementsSerieArgus>
   <VehiculeImmatriculation>DH-043-RS</VehiculeImmatriculation>
@@ -1713,15 +1789,15 @@
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
   <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
-  <VehiculeEquipementsOptionArgus>Gris Aluminium (M) - Toit Blanc Opale|Pack Select Tissu Akinen Noir Basalte</VehiculeEquipementsOptionArgus>
-  <VehiculeEquipementsSerieArgus>Système anti blocage|Accoudoir central AV|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux AV et AR|Allumage des phares automatique|Antidémarrage électronique|Anti patinage|Arrêt et redémarrage auto. du moteur|Bacs de portes arrière|Bacs de portes avant|Banquette 1/3-2/3|Banquette AR rabattable|Banquette arrière 3 places|Boite à gants fermée|Boucliers AV et AR couleur caisse|Calandre chromée|Capteur de pluie|Clim automatique|Compte tours|Décor Noir Brillant|Détecteur de sous-gonflage|EBD|Eclairage d'ambiance|ESP|Essuie-glace arrière|Feux Ar. 3D à LED|Feux de freinage d'urgence|Feux de jour à LED|Filtre à Pollen|JA 16&quot; ARISTÉE|Jantes en alliage|Lampe de coffre|Lampes de lecture à l'avant|Miroir de courtoisie conducteur éclairé|Miroir de courtoisie passager éclairé|Ordinateur de Bord|Ouverture des vitres séquentielle|Pack Auto|Phares antibrouillard LED|Phares halogènes|Poches d'aumonières|Porte-gobelets avant|Préparation Isofix|Prise 12V|Répétiteurs de clignotant dans rétro ext|Rétroviseur intérieur électrochrome|Rétroviseurs dégivrants|Rétroviseurs électriques|Rétroviseurs rabattables électriquement|Siège conducteur réglable en hauteur|Sortie d'échappement chromée|Tablette cache bagages|Témoin de bouclage des ceintures AV|Température extérieure|Tissu Grand Rayados Noir Basalte|Troisième ceinture de sécurité|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres avant électriques|Vitres et lunette arrière surteintées|Vitres teintées|Volant cuir|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
-  <VehiculeImmatriculation>EK-003-AM</VehiculeImmatriculation>
-  <VehiculeModeleArgus>DS 3</VehiculeModeleArgus>
-  <VehiculeNumeroSerie>VF7SAHNZ6HW505985</VehiculeNumeroSerie>
-  <VehiculeCarteGriseDate>11-06-2018</VehiculeCarteGriseDate>
-  <VehiculeConsommationExtraUrbaine>3.0</VehiculeConsommationExtraUrbaine>
-  <VehiculeConsommationMixte>4.0</VehiculeConsommationMixte>
-  <VehiculeConsommationUrbaine>5.0</VehiculeConsommationUrbaine>
+  <VehiculeEquipementsOptionArgus>Noir Métallisé|Pack Techno</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>6 Haut parleurs|Système anti blocage|Aide au freinage d'urgence|Airbag conducteur|Airbag passager déconnectable|Airbags latéraux avant|Airbags rideaux AV et AR|Anti patinage|Banquette 60/40|Banquette AR rabattable|Banquette arrière 3 places|Becquet arrière|Boucliers AV et AR couleur caisse|Caméra de recul|Capteur de luminosité|Capteur de pluie|Ceintures avant ajustables en hauteur|Chassis Sport|Clim automatique|Commandes du système audio au volant|Compte tours|Contrôle élect. de la pression des pneus|Démarrage sans clé|EBD|Ecran multifonction couleur|Ecran tactile|ESP|Essuie-glace arrière|Feux de jour à LED|Feux de position à LED|Filtre à Pollen|Fixations Isofix aux places arrières|Fonction MP3|GPS Cartographique|Jantes en alliage|Kit mains-libres Bluetooth|Lecteur CD|Levier vitesse cuir|Limiteur de vitesse|Lunette AR dégivrante|Lunette arrière|Lunette et vitres arrières surteintées|Miroir de courtoisie conducteur|Miroir de courtoisie passager|Ordinateur de Bord|Ouverture des vitres séquentielle|Palettes changement vitesses au volant|Pédalier sport|Phares antibrouillard|Phares halogènes|Poches d'aumonières|Poignées ton carrosserie|Pommeau de levier vitesse en cuir|Pont à vecteur de couple|Porte-gobelets avant|Préparation Isofix|Prise 12V|Prise auxiliaire de connexion audio|Prise USB|Autoradio K7|Régulateur de vitesse|Répétiteurs de clignotant dans rétro ext|Rétroviseurs dégivrants|Rétroviseurs électriques|Rétroviseurs rabattables automatique|Rétroviseurs rabattables électriquement|Services connectés|Siège conducteur chauffant|Siège conducteur réglable en hauteur|Siège passager chauffant|Sièges avant sport|Sortie d'échappement chromée|Suédine Sport avec surpiqûres rouges|Système d'accès sans clé|Système de mesure de place disponible|Tablette Cache Bagages|Température extérieure|TMC|Troisième ceinture de sécurité|Verrouillage centralisé à distance|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Vitres teintées|Volant cuir|Volant multifonction|Volant réglable en hauteur</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>DS-721-MF</VehiculeImmatriculation>
+  <VehiculeModeleArgus>JUKE</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>SJNFANF15U7072009</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>12-07-2017</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>6.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>7.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>9.0</VehiculeConsommationUrbaine>
   <VehiculeCylindresArchitecture/>
   <VehiculeEquipementsSupplement/>
   <VehiculeMoteurAlimentationType/>
@@ -1729,62 +1805,24 @@
   <VehiculeMoteurType/>
   <VehiculeMotorisationType/>
   <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
-  <VehiculeSellerie>TISSU</VehiculeSellerie>
-  <VehiculeKilometrage>66756</VehiculeKilometrage>
+  <VehiculeSellerie>ALCANTARA</VehiculeSellerie>
+  <VehiculeKilometrage>103397</VehiculeKilometrage>
   <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
   <VehiculeLieu/>
-  <VehiculeMarque>DS</VehiculeMarque>
-  <VehiculeModele>DS 3</VehiculeModele>
-  <VehiculeNbPlaces>5</VehiculeNbPlaces>
-  <VehiculeNbPortes>3</VehiculeNbPortes>
-  <VehiculePremiereMain>Non</VehiculePremiereMain>
-  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
-  <VehiculePrixNeuf>21700</VehiculePrixNeuf>
-  <VehiculePrixVenteTTC>11890</VehiculePrixVenteTTC>
-  <VehiculePuissanceFiscale>5</VehiculePuissanceFiscale>
-  <VehiculePuissanceReelle>110</VehiculePuissanceReelle>
-  <VehiculeTransmission/>
-  <VehiculeTypeMine>M10CPFVP000R248</VehiculeTypeMine>
-  <VehiculeVersion>PURETECH 110CH SO CHIC S&amp;S</VehiculeVersion>
-  <VehiculeDate1Mec>14-02-2017</VehiculeDate1Mec>
- </Vehicule>
- <Vehicule>
-  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
-  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
-  <VehiculeEquipementsOptionArgus>Clim automatique|Phares antibrouillard</VehiculeEquipementsOptionArgus>
-  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au freinage d'urgence|Airbags frontaux|Airbags latéraux avant|Airbags rideaux|Anti patinage|Arrêt et redémarrage auto. du moteur|Banquette 60/40|Détecteur de sous-gonflage|Direction assistée électrique|ESP|Fixations Isofix aux places arrières|Jantes en alliage|Ordinateur de Bord|Porte-gobelets avant|Prise auxiliaire de connexion audio|Radar de recul|Radio CD MP3|Rétroviseurs électriques|Siège conducteur réglable en hauteur|Verrouillage centralisé des portes|Vitres arrière électriques|Vitres avant électriques|Volant cuir|Volant réglable en profondeur et hauteur</VehiculeEquipementsSerieArgus>
-  <VehiculeImmatriculation>DR-684-HT</VehiculeImmatriculation>
-  <VehiculeModeleArgus>COUNTRYMAN</VehiculeModeleArgus>
-  <VehiculeNumeroSerie>WMWZB31080WK54504</VehiculeNumeroSerie>
-  <VehiculeCarteGriseDate>07-05-2015</VehiculeCarteGriseDate>
-  <VehiculeConsommationExtraUrbaine>5.0</VehiculeConsommationExtraUrbaine>
-  <VehiculeConsommationMixte>6.0</VehiculeConsommationMixte>
-  <VehiculeConsommationUrbaine>7.0</VehiculeConsommationUrbaine>
-  <VehiculeCylindresArchitecture/>
-  <VehiculeEquipementsSupplement/>
-  <VehiculeMoteurAlimentationType/>
-  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
-  <VehiculeMoteurType/>
-  <VehiculeMotorisationType/>
-  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
-  <VehiculeSellerie>TISSU</VehiculeSellerie>
-  <VehiculeKilometrage>84324</VehiculeKilometrage>
-  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
-  <VehiculeLieu/>
-  <VehiculeMarque>MINI</VehiculeMarque>
-  <VehiculeModele>COUNTRYMAN</VehiculeModele>
+  <VehiculeMarque>NISSAN</VehiculeMarque>
+  <VehiculeModele>JUKE</VehiculeModele>
   <VehiculeNbPlaces>5</VehiculeNbPlaces>
   <VehiculeNbPortes>5</VehiculeNbPortes>
   <VehiculePremiereMain>Non</VehiculePremiereMain>
   <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
-  <VehiculePrixNeuf>23850</VehiculePrixNeuf>
-  <VehiculePrixVenteTTC>9900</VehiculePrixVenteTTC>
-  <VehiculePuissanceFiscale>7</VehiculePuissanceFiscale>
-  <VehiculePuissanceReelle>122</VehiculePuissanceReelle>
+  <VehiculePrixNeuf>31950</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>13900</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>13</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>214</VehiculePuissanceReelle>
   <VehiculeTransmission/>
-  <VehiculeTypeMine>M10MN1VP000N480</VehiculeTypeMine>
-  <VehiculeVersion>COOPER 122CH</VehiculeVersion>
-  <VehiculeDate1Mec>26-11-2010</VehiculeDate1Mec>
+  <VehiculeTypeMine>M10NSSVP0232683</VehiculeTypeMine>
+  <VehiculeVersion>1.6 DIG-T 214CH NISMO RS ALL-MODE 4X4-I XTRONIC</VehiculeVersion>
+  <VehiculeDate1Mec>18-06-2015</VehiculeDate1Mec>
  </Vehicule>
  <Vehicule>
   <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
@@ -1823,5 +1861,43 @@
   <VehiculeTypeMine/>
   <VehiculeVersion>1.7 CRDI 115CH ISG ACTIVE BUSINESS 4X2</VehiculeVersion>
   <VehiculeDate1Mec>06-09-2016</VehiculeDate1Mec>
+ </Vehicule>
+ <Vehicule>
+  <VehiculeConformeReferentielArgus>Oui</VehiculeConformeReferentielArgus>
+  <VehiculeConformeReferentielArgusNiveau>1</VehiculeConformeReferentielArgusNiveau>
+  <VehiculeEquipementsOptionArgus>Pck navigation/multimedia|Sièges chauffants</VehiculeEquipementsOptionArgus>
+  <VehiculeEquipementsSerieArgus>Système anti blocage|Aide au démarrage en côte|Aide au freinage d'urgence|Airbag conducteur|Airbag passager|Antidémarrage électronique|Anti patinage|Bacs de portes avant|Boite à gant fermée|Boucliers AV et AR couleur caisse|Clim manuelle|Compte tours|EBD|ESP|Essuie-glace arrière|Feux de jour|Filtre à Pollen|Jantes en alliage|Kit Fumeur|Lampes de lecture à l'avant|Levier vitesse cuir|Lunette AR Degivrante|Phares halogènes|Pommeau de levier vitesse en cuir|Prise auxiliaire de connexion audio|Prise USB|Radio CD MP3 2HP|Rétroviseurs extérieurs à réglage manuel|Siège passager rabattable|Tablette Cache Bagages|Température extérieure|Toit panoramique en verre|Verrouillage auto. des portes en roulant|Verrouillage centralisé à distance|Vitres avant électriques|Vitres teintées|Volant cuir</VehiculeEquipementsSerieArgus>
+  <VehiculeImmatriculation>DM-667-GF</VehiculeImmatriculation>
+  <VehiculeModeleArgus>FORTWO COUPE</VehiculeModeleArgus>
+  <VehiculeNumeroSerie>WME4513321K810081</VehiculeNumeroSerie>
+  <VehiculeCarteGriseDate>30-11-2020</VehiculeCarteGriseDate>
+  <VehiculeConsommationExtraUrbaine>4.0</VehiculeConsommationExtraUrbaine>
+  <VehiculeConsommationMixte>4.0</VehiculeConsommationMixte>
+  <VehiculeConsommationUrbaine>6.0</VehiculeConsommationUrbaine>
+  <VehiculeCylindresArchitecture/>
+  <VehiculeEquipementsSupplement/>
+  <VehiculeMoteurAlimentationType/>
+  <VehiculeMoteurCouple>0</VehiculeMoteurCouple>
+  <VehiculeMoteurType/>
+  <VehiculeMotorisationType/>
+  <VehiculePeintureMetallisee>Non</VehiculePeintureMetallisee>
+  <VehiculeSellerie>TISSU</VehiculeSellerie>
+  <VehiculeKilometrage>46565</VehiculeKilometrage>
+  <VehiculeKmGaranti>Garanti</VehiculeKmGaranti>
+  <VehiculeLieu/>
+  <VehiculeMarque>SMART</VehiculeMarque>
+  <VehiculeModele>FORTWO COUPE</VehiculeModele>
+  <VehiculeNbPlaces>2</VehiculeNbPlaces>
+  <VehiculeNbPortes>3</VehiculeNbPortes>
+  <VehiculePremiereMain>Non</VehiculePremiereMain>
+  <VehiculePrixAvecTvaVente>Non</VehiculePrixAvecTvaVente>
+  <VehiculePrixNeuf>14900</VehiculePrixNeuf>
+  <VehiculePrixVenteTTC>5900</VehiculePrixVenteTTC>
+  <VehiculePuissanceFiscale>5</VehiculePuissanceFiscale>
+  <VehiculePuissanceReelle>84</VehiculePuissanceReelle>
+  <VehiculeTransmission/>
+  <VehiculeTypeMine>M10SMPTVP000412</VehiculeTypeMine>
+  <VehiculeVersion>84CH TURBO PASSION SOFTOUCH</VehiculeVersion>
+  <VehiculeDate1Mec>03-12-2014</VehiculeDate1Mec>
  </Vehicule>
 </Stock>
