@@ -94,4 +94,4 @@ const launch = async () => {
   });
 };
 
-module.exports = { launch };
+(async () => await launch())();
