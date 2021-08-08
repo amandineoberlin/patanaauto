@@ -16,8 +16,7 @@ export class AppComponent implements OnInit {
   title = 'Patana Auto';
 
   ngOnInit() {
-    console.log('not clearing caches')
-    // return this.http.get<any[]>('clear-caches')
-    //   .toPromise();
+    return this.http.get<any[]>('clear-caches')
+      .toPromise();
   }
 }

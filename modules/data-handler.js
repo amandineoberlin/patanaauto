@@ -5,6 +5,7 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const unzipper = require('unzipper');
 const path = require('path');
+const sharp = require("sharp");
 
 const ftpget = Promise.promisifyAll(require('ftp-get'));
 const fs = Promise.promisifyAll(require('fs'));
@@ -48,7 +49,6 @@ const loadFtpData = async() => {
   logger.info(`Retrieved ftp path ${remoteDataFile}`);
 
   const dataFileAlreadyExists = await fs.existsAsync(newDataFile);
-  logger.info('dataFileAlreadyExists: ', dataFileAlreadyExists);
   if (dataFileAlreadyExists) {
     const isOldFolderExists = await fs.existsAsync(oldDir);
     if (!isOldFolderExists) await fs.mkdirAsync(oldDir);
@@ -198,7 +198,12 @@ const getAndSaveFtpImages = (photos) =>
       .getAsync({ url, bufferType: 'buffer' })
       .then((buffer) => {
         logger.info(`Downloaded a photo (${p.name})`);
-        return fs.writeFileAsync(`${newPhotoDir}/${p.name}`, buffer, 'binary');
+
+        // compress image to reduce size in frontend
+        return sharp(buffer)
+          .resize(800)
+          .jpeg({ quality: 70 })
+          .toFile(`${newPhotoDir}/${p.name}`);
       })
       .catch(() => logger.info(`Photo: ${p.name} could not be retrieved`));
   });
