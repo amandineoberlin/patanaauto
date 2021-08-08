@@ -28,15 +28,10 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.images = [
-      'parc5.JPG',
-      'parc6.JPG',
       'parc7.JPG',
-      'parc8.JPG',
       'parc9.JPG',
       'parc10.JPG',
       'office1.JPG',
-      'office2.JPG',
-      'office3.JPG',
       'drone2.jpg'
     ];
 
