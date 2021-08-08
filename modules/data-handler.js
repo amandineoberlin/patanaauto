@@ -33,6 +33,12 @@ const newPhotoDir = `${newDir}/photos`;
 const newPhotoFile = `${newDir}/photos.txt`;
 const newPhotoZipFile = `${newDir}/photos.txt.zip`;
 
+// workaround because the synchronous exist function has an error as its first parameter
+fs.existsAsync = Promise.promisify
+(function exists2(path, exists2callback) {
+    fs.exists(path, function callbackWrapper(exists) { exists2callback(null, exists); });
+ });
+ 
 const loadFtpData = async() => {
   const ftp = new PromiseFtp();
   await ftp.connect({ host, user, password, connTimeout });
