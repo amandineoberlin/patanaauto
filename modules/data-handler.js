@@ -153,16 +153,16 @@ const getJsonAnnonces = Promise.coroutine(function* (path) {
   return _.get(json, 'Stock.Vehicule');
 });
 
-const getAnnonces = Promise.coroutine(function* () {
-  const annonces = yield getJsonAnnonces(newDataFile);
-  const images = yield getPhotosFromFile(newPhotoFile);
+const getAnnonces = async () => {
+  const annonces = await getJsonAnnonces(newDataFile);
+  const images = await getPhotosFromFile(newPhotoFile);
   const annoncesWithId = createAnnoncesIdsAndTitle(annonces);
   const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
   logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
 
-  return Promise.resolve(annoncesWithImages);
-});
+  return annoncesWithImages;
+};
 
 const getSingleAnnonce = Promise.coroutine(function* (req) {
   const id = _.get(req, 'params.id');
@@ -263,32 +263,18 @@ const cleanPhotos = Promise.coroutine(function* () {
   return;
 });
 
-const getLatestAnnonces = Promise.coroutine(function* () {
-  const oldAnnonces = yield getJsonAnnonces(oldDataFile);
-  if (!oldAnnonces) {
-    logger.info('getLatestAnnonces: no old annonces');
-    return Promise.resolve([]);
-  }
-  const newAnnonces = yield getJsonAnnonces(newDataFile);
+const getLatestAnnonces = async () => {
+  const newAnnonces = await getAnnonces(newDataFile);
   if (!newAnnonces) {
     logger.info('getLatestAnnonces: no new annonces');
-    return Promise.resolve([]);
+    return [];
   }
 
-  const oldImmatriculations = _.flatMap(oldAnnonces, 'VehiculeImmatriculation');
-  const lastestAnnonces = _.reduce(newAnnonces, (acc, v) => {
-    if (!v) return acc;
+  const ordered = _.orderBy(newAnnonces, (annonce) => _.split(annonce.images[0], '_', 1), 'DESC');
 
-    const newImmatriculation = v.VehiculeImmatriculation[0];
-    const existsInOldAnnonces = _.includes(oldImmatriculations, newImmatriculation);
-
-    return !existsInOldAnnonces ? _.concat(acc, v) : acc;
-  }, []);
-
-  logger.info(`Retrieved ${_.size(lastestAnnonces)} latest annonces`);
-
-  return Promise.resolve(lastestAnnonces);
-});
+  // always return the latest 6 annonces, given the fact that the file is ordered by default
+  return ordered.slice(ordered.length - 6).reverse();
+};
 
 const deleteAll = async(req, res) => {
   const deleteQueue = new Queue('delete queue', REDIS_URL);
