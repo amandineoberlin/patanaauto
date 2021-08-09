@@ -25,7 +25,6 @@ module.exports = (app) => {
   app.get('/load-images', (req, res) => loadImages().then(returnData(res)));
   app.get('/get-photos', (req, res) => getPhotos().then(returnData(res)));
   app.get('/get-latest', (req, res) => getLatestAnnonces().then(returnData(res)));
-  app.get('/delete-all', deleteAll);
   app.get('/clear-caches', (req, res) => {
     setNoCache(app, res);
     clearAllCaches(res);
