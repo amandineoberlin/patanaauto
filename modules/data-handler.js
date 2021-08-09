@@ -158,24 +158,21 @@ const getAnnonces = async () => {
   return annoncesWithImages;
 };
 
-const getSingleAnnonce = Promise.coroutine(function* (req) {
+const getSingleAnnonce = async (req) => {
   const id = _.get(req, 'params.id');
-  const annonces = yield getAnnonces();
+  const annonces = await getAnnonces();
   const singleAnnonce = _.find(annonces, { _id: id });
   
   if (!singleAnnonce) {
-    const noAddMess = `cannot retrieve single annonce with id ${id}`;
-    logger.error({ data: noAddMess });
-    return Promise.resolve(noAddMess);
+    logger.error(`cannot retrieve single annonce with id ${id}`);
+    return null;
   };
 
-  const message = `retrieved single annonce with id ${id}`;
-  logger.info(message);
+  logger.info(`retrieved single annonce with id ${id}`);
+  return singleAnnonce;
+};
 
-  return Promise.resolve(singleAnnonce);
-});
-
-const buildPhotoObject = photos => _.reduce(photos, (acc, value) => {
+const buildPhotoObject = (photos) => _.reduce(photos, (acc, value) => {
   if (!value) return acc;
 
   const [name, directory, hash] = _.split(_.trim(value), '\t');
@@ -202,40 +199,40 @@ const getAndSaveFtpImages = (photos) =>
       .catch(() => logger.info(`Photo: ${p.name} could not be retrieved`));
   });
 
-const getPhotosFromFile = Promise.coroutine(function* (path) {
-  const data = yield fs.readFileAsync(path, 'utf-8');
+const getPhotosFromFile = async (path) => {
+  const data = await fs.readFileAsync(path, 'utf-8');
   if (!data) return logger.error(`could not retrieve photo file: ${path}`);
 
   return buildPhotoObject(splitData(data));
-});
+};
 
-const getPhotos = Promise.coroutine(function* () {
-  const fileExists = yield fs.existsAsync(newPhotoFile);
+const getPhotos = async () => {
+  const fileExists = await fs.existsAsync(newPhotoFile);
   if (!fileExists) {
     logger.info(`Could not retrieve ${newPhotoFile} because it does not exists`);
     return [];
   }
 
-  const photos = yield getPhotosFromFile(newPhotoFile);
-  logger.info(`retrieved ${_.size(photos)} photos`);
+  const photos = await getPhotosFromFile(newPhotoFile);
+  logger.info(`retrieved ${photos.length} photos`);
 
   return photos;
-});
+};
 
-const loadImages = Promise.coroutine(function* () {
-  const photos = yield getPhotosFromFile(newPhotoFile);
-  const images = yield getAndSaveFtpImages(photos);
+const loadImages = async () => {
+  const photos = await getPhotosFromFile(newPhotoFile);
+  const images = await getAndSaveFtpImages(photos);
 
-  return logger.info(`Retrieved ${_.size(images)} images from ftp`);
-});
+  return logger.info(`Retrieved ${images.length} images from ftp`);
+};
 
-const cleanPhotos = Promise.coroutine(function* () {
-  const photoFile = yield getPhotosFromFile(newPhotoFile);
+const cleanPhotos = async () => {
+  const photoFile = await getPhotosFromFile(newPhotoFile);
   const photoFileById = _.keyBy(photoFile, '_id');
-  const photos = yield fs.readdirAsync(newPhotoDir);
+  const photos = await fs.readdirAsync(newPhotoDir);
 
   const deletedPhotos = [];
-  yield Promise.mapSeries(photos, (photo) => {
+  await Promise.mapSeries(photos, (photo) => {
     if (!photo) return;
     const photoName = _.replace(photo, '.jpg', '');
     const photoExistsInFile = photoFileById[photoName];
@@ -255,7 +252,7 @@ const cleanPhotos = Promise.coroutine(function* () {
   logger.info({ message });
 
   return;
-});
+};
 
 const getLatestAnnonces = async () => {
   const newAnnonces = await getAnnonces(newDataFile);

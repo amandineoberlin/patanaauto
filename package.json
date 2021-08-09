@@ -35,7 +35,6 @@
     "angular-bootstrap-md": "8.4.0",
     "angular-sanitize": "1.7.8",
     "bluebird": "3.5.5",
-    "body-parser": "1.19.0",
     "bootstrap": "4.3.1",
     "bootstrap-material-design": "4.1.2",
     "chart.js": "2.9.3",

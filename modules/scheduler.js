@@ -16,9 +16,10 @@ const launch = async () => {
   try {
     await retrieveData();
     await cleanData();
+    logger.info('Data daily routine completed with success!');
   } catch (e) {
     logger.error(`An error occured while running ftp scheduler job: `, e);
   }
 };
 
-(async () => await launch())();
+// (async () => await launch())();

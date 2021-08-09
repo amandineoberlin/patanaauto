@@ -14,13 +14,13 @@ const mailingOptions = ({ name, email, subject, message }) => {
   return { from: auth.user, to: auth.user, subject, html }
 }
 
-const sendForm = Promise.coroutine(function* (req, res) {
+const sendForm = async (req, res) => {
   const { name, email, message } = req.body;
-  if (!name || !email || !message) return Promise.resolve({ accepted: null, rejected: null });
+  if (!name || !email || !message) return { accepted: null, rejected: null };
 
-  const sentEmailResult = yield sendEmail(mailingOptions(req.body));
+  const sentEmailResult = await sendEmail(mailingOptions(req.body));
 
   return res.send(sentEmailResult);
-});
+};
 
 module.exports = (app) => app.post('/send-contact-form', sendForm);
