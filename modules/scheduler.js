@@ -22,4 +22,4 @@ const launch = async () => {
   }
 };
 
-// (async () => await launch())();
+(async () => await launch())();
