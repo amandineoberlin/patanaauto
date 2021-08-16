@@ -64,6 +64,9 @@ const loadFtpData = async() => {
   const xmlData = await fs.readFileAsync(newDataFile, 'utf-8');
   const dataToJson = await xmlParser.parseStringAsync(xmlData);
   const jsonToSave = JSON.stringify(_.get(dataToJson, 'Stock.Vehicule', {}));
+
+  const oldJson = await findJsonFile();
+  if (oldJson) await fs.unlinkAsync(`${newDir}/${oldJson}`);
   await fs.writeFileAsync(`${newDir}/${TODAY}.json`, jsonToSave);
   logger.info(`Created json data file ${newDir}/${TODAY}.json`);
 
@@ -140,13 +143,21 @@ const matchImagesWithAnnonces = (annonces, images) => {
   return annonces;
 };
 
-const getAnnonces = async () => {
+const findJsonFile = async () => {
   const fileList = await fs.readdirAsync(newDir);
   const jsonFileName = fileList.find(v => /.json/.test(v));
+
   if (!jsonFileName) {
     logger.info(`No existing data json file`);
-    return [];
+    return null;
   }
+
+  return jsonFileName;
+}
+
+const getAnnonces = async () => {
+  const jsonFileName = await findJsonFile();
+  if (!jsonFileName) return [];
 
   const rawdata = await fs.readFileAsync(`${newDir}/${jsonFileName}`);
   const images = await getPhotosFromFile(newPhotoFile);
