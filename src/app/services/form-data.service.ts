@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import _ from 'lodash';
 
@@ -20,7 +20,12 @@ export class FormDataService {
   annonces: object;
 
   contactForm(data): Promise<any> {
-    return this.http.post<any[]>('send-contact-form', data)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.post<any[]>('send-contact-form', JSON.stringify(data), httpOptions)
       .toPromise();
   }
 
