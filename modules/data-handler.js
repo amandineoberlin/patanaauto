@@ -164,7 +164,7 @@ const getAnnonces = async () => {
   const annoncesWithId = createAnnoncesIdsAndTitle(JSON.parse(rawdata));
   const annoncesWithImages = matchImagesWithAnnonces(annoncesWithId, images);
 
-  logger.info(`retrieved ${_.size(annoncesWithImages)} annonces`);
+  logger.info(`retrieved ${_.size(annoncesWithImages)} annonces from ${jsonFileName}`);
 
   return annoncesWithImages;
 };
