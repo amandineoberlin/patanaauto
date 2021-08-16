@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app',
@@ -10,13 +10,14 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
 
   constructor(
-    private http: HttpClient
+    // private http: HttpClient
   ) { }
 
   title = 'Patana Auto';
 
   ngOnInit() {
-    return this.http.get<any[]>('clear-caches')
-      .toPromise();
+    console.log(`App ${this.title}`);
+    // return this.http.get<any[]>('clear-caches')
+    //   .toPromise();
   }
 }
