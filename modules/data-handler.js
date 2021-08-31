@@ -266,7 +266,7 @@ const cleanPhotos = async () => {
 };
 
 const getLatestAnnonces = async () => {
-  const newAnnonces = await getAnnonces(newDataFile);
+  const newAnnonces = await getAnnonces();
   if (!newAnnonces) {
     logger.info('getLatestAnnonces: no new annonces');
     return [];
