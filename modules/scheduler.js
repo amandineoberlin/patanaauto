@@ -22,4 +22,6 @@ const launch = async () => {
   }
 };
 
+console.log('inside proper file');
+
 (async () => await launch())();
