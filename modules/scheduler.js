@@ -22,6 +22,4 @@ const launch = async () => {
   }
 };
 
-logger.info('inside proper file');
-
 (async () => await launch())();
