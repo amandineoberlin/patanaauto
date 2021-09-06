@@ -11,8 +11,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node app.js",
-    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build patanaauto --prod && npm run post-build",
-    "post-build": "node ./modules/scheduler.js",
+    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build patanaauto --prod && node ./modules/scheduler.js",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

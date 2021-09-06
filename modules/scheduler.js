@@ -22,4 +22,5 @@ const launch = async () => {
   }
 };
 
+logger.info('started scheduler file');
 (async () => await launch())();
