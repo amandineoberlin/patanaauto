@@ -35,6 +35,7 @@ require('./routes/annonces')(app);
 require('./routes/emailer')(app);
 
 require('./modules/async-exists');
+require('./modules/scheduler');
 
 server.listen(process.env.PORT || port, () => 
   logger.info('Node Express server for ' + app.name + ' listening on http://localhost:' + port));

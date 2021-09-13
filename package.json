@@ -10,9 +10,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
-    "heroku-postbuild": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build patanaauto --prod",
-    "heroku-cleanup": "node ./modules/scheduler.js && node app.js",
+    "start": "node app.js",
+    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build patanaauto --prod",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
