@@ -131,6 +131,10 @@
       text-transform: uppercase;
     }
 
+    #important-warranty {
+      color: $hovered-red;
+    }
+
     .circle {
       border: 2px solid rgba($plain-white, .9);
       z-index: 10;
